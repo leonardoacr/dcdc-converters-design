@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <android.support.constraint.ConstraintLayout
+
+        android:id="@+id/relativeLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/background_dark"
+        tools:context=".MainActivity">
+
+
+
+        <EditText
+            android:id="@+id/f"
+            android:layout_width="136dp"
+            android:layout_height="39dp"
+            android:layout_marginEnd="16dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="f"
+            android:inputType="numberDecimal"
+            android:textAlignment="center"
+            android:textColor="?android:attr/colorBackground"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/n"
+            android:layout_marginRight="16dp" />
+
+        <EditText
+            android:id="@+id/n"
+            android:layout_width="136dp"
+            android:layout_height="39dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="n"
+            android:inputType="numberDecimal"
+            android:textAlignment="center"
+            android:textColor="?android:attr/colorBackground"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/f"
+            app:layout_constraintTop_toBottomOf="@+id/Ripple_VC"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp" />
+
+        <EditText
+            android:id="@+id/Ripple_VC"
+            android:layout_width="136dp"
+            android:layout_height="39dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Ripple VC"
+            android:inputType="numberDecimal"
+            android:textAlignment="center"
+            android:textColor="?android:attr/colorBackground"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/n"
+            app:layout_constraintTop_toBottomOf="@+id/Ripple_IL"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp" />
+
+        <EditText
+            android:id="@+id/Ripple_IL"
+            android:layout_width="136dp"
+            android:layout_height="39dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Ripple IL"
+            android:inputType="numberDecimal"
+            android:textAlignment="center"
+            android:textColor="?android:attr/colorBackground"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/Ripple_VC"
+            app:layout_constraintTop_toBottomOf="@+id/Po"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp" />
+
+        <EditText
+            android:id="@+id/Po"
+            android:layout_width="136dp"
+            android:layout_height="39dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Po"
+            android:inputType="numberDecimal"
+            android:textAlignment="center"
+            android:textColor="?android:attr/colorBackground"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/Ripple_IL"
+            app:layout_constraintTop_toBottomOf="@+id/Vo"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp" />
+
+        <EditText
+            android:id="@+id/Vo"
+            android:layout_width="136dp"
+            android:layout_height="39dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Vo"
+            android:inputType="numberDecimal"
+            android:selectAllOnFocus="false"
+            android:singleLine="false"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/Po"
+            app:layout_constraintTop_toBottomOf="@+id/Vi"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp" />
+
+        <EditText
+            android:id="@+id/Vi"
+            android:layout_width="136dp"
+            android:layout_height="39dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="80dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Vi"
+            android:inputType="numberDecimal"
+            android:selectAllOnFocus="false"
+            android:singleLine="false"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/Vo"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp" />
+
+        <TextView
+            android:id="@+id/Frequency_T"
+            android:layout_width="183dp"
+            android:layout_height="39dp"
+            android:layout_marginBottom="300dp"
+            android:layout_marginStart="16dp"
+            android:gravity="center"
+            android:text="Frequency (kHz)"
+            android:textAlignment="center"
+            android:textColor="?android:attr/colorBackground"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Efficiency_T"
+            app:layout_constraintVertical_bias="0.0"
+            android:layout_marginLeft="16dp" />
+
+        <TextView
+            android:id="@+id/Ripple_Capacitor_T"
+            android:layout_width="183dp"
+            android:layout_height="39dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:text="Ripple Capacitor Voltage (%)"
+            android:textAlignment="center"
+            android:textColor="?android:attr/colorBackground"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/Efficiency_T"
+            app:layout_constraintStart_toStartOf="@+id/Efficiency_T"
+            app:layout_constraintTop_toBottomOf="@+id/Ripple_Inductor_T" />
+
+        <TextView
+            android:id="@+id/Efficiency_T"
+            android:layout_width="183dp"
+            android:layout_height="39dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:text="Efficiency (%)"
+            android:textAlignment="center"
+            android:textColor="?android:attr/colorBackground"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/Frequency_T"
+            app:layout_constraintStart_toStartOf="@+id/Frequency_T"
+            app:layout_constraintTop_toBottomOf="@+id/Ripple_Capacitor_T" />
+
+        <TextView
+            android:id="@+id/Ripple_Inductor_T"
+            android:layout_width="183dp"
+            android:layout_height="39dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:text="Ripple Inductor Current (%)"
+            android:textAlignment="center"
+            android:textColor="?android:attr/colorBackground"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/Ripple_Capacitor_T"
+            app:layout_constraintStart_toStartOf="@+id/Ripple_Capacitor_T"
+            app:layout_constraintTop_toBottomOf="@+id/Output_Power_T" />
+
+        <Button
+            android:id="@+id/Buck"
+            android:layout_width="235dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="16dp"
+            android:text="Buck"
+            android:textColor="@android:color/background_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Converters"
+            tools:textColor="@android:color/background_dark" />
+
+        <TextView
+            android:id="@+id/Converters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="269dp"
+            android:layout_marginTop="32dp"
+            android:text="Converters"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="?android:attr/colorBackground"
+            android:textSize="30sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/f"
+            app:layout_constraintVertical_bias="1.0"
+            android:gravity="center_horizontal" />
+
+        <Button
+            android:id="@+id/Buck_Boost"
+            android:layout_width="235dp"
+            android:layout_height="42dp"
+            android:text="Buck-Boost"
+            android:textColor="@android:color/background_dark"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Boost"
+            tools:textColor="@android:color/background_dark" />
+
+        <TextView
+            android:id="@+id/Input_Voltage_T"
+            android:layout_width="183dp"
+            android:layout_height="39dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="80dp"
+            android:gravity="center"
+            android:text="Input Voltage (V)"
+            android:textAlignment="center"
+            android:textColor="?android:attr/colorBackground"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/Output_Voltage_T"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="16dp" />
+
+        <TextView
+            android:id="@+id/Output_Power_T"
+            android:layout_width="183dp"
+            android:layout_height="39dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:text="Output Power (W)"
+            android:textAlignment="center"
+            android:textColor="?android:attr/colorBackground"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/Ripple_Inductor_T"
+            app:layout_constraintStart_toStartOf="@+id/Ripple_Inductor_T"
+            app:layout_constraintTop_toBottomOf="@+id/Output_Voltage_T" />
+
+        <TextView
+            android:id="@+id/Output_Voltage_T"
+            android:layout_width="183dp"
+            android:layout_height="39dp"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:text="Output Voltage (V)"
+            android:textAlignment="center"
+            android:textColor="?android:attr/colorBackground"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/Output_Power_T"
+            app:layout_constraintStart_toStartOf="@+id/Output_Power_T"
+            app:layout_constraintTop_toBottomOf="@+id/Input_Voltage_T" />
+
+        <Button
+            android:id="@+id/Boost"
+            android:layout_width="235dp"
+            android:layout_height="42dp"
+            android:text="Boost"
+            android:textColor="@android:color/background_dark"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Buck" />
+
+
+        <TextView
+            android:id="@+id/Results"
+            android:layout_width="wrap_content"
+            android:layout_height="47dp"
+            android:layout_marginTop="16dp"
+            android:text="Input Values"
+            android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+            android:textColor="?android:attr/colorBackground"
+            android:textSize="36sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

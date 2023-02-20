@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/Reverse_Layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/background_dark"
+        tools:context=".ReverseEngineering">
+
+        <TextView
+            android:id="@+id/ReverseEngineering"
+            android:layout_width="wrap_content"
+            android:layout_height="47dp"
+            android:layout_marginTop="16dp"
+            android:text="Reverse Engineering"
+            android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="36sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/Vi"
+            android:layout_width="136dp"
+            android:layout_height="39dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="144dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Vi"
+            android:inputType="numberDecimal"
+            android:selectAllOnFocus="false"
+            android:singleLine="false"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/Vo"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp" />
+
+        <EditText
+            android:id="@+id/Vo"
+            android:layout_width="136dp"
+            android:layout_height="39dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Vo"
+            android:inputType="numberDecimal"
+            android:selectAllOnFocus="false"
+            android:singleLine="false"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/L"
+            app:layout_constraintTop_toBottomOf="@+id/Vi"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp" />
+
+        <EditText
+            android:id="@+id/L"
+            android:layout_width="136dp"
+            android:layout_height="39dp"
+            android:layout_marginEnd="16dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="L"
+            android:inputType="numberDecimal"
+            android:selectAllOnFocus="false"
+            android:singleLine="false"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Vo"
+            android:layout_marginRight="16dp" />
+
+        <EditText
+            android:id="@+id/C"
+            android:layout_width="136dp"
+            android:layout_height="39dp"
+            android:layout_marginEnd="16dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="C"
+            android:inputType="numberDecimal"
+            android:selectAllOnFocus="false"
+            android:singleLine="false"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/Re"
+            app:layout_constraintTop_toBottomOf="@+id/L"
+            android:layout_marginRight="16dp" />
+
+        <EditText
+            android:id="@+id/Re"
+            android:layout_width="136dp"
+            android:layout_height="39dp"
+            android:layout_marginEnd="16dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="R"
+            android:inputType="numberDecimal"
+            android:selectAllOnFocus="false"
+            android:singleLine="false"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/f"
+            app:layout_constraintTop_toBottomOf="@+id/C"
+            android:layout_marginRight="16dp" />
+
+        <EditText
+            android:id="@+id/f"
+            android:layout_width="136dp"
+            android:layout_height="39dp"
+            android:layout_marginEnd="16dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="f"
+            android:inputType="numberDecimal"
+            android:selectAllOnFocus="false"
+            android:singleLine="false"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Re"
+            android:layout_marginRight="16dp" />
+
+        <TextView
+            android:id="@+id/C_T"
+            android:layout_width="183dp"
+            android:layout_height="39dp"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="16dp"
+            android:gravity="center"
+            android:text="Capacitance (uF)"
+            android:textAlignment="center"
+            android:textColor="?android:attr/colorBackground"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/R_T"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/L_T"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="16dp" />
+
+        <TextView
+            android:id="@+id/Results"
+            android:layout_width="wrap_content"
+            android:layout_height="47dp"
+            android:layout_marginTop="80dp"
+            android:text="Input Values"
+            android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+            android:textColor="?android:attr/colorBackground"
+            android:textSize="36sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/Input_Voltage_T"
+            android:layout_width="183dp"
+            android:layout_height="39dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="144dp"
+            android:gravity="center"
+            android:text="Input Voltage (V)"
+            android:textAlignment="center"
+            android:textColor="?android:attr/colorBackground"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/Output_Voltage_T"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="16dp" />
+
+        <TextView
+            android:id="@+id/Output_Voltage_T"
+            android:layout_width="183dp"
+            android:layout_height="39dp"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="16dp"
+            android:gravity="center"
+            android:text="Output Voltage (V)"
+            android:textAlignment="center"
+            android:textColor="?android:attr/colorBackground"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/L_T"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Input_Voltage_T"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="16dp" />
+
+        <TextView
+            android:id="@+id/f_T"
+            android:layout_width="183dp"
+            android:layout_height="39dp"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_marginStart="16dp"
+            android:gravity="center"
+            android:text="Frequency (kHz)"
+            android:textAlignment="center"
+            android:textColor="?android:attr/colorBackground"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/R_T"
+            android:layout_marginLeft="16dp" />
+
+        <TextView
+            android:id="@+id/R_T"
+            android:layout_width="183dp"
+            android:layout_height="39dp"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="16dp"
+            android:gravity="center"
+            android:text="Resistance (Ohms)"
+            android:textAlignment="center"
+            android:textColor="?android:attr/colorBackground"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/f_T"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/C_T"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="16dp" />
+
+        <TextView
+            android:id="@+id/L_T"
+            android:layout_width="183dp"
+            android:layout_height="39dp"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_marginStart="16dp"
+            android:gravity="center"
+            android:text="Inductance (mH)"
+            android:textAlignment="center"
+            android:textColor="?android:attr/colorBackground"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/C_T"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Output_Voltage_T"
+            android:layout_marginLeft="16dp" />
+
+        <TextView
+            android:id="@+id/Converters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="269dp"
+            android:layout_marginTop="32dp"
+            android:text="Converters"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="?android:attr/colorBackground"
+            android:textSize="30sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/f"
+            app:layout_constraintVertical_bias="1.0"
+            android:gravity="center_horizontal" />
+
+        <Button
+            android:id="@+id/Buck"
+            android:layout_width="235dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="16dp"
+            android:text="Buck"
+            android:textColor="@android:color/background_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Converters"
+            tools:textColor="@android:color/background_dark" />
+
+        <Button
+            android:id="@+id/Boost"
+            android:layout_width="235dp"
+            android:layout_height="42dp"
+            android:text="Boost"
+            android:textColor="@android:color/background_dark"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Buck" />
+
+        <Button
+            android:id="@+id/Buck_Boost"
+            android:layout_width="235dp"
+            android:layout_height="42dp"
+            android:text="Buck-Boost"
+            android:textColor="@android:color/background_dark"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Boost"
+            tools:textColor="@android:color/background_dark" />
+
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        tools:context=".SnubberDefinitions">
+
+
+        <me.biubiubiu.justifytext.library.JustifyTextView
+            android:id="@+id/buck_definition2"
+            android:layout_width="333dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="
+        When the high-switch (MOSFET) is OFF, the snubber capacitor will charge through the snubber resistor. When the MOSFET turns ON, the capacitor will discharge through the resistor to the MOSFET and to the circuit ground. The cycle will repeat until the capacitor is empty. \n
+        The resistor is the only component that is contribute of power loss in this snubber circuit. Because of this, a dichotomy is open in the sense of having a higher yield with less losses or vice versa. A very high resistance will contribute with less losses, but will not be an effective snubber. On the other hand, a small resistance will contribute a better snubber however it ends up directly affecting the efficiency of the system. In this app, the design is made with the best possible choice and is highly recommended for use in circuits that require a high operating frequency.\n"
+            android:textAlignment="viewStart"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.526"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView9"
+            android:gravity="start" />
+
+        <TextView
+            android:id="@+id/convertersDefinitions"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="Snubber Definitions"
+            android:textAppearance="@android:style/TextAppearance.WindowTitle"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="36sp"
+            android:typeface="sans"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <me.biubiubiu.justifytext.library.JustifyTextView
+            android:id="@+id/buck_definition"
+            android:layout_width="333dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginEnd="16dp"
+            android:text="
+        In the DC-DC converters, many high-frequency noises are generated at switch nodes. A Snubber circuit presents a way to reduce these noises with a path to these currents. This note serves as information for the Snubber design. \n
+        The three figures below represent in blue the Snubber circuit to be implemented. In a real circuit, there are several parasitic inductances and capacitances present, which causes an accumulation of energy
+that causes a resonance of hundreds of MHz, causing deterioration by Electromagnetic Interference (EMI) and spikes in the waveform.\n"
+            android:textAlignment="viewStart"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.526"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="start" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="287dp"
+            android:layout_height="229dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buck_definition"
+            app:srcCompat="@drawable/snubberbuck" />
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="287dp"
+            android:layout_height="229dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView7"
+            app:srcCompat="@drawable/snubberboost" />
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="287dp"
+            android:layout_height="229dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView8"
+            app:srcCompat="@drawable/snubberbuckboost" />
+
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

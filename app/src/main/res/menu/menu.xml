@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/help"
+        android:icon="@drawable/ic_help"
+        android:title="@string/help"
+        app:showAsAction="always" >
+        <menu>
+            <item
+                android:id="@+id/Symbols"
+                android:title="Symbols" />
+            <item
+                android:id="@+id/ConvertersDefinitions"
+                android:title="Converters Definitions"/>
+            <item
+                android:id="@+id/InductorDefinitions"
+                android:title="Inductor Definitions" />
+            <item
+                android:id="@+id/SnubberDefinitions"
+                android:title="Snubber Definitions" />
+            <item
+                android:id="@+id/About"
+                android:title="About" />
+        </menu>
+    </item>
+
+</menu>
+
