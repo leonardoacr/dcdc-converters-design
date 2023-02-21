@@ -9,10 +9,11 @@ import android.widget.TextView;
 
 public class BuckConverter extends AppCompatActivity {
 
-    double Inductance_n, Inductance_Crit_n, Ii_n, Io_n, Is_n, Id_n, Vo_n, f_n, Delta_IL_n, Delta_VC_n, ILrms_n, Flag, Flag_Reverse = 0;
+    double Inductance_n, Inductance_Crit_n, Ii_n, Io_n, Is_n, Id_n, Vo_n,
+            Vi_n, f_n, Delta_IL_n, Delta_VC_n, ILrms_n, Flag, Flag_Reverse = 0;
     TextView Duty_Cycle, Resistance, Capacitance, Inductance;
-    TextView Inductance_T, Capacitance_T;
-    Button Advanced;
+    TextView Inductance_T, Capacitance_T, ModeWarning;
+    Button Simulation, Advanced;
 
     private void createObjects()
     {
@@ -25,8 +26,10 @@ public class BuckConverter extends AppCompatActivity {
         // Texts
         Inductance_T = findViewById(R.id.Inductance_T);
         Capacitance_T = findViewById(R.id.Capacitance_T);
+        ModeWarning = (TextView) findViewById(R.id.ModeWarning);
 
         // Buttons
+        Simulation = (Button) findViewById(R.id.Simulation);
         Advanced = (Button) findViewById(R.id.Advanced);
     }
 
@@ -50,6 +53,7 @@ public class BuckConverter extends AppCompatActivity {
             Io_n = data.getDouble("Output_Current");
             Is_n = data.getDouble("Switch_Current");
             Id_n = data.getDouble("Diode_Current");
+            Vi_n = data.getDouble("Input_Voltage");
             Vo_n = data.getDouble("Output_Voltage");
             f_n = data.getDouble("Frequency");
             Delta_IL_n = data.getDouble("DeltaIL");
@@ -98,6 +102,33 @@ public class BuckConverter extends AppCompatActivity {
                 Inductance_T.setText("Inductance (nH)");
             }
 
+            // Simulation
+            Simulation.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+
+                    if(Inductance_Crit_n <= Inductance_n){
+                        // Continuous Conduction Mode (CCM)
+                        Intent intentSimulation = new Intent(BuckConverter.this, Simulation.class);
+                        Bundle simulationData = new Bundle();
+                        simulationData.putDouble("Output_Voltage", Vo_n);
+                        simulationData.putDouble("Input_Voltage", Vi_n);
+                        simulationData.putDouble("Duty_Cycle", Duty_Cycle_n);
+                        simulationData.putDouble("Inductance", Inductance_n);
+                        simulationData.putDouble("Capacitance", Capacitance_n);
+                        simulationData.putDouble("Resistance", Resistance_n);
+                        simulationData.putDouble("Frequency", f_n);
+                        simulationData.putDouble("Flag", Flag);
+
+                        intentSimulation.putExtras(simulationData);
+
+                        startActivity(intentSimulation);
+                    } else {
+                        ModeWarning.setText("Simulation not available for these parameters");
+                    }
+                }
+            });
 
             // Advanced
             Advanced.setOnClickListener(new View.OnClickListener() {
