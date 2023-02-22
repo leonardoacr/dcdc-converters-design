@@ -7,10 +7,11 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/simulation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="#2b2b2b"
         tools:context=".Simulation">
 
@@ -18,42 +19,51 @@
             android:id="@+id/chart"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            android:padding="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/values_layout"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/marker"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/values_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:src="@drawable/ic_marker"
-            app:layout_constraintBottom_toTopOf="@+id/chart"
-            app:layout_constraintEnd_toEndOf="@+id/chart"
-            app:layout_constraintStart_toStartOf="@+id/chart"
-            app:layout_constraintTop_toTopOf="@+id/chart" />
+            android:background="@color/cardview_light_background"
+            android:orientation="horizontal"
+            android:padding="0dp"
+            android:paddingStart="40dp"
+            android:paddingLeft="32dp"
+            android:paddingEnd="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:paddingRight="32dp">
 
-        <TextView
-            android:id="@+id/x_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/y_value"
-            app:layout_constraintEnd_toEndOf="@+id/chart"
-            app:layout_constraintStart_toStartOf="@+id/chart"
-            app:layout_constraintTop_toBottomOf="@+id/marker" />
+            <Button
+                android:id="@+id/save_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="64dp"
+                android:layout_marginRight="64dp"
+                android:text="Save"
+                android:textSize="14sp"
+                android:layout_marginLeft="8dp" />
 
-        <TextView
-            android:id="@+id/y_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/chart"
-            app:layout_constraintEnd_toEndOf="@+id/chart"
-            app:layout_constraintStart_toStartOf="@+id/chart"
-            app:layout_constraintTop_toBottomOf="@+id/x_value" />
+            <TextView
+                android:id="@+id/y_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="8dp"
+                android:textSize="14sp" />
 
+            <TextView
+                android:id="@+id/x_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="0dp"
+                android:layout_marginRight="32dp"
+                android:textSize="14sp" />
+        </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

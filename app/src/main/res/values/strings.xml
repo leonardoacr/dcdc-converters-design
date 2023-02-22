@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">DCDC Converters Design</string>
     <string name="help">Help</string>
+    <string name="required_memory_text">%.2f</string>
 </resources>

@@ -33,7 +33,7 @@
         <activity android:name=".InductorDefinitions" />
         <activity android:name=".About" />
         <activity android:name=".Simulation" />
-<!--        <activity android:name=".SimulationOptions" />-->
+        <activity android:name=".SimulationDefinitions" />
     </application>
 
 </manifest>

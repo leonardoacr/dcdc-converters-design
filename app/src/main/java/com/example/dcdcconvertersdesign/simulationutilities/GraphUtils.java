@@ -5,12 +5,16 @@ import android.graphics.Color;
 import android.os.Build;
 
 import android.util.Log;
+import android.widget.TextView;
 
+import com.example.dcdcconvertersdesign.R;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -59,5 +63,30 @@ public class GraphUtils {
                     1.2 * Arrays.stream(y).max().getAsDouble()));
         }
         chart.getAxisLeft().setGranularity(0.1f);
+
+        // set up listener to show x and y values on chart
+        chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry e, Highlight h) {
+                // get x and y values of selected point
+                float xVal = e.getX();
+                float yVal = e.getY();
+
+                String formattedX = String.format("%.4f", xVal);
+                String formattedY = String.format("%.4f", yVal);
+
+                // update TextView objects to show x and y values
+                TextView xValueTextView = chart.getRootView().findViewById(R.id.x_value);
+                TextView yValueTextView = chart.getRootView().findViewById(R.id.y_value);
+                xValueTextView.setText("X: " + formattedX);
+                yValueTextView.setText("Y: " + formattedY);
+                Log.d(TAG, "test xVal: " + xVal);
+            }
+
+            @Override
+            public void onNothingSelected() {
+                // do nothing
+            }
+        });
     }
 }
