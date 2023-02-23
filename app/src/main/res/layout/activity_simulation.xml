@@ -15,14 +15,6 @@
         android:background="#2b2b2b"
         tools:context=".Simulation">
 
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/chart"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:padding="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/values_layout"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <LinearLayout
             android:id="@+id/values_layout"
             android:layout_width="match_parent"
@@ -33,21 +25,23 @@
             android:paddingStart="8dp"
             android:paddingLeft="32dp"
             android:paddingEnd="8dp"
+            android:paddingRight="32dp"
+            android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:paddingRight="32dp">
+            app:layout_constraintRight_toRightOf="parent">
 
             <Button
                 android:id="@+id/save_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="64dp"
                 android:text="Save"
-                android:textSize="14sp"
-                android:layout_marginLeft="8dp" />
+                android:textSize="14sp" />
 
             <Button
                 android:id="@+id/options_button"
@@ -64,7 +58,8 @@
                 android:id="@+id/y_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginRight="0dp"
                 android:textSize="14sp" />
 
@@ -73,8 +68,48 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="0dp"
-                android:layout_marginRight="32dp"
+                android:layout_marginRight="24dp"
                 android:textSize="14sp" />
+        </LinearLayout>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/x_axis_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <LinearLayout
+            android:id="@+id/x_axis_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/cardview_light_background"
+            android:orientation="horizontal"
+            android:padding="0dp"
+            android:paddingStart="8dp"
+            android:paddingLeft="32dp"
+            android:paddingEnd="8dp"
+            android:paddingRight="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/values_layout"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <TextView
+                android:id="@+id/x_label"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="0dp"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:gravity="center_horizontal" />
+
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

@@ -14,7 +14,7 @@ import com.example.dcdcconvertersdesign.R;
 public class LimitsDialog extends DialogFragment {
     private static final String TAG = "LimitsDialog";
     public interface LimitsDialogListener {
-        void onFinishEditDialog(double xLowerLimit, double xUpperLimit, double yLowerLimit, double yUpperLimit);
+        void onFinishEditDialog(Double xLowerLimit, Double xUpperLimit, Double yLowerLimit, Double yUpperLimit);
     }
 
     private EditText mXLowerLimitEditText;
@@ -45,10 +45,30 @@ public class LimitsDialog extends DialogFragment {
 
         Button saveButton = (Button) view.findViewById(R.id.save_limits_button);
         saveButton.setOnClickListener(v -> {
-            double xLowerLimit = Double.parseDouble(mXLowerLimitEditText.getText().toString());
-            double xUpperLimit = Double.parseDouble(mXUpperLimitEditText.getText().toString());
-            double yLowerLimit = Double.parseDouble(mYLowerLimitEditText.getText().toString());
-            double yUpperLimit = Double.parseDouble(mYUpperLimitEditText.getText().toString());
+            Double xLowerLimit = null;
+            Double xUpperLimit = null;
+            Double yLowerLimit = null;
+            Double yUpperLimit = null;
+
+            String xLowerLimitText = mXLowerLimitEditText.getText().toString().trim();
+            if (!xLowerLimitText.isEmpty()) {
+                xLowerLimit = Double.parseDouble(xLowerLimitText);
+            }
+
+            String xUpperLimitText = mXUpperLimitEditText.getText().toString().trim();
+            if (!xUpperLimitText.isEmpty()) {
+                xUpperLimit = Double.parseDouble(xUpperLimitText);
+            }
+
+            String yLowerLimitText = mYLowerLimitEditText.getText().toString().trim();
+            if (!yLowerLimitText.isEmpty()) {
+                yLowerLimit = Double.parseDouble(yLowerLimitText);
+            }
+
+            String yUpperLimitText = mYUpperLimitEditText.getText().toString().trim();
+            if (!yUpperLimitText.isEmpty()) {
+                yUpperLimit = Double.parseDouble(yUpperLimitText);
+            }
 
             // Print the values using Log.d
             Log.d(TAG, "X Lower Limit: " + xLowerLimit);
@@ -62,6 +82,7 @@ public class LimitsDialog extends DialogFragment {
 
         return view;
     }
+
 
     public void setListener(LimitsDialogListener listener) {
         mListener = listener;

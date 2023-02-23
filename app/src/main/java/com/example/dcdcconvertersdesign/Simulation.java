@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.Arrays;
 
@@ -29,10 +31,10 @@ public class Simulation extends AppCompatActivity {
     public static double[] sArray;
 
     // Declare x and y limits as instance variables
-    private double xLowerLimit;
-    private double xUpperLimit;
-    private double yLowerLimit;
-    private double yUpperLimit;
+    private Double xLowerLimit;
+    private Double xUpperLimit;
+    private Double yLowerLimit;
+    private Double yUpperLimit;
 
     private LineChart chart;
 
@@ -83,43 +85,54 @@ public class Simulation extends AppCompatActivity {
                 chart = findViewById(R.id.chart);
 
                 // Handling ID received from Simulation Definitions to decide the variable
+                GraphUtils graphUtils = new GraphUtils();
+
+                TextView xLabel = findViewById(R.id.x_label);
+                xLabel.setText("Time (ms)");
+
                 switch (receivedID) {
                     case "outputVoltage":
-                        GraphUtils.plotGraph(timeArray, outputVoltageArray,
-                                numStep, "Output Voltage", chart, TAG);
+                        graphUtils.loadData(timeArray, outputVoltageArray,
+                                numStep, "Output Voltage", chart);
+                        graphUtils.plotGraph(chart, null, null, null, null);
                         break;
                     case "outputCurrent":
                         outputCurrentArray = CalculateBuckVariables.calculateOutputCurrentArray(
                                 outputVoltageArray, resistance);
 
-                        GraphUtils.plotGraph(timeArray, outputCurrentArray, numStep,
+                        graphUtils.loadData(timeArray, outputCurrentArray, numStep,
                                 "Output Current",
-                                chart, TAG);
+                                chart);
+                        graphUtils.plotGraph(chart, null, null, null, null);
                         break;
                     case "inputCurrent":
                         inputCurrentArray = CalculateBuckVariables.calculateInputCurrentArray(
                                 inductorCurrentArray, sArray);
 
-                        GraphUtils.plotGraph(timeArray, inputCurrentArray, numStep,
-                                "Input Current", chart, TAG);
+                        graphUtils.loadData(timeArray, inputCurrentArray, numStep,
+                                "Input Current", chart);
+                        graphUtils.plotGraph(chart, null, null, null, null);
                         break;
                     case "diodeCurrent":
                         diodeCurrentArray = CalculateBuckVariables.calculateDiodeCurrentArray(
                                 inductorCurrentArray, sArray);
 
-                        GraphUtils.plotGraph(timeArray, diodeCurrentArray, numStep,
-                                "Diode Current", chart, TAG);
+                        graphUtils.loadData(timeArray, diodeCurrentArray, numStep,
+                                "Diode Current", chart);
+                        graphUtils.plotGraph(chart, null, null, null, null);
                         break;
                     case "inductorCurrent":
-                        GraphUtils.plotGraph(timeArray, inductorCurrentArray, numStep,
-                                "Inductor Current", chart, TAG);
+                        graphUtils.loadData(timeArray, inductorCurrentArray, numStep,
+                                "Inductor Current", chart);
+                        graphUtils.plotGraph(chart, null, null, null, null);
                         break;
                     case "capacitorCurrent":
                         capacitorCurrentArray = CalculateBuckVariables.calculateCapacitorCurrentArray(
                                 outputVoltageArray, inductorCurrentArray, resistance);
 
-                        GraphUtils.plotGraph(timeArray, capacitorCurrentArray, numStep,
-                                "Capacitor Current", chart, TAG);
+                        graphUtils.loadData(timeArray, capacitorCurrentArray, numStep,
+                                "Capacitor Current", chart);
+                        graphUtils.plotGraph(chart, null, null, null, null);
                         break;
                     default:
                         // Handle case when receivedID is not recognized
@@ -140,6 +153,7 @@ public class Simulation extends AppCompatActivity {
                         Log.d(TAG, "X Upper Limit: " + xUpperLimit);
                         Log.d(TAG, "Y Lower Limit: " + yLowerLimit);
                         Log.d(TAG, "Y Upper Limit: " + yUpperLimit);
+                        graphUtils.plotGraph(chart, xLowerLimit, xUpperLimit, yLowerLimit, yUpperLimit);
                     });
                     // Show the dialog
                     dialog.show(getSupportFragmentManager(), "LimitsDialog");
