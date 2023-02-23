@@ -1,13 +1,17 @@
 package com.example.dcdcconvertersdesign;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class SimulationDefinitions extends AppCompatActivity {
     private static final String TAG = "Simulation";
@@ -68,28 +72,131 @@ public class SimulationDefinitions extends AppCompatActivity {
                 maxTimeEditText.setOnEditorActionListener((v, actionId, event) -> {
                     if (actionId == EditorInfo.IME_ACTION_DONE) {
                         String maxTimeStr = v.getText().toString();
-                        //                String maxTimeStr = maxTimeEditText.getText().toString();
                         if (!maxTimeStr.isEmpty()) {
                             double maxTime = Double.parseDouble(maxTimeStr) / 1000;
                             double maxMemoryAllowed = 10;
                             double requiredMemoryByByteCSV = 20.0 / 1048576.0;
                             double arraysQuantity = 2;
                             double numStepCalculated = (maxTime / timeStepCalculated);
-                            double memoryCalculated = numStepCalculated*requiredMemoryByByteCSV*arraysQuantity;
+                            double memoryCalculated = numStepCalculated*requiredMemoryByByteCSV
+                                    *arraysQuantity;
 
-                            String memoryString = getString(R.string.required_memory_text, memoryCalculated);
+                            String memoryString = getString(R.string.required_memory_text,
+                                    memoryCalculated);
                             requiredMemory.setText(memoryString);
                             requiredMemoryText.setText("Required memory (MB)");
                             Log.d(TAG, "INPUTS TESTES: " + memoryCalculated);
 
                             double maxTimeRecommendedCalculated = timeStepCalculated*maxMemoryAllowed
                                     /(requiredMemoryByByteCSV*arraysQuantity);
-                            maxTimeRecommended.setText(String.format("%.2f", maxTimeRecommendedCalculated*1000));
+
+                            maxTimeRecommended.setText(String.format("%.2f",
+                                    maxTimeRecommendedCalculated*1000));
+
                             maxTimeRecommendedText.setText("Max time recommended (ms)");
 
+                            // Show texts
+                            ((TextView) findViewById(R.id.simulationOptions)).setVisibility(View.VISIBLE);
+                            ((TextView) findViewById(R.id.maxTimeText3)).setVisibility(View.VISIBLE);
+
+                            // Show buttons
+                            outputVoltageBtn.setVisibility(View.VISIBLE);
+                            outputCurrentBtn.setVisibility(View.VISIBLE);
+                            inputCurrentBtn.setVisibility(View.VISIBLE);
+                            diodeCurrentBtn.setVisibility(View.VISIBLE);
+                            inductorCurrentBtn.setVisibility(View.VISIBLE);
+                            capacitorCurrentBtn.setVisibility(View.VISIBLE);
+
                             // Handling simulation buttons
-                            // ....
-                            //
+                            outputVoltageBtn.setOnClickListener(view -> {
+                                String receivedID = "outputVoltage";
+                                Log.d(TAG, "Sending ID: " + receivedID);
+                                // Send to the simulation activity
+                                Intent intentSimulation = new Intent(
+                                        SimulationDefinitions.this, Simulation.class);
+                                Bundle simulationData = new Bundle();
+                                // copy all extras from the previous activity
+                                simulationData.putAll(getIntent().getExtras());
+                                simulationData.putDouble("Max_Time", maxTime);
+                                simulationData.putDouble("Time_Step", timeStepCalculated);
+                                simulationData.putString("Received_ID", receivedID);
+                                intentSimulation.putExtras(simulationData);
+                                startActivity(intentSimulation);
+                            });
+                            inputCurrentBtn.setOnClickListener(view -> {
+                                String receivedID = "inputCurrent";
+                                Log.d(TAG, "Sending ID: " + receivedID);
+                                // Send to the simulation activity
+                                Intent intentSimulation = new Intent(SimulationDefinitions.this, Simulation.class);
+                                Bundle simulationData = new Bundle();
+                                // copy all extras from the previous activity
+                                simulationData.putAll(getIntent().getExtras());
+                                simulationData.putDouble("Max_Time", maxTime);
+                                simulationData.putDouble("Time_Step", timeStepCalculated);
+                                simulationData.putString("Received_ID", receivedID);
+                                intentSimulation.putExtras(simulationData);
+                                startActivity(intentSimulation);
+                            });
+
+                            outputCurrentBtn.setOnClickListener(view -> {
+                                String receivedID = "outputCurrent";
+                                Log.d(TAG, "Sending ID: " + receivedID);
+                                // Send to the simulation activity
+                                Intent intentSimulation = new Intent(SimulationDefinitions.this, Simulation.class);
+                                Bundle simulationData = new Bundle();
+                                // copy all extras from the previous activity
+                                simulationData.putAll(getIntent().getExtras());
+                                simulationData.putDouble("Max_Time", maxTime);
+                                simulationData.putDouble("Time_Step", timeStepCalculated);
+                                simulationData.putString("Received_ID", receivedID);
+                                intentSimulation.putExtras(simulationData);
+                                startActivity(intentSimulation);
+                            });
+
+                            diodeCurrentBtn.setOnClickListener(view -> {
+                                String receivedID = "diodeCurrent";
+                                Log.d(TAG, "Sending ID: " + receivedID);
+                                // Send to the simulation activity
+                                Intent intentSimulation = new Intent(SimulationDefinitions.this, Simulation.class);
+                                Bundle simulationData = new Bundle();
+                                // copy all extras from the previous activity
+                                simulationData.putAll(getIntent().getExtras());
+                                simulationData.putDouble("Max_Time", maxTime);
+                                simulationData.putDouble("Time_Step", timeStepCalculated);
+                                simulationData.putString("Received_ID", receivedID);
+                                intentSimulation.putExtras(simulationData);
+                                startActivity(intentSimulation);
+                            });
+
+                            inductorCurrentBtn.setOnClickListener(view -> {
+                                String receivedID = "inductorCurrent";
+                                Log.d(TAG, "Sending ID: " + receivedID);
+                                // Send to the simulation activity
+                                Intent intentSimulation = new Intent(SimulationDefinitions.this, Simulation.class);
+                                Bundle simulationData = new Bundle();
+                                // copy all extras from the previous activity
+                                simulationData.putAll(getIntent().getExtras());
+                                simulationData.putDouble("Max_Time", maxTime);
+                                simulationData.putDouble("Time_Step", timeStepCalculated);
+                                simulationData.putString("Received_ID", receivedID);
+                                intentSimulation.putExtras(simulationData);
+                                startActivity(intentSimulation);
+                            });
+
+                            capacitorCurrentBtn.setOnClickListener(view -> {
+                                String receivedID = "capacitorCurrent";
+                                Log.d(TAG, "Sending ID: " + receivedID);
+                                // Send to the simulation activity
+                                Intent intentSimulation = new Intent(SimulationDefinitions.this, Simulation.class);
+                                Bundle simulationData = new Bundle();
+                                // copy all extras from the previous activity
+                                simulationData.putAll(getIntent().getExtras());
+                                simulationData.putDouble("Max_Time", maxTime);
+                                simulationData.putDouble("Time_Step", timeStepCalculated);
+                                simulationData.putString("Received_ID", receivedID);
+                                intentSimulation.putExtras(simulationData);
+                                startActivity(intentSimulation);
+                            });
                         }
                         return true;
                     }

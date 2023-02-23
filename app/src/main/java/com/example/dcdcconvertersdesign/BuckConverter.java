@@ -110,7 +110,8 @@ public class BuckConverter extends AppCompatActivity {
 
                     if(Inductance_Crit_n <= Inductance_n){
                         // Continuous Conduction Mode (CCM)
-                        Intent intentSimulationDefinitions = new Intent(BuckConverter.this, SimulationDefinitions.class);
+                        Intent intentSimulationDefinitions = new Intent(
+                                BuckConverter.this, SimulationDefinitions.class);
                         Bundle simulationData = new Bundle();
                         simulationData.putDouble("Output_Voltage", Vo_n);
                         simulationData.putDouble("Input_Voltage", Vi_n);

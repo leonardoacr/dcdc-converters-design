@@ -1,10 +1,14 @@
 package com.example.dcdcconvertersdesign.simulationutilities;
 
-import static com.example.dcdcconvertersdesign.Simulation.inductanceCurrentArray;
+import static com.example.dcdcconvertersdesign.Simulation.inductorCurrentArray;
 import static com.example.dcdcconvertersdesign.Simulation.outputVoltageArray;
+import static com.example.dcdcconvertersdesign.Simulation.sArray;
 import static com.example.dcdcconvertersdesign.Simulation.timeArray;
 
+import android.util.Log;
+
 public class SolveDiffEquations {
+    private static final String TAG = "SolveDiffEquations";
     public static void BuckConverter(double outputVoltage, double inputVoltage, double dutyCycle,
                                      double inductance, double capacitance, double resistance,
                                      double frequency, double maxTime, double timeStep, int numStep) {
@@ -14,13 +18,14 @@ public class SolveDiffEquations {
 
         // Initialize the solution arrays
         timeArray = new double[numStep + 1];
-        inductanceCurrentArray = new double[numStep + 1];
+        sArray = new double[numStep + 1];
+        inductorCurrentArray = new double[numStep + 1];
         outputVoltageArray = new double[numStep + 1];
         double[] Yi = new double[numStep + 1];
         double[] Yv = new double[numStep + 1];
         Yi[0] = inductanceCurrentRealTime0;
         Yv[0] = outputVoltage;
-        inductanceCurrentArray[0] = inductanceCurrentRealTime0;
+        inductorCurrentArray[0] = inductanceCurrentRealTime0;
         outputVoltageArray[0] = outputVoltage;
 
         // Implement the Euler method
@@ -44,9 +49,11 @@ public class SolveDiffEquations {
             // Update the solution using Euler method
             Yi[i + 1] = Yi[i] + timeStep * didt;
             Yv[i + 1] = Yv[i] + timeStep * dvdt;
-            inductanceCurrentArray[i+1] = Yi[i+1];
+            inductorCurrentArray[i+1] = Yi[i+1];
             outputVoltageArray[i+1] = Yv[i+1];
             timeArray[i+1] = t;
+            sArray[i] = s;
+//            Log.d(TAG, "ta aqui???");
         }
     }
 }

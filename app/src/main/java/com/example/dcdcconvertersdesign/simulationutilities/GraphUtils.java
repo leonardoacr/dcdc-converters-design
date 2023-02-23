@@ -37,9 +37,6 @@ public class GraphUtils {
             entries.add(new Entry((float) x[i], (float) y[i]));
 
         }
-        Log.d(TAG, "teste x: " + Arrays.toString(x));
-        Log.d(TAG, "teste y: " + Arrays.toString(y));
-        Log.d(TAG, "teste y last position: " + y[18000]);
 
         LineDataSet dataSet = new LineDataSet(entries, graphLegend);
         dataSet.setColor(Color.BLUE);
@@ -80,7 +77,6 @@ public class GraphUtils {
                 TextView yValueTextView = chart.getRootView().findViewById(R.id.y_value);
                 xValueTextView.setText("X: " + formattedX);
                 yValueTextView.setText("Y: " + formattedY);
-                Log.d(TAG, "test xVal: " + xVal);
             }
 
             @Override

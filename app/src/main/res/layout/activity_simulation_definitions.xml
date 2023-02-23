@@ -17,7 +17,7 @@
         tools:context=".MainActivity">
 
         <TextView
-            android:id="@+id/SimulationOptions"
+            android:id="@+id/simulationOptions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -31,7 +31,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textColor="?android:attr/colorBackground"
             android:textSize="30sp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/maxTimeRecommendedText" />
@@ -43,12 +43,13 @@
             android:layout_marginTop="16dp"
             android:text="Output Voltage"
             android:textColor="@android:color/background_dark"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/SimulationOptions"
+            app:layout_constraintTop_toBottomOf="@+id/simulationOptions"
             tools:textColor="@android:color/background_dark" />
 
         <Button
@@ -57,6 +58,7 @@
             android:layout_height="42dp"
             android:text="Output Current"
             android:textColor="@android:color/background_dark"
+            android:visibility="gone"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/outputVoltage" />
@@ -67,6 +69,7 @@
             android:layout_height="42dp"
             android:text="Input Current"
             android:textColor="@android:color/background_dark"
+            android:visibility="gone"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/outputCurrent"
@@ -78,6 +81,7 @@
             android:layout_height="42dp"
             android:text="Diode Current"
             android:textColor="@android:color/background_dark"
+            android:visibility="gone"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inputCurrent"
@@ -89,6 +93,7 @@
             android:layout_height="42dp"
             android:text="Inductor Current"
             android:textColor="@android:color/background_dark"
+            android:visibility="gone"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/diodeCurrent"
@@ -100,6 +105,7 @@
             android:layout_height="42dp"
             android:text="Capacitor Current"
             android:textColor="@android:color/background_dark"
+            android:visibility="gone"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inductorCurrent"
@@ -152,8 +158,8 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:gravity="center"
-            android:text="It is not recommended that the required storage space is more than 10Mb to avoid bugs on your mobile or long period os time simulating. Please keep this in mind, and proceed at your own risk if required memory exceeds this value.
-"
+            android:text="It is not recommended that the required storage space is more than 10Mb to avoid bugs on your mobile or long period os time simulating. Please keep this in mind, and proceed at your own risk if required memory exceeds this value."
+            android:visibility="gone"
             android:textAlignment="center"
             android:textColor="#00d455"
             android:textSize="16sp"
