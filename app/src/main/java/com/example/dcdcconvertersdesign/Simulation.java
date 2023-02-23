@@ -3,18 +3,19 @@ package com.example.dcdcconvertersdesign;
 import android.annotation.SuppressLint;
 
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 import com.example.dcdcconvertersdesign.simulationutilities.CalculateBuckVariables;
 import com.example.dcdcconvertersdesign.simulationutilities.GraphUtils;
 import com.example.dcdcconvertersdesign.simulationutilities.LimitsDialog;
+import com.example.dcdcconvertersdesign.simulationutilities.SaveDialog;
 import com.example.dcdcconvertersdesign.simulationutilities.SolveDiffEquations;
 import com.github.mikephil.charting.charts.LineChart;
 
@@ -29,16 +30,19 @@ public class Simulation extends AppCompatActivity {
     public static double[] capacitorCurrentArray;
     public static double[] timeArray;
     public static double[] sArray;
-
-    // Declare x and y limits as instance variables
-    private Double xLowerLimit;
-    private Double xUpperLimit;
-    private Double yLowerLimit;
-    private Double yUpperLimit;
-
     private LineChart chart;
+    public GraphUtils graphUtils = new GraphUtils();
+    public int numStep;
+    public double outputVoltage;
+    public double inputVoltage;
+    public double dutyCycle;
+    public double inductance;
+    public double capacitance;
+    public double  resistance;
+    public double frequency;
+    public double flag;
 
-    @SuppressLint({"SetTextI18n", "DefaultLocale"})
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,21 +51,21 @@ public class Simulation extends AppCompatActivity {
         // retrieve extras from the intent
         Bundle simulationData = getIntent().getExtras();
         if (simulationData != null) {
-            double outputVoltage = simulationData.getDouble("Output_Voltage");
-            double inputVoltage = simulationData.getDouble("Input_Voltage");
-            double dutyCycle = simulationData.getDouble("Duty_Cycle");
-            double inductance = simulationData.getDouble("Inductance");
-            double capacitance = simulationData.getDouble("Capacitance");
-            double resistance = simulationData.getDouble("Resistance");
-            double frequency = simulationData.getDouble("Frequency");
-            double flag = simulationData.getDouble("Flag");
+            outputVoltage = simulationData.getDouble("Output_Voltage");
+            inputVoltage = simulationData.getDouble("Input_Voltage");
+            dutyCycle = simulationData.getDouble("Duty_Cycle");
+            inductance = simulationData.getDouble("Inductance");
+            capacitance = simulationData.getDouble("Capacitance");
+            frequency = simulationData.getDouble("Frequency");
+            flag = simulationData.getDouble("Flag");
+            resistance = simulationData.getDouble("Resistance");
 
             // Define the parameters
             double maxTime = simulationData.getDouble("Max_Time");
             double timeStep = simulationData.getDouble("Time_Step");
             String receivedID = simulationData.getString("Received_ID");
 
-            int numStep = (int) (maxTime / timeStep);
+            numStep = (int) (maxTime / timeStep);
 
             Log.d(TAG, "outputVoltage: " + outputVoltage);
             Log.d(TAG, "inputVoltage: " + inputVoltage);
@@ -84,82 +88,125 @@ public class Simulation extends AppCompatActivity {
 
                 chart = findViewById(R.id.chart);
 
-                // Handling ID received from Simulation Definitions to decide the variable
-                GraphUtils graphUtils = new GraphUtils();
-
                 TextView xLabel = findViewById(R.id.x_label);
                 xLabel.setText("Time (ms)");
 
-                switch (receivedID) {
-                    case "outputVoltage":
-                        graphUtils.loadData(timeArray, outputVoltageArray,
-                                numStep, "Output Voltage", chart);
-                        graphUtils.plotGraph(chart, null, null, null, null);
-                        break;
-                    case "outputCurrent":
-                        outputCurrentArray = CalculateBuckVariables.calculateOutputCurrentArray(
-                                outputVoltageArray, resistance);
+                // Handling ID received from Simulation Definitions
+                handleID(receivedID);
 
-                        graphUtils.loadData(timeArray, outputCurrentArray, numStep,
-                                "Output Current",
-                                chart);
-                        graphUtils.plotGraph(chart, null, null, null, null);
-                        break;
-                    case "inputCurrent":
-                        inputCurrentArray = CalculateBuckVariables.calculateInputCurrentArray(
-                                inductorCurrentArray, sArray);
-
-                        graphUtils.loadData(timeArray, inputCurrentArray, numStep,
-                                "Input Current", chart);
-                        graphUtils.plotGraph(chart, null, null, null, null);
-                        break;
-                    case "diodeCurrent":
-                        diodeCurrentArray = CalculateBuckVariables.calculateDiodeCurrentArray(
-                                inductorCurrentArray, sArray);
-
-                        graphUtils.loadData(timeArray, diodeCurrentArray, numStep,
-                                "Diode Current", chart);
-                        graphUtils.plotGraph(chart, null, null, null, null);
-                        break;
-                    case "inductorCurrent":
-                        graphUtils.loadData(timeArray, inductorCurrentArray, numStep,
-                                "Inductor Current", chart);
-                        graphUtils.plotGraph(chart, null, null, null, null);
-                        break;
-                    case "capacitorCurrent":
-                        capacitorCurrentArray = CalculateBuckVariables.calculateCapacitorCurrentArray(
-                                outputVoltageArray, inductorCurrentArray, resistance);
-
-                        graphUtils.loadData(timeArray, capacitorCurrentArray, numStep,
-                                "Capacitor Current", chart);
-                        graphUtils.plotGraph(chart, null, null, null, null);
-                        break;
-                    default:
-                        // Handle case when receivedID is not recognized
-                        Log.d(TAG, "received ID not recognized");
-                        break;
-                }
-
-                // Handling Limits button and open dialog:
-                Button optionsButton = findViewById(R.id.options_button);
-
-                // Set an onClickListener for the options_button
-                optionsButton.setOnClickListener(v -> {
-                    // Create a new instance of the LimitsDialogFragment
-                    LimitsDialog dialog = new LimitsDialog();
-
-                    dialog.setListener((xLowerLimit, xUpperLimit, yLowerLimit, yUpperLimit) -> {
-                        Log.d(TAG, "X Lower Limit: " + xLowerLimit);
-                        Log.d(TAG, "X Upper Limit: " + xUpperLimit);
-                        Log.d(TAG, "Y Lower Limit: " + yLowerLimit);
-                        Log.d(TAG, "Y Upper Limit: " + yUpperLimit);
-                        graphUtils.plotGraph(chart, xLowerLimit, xUpperLimit, yLowerLimit, yUpperLimit);
-                    });
-                    // Show the dialog
-                    dialog.show(getSupportFragmentManager(), "LimitsDialog");
-                });
+                handleDialogButtons();
             }
         }
+    }
+    private void handleID(String receivedID) {
+        switch (receivedID) {
+            case "outputVoltage":
+                graphUtils.loadData(timeArray, outputVoltageArray,
+                        numStep, "Output Voltage", chart);
+                graphUtils.plotGraph(chart, null, null, null, null);
+                break;
+            case "outputCurrent":
+                outputCurrentArray = CalculateBuckVariables.calculateOutputCurrentArray(
+                        outputVoltageArray, resistance);
+
+                graphUtils.loadData(timeArray, outputCurrentArray, numStep,
+                        "Output Current",
+                        chart);
+                graphUtils.plotGraph(chart, null, null, null, null);
+                break;
+            case "inputCurrent":
+                inputCurrentArray = CalculateBuckVariables.calculateInputCurrentArray(
+                        inductorCurrentArray, sArray);
+
+                graphUtils.loadData(timeArray, inputCurrentArray, numStep,
+                        "Input Current", chart);
+                graphUtils.plotGraph(chart, null, null, null, null);
+                break;
+            case "diodeCurrent":
+                diodeCurrentArray = CalculateBuckVariables.calculateDiodeCurrentArray(
+                        inductorCurrentArray, sArray);
+
+                graphUtils.loadData(timeArray, diodeCurrentArray, numStep,
+                        "Diode Current", chart);
+                graphUtils.plotGraph(chart, null, null, null, null);
+                break;
+            case "inductorCurrent":
+                graphUtils.loadData(timeArray, inductorCurrentArray, numStep,
+                        "Inductor Current", chart);
+                graphUtils.plotGraph(chart, null, null, null, null);
+                break;
+            case "capacitorCurrent":
+                capacitorCurrentArray = CalculateBuckVariables.calculateCapacitorCurrentArray(
+                        outputVoltageArray, inductorCurrentArray, resistance);
+
+                graphUtils.loadData(timeArray, capacitorCurrentArray, numStep,
+                        "Capacitor Current", chart);
+                graphUtils.plotGraph(chart, null, null, null, null);
+                break;
+            default:
+                // Handle case when receivedID is not recognized
+                Log.d(TAG, "received ID not recognized");
+                break;
+        }
+    }
+
+    private void handleDialogButtons() {
+        // Handling Limits button and open dialog:
+        Button optionsButton = findViewById(R.id.options_button);
+
+        // Set an onClickListener for the options_button
+        optionsButton.setOnClickListener(v -> {
+            // Create a new instance of the LimitsDialogFragment
+            LimitsDialog dialog = new LimitsDialog();
+
+            dialog.setListener((xLowerLimit, xUpperLimit, yLowerLimit, yUpperLimit) -> {
+                Log.d(TAG, "X Lower Limit: " + xLowerLimit);
+                Log.d(TAG, "X Upper Limit: " + xUpperLimit);
+                Log.d(TAG, "Y Lower Limit: " + yLowerLimit);
+                Log.d(TAG, "Y Upper Limit: " + yUpperLimit);
+                graphUtils.plotGraph(chart, xLowerLimit, xUpperLimit, yLowerLimit, yUpperLimit);
+            });
+            // Show the dialog
+            dialog.show(getSupportFragmentManager(), "LimitsDialog");
+        });
+
+        // Handling Limits button and open dialog:
+        Button saveGraphButton = findViewById(R.id.save_button);
+
+        // Set an onClickListener for the options_button
+        saveGraphButton.setOnClickListener(v -> {
+            // Create a new instance of the LimitsDialogFragment
+            SaveDialog dialog = new SaveDialog();
+
+            dialog.setListener((saveKey) -> {
+                Log.d(TAG, "Save Graph Key: " + saveKey);
+                if (Objects.equals(saveKey, "PNG")) {
+                    // Save the chart to the gallery
+                    // chart.saveToGallery("chart.png", 100); // 100 is the quality of the image
+                    alertBox("File saved to /internalstorage/DCIM");
+                }
+                if (Objects.equals(saveKey, "CSV")) {
+                    // Save the chart to CSV
+                    alertBox("File saved to /internalstorage");
+                }
+            });
+            // Show the dialog
+            dialog.show(getSupportFragmentManager(), "SaveDialog");
+        });
+    }
+
+    private void alertBox(String alertString) {
+        // create a dialog builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        // set the message to display in the dialog box
+        builder.setMessage(alertString);
+        // set a listener for when the user clicks outside of the dialog box to close it
+        builder.setOnCancelListener(dialog1 -> {
+            // do nothing, the dialog will just close
+        });
+        // create the dialog box and show it
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }
 

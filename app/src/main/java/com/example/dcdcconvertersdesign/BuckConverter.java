@@ -104,10 +104,8 @@ public class BuckConverter extends AppCompatActivity {
 
             // Simulation
             Simulation.setOnClickListener(new View.OnClickListener() {
-
                 @Override
                 public void onClick(View v) {
-
                     if(Inductance_Crit_n <= Inductance_n){
                         // Continuous Conduction Mode (CCM)
                         Intent intentSimulationDefinitions = new Intent(

@@ -3,7 +3,6 @@ package com.example.dcdcconvertersdesign.simulationutilities;
 import android.graphics.Color;
 import android.os.Build;
 import android.util.Log;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.dcdcconvertersdesign.R;
@@ -68,18 +67,6 @@ public class GraphUtils {
         chart.getAxisLeft().setEnabled(true); //show y-axis at left
         chart.getAxisRight().setEnabled(false); //hide y-axis at right
 
-//        // set up X-axis
-
-////        chart.getXAxis().("Time (ms)");
-//        chart.getXAxis().setXaxisLabel("Time (ms)");
-//        chart.getXAxis().setTextSize(14f);
-//        chart.getXAxis().setTextColor(Color.BLACK);
-//
-//        // set up Y-axis
-////        chart.getAxisLeft().setLabel("Voltage (V)");
-//        chart.getAxisLeft().setTextSize(14f);
-//        chart.getAxisLeft().setTextColor(Color.BLACK);
-
 
         if (xLowerLimit == null && xUpperLimit == null && yLowerLimit == null && yUpperLimit == null) {
             // set default axis
@@ -118,7 +105,6 @@ public class GraphUtils {
                 Log.d(TAG, "test Y Upper Limit Inside: " + yUpperLimit.floatValue());
                 chart.getAxisLeft().setAxisMaximum(yUpperLimit.floatValue());
             }
-//            chart.getAxisLeft().setGranularity(0.1f);
         }
 
         // set up listener to show x and y values on chart
