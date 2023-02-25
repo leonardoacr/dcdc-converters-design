@@ -2,4 +2,17 @@
     <string name="app_name">DCDC Converters Design</string>
     <string name="help">Help</string>
     <string name="required_memory_text">%.2f</string>
+    <string name="required_memory_info">Required memory (MB)</string>
+    <string name="max_time_recommended_info">Max time recommended (ms)</string>
+    <string name="buckText">Buck</string>
+    <string name="boostText">Boost</string>
+    <string name="buckBoostText">Buck Boost</string>
+    <string name="capacitance_F">Capacitance (F)</string>
+    <string name="capacitance_mF">Capacitance (mF)</string>
+    <string name="capacitance_uF">Capacitance (uF)</string>
+    <string name="capacitance_nF">Capacitance (nF)</string>
+    <string name="inductance_H">Inductance (H)</string>
+    <string name="inductance_mH">Inductance (mH)</string>
+    <string name="inductance_uH">Inductance (uH)</string>
+    <string name="inductance_nH">Inductance (nH)</string>
 </resources>

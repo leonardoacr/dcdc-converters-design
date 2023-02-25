@@ -111,6 +111,18 @@
             app:layout_constraintTop_toBottomOf="@+id/inductorCurrent"
             tools:textColor="@android:color/background_dark" />
 
+        <Button
+            android:id="@+id/switchCurrent"
+            android:layout_width="235dp"
+            android:layout_height="42dp"
+            android:text="Switch Current"
+            android:textColor="@android:color/background_dark"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/capacitorCurrent"
+            tools:textColor="@android:color/background_dark" />
+
         <TextView
             android:id="@+id/helloText"
             android:layout_width="0dp"
@@ -175,7 +187,6 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:gravity="center"
-            android:text="Time Step (us)"
             android:textAlignment="center"
             android:textColor="?android:attr/colorBackground"
             android:textSize="14sp"

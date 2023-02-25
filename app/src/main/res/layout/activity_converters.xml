@@ -154,7 +154,6 @@
             android:layout_width="wrap_content"
             android:layout_height="47dp"
             android:layout_marginTop="16dp"
-            android:text="Buck Converter"
             android:textAppearance="@style/TextAppearance.AppCompat.Menu"
             android:textColor="?android:attr/colorBackground"
             android:textSize="36sp"
@@ -217,8 +216,8 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Advanced"
-            app:layout_constraintVertical_bias="0.609"
-            app:srcCompat="@drawable/buck" />
+            app:layout_constraintVertical_bias="0.609"/>
+        <!--            app:srcCompat="@drawable/buck"-->
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
