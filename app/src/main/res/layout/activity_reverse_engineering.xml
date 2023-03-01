@@ -8,324 +8,212 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/Reverse_Layout"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/reverse_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/background_dark"
-        tools:context=".ReverseEngineering">
+        style="@style/MyBackground"
+        tools:context=".ReverseDesign">
 
         <TextView
-            android:id="@+id/ReverseEngineering"
+            android:id="@+id/reverse_engineering_text"
+            style="@style/MyDefaultText"
             android:layout_width="wrap_content"
             android:layout_height="47dp"
+            android:layout_marginTop="32dp"
+            android:text="Reverse Design"
+            android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+            android:textColor="@color/colorGreen"
+            android:textSize="36sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/input_voltage_reverse"
+            style="@style/MyInput"
             android:layout_marginTop="16dp"
-            android:text="Reverse Engineering"
-            android:textAppearance="@style/TextAppearance.AppCompat.Menu"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="36sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/input_voltage_reverse_text"
+            app:layout_constraintTop_toBottomOf="@+id/results_reverse" />
 
         <EditText
-            android:id="@+id/Vi"
-            android:layout_width="136dp"
-            android:layout_height="39dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="144dp"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Vi"
-            android:inputType="numberDecimal"
-            android:selectAllOnFocus="false"
-            android:singleLine="false"
-            android:textAlignment="center"
-            android:textColor="@android:color/background_light"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/Vo"
-            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/output_voltage"
+            style="@style/MyInput"
             android:layout_marginRight="16dp"
-            android:layout_marginLeft="8dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/output_voltage_reverse_text"
+            app:layout_constraintTop_toBottomOf="@+id/input_voltage_reverse" />
 
         <EditText
-            android:id="@+id/Vo"
-            android:layout_width="136dp"
-            android:layout_height="39dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="8dp"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Vo"
-            android:inputType="numberDecimal"
-            android:selectAllOnFocus="false"
-            android:singleLine="false"
-            android:textAlignment="center"
-            android:textColor="@android:color/background_light"
-            android:textSize="16sp"
+            android:id="@+id/inductance_reverse"
+            style="@style/MyInput"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/L"
-            app:layout_constraintTop_toBottomOf="@+id/Vi"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="8dp" />
+            app:layout_constraintStart_toEndOf="@+id/inductance_reverse_text"
+            app:layout_constraintTop_toBottomOf="@+id/output_voltage" />
 
         <EditText
-            android:id="@+id/L"
-            android:layout_width="136dp"
-            android:layout_height="39dp"
-            android:layout_marginEnd="16dp"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="L"
-            android:inputType="numberDecimal"
-            android:selectAllOnFocus="false"
-            android:singleLine="false"
-            android:textAlignment="center"
-            android:textColor="@android:color/background_light"
-            android:textSize="16sp"
+            android:id="@+id/capacitance_reverse"
+            style="@style/MyInput"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Vo"
-            android:layout_marginRight="16dp" />
+            app:layout_constraintStart_toEndOf="@+id/capacitance_text_reverse"
+            app:layout_constraintTop_toBottomOf="@+id/inductance_reverse" />
 
         <EditText
-            android:id="@+id/C"
-            android:layout_width="136dp"
-            android:layout_height="39dp"
-            android:layout_marginEnd="16dp"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="C"
-            android:inputType="numberDecimal"
-            android:selectAllOnFocus="false"
-            android:singleLine="false"
-            android:textAlignment="center"
-            android:textColor="@android:color/background_light"
-            android:textSize="16sp"
+            android:id="@+id/resistance_reverse"
+            style="@style/MyInput"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/Re"
-            app:layout_constraintTop_toBottomOf="@+id/L"
-            android:layout_marginRight="16dp" />
+            app:layout_constraintStart_toEndOf="@+id/resistance_reverse_text"
+            app:layout_constraintTop_toBottomOf="@+id/capacitance_reverse" />
 
         <EditText
-            android:id="@+id/Re"
-            android:layout_width="136dp"
-            android:layout_height="39dp"
-            android:layout_marginEnd="16dp"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="R"
-            android:inputType="numberDecimal"
-            android:selectAllOnFocus="false"
-            android:singleLine="false"
-            android:textAlignment="center"
-            android:textColor="@android:color/background_light"
-            android:textSize="16sp"
+            android:id="@+id/frequency_reverse"
+            style="@style/MyInput"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/f"
-            app:layout_constraintTop_toBottomOf="@+id/C"
-            android:layout_marginRight="16dp" />
-
-        <EditText
-            android:id="@+id/f"
-            android:layout_width="136dp"
-            android:layout_height="39dp"
-            android:layout_marginEnd="16dp"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="f"
-            android:inputType="numberDecimal"
-            android:selectAllOnFocus="false"
-            android:singleLine="false"
-            android:textAlignment="center"
-            android:textColor="@android:color/background_light"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Re"
-            android:layout_marginRight="16dp" />
+            app:layout_constraintStart_toEndOf="@+id/frequency_text_reverse"
+            app:layout_constraintTop_toBottomOf="@+id/resistance_reverse" />
 
         <TextView
-            android:id="@+id/C_T"
-            android:layout_width="183dp"
-            android:layout_height="39dp"
-            android:layout_alignWithParentIfMissing="false"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="16dp"
-            android:gravity="center"
-            android:text="Capacitance (uF)"
-            android:textAlignment="center"
-            android:textColor="?android:attr/colorBackground"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@+id/R_T"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:id="@+id/capacitance_text_reverse"
+            android:text="Capacitance (\u00B5F)"
+            style="@style/MyInputText"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/L_T"
-            android:layout_marginRight="8dp"
-            android:layout_marginLeft="16dp" />
-
+            app:layout_constraintTop_toBottomOf="@+id/inductance_reverse_text"/>
         <TextView
-            android:id="@+id/Results"
-            android:layout_width="wrap_content"
-            android:layout_height="47dp"
-            android:layout_marginTop="80dp"
-            android:text="Input Values"
-            android:textAppearance="@style/TextAppearance.AppCompat.Menu"
-            android:textColor="?android:attr/colorBackground"
-            android:textSize="36sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/Input_Voltage_T"
-            android:layout_width="183dp"
-            android:layout_height="39dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="144dp"
-            android:gravity="center"
-            android:text="Input Voltage (V)"
-            android:textAlignment="center"
-            android:textColor="?android:attr/colorBackground"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@+id/Output_Voltage_T"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginRight="8dp"
-            android:layout_marginLeft="16dp" />
-
-        <TextView
-            android:id="@+id/Output_Voltage_T"
-            android:layout_width="183dp"
-            android:layout_height="39dp"
-            android:layout_alignWithParentIfMissing="false"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="16dp"
-            android:gravity="center"
-            android:text="Output Voltage (V)"
-            android:textAlignment="center"
-            android:textColor="?android:attr/colorBackground"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@+id/L_T"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Input_Voltage_T"
-            android:layout_marginRight="8dp"
-            android:layout_marginLeft="16dp" />
-
-        <TextView
-            android:id="@+id/f_T"
-            android:layout_width="183dp"
-            android:layout_height="39dp"
-            android:layout_alignWithParentIfMissing="false"
-            android:layout_marginStart="16dp"
-            android:gravity="center"
-            android:text="Frequency (kHz)"
-            android:textAlignment="center"
-            android:textColor="?android:attr/colorBackground"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/R_T"
-            android:layout_marginLeft="16dp" />
-
-        <TextView
-            android:id="@+id/R_T"
-            android:layout_width="183dp"
-            android:layout_height="39dp"
-            android:layout_alignWithParentIfMissing="false"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="16dp"
-            android:gravity="center"
-            android:text="Resistance (Ohms)"
-            android:textAlignment="center"
-            android:textColor="?android:attr/colorBackground"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@+id/f_T"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/C_T"
-            android:layout_marginRight="8dp"
-            android:layout_marginLeft="16dp" />
-
-        <TextView
-            android:id="@+id/L_T"
-            android:layout_width="183dp"
-            android:layout_height="39dp"
-            android:layout_alignWithParentIfMissing="false"
-            android:layout_marginStart="16dp"
-            android:gravity="center"
-            android:text="Inductance (mH)"
-            android:textAlignment="center"
-            android:textColor="?android:attr/colorBackground"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@+id/C_T"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Output_Voltage_T"
-            android:layout_marginLeft="16dp" />
-
-        <TextView
-            android:id="@+id/Converters"
+            android:id="@+id/results_reverse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="269dp"
+            android:layout_marginTop="16dp"
+            android:text="Input Values"
+            android:fontFamily="@font/montserrat_bold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+            android:textColor="?android:attr/colorBackground"
+            android:textSize="28sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reverse_engineering_text" />
+
+        <TextView
+            android:id="@+id/input_voltage_reverse_text"
+            android:text="Input Voltage (V)"
+            style="@style/MyInputText"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/results_reverse" />
+
+        <TextView
+            android:id="@+id/output_voltage_reverse_text"
+            android:text="Output Voltage (V)"
+            style="@style/MyInputText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/input_voltage_reverse_text"/>
+
+        <TextView
+            android:id="@+id/frequency_text_reverse"
+            style="@style/MyInputText"
+            android:text="Frequency (kHz)"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/resistance_reverse_text" />
+
+        <TextView
+            android:id="@+id/resistance_reverse_text"
+            style="@style/MyInputText"
+            android:layout_marginStart="16dp"
+            android:text="Resistance (\u2126)"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/capacitance_text_reverse" />
+
+        <TextView
+            android:id="@+id/inductance_reverse_text"
+            android:text="Inductance (mH)"
+            style="@style/MyInputText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/output_voltage_reverse_text" />
+
+        <Button
+            android:id="@+id/example_reverse_design_btn"
+            android:layout_width="228dp"
+            android:layout_height="40dp"
             android:layout_marginTop="32dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center"
+            android:text="EXAMPLE"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frequency_reverse" />
+
+        <TextView
+            android:id="@+id/converters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center_horizontal"
             android:text="Converters"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textColor="?android:attr/colorBackground"
-            android:textSize="30sp"
+            android:textSize="28sp"
             android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/f"
-            app:layout_constraintVertical_bias="1.0"
-            android:gravity="center_horizontal" />
+            app:layout_constraintTop_toBottomOf="@+id/example_reverse_design_btn" />
 
         <Button
-            android:id="@+id/Buck"
-            android:layout_width="235dp"
-            android:layout_height="42dp"
+            android:id="@+id/buck_btn_reverse"
+            android:layout_width="228dp"
+            android:layout_height="32dp"
+            style="@style/MyButtonStyle"
+            android:gravity="center"
+            android:textAlignment="center"
             android:layout_marginTop="16dp"
             android:text="Buck"
-            android:textColor="@android:color/background_dark"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@android:color/white"
+            app:layout_constraintTop_toBottomOf="@+id/converters"/>
+
+        <Button
+            android:id="@+id/boost_btn_reverse"
+            style="@style/MyButtonStyle"
+            android:layout_width="228dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center"
+            android:text="Boost"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buck_btn_reverse" />
+
+        <Button
+            android:id="@+id/buck_boost_btn_reverse"
+            style="@style/MyButtonStyle"
+            android:layout_width="228dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center"
+            android:text="Buck-Boost"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
             app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Converters"
-            tools:textColor="@android:color/background_dark" />
-
-        <Button
-            android:id="@+id/Boost"
-            android:layout_width="235dp"
-            android:layout_height="42dp"
-            android:text="Boost"
-            android:textColor="@android:color/background_dark"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Buck" />
-
-        <Button
-            android:id="@+id/Buck_Boost"
-            android:layout_width="235dp"
-            android:layout_height="42dp"
-            android:text="Buck-Boost"
-            android:textColor="@android:color/background_dark"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Boost"
-            tools:textColor="@android:color/background_dark" />
+            app:layout_constraintTop_toBottomOf="@+id/boost_btn_reverse" />
 
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

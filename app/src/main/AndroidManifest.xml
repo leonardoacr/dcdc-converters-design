@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".UsualDesign" />
-        <activity android:name=".ReverseEngineering" />
+        <activity android:name=".ReverseDesign" />
         <activity android:name=".Symbols" />
         <activity android:name=".ConvertersDefinitions" />
         <activity android:name=".BuckConverter" />
@@ -32,11 +32,11 @@
         <activity android:name=".Advanced" />
         <activity android:name=".SnubberProject" />
         <activity android:name=".InductorProject" />
-        <activity android:name=".Converters_R" />
+        <activity android:name=".ConvertersReverse" />
         <activity android:name=".InductorDefinitions" />
         <activity android:name=".About" />
         <activity android:name=".Simulation" />
-        <activity android:name=".SimulationDefinitions" />
+        <activity android:name=".SimulationParameters" />
     </application>
 
 </manifest>

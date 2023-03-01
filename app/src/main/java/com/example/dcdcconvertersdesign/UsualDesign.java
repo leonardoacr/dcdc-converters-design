@@ -1,277 +1,186 @@
 package com.example.dcdcconvertersdesign;
 
+import static com.example.dcdcconvertersdesign.convertersutilities.CalculateConverterVariables.*;
+import static com.example.dcdcconvertersdesign.convertersutilities.VerifyInputErrors.*;
+import static com.example.dcdcconvertersdesign.helpers.Helpers.showToast;
+
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.Objects;
+import com.example.dcdcconvertersdesign.convertersutilities.CalculateConverterVariables;
+import com.example.dcdcconvertersdesign.helpers.Helpers;
 
 public class UsualDesign extends AppCompatActivity {
-    private String TAG = "UsualDesign";
-    double Vi_n, Vo_n, Po_n, Ripple_IL_n, Ripple_VC_n, f_n, n_n, Is_n, Id_n, ILrms_n;
-    double Ii_n, Io_n, ILmax_n, ILmin_n, Vomax_n, Vomin_n, Delta_IL_n, Delta_VC_n;
-    double Duty_Cycle_n, Resistance_n, Capacitance_n, Inductance_n, Inductance_Crit_n;
+    // UI-related variables
+    private EditText inputVoltageEditText, outputVoltageEditText, outputPowerEditText,
+            rippleInductorCurrentEditText, rippleCapacitorVoltageEditText,
+            frequencyEditText, efficiencyEditText;
+    private Button buckBtn, boostBtn, buckBoostBtn, exampleBtn;
+
+    // Calculation-related variables
+    public static double inputCurrent, outputCurrent, inductorCurrentMax, inductorCurrentMin,
+            outputVoltageMax, outputVoltageMin, deltaInductorCurrent, deltaCapacitorVoltage,
+            outputPower, rippleInductorCurrent, rippleCapacitorVoltage, outputVoltage,
+            inputVoltage,  frequency, efficiency;
+    public static double dutyCycle, dutyCycleIdeal, resistance, capacitance, inductance,
+            inductanceCritical, inductorCurrent, switchCurrent, diodeCurrent,
+            inductorCurrentRMS;
+
+    public static boolean isCCM;
+
+    // Flags and constants
     private int flag;
-    EditText Vi, Vo, Po, Ripple_IL, Ripple_VC, f, n;
-    Button Buck, Boost, Buck_Boost;
-
-    public void createObjects() {
-        // Values
-        Vi = findViewById(R.id.Vi);
-        Vo = findViewById(R.id.Vo);
-        Po = findViewById(R.id.Po);
-        Ripple_IL = findViewById(R.id.Ripple_IL);
-        Ripple_VC = findViewById(R.id.Ripple_VC);
-        f = findViewById(R.id.f);
-        n = findViewById(R.id.n);
-
-        // Buttons
-        Buck = findViewById(R.id.Buck);
-        Boost = findViewById(R.id.Boost);
-        Buck_Boost = findViewById(R.id.Buck_Boost);
-    }
+    private static final String TAG = "UsualDesign";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usual_design);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.mipmap.app_icon);
+        Helpers.setMainActionBar(this);
+
         createObjects();
 
+        // Example button listener
+        exampleBtn.setOnClickListener(v -> {
+            inputVoltageEditText.setText("24");
+            outputVoltageEditText.setText("12");
+            outputPowerEditText.setText("100");
+            efficiencyEditText.setText("90");
+            frequencyEditText.setText("50");
+            rippleInductorCurrentEditText.setText("20");
+            rippleCapacitorVoltageEditText.setText("1");
+        });
+
         // Buck Converter
-        Buck.setOnClickListener(v -> {
+        buckBtn.setOnClickListener(v -> {
+            flag = 1;
             if (isEmpty()) {
-                Toast.makeText(UsualDesign.this, "Error! Something is empty", Toast.LENGTH_SHORT).show();
                 return;
             }
-
-            getValues();
-            Buck_Calculations();
-            Log.d(TAG, "wtf");
-
-            if (Vi_n > Vo_n && Duty_Cycle_n <= 0.95 && Duty_Cycle_n >= 0.05 && Resistance_n > 0 && Inductance_n > 0 && Capacitance_n > 0 && n_n <= 100) {
-                flag = 1;
+            getInputs();
+            CalculateConverterVariables.buckCalculations();
+            if (inputVoltage > outputVoltage && isValid()) {
                 Log.d(TAG, "Flag: " + flag);
                 // Sending data
                 Intent intent = new Intent(UsualDesign.this, BuckConverter.class);
-                Bundle data = new Bundle();
-
-                setBundleVariables(data);
-                intent.putExtras(data);
-                startActivity(intent);
+                sendIntent(intent);
+            } else {
+                verifyInputErrorsBuck(this);
             }
-            verifyInputErrorsBuck();
         });
 
         // Boost Converter
-        Boost.setOnClickListener(v -> {
+        boostBtn.setOnClickListener(v -> {
+            flag = 2;
             if (isEmpty()) {
-                Toast.makeText(UsualDesign.this, "Error! Something is empty", Toast.LENGTH_SHORT).show();
                 return;
             }
-
-            getValues();
-            Boost_Calculations();
-
-            if (Vi_n < Vo_n && Duty_Cycle_n <= 0.95 && Duty_Cycle_n >= 0.05 && Resistance_n > 0 && Inductance_n > 0 && Capacitance_n > 0 && n_n <= 100) {
-                flag = 2;
-
+            getInputs();
+            CalculateConverterVariables.boostCalculations();
+            if (inputVoltage < outputVoltage && isValid()) {
                 // Sending data
                 Intent intent = new Intent(UsualDesign.this, BoostConverter.class);
-                Bundle data = new Bundle();
-
-                setBundleVariables(data);
-                intent.putExtras(data);
-                startActivity(intent);
+                sendIntent(intent);
+            } else {
+                verifyInputErrorsBoost(this);
             }
-            verifyInputErrorsBoost();
         });
 
-        // Buck_Boost Calculations
-        Buck_Boost.setOnClickListener(v -> {
+        // Buck-Boost Calculations
+        buckBoostBtn.setOnClickListener(v -> {
+            flag = 3;
             if (isEmpty()) {
-                Toast.makeText(UsualDesign.this, "Error! Something is empty", Toast.LENGTH_SHORT).show();
                 return;
             }
-
-            getValues();
-            Buck_Boost_Calculations();
-
-            if (Vi_n != Vo_n && Duty_Cycle_n <= 0.95 && Duty_Cycle_n >= 0.05 && Resistance_n > 0 && Inductance_n > 0 && Capacitance_n > 0 && n_n <= 100) {
-                flag = 3;
-
+            getInputs();
+            CalculateConverterVariables.buckBoostCalculations();
+            if (inputVoltage != outputVoltage && isValid()) {
                 // Sending data
                 Intent intent = new Intent(UsualDesign.this, BuckBoostConverter.class);
-                Bundle data = new Bundle();
-
-                setBundleVariables(data);
-                intent.putExtras(data);
-                startActivity(intent);
+                sendIntent(intent);
+            } else {
+                verifyInputErrorsBuckBoost(this);
             }
-            verifyInputErrorsBuckBoost();
         });
     }
-    private boolean isEmpty() {
-        return Vi.getText().toString().isEmpty() ||
-                Vo.getText().toString().isEmpty() ||
-                Po.getText().toString().isEmpty() ||
-                Ripple_IL.getText().toString().isEmpty() ||
-                Ripple_VC.getText().toString().isEmpty() ||
-                f.getText().toString().isEmpty() ||
-                n.getText().toString().isEmpty();
+
+    public void createObjects() {
+        // Inputs
+        inputVoltageEditText = findViewById(R.id.input_voltage);
+        outputVoltageEditText = findViewById(R.id.output_voltage);
+        outputPowerEditText = findViewById(R.id.output_power);
+        rippleInductorCurrentEditText = findViewById(R.id.ripple_inductor_current);
+        rippleCapacitorVoltageEditText = findViewById(R.id.ripple_capacitor_voltage);
+        frequencyEditText = findViewById(R.id.frequency);
+        efficiencyEditText = findViewById(R.id.efficiency);
+
+        // Buttons
+        buckBtn = findViewById(R.id.buck_btn);
+        boostBtn = findViewById(R.id.boost_btn);
+        buckBoostBtn = findViewById(R.id.buck_boost_btn);
+        exampleBtn = findViewById(R.id.example_usual_design_btn);
     }
-    private void getValues() {
-        // Convert Values to Double
-        Vi_n = Double.parseDouble(Vi.getText().toString());
-        Vo_n = Double.parseDouble(Vo.getText().toString());
-        Po_n = Double.parseDouble(Po.getText().toString());
-        Ripple_IL_n = Double.parseDouble(Ripple_IL.getText().toString());
-        Ripple_VC_n = Double.parseDouble(Ripple_VC.getText().toString());
-        f_n = Double.parseDouble(f.getText().toString()) * 1000;
-        n_n = Double.parseDouble(n.getText().toString());
+
+    private boolean isEmpty() {
+        EditText[] fields = {inputVoltageEditText, outputVoltageEditText, outputPowerEditText,
+                rippleInductorCurrentEditText, rippleCapacitorVoltageEditText, frequencyEditText,
+                efficiencyEditText};
+        for (EditText field : fields) {
+            if (field.getText().toString().isEmpty()) {
+                showToast(this, "Error! Something is empty");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isValid() {
+        return dutyCycle <= 0.95 && dutyCycle >= 0.05 && resistance > 0 && inductance > 0 &&
+                capacitance > 0 && efficiency <= 100;
+    }
+    private void getInputs() {
+        // Convert strings to Double
+        inputVoltage = Double.parseDouble(inputVoltageEditText.getText().toString());
+        outputVoltage = Double.parseDouble(outputVoltageEditText.getText().toString());
+        outputPower = Double.parseDouble(outputPowerEditText.getText().toString());
+        rippleInductorCurrent = Double.parseDouble(rippleInductorCurrentEditText.getText().toString());
+        rippleCapacitorVoltage = Double.parseDouble(rippleCapacitorVoltageEditText.getText().toString());
+        frequency = Double.parseDouble(frequencyEditText.getText().toString()) * 1000;
+        efficiency = Double.parseDouble(efficiencyEditText.getText().toString());
     }
     private void setBundleVariables(Bundle data){
-        data.putDouble("Duty_Cycle", Duty_Cycle_n);
-        data.putDouble("Resistance", Resistance_n);
-        data.putDouble("Capacitance", Capacitance_n);
-        data.putDouble("Inductance", Inductance_n);
-        data.putDouble("Inductance_Crit", Inductance_Crit_n);
-        data.putDouble("Input_Current", Ii_n);
-        data.putDouble("Output_Current", Io_n);
-        data.putDouble("Switch_Current", Is_n);
-        data.putDouble("Diode_Current", Id_n);
-        data.putDouble("Input_Voltage", Vi_n);
-        data.putDouble("Output_Voltage", Vo_n);
-        data.putDouble("Frequency", f_n);
-        data.putDouble("DeltaIL", Delta_IL_n);
-        data.putDouble("DeltaVC", Delta_VC_n);
-        data.putDouble("ILrms", ILrms_n);
+        data.putDouble("Duty_Cycle", dutyCycle);
+        data.putDouble("Duty_Cycle_Ideal", dutyCycleIdeal);
+        data.putDouble("Resistance", resistance);
+        data.putDouble("Capacitance", capacitance);
+        data.putDouble("Inductance", inductance);
+        data.putDouble("Inductance_Crit", inductanceCritical);
+        data.putDouble("Input_Current", inputCurrent);
+        data.putDouble("Output_Current", outputCurrent);
+        data.putDouble("Inductor_Current", inductorCurrent);
+        data.putDouble("Switch_Current", switchCurrent);
+        data.putDouble("Diode_Current", diodeCurrent);
+        data.putDouble("Input_Voltage", inputVoltage);
+        data.putDouble("Output_Voltage", outputVoltage);
+        data.putDouble("Frequency", frequency);
+        data.putDouble("DeltaIL", deltaInductorCurrent);
+        data.putDouble("DeltaVC", deltaCapacitorVoltage);
+        data.putDouble("ILrms", inductorCurrentRMS);
+        data.putBoolean("is_ccm", isCCM);
         data.putInt("Flag", flag);
     }
-    private void Buck_Calculations() {
-        Duty_Cycle_n = (Vo_n / Vi_n) / (n_n / 100);
-        Resistance_n = (Math.pow(Vo_n, 2)) / Po_n;
-        Io_n = Vo_n / Resistance_n;
-        Ii_n = Duty_Cycle_n * Io_n;
-        Is_n = Duty_Cycle_n * Io_n;
-        Id_n = (1 - Duty_Cycle_n) * Io_n;
-        ILmax_n = Io_n + Io_n * (Ripple_IL_n / 200);
-        ILmin_n = Io_n - Io_n * (Ripple_IL_n / 200);
-        Vomax_n = Vo_n + Vo_n * (Ripple_VC_n / 200);
-        Vomin_n = Vo_n - Vo_n * (Ripple_VC_n / 200);
-        Delta_IL_n = ILmax_n - ILmin_n;
-        Delta_VC_n = Vomax_n - Vomin_n;
-        ILrms_n = Io_n * Math.sqrt(1 + ((0.08333333333) * Math.pow(Delta_IL_n / Io_n, 2)));
-        Inductance_n = (Vi_n * (1 - Duty_Cycle_n) * Duty_Cycle_n) / (f_n * Delta_IL_n);
-        Inductance_Crit_n = (Vi_n * (1 - Duty_Cycle_n) * Duty_Cycle_n) / (2 * f_n * Io_n);
-        Capacitance_n = (Vi_n * (1 - Duty_Cycle_n) * Duty_Cycle_n) / (8 * Inductance_n * Delta_VC_n * Math.pow(f_n, 2));
-    }
-    private void Boost_Calculations() {
-        Duty_Cycle_n = ((Vo_n - Vi_n) / Vo_n) / (n_n / 100);
-        Resistance_n = (Math.pow(Vo_n, 2)) / Po_n;
-        Io_n = Vo_n / Resistance_n;
-        Ii_n = Io_n / (1 - Duty_Cycle_n);
-        Is_n = Duty_Cycle_n * Ii_n;
-        Id_n = (1 - Duty_Cycle_n) * Ii_n;
-        ILrms_n = Ii_n;
-        ILmax_n = Ii_n + Ii_n * (Ripple_IL_n / 200);
-        ILmin_n = Ii_n - Ii_n * (Ripple_IL_n / 200);
-        Vomax_n = Vo_n + Vo_n * (Ripple_VC_n / 200);
-        Vomin_n = Vo_n - Vo_n * (Ripple_VC_n / 200);
-        Delta_IL_n = ILmax_n - ILmin_n;
-        Delta_VC_n = Vomax_n - Vomin_n;
-        Inductance_n = (Vi_n * Duty_Cycle_n) / (f_n * Delta_IL_n);
-        Inductance_Crit_n = (Math.pow(Vi_n, 2) * Duty_Cycle_n) / (2 * Po_n * f_n);
-        Capacitance_n = (Io_n * Duty_Cycle_n) / (Delta_VC_n * f_n);
-    }
-    private void Buck_Boost_Calculations() {
-        Duty_Cycle_n = ((Vo_n) / (Vi_n + Vo_n)) / (n_n / 100);
-        Resistance_n = (Math.pow(Vo_n, 2)) / Po_n;
-        Io_n = Vo_n / Resistance_n;
-        Ii_n = Io_n / (1 - Duty_Cycle_n);
-        Is_n = Duty_Cycle_n * Ii_n;
-        Id_n = (1 - Duty_Cycle_n) * Ii_n;
-        ILmax_n = Ii_n + Ii_n * (Ripple_IL_n / 200);
-        ILmin_n = Ii_n - Ii_n * (Ripple_IL_n / 200);
-        Vomax_n = Vo_n + Vo_n * (Ripple_VC_n / 200);
-        Vomin_n = Vo_n - Vo_n * (Ripple_VC_n / 200);
-        Delta_IL_n = ILmax_n - ILmin_n;
-        Delta_VC_n = Vomax_n - Vomin_n;
-        ILrms_n = Math.sqrt(Math.pow(ILmax_n, 2) + Math.pow(Delta_IL_n / 12, 2));
-        Inductance_n = (Vi_n * Duty_Cycle_n) / (f_n * Delta_IL_n);
-        Inductance_Crit_n = (Math.pow(Vi_n, 2) * Duty_Cycle_n) / (2 * Po_n * f_n);
-        Capacitance_n = (Io_n * Duty_Cycle_n) / (Delta_VC_n * f_n);
-    }
-    private void verifyInputErrorsBuck() {
-        if (Vi_n < Vo_n) {
-            Toast.makeText(UsualDesign.this, "Error! Output bigger than Input", Toast.LENGTH_SHORT).show();
-        }
-        if (Vi_n == Vo_n) {
-            Toast.makeText(UsualDesign.this, "Error! Input and Output are equal", Toast.LENGTH_SHORT).show();
-        }
-        if ((Duty_Cycle_n > 0.95 || Duty_Cycle_n < 0.05) && Vi_n != Vo_n && Vi_n > Vo_n && n_n <= 100) {
-            Toast.makeText(UsualDesign.this, "Error! Duty Cycle is out of the security range (0.05 < D > 0.95)", Toast.LENGTH_SHORT).show();
-        }
-        if (Duty_Cycle_n < 0.95 && Duty_Cycle_n > 0.05 && Vi_n != Vo_n && n_n <= 100 && Resistance_n < 0) {
-            Toast.makeText(getApplicationContext(), "This project is not possible. Resistance is negative", Toast.LENGTH_SHORT).show();
-        }
-        if ((Duty_Cycle_n < 0.95 && Duty_Cycle_n > 0.05) && Vi_n != Vo_n && n_n <= 100 && Capacitance_n < 0) {
-            Toast.makeText(getApplicationContext(), "This project is not possible. Capacitance is negative", Toast.LENGTH_SHORT).show();
-        }
-        if ((Duty_Cycle_n < 0.95 && Duty_Cycle_n > 0.05) && Vi_n != Vo_n && n_n <= 100 && Inductance_n < 0) {
-            Toast.makeText(getApplicationContext(), "This project is not possible. Inductance is negative", Toast.LENGTH_SHORT).show();
-        }
-        if (n_n > 100) {
-            Toast.makeText(getApplicationContext(), "This project is not possible. Efficiency is bigger then 100%", Toast.LENGTH_SHORT).show();
-        }
-    }
-    private void verifyInputErrorsBoost() {
-        if (Vi_n == Vo_n) {
-            Toast.makeText(UsualDesign.this, "Error! Input and Output are equal", Toast.LENGTH_SHORT).show();
-        }
-        if (Vi_n > Vo_n) {
-            Toast.makeText(UsualDesign.this, "Error! Input bigger than Output", Toast.LENGTH_SHORT).show();
-        }
-        if ((Duty_Cycle_n > 0.95 || Duty_Cycle_n < 0.05) && Vi_n != Vo_n && Vi_n < Vo_n && n_n <= 100) {
-            Toast.makeText(UsualDesign.this, "Error! Duty Cycle is out of the security range (0.05 < D > 0.95)", Toast.LENGTH_SHORT).show();
-        }
-        if (Duty_Cycle_n < 0.95 && Duty_Cycle_n > 0.05 && Vi_n != Vo_n && Resistance_n < 0) {
-            Toast.makeText(getApplicationContext(), "This project is not possible. Resistance is negative", Toast.LENGTH_SHORT).show();
-        }
-        if (Duty_Cycle_n < 0.95 && Duty_Cycle_n > 0.05 && Vi_n != Vo_n && Capacitance_n < 0) {
-            Toast.makeText(getApplicationContext(), "This project is not possible. Capacitance is negative", Toast.LENGTH_SHORT).show();
-        }
-        if (Duty_Cycle_n < 0.95 && Duty_Cycle_n > 0.05 && Vi_n != Vo_n && Inductance_n < 0) {
-            Toast.makeText(getApplicationContext(), "This project is not possible. Inductance is negative", Toast.LENGTH_SHORT).show();
-        }
-        if (n_n > 100) {
-            Toast.makeText(getApplicationContext(), "This project is not possible. Efficiency is bigger then 100%", Toast.LENGTH_SHORT).show();
-        }
-    }
-    private void verifyInputErrorsBuckBoost() {
-        if (Vi_n == Vo_n) {
-            Toast.makeText(UsualDesign.this, "Error! Input and Output are equal", Toast.LENGTH_SHORT).show();
-        }
-        if ((Duty_Cycle_n > 0.95 || Duty_Cycle_n < 0.05) && Vi_n != Vo_n && n_n <= 100) {
-            Toast.makeText(UsualDesign.this, "Error! Duty Cycle is out of the security range (0.05 < D > 0.95)", Toast.LENGTH_SHORT).show();
-        }
-        if (Duty_Cycle_n < 0.95 && Duty_Cycle_n > 0.05 && Vi_n != Vo_n && Resistance_n < 0) {
-            Toast.makeText(getApplicationContext(), "This project is not possible. Resistance is negative", Toast.LENGTH_SHORT).show();
-        }
-        if ((Duty_Cycle_n < 0.95 && Duty_Cycle_n > 0.05) && Vi_n != Vo_n && Capacitance_n < 0) {
-            Toast.makeText(getApplicationContext(), "This project is not possible. Capacitance is negative", Toast.LENGTH_SHORT).show();
-        }
-        if (Duty_Cycle_n < 0.95 && Duty_Cycle_n > 0.05 && Vi_n != Vo_n && Inductance_n < 0) {
-            Toast.makeText(getApplicationContext(), "This project is not possible. Inductance is negative", Toast.LENGTH_SHORT).show();
-        }
-        if (n_n > 100) {
-            Toast.makeText(getApplicationContext(), "This project is not possible. Efficiency is bigger then 100%", Toast.LENGTH_SHORT).show();
-        }
+
+    private void sendIntent(Intent intent){
+        Bundle data = new Bundle();
+
+        setBundleVariables(data);
+        intent.putExtras(data);
+        startActivity(intent);
     }
 }

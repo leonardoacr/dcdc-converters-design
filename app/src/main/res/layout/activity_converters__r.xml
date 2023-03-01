@@ -8,175 +8,277 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/converters_r"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/activity_converter_reverse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#2b2b2b"
-        tools:context=".Converters_R">
+        style="@style/MyBackground"
+        tools:context=".BuckConverter">
 
         <TextView
-            android:id="@+id/Title"
-            android:layout_width="wrap_content"
-            android:layout_height="47dp"
-            android:layout_marginTop="16dp"
+            android:id="@+id/converter_title_reverse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="48dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="48dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Menu"
             android:textColor="?android:attr/colorBackground"
-            android:textSize="36sp"
+            android:textSize="28sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/Po_T"
-            android:layout_width="183dp"
-            android:layout_height="39dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginEnd="8dp"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:textColor="?android:attr/colorBackground"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@+id/Ripple_IL_T"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/Ripple_IL_T"
-            android:layout_width="183dp"
-            android:layout_height="39dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:textColor="?android:attr/colorBackground"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@+id/Ripple_VC_T"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Po_T" />
-
-        <TextView
-            android:id="@+id/Ripple_VC_T"
-            android:layout_width="183dp"
-            android:layout_height="39dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:textColor="?android:attr/colorBackground"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@+id/Duty_Cycle_T"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Ripple_IL_T" />
-
-        <TextView
-            android:id="@+id/Duty_Cycle_T"
-            android:layout_width="183dp"
-            android:layout_height="39dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:textColor="?android:attr/colorBackground"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Ripple_VC_T" />
-
-        <TextView
-            android:id="@+id/Po"
-            android:layout_width="136dp"
-            android:layout_height="39dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:textColor="?android:attr/colorBackground"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/Ripple_IL"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/Ripple_IL"
-            android:layout_width="136dp"
-            android:layout_height="39dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:textColor="?android:attr/colorBackground"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/Ripple_VC"
-            app:layout_constraintTop_toBottomOf="@+id/Po" />
-
-        <TextView
-            android:id="@+id/Ripple_VC"
-            android:layout_width="136dp"
-            android:layout_height="39dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:textColor="?android:attr/colorBackground"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/Duty_Cycle"
-            app:layout_constraintTop_toBottomOf="@+id/Ripple_IL" />
-
-        <TextView
-            android:id="@+id/Duty_Cycle"
-            android:layout_width="136dp"
-            android:layout_height="39dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:textColor="?android:attr/colorBackground"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Ripple_VC" />
-
-        <Button
-            android:id="@+id/Advanced"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Advanced"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.546" />
-
         <ImageView
-            android:id="@+id/Converter"
-            android:layout_width="343dp"
-            android:layout_height="176dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="17dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/converter_image_reverse"
+            android:layout_width="333dp"
+            android:layout_height="153dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Advanced" />
+            app:layout_constraintTop_toBottomOf="@+id/converter_title_reverse" />
 
-    </android.support.constraint.ConstraintLayout>
+        <RelativeLayout
+            android:id="@+id/output_power_layout_reverse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/rounded_box"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/converter_image_reverse">
+
+            <TextView
+                android:id="@+id/output_power_reverse"
+                android:layout_width="88dp"
+                android:layout_height="39dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_toEndOf="@+id/output_power_text_reverse"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="@color/colorGreen"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/output_power_text_reverse" />
+
+            <TextView
+                android:id="@+id/output_power_text_reverse"
+                android:layout_width="177dp"
+                android:layout_height="39dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="start|center_vertical"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/ripple_inductor_current_layout_reverse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/rounded_box"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/output_power_layout_reverse">
+
+            <TextView
+                android:id="@+id/ripple_inductor_current_text_reverse"
+                android:layout_width="177dp"
+                android:layout_height="39dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="start|center_vertical"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/ripple_inductor_current_reverse"
+                android:layout_width="88dp"
+                android:layout_height="39dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_toEndOf="@+id/ripple_inductor_current_text_reverse"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="@color/colorGreen"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ripple_inductor_current_text_reverse" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/ripple_capacitor_voltage_text_layout_reverse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/rounded_box"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ripple_inductor_current_layout_reverse">
+
+            <TextView
+                android:id="@+id/ripple_capacitor_voltage_text_reverse"
+                android:layout_width="177dp"
+                android:layout_height="39dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="start|center_vertical"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/ripple_capacitor_voltage_reverse"
+                android:layout_width="88dp"
+                android:layout_height="39dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_toEndOf="@+id/ripple_capacitor_voltage_text_reverse"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="@color/colorGreen"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ripple_capacitor_voltage_text_reverse" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/duty_cycle_layout_reverse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/rounded_box"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ripple_capacitor_voltage_text_layout_reverse">
+
+            <TextView
+                android:id="@+id/duty_cycle_text_reverse"
+                android:layout_width="177dp"
+                android:layout_height="39dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="start|center_vertical"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/duty_cycle_reverse"
+                android:layout_width="88dp"
+                android:layout_height="39dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_toEndOf="@+id/duty_cycle_text_reverse"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="@color/colorGreen"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/duty_cycle_text_reverse" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/mode_warning_reverse"
+            android:layout_width="337dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/simulation_reverse" />
+
+        <TextView
+            android:id="@+id/mode_reverse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:gravity="center"
+            android:textColor="@color/colorGreen"
+            android:textSize="18sp"
+            android:background="@drawable/rectangle_border"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/duty_cycle_layout_reverse" />
+
+        <Button
+            android:id="@+id/advanced_btn_reverse"
+            style="@style/MyButtonStyle"
+            android:layout_width="215dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Advanced"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mode_reverse" />
+
+        <Button
+            android:id="@+id/simulation_reverse"
+            style="@style/MyButtonStyle"
+            android:layout_width="215dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Simulation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/advanced_btn_reverse" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
+
+

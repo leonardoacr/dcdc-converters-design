@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
@@ -67,5 +67,5 @@ author himself, claiming all copyright for them. \n
             app:layout_constraintTop_toBottomOf="@+id/buck_definition3"
             tools:targetApi="lollipop" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

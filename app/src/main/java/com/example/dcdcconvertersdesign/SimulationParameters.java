@@ -2,32 +2,43 @@ package com.example.dcdcconvertersdesign;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.example.dcdcconvertersdesign.helpers.Helpers;
+
+import org.w3c.dom.Text;
 
 import java.util.Locale;
 
-public class SimulationDefinitions extends AppCompatActivity {
+public class SimulationParameters extends AppCompatActivity {
     private static final String TAG = "Simulation";
-    private double maxTime, switchingFrequencyRecovered;
+    private double maxTime, switchingFrequencyRecovered, switchingFrequencyValue, memoryCalculated,
+            maxTimeRecommendedCalculated;
+    private String unit;
     TextView switchingFrequency, timeStep, timeStepText;
-    TextView requiredMemoryText, requiredMemory,
+    TextView requiredMemoryText, requiredMemory, requiredMemoryBigText,
             maxTimeRecommended, maxTimeRecommendedText;
     EditText  maxTimeEditText;
     Button outputVoltageBtn, outputCurrentBtn, inputCurrentBtn, switchCurrentBtn, diodeCurrentBtn,
             inductorCurrentBtn, capacitorCurrentBtn;
 
+    RelativeLayout layout16, layout17;
+
     @SuppressLint({"DefaultLocale", "SetTextI18n"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_simulation_definitions);
+        setContentView(R.layout.activity_simulation_parameters);
+        Helpers.setMinActionBar(this);
         createObjects();
         // retrieve extras from the intent
         Bundle extras = getIntent().getExtras();
@@ -39,22 +50,21 @@ public class SimulationDefinitions extends AppCompatActivity {
         }
     }
     private void converterCalculations() {
-        switchingFrequency.setText(String.format(Locale.US, "%.2f", switchingFrequencyRecovered));
+        String formattedFrequency;
+        formattedFrequency = formatSwitchingFrequency();
+        switchingFrequency.setText(formattedFrequency);
 
         double timeStepCalculated = calculateTimeStep(switchingFrequencyRecovered);
         String formattedTimeStep = formatTimeStep(timeStepCalculated);
-
-        // Set formatted time step
         timeStep.setText(formattedTimeStep);
 
         maxTimeEditText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 String maxTimeStr = v.getText().toString();
                 if (!maxTimeStr.isEmpty()) {
-                    handleMaxTimeEditText(v.getText().toString(), timeStepCalculated);
-
+                    calculateSimulationParameters(maxTimeStr, timeStepCalculated);
                     // Show texts
-                    handleSimulationTexts();
+                    handleSimulationTexts(memoryCalculated);
 
                     // Handling simulation buttons
                     handleSimulationButtons(maxTime, timeStepCalculated);
@@ -73,51 +83,64 @@ public class SimulationDefinitions extends AppCompatActivity {
         double coefficient = timeStepCalculated / Math.pow(10, -6);
         String unit;
         if (coefficient >= 1) {
-            unit = "u"; // for micro (10^-6)
+            unit = "μ"; // for micro (10^-6)
         } else {
             coefficient *= 1000;
             unit = "n";
         }
-        timeStepText.setText("Time Step (" + unit + "s)");
-
-        return String.format(Locale.US, "%.2f", coefficient);
+        timeStepText.setText("Time Step");
+        String formattedString =  Helpers.stringFormat(coefficient) + " " + unit + "s";
+        return formattedString;
     }
 
-    private void handleMaxTimeEditText(String maxTimeStr, double timeStepCalculated) {
-        if (!maxTimeStr.isEmpty()) {
-            calculateSimulationParameters(maxTimeStr, timeStepCalculated);
+    private String formatSwitchingFrequency(){
+        switchingFrequencyValue = switchingFrequencyRecovered;
+        if (switchingFrequencyValue >= 1000 && switchingFrequencyValue < 1000000) {
+            switchingFrequencyValue /= 1000;
+            unit = "kHz";
+        } else if (switchingFrequencyValue >= 1000000) {
+            switchingFrequencyValue /= 1000000;
+            unit = "MHz";
+        } else {
+            unit = "Hz";
         }
+        return Helpers.stringFormat(switchingFrequencyValue) + " " + unit;
     }
 
     private void createObjects()
     {
         // Output Values
-        switchingFrequency = (TextView) findViewById(R.id.switchingFrequency);
-        timeStep = (TextView) findViewById(R.id.timeStep);
-        timeStepText = (TextView) findViewById(R.id.timeStepText);
-        maxTimeRecommended = (TextView) findViewById(R.id.maxTimeRecommended);
+        switchingFrequency = (TextView) findViewById(R.id.switching_frequency_simulation);
+        timeStep = (TextView) findViewById(R.id.time_step_simulation);
+        timeStepText = (TextView) findViewById(R.id.time_step_text_simulation);
+        maxTimeRecommended = (TextView) findViewById(R.id.max_time_recommended_simulation);
 
-        // Input Text
-        requiredMemoryText = (TextView) findViewById(R.id.requiredMemoryText);
-        maxTimeRecommendedText = (TextView) findViewById(R.id.maxTimeRecommendedText);
+        // Output Text
+        requiredMemoryText = (TextView) findViewById(R.id.required_memory_text);
+        requiredMemoryBigText = (TextView) findViewById(R.id.max_time_text_3);
+        maxTimeRecommendedText = (TextView) findViewById(R.id.max_time_recommended_text_simulation);
 
         // Input Values
-        maxTimeEditText = (EditText) findViewById(R.id.maxTime);
-        requiredMemory = (TextView) findViewById(R.id.requiredMemory);
+        maxTimeEditText = (EditText) findViewById(R.id.max_time_simulation);
+        requiredMemory = (TextView) findViewById(R.id.required_memory);
 
         // Buttons
-        outputVoltageBtn = (Button) findViewById(R.id.outputVoltage);
-        outputCurrentBtn = (Button) findViewById(R.id.outputCurrent);
-        inputCurrentBtn = (Button) findViewById(R.id.inputCurrent);
-        switchCurrentBtn = (Button) findViewById(R.id.switchCurrent);
-        diodeCurrentBtn = (Button) findViewById(R.id.diodeCurrent);
-        inductorCurrentBtn = (Button) findViewById(R.id.inductorCurrent);
-        capacitorCurrentBtn = (Button) findViewById(R.id.capacitorCurrent);
+        outputVoltageBtn = (Button) findViewById(R.id.output_voltage_btn_simulation);
+        outputCurrentBtn = (Button) findViewById(R.id.output_current_btn_simulation);
+        inputCurrentBtn = (Button) findViewById(R.id.input_current_btn_simulation);
+        switchCurrentBtn = (Button) findViewById(R.id.switch_current_btn_simulation);
+        diodeCurrentBtn = (Button) findViewById(R.id.diode_current_btn_simulation);
+        inductorCurrentBtn = (Button) findViewById(R.id.inductor_current_btn_simulation);
+        capacitorCurrentBtn = (Button) findViewById(R.id.capacitor_current_btn_simulation);
+
+        // Relative Layout
+        layout16 = (RelativeLayout) findViewById(R.id.main_container_16);
+        layout17 = (RelativeLayout) findViewById(R.id.main_container_17);
     }
 
     private void sendDataSimulation(double maxTime, double timeStepCalculated, String receivedID){
         Intent intentSimulation = new Intent(
-                SimulationDefinitions.this, Simulation.class);
+                SimulationParameters.this, Simulation.class);
         Bundle simulationData = new Bundle();
         // copy all extras from the previous activity
         simulationData.putAll(getIntent().getExtras());
@@ -134,26 +157,34 @@ public class SimulationDefinitions extends AppCompatActivity {
         double requiredMemoryByByteCSV = 16.0 / 1048576.0;
         double arraysQuantity = 2;
         double numStepCalculated = (maxTime / timeStepCalculated);
-        double memoryCalculated = numStepCalculated*requiredMemoryByByteCSV*arraysQuantity;
-        Log.d(TAG, "memoryCalculated: " + memoryCalculated);
 
-        String memoryString = getString(R.string.required_memory_text,
-                memoryCalculated);
+        memoryCalculated = numStepCalculated*requiredMemoryByByteCSV*arraysQuantity;
+
+        maxTimeRecommendedCalculated = (timeStepCalculated*maxMemoryAllowed
+                /(requiredMemoryByByteCSV*arraysQuantity))*1000;
+    }
+
+    private void handleSimulationTexts(double memoryCalculated) {
+        String memoryString = Helpers.stringFormat(memoryCalculated) + " MB";
         requiredMemory.setText(memoryString);
         requiredMemoryText.setText(R.string.required_memory_info);
 
-        double maxTimeRecommendedCalculated = timeStepCalculated*maxMemoryAllowed
-                /(requiredMemoryByByteCSV*arraysQuantity);
+        ((TextView) findViewById(R.id.simulation_options)).setVisibility(View.VISIBLE);
 
-        maxTimeRecommended.setText(String.format(Locale.US, "%.2f",
-                maxTimeRecommendedCalculated*1000));
+        requiredMemoryBigText.setVisibility(View.VISIBLE);
+        if(memoryCalculated > 10.05) {
+            requiredMemoryBigText.setText(R.string.required_memory_big_text);
+            requiredMemoryBigText.setTextColor(Color.RED);
 
-        maxTimeRecommendedText.setText(R.string.max_time_recommended_info);
-    }
+            String maxTimeFormattedString = Helpers.stringFormat(maxTimeRecommendedCalculated) + " ms";
+            maxTimeRecommended.setText(maxTimeFormattedString);
+            maxTimeRecommendedText.setText(R.string.max_time_recommended_info);
+            layout17.setVisibility(View.VISIBLE);
+        } else {
+            requiredMemoryBigText.setText("");
+        }
 
-    private void handleSimulationTexts() {
-        ((TextView) findViewById(R.id.simulationOptions)).setVisibility(View.VISIBLE);
-        ((TextView) findViewById(R.id.maxTimeText3)).setVisibility(View.VISIBLE);
+        layout16.setVisibility(View.VISIBLE);
     }
 
     private void handleSimulationButtons(double maxTime, double timeStepCalculated) {

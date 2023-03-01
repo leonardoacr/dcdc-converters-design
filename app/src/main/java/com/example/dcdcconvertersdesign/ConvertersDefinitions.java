@@ -1,18 +1,23 @@
 package com.example.dcdcconvertersdesign;
 
+import android.media.Image;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
 
+import android.widget.ImageView;
+import android.widget.TextView;
 public class ConvertersDefinitions extends AppCompatActivity {
 
     TextView Buck_definition, Boost_definition, BuckBoost_definition;
 
+    ImageView imageViewBuckDefinitions;
+
     public void createObjects(){
-        // Text ID
-        //Buck_definition = (TextView) findViewById(R.id.Buck_definition);
-        //Boost_definition = findViewById(R.id.Boost_definition);
-        //BuckBoost_definition = findViewById(R.id.BuckBoost_definition);
+        // Image ID
+        imageViewBuckDefinitions = (ImageView) findViewById(R.id.imageViewBuckDefinitions);
+        imageViewBuckDefinitions.setImageResource(R.drawable.buck);
+//        Boost_definition = findViewById(R.id.Boost_definition);
+//        BuckBoost_definition = findViewById(R.id.BuckBoost_definition);
 
     }
 

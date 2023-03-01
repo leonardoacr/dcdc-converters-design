@@ -8,109 +8,176 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <android.support.constraint.ConstraintLayout
-
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/relativeLayout3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/background_dark"
+        android:layout_height="wrap_content"
+        style="@style/MyBackground"
         tools:context=".MainActivity">
 
         <TextView
             android:id="@+id/Choose"
             android:layout_width="335dp"
             android:layout_height="57dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="32dp"
             android:gravity="center"
-            android:text="Choose the design mode"
+            android:text="Design Mode"
             android:textAppearance="@style/TextAppearance.AppCompat.Menu"
             android:textColor="@color/cardview_light_background"
-            android:textSize="24sp"
-            android:textStyle="bold"
+            android:textSize="28sp"
+            android:fontFamily="@font/montserrat_bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/UsualDesign"
-            style="@android:style/Widget.Button.Inset"
-            android:layout_width="215dp"
-            android:layout_height="47dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+
+        <RelativeLayout
+            android:id="@+id/mainContainer_1"
+            android:layout_width="300dp"
+            android:layout_height="181dp"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:background="@drawable/button"
-            android:shadowColor="@color/ic_launcher_background"
-            android:text="Usual Design"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textSize="18sp"
+            android:background="@drawable/rounded_box"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+            app:layout_constraintTop_toBottomOf="@+id/Choose">
 
-        <Button
-            android:id="@+id/ReverseEngineering"
-            style="@android:style/Widget.Button.Inset"
-            android:layout_width="224dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="0dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:text="If you have the parameters"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView13"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:text="(Voltages, Ripples &amp; Currents)"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/UsualDesign"
+                android:layout_width="215dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/textView19"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:shadowColor="@color/ic_launcher_background"
+                android:text="Usual Design"
+                style="@style/MyButtonStyle"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/imageViewBolt"
+                android:layout_width="match_parent"
+                android:layout_height="79dp"
+                android:layout_below="@+id/UsualDesign"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="-10dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="-14dp"
+                android:src="@drawable/ic_bolt" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/mainContainer_2"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:background="@drawable/button"
-            android:text="Reverse Engineering"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textSize="18sp"
+            android:background="@drawable/rounded_box"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+            app:layout_constraintTop_toBottomOf="@+id/mainContainer_1">
 
-        <TextView
-            android:id="@+id/version"
-            android:layout_width="0dp"
-            android:layout_height="14dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="28dp"
-            android:text="Alpha 1.0"
-            android:textAlignment="center"
-            android:textColor="@android:color/background_light"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginRight="16dp"
-            android:gravity="center_horizontal" />
 
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="50dp"
-            android:text="If you have the parameters:"
-            android:textColor="@color/cardview_light_background"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Choose" />
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="If you have the converter"
+                android:textAlignment="center"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="50dp"
-            android:text="If you have the components:"
-            android:textColor="@color/cardview_light_background"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/UsualDesign" />
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView14"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="(Voltages, Frequency,  Components)"
+                android:textAlignment="center"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </android.support.constraint.ConstraintLayout>
+            <Button
+                android:id="@+id/ReverseEngineering"
+                android:layout_width="215dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/textView18"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:shadowColor="@color/ic_launcher_background"
+                android:text="Reverse Design"
+                android:textColor="@android:color/white"
+                style="@style/MyButtonStyle"
+                android:textSize="14sp"  />
+
+            <ImageView
+                android:id="@+id/imageViewRLC"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_below="@+id/ReverseEngineering"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/ic_rlc" />
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

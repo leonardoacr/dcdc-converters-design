@@ -1,122 +1,232 @@
 package com.example.dcdcconvertersdesign;
 
+import static com.example.dcdcconvertersdesign.helpers.Helpers.stringFormat;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.dcdcconvertersdesign.helpers.Helpers;
+
+import org.w3c.dom.Text;
+
 public class Advanced extends AppCompatActivity {
 
-    double Inductance_n, Inductance_Crit_n, Ii_n, Io_n, Is_n, Id_n, Vo_n, f_n, Delta_IL_n, Delta_VC_n, ILrms_n, Flag, Flag_Reverse;
-    TextView Inductance_Crit, Input_Current, Output_Current, Switch_Current, Diode_Current, Delta_IL, Delta_VC, Mode, obsinductor;
-    Button Snubber_Project, Inductor_Project;
-
-    private void createObjects() {
-        Inductance_Crit = (TextView) findViewById(R.id.Inductance_Crit);
-        Input_Current = (TextView) findViewById(R.id.Input_Current);
-        Output_Current = (TextView) findViewById(R.id.Output_Current);
-        Switch_Current = (TextView) findViewById(R.id.Switch_Current);
-        Diode_Current = (TextView) findViewById(R.id.Diode_Current);
-        Delta_IL = (TextView) findViewById(R.id.Delta_IL);
-        Delta_VC = (TextView) findViewById(R.id.Delta_VC);
-        Mode = (TextView) findViewById(R.id.Mode);
-        obsinductor = findViewById(R.id.obsinductor);
-
-        // Buttons
-        Snubber_Project = (Button) findViewById(R.id.Snubber_Project);
-        Inductor_Project = (Button) findViewById(R.id.Inductor_Project);
-    }
+    private double inductance, inductanceCritical, inputCurrent, outputCurrent, switchCurrent, diodeCurrent,
+            inductorCurrent, outputVoltage, frequency, deltaInductorCurrent, deltaCapacitorVoltage,
+            inductorCurrentRMS, flag, flagReverse;
+    private TextView inductanceCriticalTextView, inputCurrentTextView, outputCurrentTextView,
+            inductorCurrentTextView, switchCurrentTextView, diodeCurrentTextView,
+            deltaInductorCurrentTextView, deltaCapacitorVoltageTextView, obsinductor;
+    private Button snubberDesignBtn, inductorDesignBtn;
 
     @SuppressLint({"SetTextI18n", "DefaultLocale"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_advanced);
+        Helpers.setMinActionBar(this);
         createObjects();
 
         Bundle data2 = getIntent().getExtras();
 
         if (data2 != null) {
             // Recovering data
-            Inductance_n = data2.getDouble("Inductance");
-            Inductance_Crit_n = data2.getDouble("Inductance_Crit");
-            Ii_n = data2.getDouble("Input_Current");
-            Io_n = data2.getDouble("Output_Current");
-            Is_n = data2.getDouble("Switch_Current");
-            Id_n = data2.getDouble("Diode_Current");
-            Vo_n = data2.getDouble("Output_Voltage");
-            f_n = data2.getDouble("Frequency");
-            Delta_IL_n = data2.getDouble("DeltaIL");
-            Delta_VC_n = data2.getDouble("DeltaVC");
-            ILrms_n = data2.getDouble("ILrms");
-            Flag = data2.getDouble("Flag");
-            Flag_Reverse = data2.getDouble("Flag_Reverse");
+            recoveringDataFromConvertersR(data2);
 
             // Writing Values
-            Inductance_Crit.setText(String.format("%.2f", Inductance_Crit_n * 1e6));
-            Input_Current.setText(String.format("%.2f", Ii_n));
-            Output_Current.setText(String.format("%.2f", Io_n));
-            Switch_Current.setText(String.format("%.2f", Is_n));
-            Diode_Current.setText(String.format("%.2f", Id_n));
-            Delta_IL.setText(String.format("%.2f", Delta_IL_n));
-            Delta_VC.setText(String.format("%.2f", Delta_VC_n));
+            formatAndSetValues();
 
-            // Writing Mode
-            if(Inductance_Crit_n <= Inductance_n){
-                Mode.setText("Continuous Conduction Mode (CCM)");
-            }
-            else{
-                Mode.setText("Discontinuous Conduction Mode (DCM)");
-            }
-
-            if(Flag_Reverse == 1){
+            if(flagReverse == 1){
                 obsinductor.setText("For the reverse mode, the designed inductor shows the ideal component for the design");
             }
 
-
             // Snubber Project
-            Snubber_Project.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            snubberDesignBtn.setOnClickListener(v -> {
+                // Sending data to Snubber Project
+                Intent intentSnubber = new Intent(Advanced.this, SnubberProject.class);
+                Bundle data3 = new Bundle();
 
-                    // Sending data to Snubber Project
-                    Intent intentSnubber = new Intent(Advanced.this, SnubberProject.class);
-                    Bundle data3 = new Bundle();
+                data3.putDouble("Output_Current", outputCurrent);
+                data3.putDouble("Input_Current", inputCurrent);
+                data3.putDouble("Output_Voltage", outputVoltage);
+                data3.putDouble("Frequency", frequency);
+                data3.putDouble("Flag", flag);
 
-                    data3.putDouble("Output_Current", Io_n);
-                    data3.putDouble("Input_Current", Ii_n);
-                    data3.putDouble("Output_Voltage", Vo_n);
-                    data3.putDouble("Frequency", f_n);
-                    data3.putDouble("Flag", Flag);
-
-                    intentSnubber.putExtras(data3);
-
-                    startActivity(intentSnubber);
-                }
+                intentSnubber.putExtras(data3);
+                startActivity(intentSnubber);
             });
 
             // Inductor Project
-            Inductor_Project.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            inductorDesignBtn.setOnClickListener(v -> {
 
-                    // Sending data to Inductor Project
-                    Intent intentInductor = new Intent(Advanced.this, InductorProject.class);
-                    Bundle data4 = new Bundle();
-
-                    data4.putDouble("Inductance", Inductance_n);
-                    data4.putDouble("ILrms", ILrms_n);
-                    data4.putDouble("DeltaIL", Delta_IL_n);
-                    data4.putDouble("Frequency", f_n);
-
-                    intentInductor.putExtras(data4);
-
-                    startActivity(intentInductor);
-                }
+                // Sending data to Inductor Project
+                Intent intentInductor = new Intent(Advanced.this, InductorProject.class);
+                sendingDataToInductorProject(intentInductor);
             });
         }
     }
+
+    private void createObjects() {
+        inductanceCriticalTextView = (TextView) findViewById(R.id.inductance_critical_advanced);
+        inputCurrentTextView = (TextView) findViewById(R.id.input_current_advanced);
+        outputCurrentTextView = (TextView) findViewById(R.id.output_current_advanced);
+        inductorCurrentTextView = (TextView) findViewById(R.id.inductor_current_advanced);
+        switchCurrentTextView = (TextView) findViewById(R.id.switch_current_advanced);
+        diodeCurrentTextView = (TextView) findViewById(R.id.diode_current_advanced);
+        deltaInductorCurrentTextView = (TextView) findViewById(R.id.delta_inductor_current_advanced);
+        deltaCapacitorVoltageTextView = (TextView) findViewById(R.id.delta_capacitor_voltage_advanced);
+        obsinductor = findViewById(R.id.obsinductor);
+        // Buttons
+        snubberDesignBtn = (Button) findViewById(R.id.snubber_design_btn_advanced);
+        inductorDesignBtn = (Button) findViewById(R.id.inductor_design_btn);
+    }
+
+    private void recoveringDataFromConvertersR(Bundle data2) {
+        inductance = data2.getDouble("Inductance");
+        inductanceCritical = data2.getDouble("Inductance_Crit");
+        inputCurrent = data2.getDouble("Input_Current");
+        outputCurrent = data2.getDouble("Output_Current");
+        inductorCurrent = data2.getDouble("Inductor_Current");
+        switchCurrent = data2.getDouble("Switch_Current");
+        diodeCurrent = data2.getDouble("Diode_Current");
+        outputVoltage = data2.getDouble("Output_Voltage");
+        frequency = data2.getDouble("Frequency");
+        deltaInductorCurrent = data2.getDouble("DeltaIL");
+        deltaCapacitorVoltage = data2.getDouble("DeltaVC");
+        inductorCurrentRMS = data2.getDouble("ILrms");
+        flag = data2.getDouble("Flag");
+        flagReverse = data2.getDouble("Reverse_Flag");
+    }
+
+    private void sendingDataToInductorProject(Intent intentInductor) {
+        Bundle data4 = new Bundle();
+
+        data4.putDouble("Inductance", inductance);
+        data4.putDouble("ILrms", inductorCurrentRMS);
+        data4.putDouble("DeltaIL", deltaInductorCurrent);
+        data4.putDouble("Frequency", frequency);
+
+        intentInductor.putExtras(data4);
+        startActivity(intentInductor);
+    }
+
+    private void formatAndSetValues() {
+        String formattedUnit;
+        // Inductance Critical
+        if (inductanceCritical >= 1e-3) {
+            formattedUnit = stringFormat(inductanceCritical * 1e3) + " mH";
+            inductanceCriticalTextView.setText(formattedUnit);
+        }
+        else if (inductanceCritical >= 1e-6) {
+            formattedUnit = stringFormat(inductanceCritical * 1e6) + " μH";
+            inductanceCriticalTextView.setText(formattedUnit);
+        }
+        else {
+            formattedUnit = stringFormat(inductanceCritical * 1e9) + " nH";
+            inductanceCriticalTextView.setText(formattedUnit);
+        }
+
+        // Input Current
+        if (inputCurrent >= 1) {
+            formattedUnit = stringFormat(inputCurrent) + " A";
+            inputCurrentTextView.setText(formattedUnit);
+        }
+        else if (inputCurrent >= 1e-3) {
+            formattedUnit = stringFormat(inputCurrent * 1e3) + " mA";
+            inputCurrentTextView.setText(formattedUnit);
+        }
+        else {
+            formattedUnit = stringFormat(inputCurrent * 1e6) + " μA";
+            inputCurrentTextView.setText(formattedUnit);
+        }
+
+        // Output Current
+        if (outputCurrent >= 1) {
+            formattedUnit = stringFormat(outputCurrent) + " A";
+            outputCurrentTextView.setText(formattedUnit);
+        }
+        else if (outputCurrent >= 1e-3) {
+            formattedUnit = stringFormat(outputCurrent * 1e3) + " mA";
+            outputCurrentTextView.setText(formattedUnit);
+        }
+        else {
+            formattedUnit = stringFormat(outputCurrent * 1e6) + " μA";
+            outputCurrentTextView.setText(formattedUnit);
+        }
+
+        // Inductor Current
+        if (inductorCurrent >= 1) {
+            formattedUnit = stringFormat(inductorCurrent) + " A";
+            inductorCurrentTextView.setText(formattedUnit);
+        }
+        else if (inductorCurrent >= 1e-3) {
+            formattedUnit = stringFormat(inductorCurrent * 1e3) + " mA";
+            inductorCurrentTextView.setText(formattedUnit);
+        }
+        else {
+            formattedUnit = stringFormat(inductorCurrent * 1e6) + " μA";
+            inductorCurrentTextView.setText(formattedUnit);
+        }
+
+        // Switch Current
+        if (switchCurrent >= 1) {
+            formattedUnit = stringFormat(switchCurrent) + " A";
+            switchCurrentTextView.setText(formattedUnit);
+        }
+        else if (switchCurrent >= 1e-3) {
+            formattedUnit = stringFormat(switchCurrent * 1e3) + " mA";
+            switchCurrentTextView.setText(formattedUnit);
+        }
+        else {
+            formattedUnit = stringFormat(switchCurrent * 1e6) + " μA";
+            switchCurrentTextView.setText(formattedUnit);
+        }
+
+        // Diode Current
+        if (diodeCurrent >= 1) {
+            formattedUnit = stringFormat(diodeCurrent) + " A";
+            diodeCurrentTextView.setText(formattedUnit);
+        }
+        else if (diodeCurrent >= 1e-3) {
+            formattedUnit = stringFormat(diodeCurrent * 1e3) + " mA";
+            diodeCurrentTextView.setText(formattedUnit);
+        }
+        else {
+            formattedUnit = stringFormat(diodeCurrent * 1e6) + " μA";
+            diodeCurrentTextView.setText(formattedUnit);
+        }
+
+        // Delta Inductor Current
+        if (deltaInductorCurrent >= 1) {
+            formattedUnit = stringFormat(deltaInductorCurrent) + " A";
+            deltaInductorCurrentTextView.setText(formattedUnit);
+        }
+        else if (deltaInductorCurrent >= 1e-3) {
+            formattedUnit = stringFormat(deltaInductorCurrent * 1e3) + " mA";
+            deltaInductorCurrentTextView.setText(formattedUnit);
+        }
+        else {
+            formattedUnit = stringFormat(deltaInductorCurrent * 1e6) + " μA";
+            deltaInductorCurrentTextView.setText(formattedUnit);
+        }
+
+        // Delta Capacitor Voltage
+        if (deltaCapacitorVoltage >= 1) {
+            formattedUnit = stringFormat(deltaCapacitorVoltage) + " V";
+            deltaCapacitorVoltageTextView.setText(formattedUnit);
+        }
+        else if (deltaCapacitorVoltage >= 1e-3) {
+            formattedUnit = stringFormat(deltaCapacitorVoltage * 1e3) + " mV";
+            deltaCapacitorVoltageTextView.setText(formattedUnit);
+        }
+        else {
+            formattedUnit = stringFormat(deltaCapacitorVoltage * 1e6) + " μV";
+            deltaCapacitorVoltageTextView.setText(formattedUnit);
+        }
+        }
 }

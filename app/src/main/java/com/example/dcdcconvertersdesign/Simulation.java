@@ -2,12 +2,11 @@ package com.example.dcdcconvertersdesign;
 
 import android.annotation.SuppressLint;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,20 +14,18 @@ import android.widget.TextView;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
-import com.example.dcdcconvertersdesign.simulationutilities.CalculateBoostVariables;
-import com.example.dcdcconvertersdesign.simulationutilities.CalculateBuckBoostVariables;
-import com.example.dcdcconvertersdesign.simulationutilities.CalculateBuckVariables;
+import com.example.dcdcconvertersdesign.helpers.Helpers;
+import com.example.dcdcconvertersdesign.simulationutilities.CalculateBoostArrays;
+import com.example.dcdcconvertersdesign.simulationutilities.CalculateBuckBoostArrays;
+import com.example.dcdcconvertersdesign.simulationutilities.CalculateBuckArrays;
 import com.example.dcdcconvertersdesign.simulationutilities.GraphUtils;
 import com.example.dcdcconvertersdesign.simulationutilities.LimitsDialog;
 import com.example.dcdcconvertersdesign.simulationutilities.SaveDialog;
 import com.example.dcdcconvertersdesign.simulationutilities.SolveDiffEquations;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.data.Entry;
 
 public class Simulation extends AppCompatActivity {
     // define a tag for logging purposes
@@ -52,6 +49,7 @@ public class Simulation extends AppCompatActivity {
     private double outputVoltage;
     private double inputVoltage;
     private double dutyCycle;
+    private double dutyCycleIdeal;
     private double inductance;
     private double capacitance;
     private double resistance;
@@ -67,7 +65,7 @@ public class Simulation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_simulation);
-
+        Helpers.unsetActionBar(this);
         // retrieve extras from the intent
         Bundle simulationData = getIntent().getExtras();
         if (simulationData != null) {
@@ -75,15 +73,9 @@ public class Simulation extends AppCompatActivity {
 
             numStep = (int) (maxTime / timeStep);
 
-            Log.d(TAG, "inductorCurrentArray: " + Arrays.toString(inductorCurrentArray));
-            Log.d(TAG, "outputVoltageArray: " + Arrays.toString(outputVoltageArray));
-            Log.d(TAG, "timeArray: " + Arrays.toString(timeArray));
-            Log.d(TAG, "numSteps: " + numStep);
-            Log.d(TAG, "Received ID: " + receivedID);
-
             // Buck Simulation
             if (flag == 1) {
-                SolveDiffEquations.buckConverter(outputVoltage, inputVoltage, dutyCycle,
+                SolveDiffEquations.buckConverter(outputVoltage, inputVoltage, dutyCycleIdeal,
                         inductance, capacitance, resistance, frequency, timeStep, numStep);
 
                 chart = findViewById(R.id.chart);
@@ -99,7 +91,7 @@ public class Simulation extends AppCompatActivity {
 
             // Boost Simulation
             if (flag == 2) {
-                SolveDiffEquations.boostConverter(outputVoltage, inputVoltage, dutyCycle,
+                SolveDiffEquations.boostConverter(outputVoltage, inputVoltage, dutyCycleIdeal,
                         inductance, capacitance, resistance, frequency, timeStep, numStep);
 
                 chart = findViewById(R.id.chart);
@@ -115,7 +107,7 @@ public class Simulation extends AppCompatActivity {
 
             // Buck Boost Simulation
             if (flag == 3) {
-                SolveDiffEquations.buckBoostConverter(outputVoltage, inputVoltage, dutyCycle,
+                SolveDiffEquations.buckBoostConverter(outputVoltage, inputVoltage, dutyCycleIdeal,
                         inductance, capacitance, resistance, frequency, timeStep, numStep);
 
                 chart = findViewById(R.id.chart);
@@ -135,6 +127,7 @@ public class Simulation extends AppCompatActivity {
         outputVoltage = simulationData.getDouble("Output_Voltage");
         inputVoltage = simulationData.getDouble("Input_Voltage");
         dutyCycle = simulationData.getDouble("Duty_Cycle");
+        dutyCycleIdeal = simulationData.getDouble("Duty_Cycle_Ideal");
         inductance = simulationData.getDouble("Inductance");
         capacitance = simulationData.getDouble("Capacitance");
         frequency = simulationData.getDouble("Frequency");
@@ -167,15 +160,15 @@ public class Simulation extends AppCompatActivity {
             case "outputCurrent":
                 fileNameKey = "OutputCurrent";
                 if(flag == 1){
-                    outputCurrentArray = CalculateBuckVariables.calculateOutputCurrentArray(
+                    outputCurrentArray = CalculateBuckArrays.calculateOutputCurrentArray(
                             outputVoltageArray, resistance);
                 }
                 if(flag == 2){
-                    outputCurrentArray = CalculateBoostVariables.calculateOutputCurrentArray(
+                    outputCurrentArray = CalculateBoostArrays.calculateOutputCurrentArray(
                             outputVoltageArray, resistance);
                 }
                 if(flag == 3){
-                    outputCurrentArray = CalculateBuckBoostVariables.calculateOutputCurrentArray(
+                    outputCurrentArray = CalculateBuckBoostArrays.calculateOutputCurrentArray(
                             outputVoltageArray, resistance);
                 }
 
@@ -189,14 +182,14 @@ public class Simulation extends AppCompatActivity {
             case "inputCurrent":
                 fileNameKey = "InputCurrent";
                 if(flag == 1) {
-                    inputCurrentArray = CalculateBuckVariables.calculateInputCurrentArray(
+                    inputCurrentArray = CalculateBuckArrays.calculateInputCurrentArray(
                             inductorCurrentArray, sArray);
                 }
                 if(flag == 2) {
                     inputCurrentArray = inductorCurrentArray;
                 }
                 if(flag == 3) {
-                    inputCurrentArray = CalculateBuckBoostVariables.calculateInputCurrentArray(
+                    inputCurrentArray = CalculateBuckBoostArrays.calculateInputCurrentArray(
                             inductorCurrentArray, sArray);
                 }
 
@@ -209,15 +202,15 @@ public class Simulation extends AppCompatActivity {
             case "diodeCurrent":
                 fileNameKey = "DiodeCurrent";
                 if(flag == 1){
-                    diodeCurrentArray = CalculateBuckVariables.calculateDiodeCurrentArray(
+                    diodeCurrentArray = CalculateBuckArrays.calculateDiodeCurrentArray(
                             inductorCurrentArray, sArray);
                 }
                 if(flag == 2){
-                    diodeCurrentArray = CalculateBoostVariables.calculateDiodeCurrentArray(
+                    diodeCurrentArray = CalculateBoostArrays.calculateDiodeCurrentArray(
                             inductorCurrentArray, sArray);
                 }
                 if(flag == 3){
-                    diodeCurrentArray = CalculateBuckBoostVariables.calculateDiodeCurrentArray(
+                    diodeCurrentArray = CalculateBuckBoostArrays.calculateDiodeCurrentArray(
                             inductorCurrentArray, sArray);
                 }
 
@@ -233,11 +226,11 @@ public class Simulation extends AppCompatActivity {
                     switchCurrentArray = inputCurrentArray;
                 }
                 if(flag == 2){
-                    switchCurrentArray = CalculateBoostVariables.calculateSwitchCurrentArray(
+                    switchCurrentArray = CalculateBoostArrays.calculateSwitchCurrentArray(
                             inductorCurrentArray, sArray);
                 }
                 if(flag == 3){
-                    switchCurrentArray = CalculateBuckBoostVariables.calculateSwitchCurrentArray(
+                    switchCurrentArray = CalculateBuckBoostArrays.calculateSwitchCurrentArray(
                             inductorCurrentArray, sArray);
                 }
 
@@ -258,15 +251,15 @@ public class Simulation extends AppCompatActivity {
             case "capacitorCurrent":
                 fileNameKey = "CapacitorCurrent";
                 if(flag == 1){
-                    capacitorCurrentArray = CalculateBuckVariables.calculateCapacitorCurrentArray(
+                    capacitorCurrentArray = CalculateBuckArrays.calculateCapacitorCurrentArray(
                             outputVoltageArray, inductorCurrentArray, resistance);
                 }
                 if(flag == 2){
-                    capacitorCurrentArray = CalculateBoostVariables.calculateCapacitorCurrentArray(
+                    capacitorCurrentArray = CalculateBoostArrays.calculateCapacitorCurrentArray(
                             outputVoltageArray, inductorCurrentArray, resistance, sArray);
                 }
                 if(flag == 3){
-                    capacitorCurrentArray = CalculateBuckBoostVariables.calculateCapacitorCurrentArray(
+                    capacitorCurrentArray = CalculateBuckBoostArrays.calculateCapacitorCurrentArray(
                             outputVoltageArray, inductorCurrentArray, resistance, sArray);
                 }
 

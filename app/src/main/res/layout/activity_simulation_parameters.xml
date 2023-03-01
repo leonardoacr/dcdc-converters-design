@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:id="@+id/relativeLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/MyBackground"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/simulation_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="16dp"
+            android:gravity="center_horizontal"
+            android:text="Simulation Variable"
+            android:textAlignment="center"
+            android:fontFamily="@font/montserrat_medium"
+            android:textSize="28sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/main_container_17" />
+
+        <Button
+            style="@style/MyButtonStyle"
+            android:id="@+id/output_voltage_btn_simulation"
+            android:layout_width="228dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Output Voltage"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/simulation_options" />
+
+        <Button
+            style="@style/MyButtonStyle"
+            android:id="@+id/output_current_btn_simulation"
+            android:layout_width="228dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Output Current"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/output_voltage_btn_simulation" />
+
+        <Button
+            style="@style/MyButtonStyle"
+            android:id="@+id/input_current_btn_simulation"
+            android:layout_width="228dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Input Current"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/output_current_btn_simulation" />
+
+        <Button
+            style="@style/MyButtonStyle"
+            android:id="@+id/diode_current_btn_simulation"
+            android:layout_width="228dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Diode Current"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/input_current_btn_simulation" />
+
+        <Button
+            style="@style/MyButtonStyle"
+            android:id="@+id/inductor_current_btn_simulation"
+            android:layout_width="228dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Inductor Current"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/diode_current_btn_simulation" />
+
+        <Button
+            style="@style/MyButtonStyle"
+            android:id="@+id/capacitor_current_btn_simulation"
+            android:layout_width="228dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Capacitor Current"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inductor_current_btn_simulation" />
+
+        <Button
+            style="@style/MyButtonStyle"
+            android:id="@+id/switch_current_btn_simulation"
+            android:layout_width="228dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp"
+            android:text="Switch Current"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/capacitor_current_btn_simulation" />
+
+        <TextView
+            android:id="@+id/default_text_simulation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:gravity="center"
+            android:text="Default time step is defined as 1/1000 of the switching frequency."
+            android:textAlignment="center"
+            android:textColor="@color/colorGrayLight"
+            android:textSize="18sp"
+            android:fontFamily="@font/montserrat_regular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/simulation_parameters" />
+
+        <TextView
+            android:id="@+id/max_time_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center"
+            android:text="Define the maximum time of the simulation"
+            android:textAlignment="center"
+            android:textColor="@color/colorGrayLight"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/main_container_15" />
+
+        <LinearLayout
+            android:id="@+id/linear_layout_big_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="32dp"
+            android:paddingEnd="32dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/main_container_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/max_time_text_3"
+                style="@style/MyDefaultText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="@color/colorGreen"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/main_container_14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/rounded_box"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/default_text_simulation">
+
+            <TextView
+                android:id="@+id/switching_frequency_text_simulation"
+                android:layout_width="wrap_content"
+                android:layout_height="39dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="start|center_vertical"
+                android:text="Switching Frequency"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/switching_frequency_simulation"
+                android:layout_width="wrap_content"
+                android:layout_height="39dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_toEndOf="@+id/switching_frequency_text_simulation"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="@color/colorGreen"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/switching_frequency_text_simulation" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/main_container_15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/rounded_box"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/main_container_14">
+
+            <TextView
+                android:id="@+id/time_step_text_simulation"
+                android:layout_width="177dp"
+                android:layout_height="39dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="start|center_vertical"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/time_step_simulation"
+                android:layout_width="wrap_content"
+                android:layout_height="39dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_toEndOf="@+id/time_step_text_simulation"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="@color/colorGreen"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/time_step_text_simulation" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/max_time_text_2"
+            style="@style/MyDefaultText"
+            android:layout_width="wrap_content"
+            android:layout_height="39dp"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="Duration (ms)"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/max_time_simulation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/max_time_text" />
+
+        <EditText
+            android:id="@+id/max_time_simulation"
+            style="@style/MyDefaultText"
+            android:layout_width="160dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:backgroundTint="@color/colorGreen"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Max Time"
+            android:inputType="numberDecimal"
+            android:selectAllOnFocus="false"
+            android:singleLine="false"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light"
+            android:textColorHint="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/max_time_text" />
+
+        <RelativeLayout
+            android:id="@+id/main_container_16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:visibility="gone"
+            android:background="@drawable/rounded_box"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/max_time_text_2">
+
+            <TextView
+                android:id="@+id/required_memory_text"
+                android:layout_width="177dp"
+                android:layout_height="39dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="start|center_vertical"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/required_memory"
+                android:layout_width="wrap_content"
+                android:layout_height="39dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_toEndOf="@+id/required_memory_text"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="@color/colorGreen"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/required_memory_text" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/main_container_17"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/rounded_box"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linear_layout_big_text">
+
+            <TextView
+                android:id="@+id/max_time_recommended_text_simulation"
+                android:layout_width="177dp"
+                android:layout_height="39dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="start|center_vertical"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/max_time_recommended_simulation"
+                android:layout_width="wrap_content"
+                android:layout_height="39dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_toEndOf="@+id/max_time_recommended_text_simulation"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="@color/colorGreen"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/max_time_recommended_text_simulation" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/simulation_parameters"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="48dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="48dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textAlignment="center"
+            android:text="Simulation"
+            android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+            android:textColor="?android:attr/colorBackground"
+            android:textSize="28sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

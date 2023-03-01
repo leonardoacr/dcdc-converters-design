@@ -3,12 +3,15 @@ package com.example.dcdcconvertersdesign;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dcdcconvertersdesign.convertersutilities.ConvertersUtils;
+import com.example.dcdcconvertersdesign.helpers.Helpers;
+
+import static com.example.dcdcconvertersdesign.UsualDesign.inductanceCritical;
 import static com.example.dcdcconvertersdesign.convertersutilities.ConvertersUtils.*;
+
+import java.util.Objects;
 
 public class BuckBoostConverter extends AppCompatActivity {
     @SuppressLint({"SetTextI18n", "DefaultLocale"})
@@ -16,6 +19,7 @@ public class BuckBoostConverter extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_converters);
+        Helpers.setMinActionBar(this);
         ConvertersUtils convertersUtils = new ConvertersUtils();
         convertersUtils.createObjects(this);
         Bundle data = getIntent().getExtras();
@@ -24,17 +28,17 @@ public class BuckBoostConverter extends AppCompatActivity {
             // Recovering data MainActivity
             ConvertersUtils.recoverMainActivityData(data);
             convertersUtils.setConverterInfo();
-            convertersUtils.formatValues();
+            convertersUtils.formatAndSetValues();
 
             // Simulation
             convertersUtils.Simulation.setOnClickListener(v -> {
                 // Continuous Conduction Mode (CCM)
-                if(Inductance_Crit_n <= Inductance_n){
+                if(inductanceCritical <= inductance){
                     Intent intentSimulationDefinitions = new Intent(
-                            BuckBoostConverter.this, SimulationDefinitions.class);
+                            BuckBoostConverter.this, SimulationParameters.class);
                     ConvertersUtils.sendSimulationData(BuckBoostConverter.this, intentSimulationDefinitions);
                 } else {
-                    convertersUtils.ModeWarning.setText("Simulation not available for these parameters");
+                    convertersUtils.modeWarning.setText("Simulation not available for these parameters");
                 }
             });
 
