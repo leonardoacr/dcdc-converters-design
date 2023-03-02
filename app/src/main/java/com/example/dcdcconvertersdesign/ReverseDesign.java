@@ -1,56 +1,63 @@
 package com.example.dcdcconvertersdesign;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.dcdcconvertersdesign.convertersutilities.CalculateConverterVariablesReverse;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 
 public class ReverseDesign extends AppCompatActivity {
     public int flag;
-    private double inputVoltage, outputVoltage, outputPower, rippleInductorCurrent,
-        rippleCapacitorVoltage, frequency, switchCurrent, diodeCurrent,
-        inductorCurrentRMS;
-    private double inputCurrent, outputCurrent, deltaInductorCurrent, deltaCapacitorVoltage;
-    private double dutyCycle, resistance, capacitance, inductance, inductanceCritical;
+    public static double inputVoltage, outputVoltage, outputPower, rippleInductorCurrent,
+        rippleCapacitorVoltage, frequency, switchCurrent, diodeCurrent,  inductorCurrentRMS,
+            efficiency, inductorCurrentMax, inductorCurrentMin, inductorCurrent, outputVoltageMax,
+            outputVoltageMin;
+    public static double inputCurrent, outputCurrent, deltaInductorCurrent, deltaCapacitorVoltage;
+    public static double dutyCycle, dutyCycleIdeal, resistance, capacitance, inductance, inductanceCritical;
+
+    public static boolean isCCM;
     private EditText inductanceEditText, resistanceEditText, capacitanceEditText, inputVoltageEditText,
-            outputVoltageEditText, frequencyEditText;
+            outputVoltageEditText, frequencyEditText, efficiencyEditText;
     private Button buckBtn, boostBtn, buckBoostBtn, exampleBtn;
 
     String TAG = "ReverseDesign";
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reverse_engineering);
+        setContentView(R.layout.activity_reverse_design);
         Helpers.setMainActionBar(this);
         createObjects();
-
 
         // Example button listener
         exampleBtn.setOnClickListener(v -> {
             inputVoltageEditText.setText("24");
             outputVoltageEditText.setText("12");
-            inductanceEditText.setText("1");
-            capacitanceEditText.setText("500");
-            resistanceEditText.setText("12");
-            frequencyEditText.setText("20");
+            inductanceEditText.setText("71.11");
+            capacitanceEditText.setText("17.36");
+            resistanceEditText.setText("1.44");
+            frequencyEditText.setText("50");
+            efficiencyEditText.setText("90");
         });
 
         buckBtn.setOnClickListener(v -> {
-
+            flag = 1;
             if (isEmpty()) {
                 Helpers.showToast(this, "Error! Something is empty");
                 return;
             }
 
             InputValues();
-            buckCalculations();
-
+            CalculateConverterVariablesReverse.buckCalculations();
+            Log.d(TAG, "HEY" + dutyCycle);
             if (inputVoltage > outputVoltage && dutyCycle <= 0.95 && dutyCycle >= 0.05) {
                 sendDataToConvertersR();
             }
@@ -60,19 +67,19 @@ public class ReverseDesign extends AppCompatActivity {
             if (inputVoltage == outputVoltage) {
                 Helpers.showToast(this, "Error! Input and Output are equal");
             }
-            if((dutyCycle > 0.95 || dutyCycle < 0.05) && inputVoltage != outputVoltage && inputVoltage > outputVoltage) {
+            if((dutyCycle > 0.95 || dutyCycle < 0.05) && inputVoltage > outputVoltage) {
                 Helpers.showToast(this, "Error! Duty Cycle is out of the security range (0.05 < D > 0.95)");
             }
         });
 
         boostBtn.setOnClickListener(v -> {
-
+            flag = 2;
             if (isEmpty()) {
                 Helpers.showToast(this, "Error! Something is empty");
                 return;
             }
             InputValues();
-            boostCalculations();
+            CalculateConverterVariablesReverse.boostCalculations();
 
             if(inputVoltage < outputVoltage && dutyCycle <= 0.95 && dutyCycle >= 0.05) {
                 sendDataToConvertersR();
@@ -83,19 +90,19 @@ public class ReverseDesign extends AppCompatActivity {
             if(inputVoltage > outputVoltage) {
                 Toast.makeText(getApplicationContext(), "Error! Input bigger than Output", Toast.LENGTH_SHORT ).show();
             }
-            if((dutyCycle > 0.95 || dutyCycle < 0.05) && inputVoltage != outputVoltage && inputVoltage < outputVoltage) {
+            if((dutyCycle > 0.95 || dutyCycle < 0.05) && inputVoltage < outputVoltage) {
                 Toast.makeText(getApplicationContext(), "Error! Duty Cycle is out of the security range (0.05 < D > 0.95)", Toast.LENGTH_SHORT).show();
             }
         });
 
         buckBoostBtn.setOnClickListener(v -> {
-
+            flag = 3;
             if (isEmpty()) {
                 Helpers.showToast(this, "Error! Something is empty");
                 return;
             }
             InputValues();
-            buckBoostCalculations();
+            CalculateConverterVariablesReverse.buckBoostCalculations();
 
             if (inputVoltage != outputVoltage && dutyCycle <= 0.95 && dutyCycle >= 0.05) {
                 sendDataToConvertersR();
@@ -118,6 +125,7 @@ public class ReverseDesign extends AppCompatActivity {
         inductanceEditText = findViewById(R.id.inductance_reverse);
         resistanceEditText = findViewById(R.id.resistance_reverse);
         capacitanceEditText = findViewById(R.id.capacitance_reverse);
+        efficiencyEditText = findViewById(R.id.efficiency_reverse);
 
         // Buttons
         buckBtn = findViewById(R.id.buck_btn_reverse);
@@ -139,55 +147,10 @@ public class ReverseDesign extends AppCompatActivity {
         inputVoltage = Double.parseDouble(inputVoltageEditText.getText().toString());
         outputVoltage = Double.parseDouble(outputVoltageEditText.getText().toString());
         resistance = Double.parseDouble(resistanceEditText.getText().toString());
-        inductance = Double.parseDouble(inductanceEditText.getText().toString()) / 1e3;
+        inductance = Double.parseDouble(inductanceEditText.getText().toString()) / 1e6;
         capacitance = Double.parseDouble(capacitanceEditText.getText().toString()) / 1e6;
         frequency = Double.parseDouble(frequencyEditText.getText().toString()) * 1e3;
-    }
-
-    public void buckCalculations() {
-        dutyCycle = outputVoltage / inputVoltage;
-        outputPower = Math.pow(outputVoltage, 2) / resistance;
-        outputCurrent = outputVoltage / resistance;
-        inputCurrent = dutyCycle * outputCurrent;
-        switchCurrent = dutyCycle * outputCurrent;
-        diodeCurrent = (1 - dutyCycle) * outputCurrent;
-        deltaInductorCurrent = (inputVoltage * (1 - dutyCycle) * dutyCycle) / (frequency * inductance);
-        deltaCapacitorVoltage = (inputVoltage * (1 - dutyCycle) * dutyCycle) / (8 * inductance * capacitance * Math.pow(frequency, 2));
-        rippleInductorCurrent = 100 * deltaInductorCurrent / outputCurrent;
-        rippleCapacitorVoltage = 100 * deltaInductorCurrent / outputVoltage;
-        inductanceCritical = (inputVoltage * (1 - dutyCycle) * dutyCycle) / (2 * frequency * outputCurrent);
-        flag = 1;
-    }
-
-    public void boostCalculations() {
-        dutyCycle = (outputVoltage - inputVoltage) / outputVoltage;
-        outputPower = (Math.pow(outputVoltage, 2)) / resistance;
-        outputCurrent = outputVoltage / resistance;
-        inputCurrent = outputCurrent / (1 - dutyCycle);
-        switchCurrent = dutyCycle * inputCurrent;
-        diodeCurrent = (1 - dutyCycle) * inputCurrent;
-        inductorCurrentRMS = inputCurrent;
-        deltaInductorCurrent = (inputVoltage * dutyCycle) / (frequency * inductance);
-        deltaCapacitorVoltage = (outputCurrent * dutyCycle) / (capacitance * frequency);
-        rippleInductorCurrent = 100 * deltaInductorCurrent / inputCurrent;
-        rippleCapacitorVoltage = 100 * deltaCapacitorVoltage / outputVoltage;
-        inductanceCritical = (Math.pow(inputVoltage, 2) * dutyCycle) / (2 * outputPower * frequency);
-        flag = 2;
-    }
-
-    public void buckBoostCalculations() {
-        dutyCycle = (outputVoltage) / (inputVoltage + outputVoltage);
-        outputPower = (Math.pow(outputVoltage, 2)) / resistance;
-        outputCurrent = outputVoltage / resistance;
-        inputCurrent = outputCurrent / (1 - dutyCycle);
-        switchCurrent = dutyCycle * inputCurrent;
-        diodeCurrent = (1 - dutyCycle) * inputCurrent;
-        deltaInductorCurrent = (inputVoltage * dutyCycle) / (frequency * inductance);
-        deltaCapacitorVoltage = (outputCurrent * dutyCycle) / (capacitance * frequency);
-        rippleInductorCurrent = 100 * deltaInductorCurrent / inputCurrent;
-        rippleCapacitorVoltage = 100 * deltaCapacitorVoltage / outputVoltage;
-        inductanceCritical = (Math.pow(inputVoltage, 2) * dutyCycle) / (2 * outputPower * frequency);
-        flag = 3;
+        efficiency = Double.parseDouble(efficiencyEditText.getText().toString());
     }
 
     public void sendDataToConvertersR() {
@@ -196,18 +159,25 @@ public class ReverseDesign extends AppCompatActivity {
 
         // Sending Data to Write Values
         data.putDouble("Duty_Cycle", dutyCycle);
+        data.putDouble("Duty_Cycle_Ideal", dutyCycleIdeal);
         data.putDouble("Inductance_Crit", inductanceCritical);
         data.putDouble("Ripplevc", rippleCapacitorVoltage);
         data.putDouble("Rippleil", rippleInductorCurrent);
         data.putDouble("Output_Power", outputPower);
         data.putDouble("Inductance", inductance);
+        data.putDouble("Resistance", resistance);
+        data.putDouble("Capacitance", capacitance);
+
+        data.putBoolean("is_ccm", isCCM);
         data.putInt("Flag", flag);
 
         // Sending data to Advanced
         data.putDouble("Input_Current", inputCurrent);
         data.putDouble("Output_Current", outputCurrent);
+        data.putDouble("Inductor_Current", inductorCurrent);
         data.putDouble("Switch_Current", switchCurrent);
         data.putDouble("Diode_Current", diodeCurrent);
+        data.putDouble("Input_Voltage", inputVoltage);
         data.putDouble("Output_Voltage", outputVoltage);
         data.putDouble("Frequency", frequency);
         data.putDouble("DeltaIL", deltaInductorCurrent);

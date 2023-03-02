@@ -5,16 +5,11 @@ import static com.example.dcdcconvertersdesign.helpers.Helpers.stringFormat;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dcdcconvertersdesign.R;
-
-import org.w3c.dom.Text;
-
-import java.util.Locale;
 
 public class ConvertersUtils {
     private static String TAG = "ConverterUtils";

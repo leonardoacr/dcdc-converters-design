@@ -17,6 +17,12 @@ public class CalculateBuckArrays {
         return inputCurrentArray;
     }
 
+    public static double[] calculateSwitchCurrentArray(double[] inductorCurrentArray, double[] sArray) {
+        double[] switchCurrentArray = new double[inductorCurrentArray.length];
+        switchCurrentArray = calculateInputCurrentArray(inductorCurrentArray, sArray);
+        return switchCurrentArray;
+    }
+
     public static double[] calculateDiodeCurrentArray(double[] inductorCurrentArray, double[] sArray) {
         double[] diodeCurrentArray = new double[inductorCurrentArray.length];
         double[] inputCurrentArray = calculateInputCurrentArray(inductorCurrentArray, sArray);

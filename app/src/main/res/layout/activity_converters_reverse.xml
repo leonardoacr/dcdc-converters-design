@@ -236,7 +236,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/simulation_reverse" />
+            app:layout_constraintTop_toBottomOf="@+id/simulation_btn_reverse" />
 
         <TextView
             android:id="@+id/mode_reverse"
@@ -266,7 +266,7 @@
             app:layout_constraintTop_toBottomOf="@+id/mode_reverse" />
 
         <Button
-            android:id="@+id/simulation_reverse"
+            android:id="@+id/simulation_btn_reverse"
             style="@style/MyButtonStyle"
             android:layout_width="215dp"
             android:layout_height="36dp"

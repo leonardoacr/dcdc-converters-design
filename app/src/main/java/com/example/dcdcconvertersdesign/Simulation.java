@@ -2,6 +2,7 @@ package com.example.dcdcconvertersdesign;
 
 import android.annotation.SuppressLint;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
@@ -134,19 +135,24 @@ public class Simulation extends AppCompatActivity {
         flag = simulationData.getInt("Flag");
         resistance = simulationData.getDouble("Resistance");
 
+
+        Log.d(TAG, "Recovering Simulation Data:");
+        Log.d(TAG, "Output Voltage: " + outputVoltage);
+        Log.d(TAG, "Input Voltage: " + inputVoltage);
+        Log.d(TAG, "Duty Cycle: " + dutyCycle);
+        Log.d(TAG, "Ideal Duty Cycle: " + dutyCycleIdeal);
+        Log.d(TAG, "Inductance: " + inductance);
+        Log.d(TAG, "Capacitance: " + capacitance);
+        Log.d(TAG, "Frequency: " + frequency);
+        Log.d(TAG, "Flag: " + flag);
+        Log.d(TAG, "Resistance: " + resistance);
+
         // Define the parameters
         maxTime = simulationData.getDouble("Max_Time");
         timeStep = simulationData.getDouble("Time_Step");
         receivedID = simulationData.getString("Received_ID");
-
-        Log.d(TAG, "outputVoltage: " + outputVoltage);
-        Log.d(TAG, "inputVoltage: " + inputVoltage);
-        Log.d(TAG, "dutyCycle: " + dutyCycle);
-        Log.d(TAG, "inductance: " + inductance);
-        Log.d(TAG, "capacitance: " + capacitance);
-        Log.d(TAG, "resistance: " + resistance);
-        Log.d(TAG, "frequency: " + frequency);
     }
+
     private void handleID(String receivedID, int flag) {
         switch (receivedID) {
             case "outputVoltage":
@@ -223,7 +229,10 @@ public class Simulation extends AppCompatActivity {
             case "switchCurrent":
                 fileNameKey = "SwitchCurrent";
                 if(flag == 1){
-                    switchCurrentArray = inputCurrentArray;
+                    switchCurrentArray = CalculateBuckArrays.calculateSwitchCurrentArray(
+                            inductorCurrentArray, sArray);
+                    Log.d(TAG, "SWITCH??" + Arrays.toString(switchCurrentArray));
+
                 }
                 if(flag == 2){
                     switchCurrentArray = CalculateBoostArrays.calculateSwitchCurrentArray(
@@ -241,6 +250,7 @@ public class Simulation extends AppCompatActivity {
                 break;
 
             case "inductorCurrent":
+                Log.d(TAG, "E AQUI??" + Arrays.toString(inductorCurrentArray));
                 fileNameKey = "InductorCurrent";
                 graphUtils.loadData(timeArray, inductorCurrentArray, numStep,
                         fileNameKey, chart);

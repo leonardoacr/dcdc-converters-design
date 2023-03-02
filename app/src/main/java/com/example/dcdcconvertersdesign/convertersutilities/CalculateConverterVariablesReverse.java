@@ -1,35 +1,11 @@
 package com.example.dcdcconvertersdesign.convertersutilities;
 
-import static com.example.dcdcconvertersdesign.UsualDesign.capacitance;
-import static com.example.dcdcconvertersdesign.UsualDesign.deltaCapacitorVoltage;
-import static com.example.dcdcconvertersdesign.UsualDesign.deltaInductorCurrent;
-import static com.example.dcdcconvertersdesign.UsualDesign.diodeCurrent;
-import static com.example.dcdcconvertersdesign.UsualDesign.dutyCycle;
-import static com.example.dcdcconvertersdesign.UsualDesign.dutyCycleIdeal;
-import static com.example.dcdcconvertersdesign.UsualDesign.efficiency;
-import static com.example.dcdcconvertersdesign.UsualDesign.frequency;
-import static com.example.dcdcconvertersdesign.UsualDesign.inductance;
-import static com.example.dcdcconvertersdesign.UsualDesign.inductanceCritical;
-import static com.example.dcdcconvertersdesign.UsualDesign.inductorCurrent;
-import static com.example.dcdcconvertersdesign.UsualDesign.inductorCurrentMax;
-import static com.example.dcdcconvertersdesign.UsualDesign.inductorCurrentMin;
-import static com.example.dcdcconvertersdesign.UsualDesign.inductorCurrentRMS;
-import static com.example.dcdcconvertersdesign.UsualDesign.inputCurrent;
-import static com.example.dcdcconvertersdesign.UsualDesign.inputVoltage;
-import static com.example.dcdcconvertersdesign.UsualDesign.isCCM;
-import static com.example.dcdcconvertersdesign.UsualDesign.outputCurrent;
-import static com.example.dcdcconvertersdesign.UsualDesign.outputPower;
-import static com.example.dcdcconvertersdesign.UsualDesign.outputVoltage;
-import static com.example.dcdcconvertersdesign.UsualDesign.outputVoltageMax;
-import static com.example.dcdcconvertersdesign.UsualDesign.outputVoltageMin;
-import static com.example.dcdcconvertersdesign.UsualDesign.resistance;
-import static com.example.dcdcconvertersdesign.UsualDesign.rippleCapacitorVoltage;
-import static com.example.dcdcconvertersdesign.UsualDesign.rippleInductorCurrent;
-import static com.example.dcdcconvertersdesign.UsualDesign.switchCurrent;
+import static com.example.dcdcconvertersdesign.ReverseDesign.*;
 
 import android.util.Log;
 
 public class CalculateConverterVariablesReverse {
+    private static String TAG = "CalculateReverse";
     public static void buckCalculations() {
         // Pre-global-variables
         outputPower = Math.pow(outputVoltage, 2) / resistance;
@@ -38,38 +14,34 @@ public class CalculateConverterVariablesReverse {
         inductorCurrent = outputCurrent;
         switchCurrent = inputCurrent;
         diodeCurrent =  outputCurrent - inputCurrent;
-        deltaCapacitorVoltage = (inputVoltage * (1 - dutyCycle) * dutyCycle) / (8 * inductance * capacitance * Math.pow(frequency, 2));
-        rippleCapacitorVoltage = 100 * deltaInductorCurrent / outputVoltage;
 
         isCCM = checkBuckConductionMode();
-        Log.d("CalculateVariables", isCCM + " " +
-                inductanceCritical + " " + inductance + " " + dutyCycle);
 
         if (isCCM) {
             // CCM mode
             dutyCycleIdeal = outputVoltage / inputVoltage;
             dutyCycle = dutyCycleIdeal / (efficiency / 100);
-            deltaInductorCurrent = (inputVoltage * (1 - dutyCycle) * dutyCycle) / (frequency * inductance);
+            deltaInductorCurrent = (inputVoltage * (1 - dutyCycle) * dutyCycle) /
+                    (frequency * inductance);
             rippleInductorCurrent = 100 * deltaInductorCurrent / outputCurrent;
             inductorCurrentRMS = outputCurrent * Math.sqrt(1 + ((1 / 12.0) *
                     Math.pow(deltaInductorCurrent / outputCurrent, 2)));
-
-            inductance = (inputVoltage * (1 - dutyCycle) * dutyCycle) /
-                    (frequency * deltaInductorCurrent);
+            deltaCapacitorVoltage = (inputVoltage * (1 - dutyCycle) * dutyCycle) / (16 * inductance * capacitance * Math.pow(frequency, 2));
+            rippleCapacitorVoltage = 100 * deltaCapacitorVoltage / outputVoltage;
         } else {
             // DCM mode
-            deltaInductorCurrent = (inputVoltage * (1 - dutyCycle) * dutyCycle) / (frequency * inductance);
-            rippleInductorCurrent = 100 * deltaInductorCurrent / outputCurrent;
             dutyCycleIdeal = 2 * outputPower / (deltaInductorCurrent * inputVoltage);
             dutyCycle = dutyCycleIdeal / (efficiency / 100);
-            inductance = dutyCycle * (inputVoltage - outputVoltage) /
-                    (frequency * inductorCurrentMax);
+            deltaInductorCurrent = (inputVoltage * (1 - dutyCycle) * dutyCycle) /
+                    (frequency * inductance);
+            rippleInductorCurrent = 100 * deltaInductorCurrent / outputCurrent;
+            deltaCapacitorVoltage = (inputVoltage * (1 - dutyCycle) * dutyCycle) /
+                    (16 * inductance * capacitance * Math.pow(frequency, 2));
+            rippleCapacitorVoltage = 100 * deltaCapacitorVoltage / outputVoltage;
             double dcm2 = inductorCurrentMax * frequency * inductance / outputVoltage;
             double dcm1 = 1 - dutyCycle - dcm2;
             inductorCurrentRMS = deltaInductorCurrent*Math.sqrt((dutyCycle + dcm1)/3);
         }
-
-        Log.d("CalculateVariables", isCCM + " " + inductanceCritical + " " + inductance + " " + dutyCycle);
     }
 
     private static boolean checkBuckConductionMode() {
@@ -81,13 +53,11 @@ public class CalculateConverterVariablesReverse {
 
     public static void boostCalculations() {
         // Pre-global-variables
-        resistance = Math.pow(outputVoltage, 2) / outputPower;
+        outputPower = (Math.pow(outputVoltage, 2)) / resistance;
         outputCurrent = outputPower / outputVoltage;
         inputCurrent = outputPower / inputVoltage;
         inductorCurrent = inputCurrent;
-        outputVoltageMax = outputVoltage + outputVoltage * (rippleCapacitorVoltage / 200);
-        outputVoltageMin = outputVoltage - outputVoltage * (rippleCapacitorVoltage / 200);
-        deltaCapacitorVoltage = outputVoltageMax - outputVoltageMin;
+
         String TAG = "CalculateVariables";
         Log.d(TAG, "Check variables before MODE: " +
                 "Resistance = " + resistance +
@@ -106,27 +76,30 @@ public class CalculateConverterVariablesReverse {
             dutyCycle = dutyCycleIdeal / (efficiency / 100);
             switchCurrent = dutyCycle * inputCurrent;
             diodeCurrent = (1 - dutyCycle) * inputCurrent;
-            inductorCurrentRMS = inputCurrent;
+            deltaInductorCurrent = (inputVoltage * dutyCycle) / (frequency * inductance);
+            rippleInductorCurrent = 100 * deltaInductorCurrent / inputCurrent;
             inductorCurrentMax = inputCurrent + inputCurrent * (rippleInductorCurrent / 200);
             inductorCurrentMin = inputCurrent - inputCurrent * (rippleInductorCurrent / 200);
-            deltaInductorCurrent = inductorCurrentMax - inductorCurrentMin;
-            inductance = (inputVoltage * dutyCycle) / (frequency * deltaInductorCurrent);
             inductanceCritical = (Math.pow(inputVoltage, 2) * dutyCycle) / (2 * outputPower * frequency);
         } else {
             // DCM mode
-            inductorCurrentMax = inputCurrent * (rippleInductorCurrent / 100);
-            inductorCurrentMin = 0;
-            deltaInductorCurrent = inductorCurrentMax;
-            inductance = 2 * outputVoltage * (outputVoltage - inputVoltage) /
-                    (resistance * frequency * Math.pow(deltaInductorCurrent, 2));
             dutyCycleIdeal = (1 / inputVoltage) * Math.sqrt((2 * inductance * outputVoltage *
                     frequency * (outputVoltage - inputVoltage)) / resistance);
             dutyCycle = dutyCycleIdeal / (efficiency / 100);
+            deltaInductorCurrent = (inputVoltage * dutyCycle) / (frequency * inductance);
+            rippleInductorCurrent = 100 * deltaInductorCurrent / inputCurrent;
+            inductorCurrentMax = inputCurrent * (rippleInductorCurrent / 100);
+            inductorCurrentMin = 0;
+            deltaInductorCurrent = inductorCurrentMax;
             switchCurrent = dutyCycle * inputCurrent;
             diodeCurrent = (1 - dutyCycle) * inputCurrent;
             inductorCurrentRMS = inputCurrent * Math.sqrt((1 - dutyCycle) / 3);
         }
-        capacitance = (outputCurrent * dutyCycle) * 2 / (deltaCapacitorVoltage * frequency);
+
+        deltaCapacitorVoltage = 2 * (outputCurrent * dutyCycle) / (capacitance * frequency);
+        rippleCapacitorVoltage = 100 * deltaCapacitorVoltage / outputVoltage;
+        outputVoltageMax = outputVoltage + outputVoltage * (rippleCapacitorVoltage / 200);
+        outputVoltageMin = outputVoltage - outputVoltage * (rippleCapacitorVoltage / 200);
 
         Log.d(TAG, "Check variables after the MODE: " +
                 "Duty Cycle Ideal = " + dutyCycleIdeal +
@@ -151,15 +124,24 @@ public class CalculateConverterVariablesReverse {
     private static boolean checkBoostConductionMode() {
         dutyCycleIdeal = (outputVoltage - inputVoltage) / outputVoltage;
         dutyCycle = dutyCycleIdeal / (efficiency / 100);
-        inductorCurrentMax = inputCurrent + inputCurrent * (rippleInductorCurrent / 200);
-        inductorCurrentMin = inputCurrent - inputCurrent * (rippleInductorCurrent / 200);
-        deltaInductorCurrent = inductorCurrentMax - inductorCurrentMin;
-        inductance = (inputVoltage * dutyCycle) / (frequency * deltaInductorCurrent);
         inductanceCritical = (Math.pow(inputVoltage, 2) * dutyCycle) / (2 * outputPower * frequency);
         return inductanceCritical <= inductance;
     }
 
     public static void buckBoostCalculations() {
+        //old
+        dutyCycle = (outputVoltage) / (inputVoltage + outputVoltage);
+        outputPower = (Math.pow(outputVoltage, 2)) / resistance;
+        outputCurrent = outputVoltage / resistance;
+        inputCurrent = outputCurrent / (1 - dutyCycle);
+        switchCurrent = dutyCycle * inputCurrent;
+        diodeCurrent = (1 - dutyCycle) * inputCurrent;
+        deltaInductorCurrent = (inputVoltage * dutyCycle) / (frequency * inductance);
+        deltaCapacitorVoltage = (outputCurrent * dutyCycle) / (capacitance * frequency);
+        rippleInductorCurrent = 100 * deltaInductorCurrent / inputCurrent;
+        rippleCapacitorVoltage = 100 * deltaCapacitorVoltage / outputVoltage;
+        inductanceCritical = (Math.pow(inputVoltage, 2) * dutyCycle) / (2 * outputPower * frequency);
+        //
         // Pre-global-variables
         resistance = Math.pow(outputVoltage, 2) / outputPower;
         outputCurrent = outputPower / outputVoltage;

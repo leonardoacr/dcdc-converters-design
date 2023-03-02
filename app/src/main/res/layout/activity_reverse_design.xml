@@ -73,6 +73,13 @@
             app:layout_constraintStart_toEndOf="@+id/frequency_text_reverse"
             app:layout_constraintTop_toBottomOf="@+id/resistance_reverse" />
 
+        <EditText
+            android:id="@+id/efficiency_reverse"
+            style="@style/MyInput"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/efficiency_text_reverse"
+            app:layout_constraintTop_toBottomOf="@+id/frequency_reverse" />
+
         <TextView
             android:id="@+id/capacitance_text_reverse"
             android:text="Capacitance (\u00B5F)"
@@ -116,6 +123,13 @@
             app:layout_constraintTop_toBottomOf="@+id/resistance_reverse_text" />
 
         <TextView
+            android:id="@+id/efficiency_text_reverse"
+            style="@style/MyInputText"
+            android:text="Efficiency (%)"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frequency_text_reverse" />
+
+        <TextView
             android:id="@+id/resistance_reverse_text"
             style="@style/MyInputText"
             android:layout_marginStart="16dp"
@@ -125,7 +139,7 @@
 
         <TextView
             android:id="@+id/inductance_reverse_text"
-            android:text="Inductance (mH)"
+            android:text="Inductance (\u00B5H)"
             style="@style/MyInputText"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/output_voltage_reverse_text" />
@@ -145,7 +159,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frequency_reverse" />
+            app:layout_constraintTop_toBottomOf="@+id/efficiency_reverse" />
 
         <TextView
             android:id="@+id/converters"

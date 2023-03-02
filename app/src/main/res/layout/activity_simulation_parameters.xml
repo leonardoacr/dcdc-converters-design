@@ -16,6 +16,16 @@
         style="@style/MyBackground"
         tools:context=".MainActivity">
 
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/simulation_options" />
+
         <TextView
             android:id="@+id/simulation_options"
             android:layout_width="wrap_content"
@@ -27,10 +37,10 @@
             android:layout_marginRight="16dp"
             android:gravity="center_horizontal"
             android:text="Simulation Variable"
+            android:visibility="gone"
             android:textAlignment="center"
             android:fontFamily="@font/montserrat_medium"
             android:textSize="28sp"
-            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/main_container_17" />

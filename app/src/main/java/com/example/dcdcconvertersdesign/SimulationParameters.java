@@ -1,6 +1,7 @@
 package com.example.dcdcconvertersdesign;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,23 +16,19 @@ import android.widget.TextView;
 
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 
-import org.w3c.dom.Text;
-
-import java.util.Locale;
-
 public class SimulationParameters extends AppCompatActivity {
     private static final String TAG = "Simulation";
     private double maxTime, switchingFrequencyRecovered, switchingFrequencyValue, memoryCalculated,
             maxTimeRecommendedCalculated;
     private String unit;
-    TextView switchingFrequency, timeStep, timeStepText;
-    TextView requiredMemoryText, requiredMemory, requiredMemoryBigText,
+    private TextView switchingFrequency, timeStep, timeStepText;
+    private TextView requiredMemoryText, requiredMemory, requiredMemoryBigText,
             maxTimeRecommended, maxTimeRecommendedText;
-    EditText  maxTimeEditText;
-    Button outputVoltageBtn, outputCurrentBtn, inputCurrentBtn, switchCurrentBtn, diodeCurrentBtn,
+    private EditText  maxTimeEditText;
+    private Button outputVoltageBtn, outputCurrentBtn, inputCurrentBtn, switchCurrentBtn, diodeCurrentBtn,
             inductorCurrentBtn, capacitorCurrentBtn;
 
-    RelativeLayout layout16, layout17;
+    private RelativeLayout layout16, layout17;
 
     @SuppressLint({"DefaultLocale", "SetTextI18n"})
     @Override
@@ -89,8 +86,7 @@ public class SimulationParameters extends AppCompatActivity {
             unit = "n";
         }
         timeStepText.setText("Time Step");
-        String formattedString =  Helpers.stringFormat(coefficient) + " " + unit + "s";
-        return formattedString;
+        return Helpers.stringFormat(coefficient) + " " + unit + "s";
     }
 
     private String formatSwitchingFrequency(){
@@ -136,6 +132,7 @@ public class SimulationParameters extends AppCompatActivity {
         // Relative Layout
         layout16 = (RelativeLayout) findViewById(R.id.main_container_16);
         layout17 = (RelativeLayout) findViewById(R.id.main_container_17);
+
     }
 
     private void sendDataSimulation(double maxTime, double timeStepCalculated, String receivedID){
