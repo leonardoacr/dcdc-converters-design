@@ -2,7 +2,6 @@ package com.example.dcdcconvertersdesign;
 
 import android.annotation.SuppressLint;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
@@ -60,6 +59,8 @@ public class Simulation extends AppCompatActivity {
 
     private String receivedID;
     private String fileNameKey;
+
+    private SimulationParameters mSimulationParameters;
 
     @SuppressLint("SetTextI18n")
     @Override
