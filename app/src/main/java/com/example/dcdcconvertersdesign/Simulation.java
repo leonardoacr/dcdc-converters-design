@@ -60,8 +60,6 @@ public class Simulation extends AppCompatActivity {
     private String receivedID;
     private String fileNameKey;
 
-    private SimulationParameters mSimulationParameters;
-
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,7 +133,6 @@ public class Simulation extends AppCompatActivity {
         frequency = simulationData.getDouble("Frequency");
         flag = simulationData.getInt("Flag");
         resistance = simulationData.getDouble("Resistance");
-
 
         Log.d(TAG, "Recovering Simulation Data:");
         Log.d(TAG, "Output Voltage: " + outputVoltage);

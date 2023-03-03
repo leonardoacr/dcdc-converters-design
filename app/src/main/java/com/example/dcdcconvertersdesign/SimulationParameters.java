@@ -1,8 +1,6 @@
 package com.example.dcdcconvertersdesign;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,6 +10,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -30,6 +29,8 @@ public class SimulationParameters extends AppCompatActivity {
             inductorCurrentBtn, capacitorCurrentBtn;
 
     private RelativeLayout layout16, layout17;
+
+    private ProgressBar progressBar;
 
     @SuppressLint({"DefaultLocale", "SetTextI18n"})
     @Override
@@ -134,6 +135,9 @@ public class SimulationParameters extends AppCompatActivity {
         layout16 = (RelativeLayout) findViewById(R.id.main_container_16);
         layout17 = (RelativeLayout) findViewById(R.id.main_container_17);
 
+        // Progress Bar
+        progressBar = findViewById(R.id.progress_bar);
+
     }
 
     private void sendDataSimulation(double maxTime, double timeStepCalculated, String receivedID){
@@ -145,6 +149,7 @@ public class SimulationParameters extends AppCompatActivity {
         simulationData.putDouble("Max_Time", maxTime);
         simulationData.putDouble("Time_Step", timeStepCalculated);
         simulationData.putString("Received_ID", receivedID);
+        // add a reference to the ProgressBar object to the intent
         intentSimulation.putExtras(simulationData);
         startActivity(intentSimulation);
     }
@@ -245,4 +250,4 @@ public class SimulationParameters extends AppCompatActivity {
         });
     }
 }
-
+ddedede
