@@ -103,18 +103,16 @@ public class GraphUtils {
             chart.getXAxis().setAxisMaximum((float) xGlobal[numStepGlobal - 1]);
 
             // set up Y-axis
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                double maximumY = Arrays.stream(yGlobal).max().getAsDouble();
-                maximumY = (maximumY >= 0) ? maximumY * 1.1 : maximumY * 0.9;
+            double maximumY = Arrays.stream(yGlobal).max().getAsDouble();
+            maximumY = (maximumY >= 0) ? maximumY * 1.1 : maximumY * 0.9;
 
-                double minimumY = Arrays.stream(yGlobal).min().getAsDouble();
-                minimumY = (minimumY > 0) ? minimumY * 0.9 : (minimumY < 0) ?
-                        minimumY * 1.1 : minimumY - 0.5;
+            double minimumY = Arrays.stream(yGlobal).min().getAsDouble();
+            minimumY = (minimumY > 0) ? minimumY * 0.9 : (minimumY < 0) ?
+                    minimumY * 1.1 : minimumY - 0.5;
 
 
-                chart.getAxisLeft().setAxisMaximum((float) (maximumY));
-                chart.getAxisLeft().setAxisMinimum((float) (minimumY));
-            }
+            chart.getAxisLeft().setAxisMaximum((float) (maximumY));
+            chart.getAxisLeft().setAxisMinimum((float) (minimumY));
             chart.getAxisLeft().setGranularity(0.1f);
         }
         if (xLowerLimit != null || xUpperLimit != null || yLowerLimit != null || yUpperLimit != null) {

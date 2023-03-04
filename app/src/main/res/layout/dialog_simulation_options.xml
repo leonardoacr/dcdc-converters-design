@@ -23,7 +23,7 @@
         android:id="@+id/x_lower_limit_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="numberSigned" />
+        android:inputType="numberDecimal" />
 
     <TextView
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
         android:id="@+id/x_upper_limit_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="numberSigned" />
+        android:inputType="numberDecimal" />
 
     <TextView
         android:layout_width="match_parent"
@@ -45,7 +45,7 @@
         android:id="@+id/y_lower_limit_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="numberSigned" />
+        android:inputType="numberDecimal" />
 
     <TextView
         android:layout_width="match_parent"
@@ -56,7 +56,7 @@
         android:id="@+id/y_upper_limit_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="numberSigned" />
+        android:inputType="numberDecimal" />
 
     <Button
         android:id="@+id/save_limits_button"

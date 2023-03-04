@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Handler;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,6 +18,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CountDownLatch;
 
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 import com.example.dcdcconvertersdesign.simulationutilities.CalculateBoostArrays;
@@ -26,6 +30,7 @@ import com.example.dcdcconvertersdesign.simulationutilities.LimitsDialog;
 import com.example.dcdcconvertersdesign.simulationutilities.SaveDialog;
 import com.example.dcdcconvertersdesign.simulationutilities.SolveDiffEquations;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.LineData;
 
 public class Simulation extends AppCompatActivity {
     // define a tag for logging purposes
@@ -152,6 +157,25 @@ public class Simulation extends AppCompatActivity {
     }
 
     private void handleID(String receivedID, int flag) {
+//        SimulationParameters.showProgressBar();
+        Log.d(TAG, String.valueOf(chart.getData()));
+
+        synchronized (this) {
+            while (chart.getData() == null || chart.getData().getEntryCount() != outputVoltageArray.length-1) {
+                handleSwitch(receivedID, flag);
+            }
+        }
+
+//        SimulationParameters.hideProgressBar();
+        new Handler().postDelayed(SimulationParameters::hideProgressBar, numStep/200);
+
+        Log.d(TAG, String.valueOf(chart.getData().getEntryCount()));
+        Log.d(TAG, String.valueOf(outputVoltageArray.length-1));
+        Log.d(TAG, "numStep: " + numStep);
+    }
+
+
+    private void handleSwitch(String receivedID, int flag) {
         switch (receivedID) {
             case "outputVoltage":
                 fileNameKey = "OutputVoltage";
@@ -229,8 +253,6 @@ public class Simulation extends AppCompatActivity {
                 if(flag == 1){
                     switchCurrentArray = CalculateBuckArrays.calculateSwitchCurrentArray(
                             inductorCurrentArray, sArray);
-                    Log.d(TAG, "SWITCH??" + Arrays.toString(switchCurrentArray));
-
                 }
                 if(flag == 2){
                     switchCurrentArray = CalculateBoostArrays.calculateSwitchCurrentArray(
@@ -248,7 +270,6 @@ public class Simulation extends AppCompatActivity {
                 break;
 
             case "inductorCurrent":
-                Log.d(TAG, "E AQUI??" + Arrays.toString(inductorCurrentArray));
                 fileNameKey = "InductorCurrent";
                 graphUtils.loadData(timeArray, inductorCurrentArray, numStep,
                         fileNameKey, chart);
@@ -274,7 +295,7 @@ public class Simulation extends AppCompatActivity {
                 graphUtils.loadData(timeArray, capacitorCurrentArray, numStep,
                         fileNameKey, chart);
                 graphUtils.plotGraph(chart, null, null,
-            null, null);
+                        null, null);
                 break;
 
             default:

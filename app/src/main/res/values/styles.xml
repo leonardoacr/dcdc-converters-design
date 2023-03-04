@@ -48,4 +48,7 @@
         <item name="android:textAlignment">center</item>
         <item name="android:textSize">14sp</item>
     </style>
+    <style name="ProgressBar">
+        <item name="colorAccent">@color/colorPrimary</item> <!-- Whatever color you want-->
+    </style>
 </resources>

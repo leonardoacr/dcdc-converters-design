@@ -30,7 +30,7 @@ public class SimulationParameters extends AppCompatActivity {
 
     private RelativeLayout layout16, layout17;
 
-    private ProgressBar progressBar;
+    private static ProgressBar progressBar;
 
     @SuppressLint({"DefaultLocale", "SetTextI18n"})
     @Override
@@ -201,6 +201,7 @@ public class SimulationParameters extends AppCompatActivity {
         switchCurrentBtn.setVisibility(View.VISIBLE);
 
         outputVoltageBtn.setOnClickListener(view -> {
+            showProgressBar();
             String receivedID = "outputVoltage";
             Log.d(TAG, "Sending ID: " + receivedID);
             // Send to the simulation activity
@@ -208,6 +209,7 @@ public class SimulationParameters extends AppCompatActivity {
         });
 
         inputCurrentBtn.setOnClickListener(view -> {
+            showProgressBar();
             String receivedID = "inputCurrent";
             Log.d(TAG, "Sending ID: " + receivedID);
             // Send to the simulation activity
@@ -215,6 +217,7 @@ public class SimulationParameters extends AppCompatActivity {
         });
 
         switchCurrentBtn.setOnClickListener(view -> {
+            showProgressBar();
             String receivedID = "switchCurrent";
             Log.d(TAG, "Sending ID: " + receivedID);
             // Send to the simulation activity
@@ -222,6 +225,7 @@ public class SimulationParameters extends AppCompatActivity {
         });
 
         outputCurrentBtn.setOnClickListener(view -> {
+            showProgressBar();
             String receivedID = "outputCurrent";
             Log.d(TAG, "Sending ID: " + receivedID);
             // Send to the simulation activity
@@ -229,6 +233,7 @@ public class SimulationParameters extends AppCompatActivity {
         });
 
         diodeCurrentBtn.setOnClickListener(view -> {
+            showProgressBar();
             String receivedID = "diodeCurrent";
             Log.d(TAG, "Sending ID: " + receivedID);
             // Send to the simulation activity
@@ -236,6 +241,7 @@ public class SimulationParameters extends AppCompatActivity {
         });
 
         inductorCurrentBtn.setOnClickListener(view -> {
+            showProgressBar();
             String receivedID = "inductorCurrent";
             Log.d(TAG, "Sending ID: " + receivedID);
             // Send to the simulation activity
@@ -243,11 +249,19 @@ public class SimulationParameters extends AppCompatActivity {
         });
 
         capacitorCurrentBtn.setOnClickListener(view -> {
+            showProgressBar();
+
             String receivedID = "capacitorCurrent";
             Log.d(TAG, "Sending ID: " + receivedID);
             // Send to the simulation activity
             sendDataSimulation(maxTime, timeStepCalculated, receivedID);
         });
     }
+    public static void showProgressBar() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    public static void hideProgressBar() {
+        progressBar.setVisibility(View.INVISIBLE);
+    }
 }
-ddedede
