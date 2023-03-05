@@ -34,6 +34,7 @@ public class SnubberDesign extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_snubber_design);
+        Helpers.setMinActionBar(this);
         createObjects();
 
         // Recovering data
@@ -61,27 +62,27 @@ public class SnubberDesign extends AppCompatActivity {
 
     public void createObjects() {
         // Text
-        capacitanceSnubberText = (TextView) findViewById(R.id.capacitance_snubber_text);
-        resistanceSnubberText = (TextView) findViewById(R.id.resistance_snubber_text);
-        powerSnubberText = (TextView) findViewById(R.id.power_snubber_text);
+        capacitanceSnubberText = findViewById(R.id.capacitance_snubber_text);
+        resistanceSnubberText = findViewById(R.id.resistance_snubber_text);
+        powerSnubberText = findViewById(R.id.power_snubber_text);
 
         // Get values from UI
-        capacitanceSnubberTextView = (TextView) findViewById(R.id.capacitance_snubber);
-        resistanceSnubberTextView = (TextView) findViewById(R.id.resistance_snubber);
-        powerSnubberTextView = (TextView) findViewById(R.id.power_snubber);
-        timeDelayOffEditText = (EditText) findViewById(R.id.time_delay_off);
-        timeDelayFallEditText = (EditText) findViewById(R.id.time_delay_fall);
+        capacitanceSnubberTextView = findViewById(R.id.capacitance_snubber);
+        resistanceSnubberTextView = findViewById(R.id.resistance_snubber);
+        powerSnubberTextView = findViewById(R.id.power_snubber);
+        timeDelayOffEditText = findViewById(R.id.time_delay_off);
+        timeDelayFallEditText = findViewById(R.id.time_delay_fall);
 
         // Toggle Button
-        resultsSnubber = (ToggleButton) findViewById(R.id.results_snubber);
+        resultsSnubber = findViewById(R.id.results_snubber);
 
         // Image
-        snubberImage = (ImageView) findViewById(R.id.snubber_image);
+        snubberImage = findViewById(R.id.snubber_image);
 
         // Layouts
-        resistanceSnubberLayout = (RelativeLayout) findViewById(R.id.resistance_snubber_layout);
-        capacitanceSnubberLayout = (RelativeLayout) findViewById(R.id.capacitance_snubber_layout);
-        powerSnubberLayout = (RelativeLayout) findViewById(R.id.power_snubber_layout);
+        resistanceSnubberLayout = findViewById(R.id.resistance_snubber_layout);
+        capacitanceSnubberLayout = findViewById(R.id.capacitance_snubber_layout);
+        powerSnubberLayout = findViewById(R.id.power_snubber_layout);
 
     }
 
@@ -175,32 +176,32 @@ public class SnubberDesign extends AppCompatActivity {
                 timeDelayFallEditText.getText().toString().isEmpty();
     }
 
-        public void snubberEquations ()
-        {
-            // Buck
-            if (flag == 1) {
-                capacitanceSnubber = outputCurrent * (timeDelayFall + timeDelayOff) * 1e-9 / (2 * outputVoltage);
-                resistanceSnubber = outputVoltage / (0.2 * outputCurrent);
-                powerSnubber = 0.5 * capacitanceSnubber * Math.pow(outputVoltage, 2) * frequency;
-            }
-            // Boost
-            if (flag == 2) {
-                capacitanceSnubber = inputCurrent * (timeDelayFall + timeDelayOff) * 1e-9 / (2 * outputVoltage);
-                resistanceSnubber = outputVoltage / (0.2 * inputCurrent);
-                powerSnubber = 0.5 * capacitanceSnubber * Math.pow(outputVoltage, 2) * frequency;
-            }
-            // Buck Boost
-            if (flag == 3) {
-                capacitanceSnubber = inputCurrent * (timeDelayFall + timeDelayOff) * 1e-9 / (2 * outputVoltage);
-                resistanceSnubber = outputVoltage / (0.2 * inputCurrent);
-                powerSnubber = 0.5 * capacitanceSnubber * Math.pow(outputVoltage, 2) * frequency;
-            }
+    public void snubberEquations ()
+    {
+        // Buck
+        if (flag == 1) {
+            capacitanceSnubber = outputCurrent * (timeDelayFall + timeDelayOff) * 1e-9 / (2 * outputVoltage);
+            resistanceSnubber = outputVoltage / (0.2 * outputCurrent);
+            powerSnubber = 0.5 * capacitanceSnubber * Math.pow(outputVoltage, 2) * frequency;
         }
-        private void retrieveDataFromAdvanced(Bundle data3) {
-            inputCurrent = data3.getDouble("Input_Current");
-            outputCurrent = data3.getDouble("Output_Current");
-            outputVoltage = data3.getDouble("Output_Voltage");
-            frequency = data3.getDouble("Frequency");
-            flag = data3.getInt("Flag");
+        // Boost
+        if (flag == 2) {
+            capacitanceSnubber = inputCurrent * (timeDelayFall + timeDelayOff) * 1e-9 / (2 * outputVoltage);
+            resistanceSnubber = outputVoltage / (0.2 * inputCurrent);
+            powerSnubber = 0.5 * capacitanceSnubber * Math.pow(outputVoltage, 2) * frequency;
         }
+        // Buck Boost
+        if (flag == 3) {
+            capacitanceSnubber = inputCurrent * (timeDelayFall + timeDelayOff) * 1e-9 / (2 * outputVoltage);
+            resistanceSnubber = outputVoltage / (0.2 * inputCurrent);
+            powerSnubber = 0.5 * capacitanceSnubber * Math.pow(outputVoltage, 2) * frequency;
+        }
+    }
+    private void retrieveDataFromAdvanced(Bundle data3) {
+        inputCurrent = data3.getDouble("Input_Current");
+        outputCurrent = data3.getDouble("Output_Current");
+        outputVoltage = data3.getDouble("Output_Voltage");
+        frequency = data3.getDouble("Frequency");
+        flag = data3.getInt("Flag");
+    }
 }

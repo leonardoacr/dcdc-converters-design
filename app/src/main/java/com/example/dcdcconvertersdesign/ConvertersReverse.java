@@ -1,5 +1,6 @@
 package com.example.dcdcconvertersdesign;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,10 +38,7 @@ public class ConvertersReverse extends AppCompatActivity {
     private double capacitance;
     private double inductanceCritical;
     private boolean isCCM;
-
     private int flag;
-    private int flagReverse = 1;
-
     private TextView converterTitle;
     private TextView outputPowerText;
     private TextView rippleInductorCurrentText;
@@ -58,8 +56,9 @@ public class ConvertersReverse extends AppCompatActivity {
     private Button advancedBtn;
     private Button simulationBtn;
 
-    private String TAG = "ConvertersR";
+    private final String TAG = "ConvertersR";
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,6 +120,7 @@ public class ConvertersReverse extends AppCompatActivity {
         setFormattedValues();
     }
 
+    @SuppressLint("SetTextI18n")
     private void setLabels() {
         // Texts
         outputPowerText.setText("Power Output");
@@ -230,7 +230,8 @@ public class ConvertersReverse extends AppCompatActivity {
         data2.putDouble("DeltaIL", deltaInductorCurrent);
         data2.putDouble("DeltaVC", deltaCapacitorVoltage);
         data2.putDouble("ILrms", inductorCurrentRMS);
-        data2.putDouble("Flag", flag);
+        data2.putInt("Flag", flag);
+        final int flagReverse = 1;
         data2.putDouble("Flag_Reverse", flagReverse);
         intentAdvanced.putExtras(data2);
         startActivity( intentAdvanced );
