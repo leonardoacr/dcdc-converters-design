@@ -5,6 +5,7 @@ import static com.example.dcdcconvertersdesign.helpers.Helpers.stringFormat;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -176,6 +177,7 @@ public class ConvertersUtils {
         data2.putInt("Flag_Reverse", flagReverse);
         intentAdvanced.putExtras(data2);
         activity.startActivity( intentAdvanced );
+        Log.d(TAG, "ConvertersUtil: " + flag);
     }
     public static void sendSimulationData(Activity activity, Intent intentSimulationDefinitions) {
         Bundle simulationData = new Bundle();

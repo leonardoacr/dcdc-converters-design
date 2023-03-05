@@ -81,7 +81,7 @@ that causes a resonance of hundreds of MHz, causing deterioration by Electromagn
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buck_definition"
-            app:srcCompat="@drawable/snubberbuck" />
+            app:srcCompat="@drawable/snubber_buck" />
         <ImageView
             android:id="@+id/imageView8"
             android:layout_width="287dp"
@@ -94,7 +94,8 @@ that causes a resonance of hundreds of MHz, causing deterioration by Electromagn
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView7"
-            app:srcCompat="@drawable/snubberboost" />
+            app:srcCompat="@drawable/snubber_boost" />
+
         <ImageView
             android:id="@+id/imageView9"
             android:layout_width="287dp"
@@ -107,7 +108,7 @@ that causes a resonance of hundreds of MHz, causing deterioration by Electromagn
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView8"
-            app:srcCompat="@drawable/snubberbuckboost" />
+            app:srcCompat="@drawable/snubber_buck_boost" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

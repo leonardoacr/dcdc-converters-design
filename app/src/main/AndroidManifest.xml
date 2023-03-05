@@ -30,7 +30,7 @@
         <activity android:name=".BoostConverter" />
         <activity android:name=".BuckBoostConverter" />
         <activity android:name=".Advanced" />
-        <activity android:name=".SnubberProject" />
+        <activity android:name=".SnubberDesign" />
         <activity android:name=".InductorProject" />
         <activity android:name=".ConvertersReverse" />
         <activity android:name=".InductorDefinitions" />

@@ -6,23 +6,26 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import android.view.View;
+
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 
-import org.w3c.dom.Text;
-
 public class Advanced extends AppCompatActivity {
 
     private double inductance, inductanceCritical, inputCurrent, outputCurrent, switchCurrent, diodeCurrent,
             inductorCurrent, outputVoltage, frequency, deltaInductorCurrent, deltaCapacitorVoltage,
-            inductorCurrentRMS, flag, flagReverse;
+            inductorCurrentRMS;
+
+    private int flag, flagReverse;
     private TextView inductanceCriticalTextView, inputCurrentTextView, outputCurrentTextView,
             inductorCurrentTextView, switchCurrentTextView, diodeCurrentTextView,
             deltaInductorCurrentTextView, deltaCapacitorVoltageTextView, obsinductor;
     private Button snubberDesignBtn, inductorDesignBtn;
+
+    private String TAG = "Advanced";
 
     @SuppressLint({"SetTextI18n", "DefaultLocale"})
     @Override
@@ -48,14 +51,10 @@ public class Advanced extends AppCompatActivity {
             // Snubber Project
             snubberDesignBtn.setOnClickListener(v -> {
                 // Sending data to Snubber Project
-                Intent intentSnubber = new Intent(Advanced.this, SnubberProject.class);
+                Intent intentSnubber = new Intent(Advanced.this, SnubberDesign.class);
                 Bundle data3 = new Bundle();
 
-                data3.putDouble("Output_Current", outputCurrent);
-                data3.putDouble("Input_Current", inputCurrent);
-                data3.putDouble("Output_Voltage", outputVoltage);
-                data3.putDouble("Frequency", frequency);
-                data3.putDouble("Flag", flag);
+                sendingDataToSnubberDesign(data3);
 
                 intentSnubber.putExtras(data3);
                 startActivity(intentSnubber);
@@ -99,8 +98,17 @@ public class Advanced extends AppCompatActivity {
         deltaInductorCurrent = data2.getDouble("DeltaIL");
         deltaCapacitorVoltage = data2.getDouble("DeltaVC");
         inductorCurrentRMS = data2.getDouble("ILrms");
-        flag = data2.getDouble("Flag");
-        flagReverse = data2.getDouble("Reverse_Flag");
+        flag = data2.getInt("Flag");
+        flagReverse = data2.getInt("Reverse_Flag");
+    }
+
+    private void sendingDataToSnubberDesign(Bundle data3){
+        data3.putDouble("Output_Current", outputCurrent);
+        data3.putDouble("Input_Current", inputCurrent);
+        data3.putDouble("Output_Voltage", outputVoltage);
+        data3.putDouble("Frequency", frequency);
+        data3.putInt("Flag", flag);
+        Log.d(TAG, "Flag advanced: " + flag);
     }
 
     private void sendingDataToInductorProject(Intent intentInductor) {

@@ -29,7 +29,7 @@
             android:textColor="?android:attr/colorBackground"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/Frequency_T"
+            app:layout_constraintStart_toEndOf="@+id/frequency_text"
             app:layout_constraintTop_toBottomOf="@+id/efficiency"
             tools:ignore="Autofill" />
 
@@ -120,17 +120,25 @@
             app:layout_constraintTop_toBottomOf="@+id/input_voltage"
             tools:ignore="Autofill" />
 
+        <TextView
+            android:id="@+id/input_voltage_text"
+            android:text="Input Voltage (V)"
+            style="@style/MyInputText"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Results" />
+
         <EditText
             android:id="@+id/input_voltage"
             style="@style/MyInput"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/Input_Voltage_T"
+            app:layout_constraintStart_toEndOf="@+id/input_voltage_text"
             app:layout_constraintTop_toBottomOf="@+id/Results"
             tools:ignore="Autofill" />
 
         <TextView
-            android:id="@+id/Frequency_T"
+            android:id="@+id/frequency_text"
             android:layout_width="208dp"
             android:layout_height="39dp"
             android:layout_marginStart="16dp"
@@ -200,7 +208,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Frequency_T" />
+            app:layout_constraintTop_toBottomOf="@+id/frequency_text" />
 
         <TextView
             android:id="@+id/Converters"
@@ -271,14 +279,6 @@
             app:layout_constraintTop_toBottomOf="@+id/boost_btn" />
 
         <TextView
-            android:id="@+id/Input_Voltage_T"
-            android:text="Input Voltage (V)"
-            style="@style/MyInputText"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Results" />
-
-        <TextView
             android:id="@+id/Output_Power_T"
             android:layout_width="208dp"
             android:layout_height="39dp"
@@ -305,17 +305,17 @@
             android:textColor="?android:attr/colorBackground"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Input_Voltage_T" />
+            app:layout_constraintTop_toBottomOf="@+id/input_voltage_text" />
 
 
         <TextView
             android:id="@+id/Results"
+            android:text="Input Values"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
-            android:text="Input Values"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Menu"
             android:textColor="?android:attr/colorBackground"

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#2b2b2b"
+    tools:context=".SnubberDesign"
+    tools:ignore="HardcodedText"
+    android:id="@+id/relativeLayout2">
+
+    <TextView
+        android:id="@+id/snubber_title"
+        android:text="Snubber Design"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+        android:textColor="?android:attr/colorBackground"
+        android:textSize="28sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/snubber_image"
+        android:layout_width="match_parent"
+        android:layout_height="224dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="converter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/snubber_title"
+        tools:ignore="HardcodedText" />
+
+    <ToggleButton
+        android:id="@+id/results_snubber"
+        android:layout_width="138dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="32dp"
+        android:text="RESULTS"
+        android:textOff="RESULTS"
+        android:textOn="RESULTS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/toggle_button"
+        android:fontFamily="@font/montserrat_regular"
+        app:layout_constraintTop_toBottomOf="@+id/snubber_image" />
+
+    <TextView
+        android:id="@+id/time_delay_fall_text"
+        style="@style/MyInputText"
+        android:text="Time Delay Fall (ns)"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time_delay_off_text" />
+
+    <EditText
+        android:id="@+id/time_delay_fall"
+        style="@style/MyInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/time_delay_fall_text"
+        app:layout_constraintTop_toBottomOf="@+id/time_delay_off"
+        tools:ignore="LabelFor"
+        android:importantForAutofill="no" />
+
+    <TextView
+        android:id="@+id/time_delay_off_text"
+        android:text="Time Delay Off (ns)"
+        style="@style/MyInputText"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/results_snubber"
+        tools:ignore="HardcodedText" />
+
+    <EditText
+        android:id="@+id/time_delay_off"
+        style="@style/MyInput"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/time_delay_off_text"
+        app:layout_constraintTop_toBottomOf="@+id/results_snubber"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        tools:ignore="LabelFor"
+        android:importantForAutofill="no" />
+
+    <RelativeLayout
+        android:id="@+id/capacitance_snubber_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/rounded_box"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/time_delay_fall">
+
+        <TextView
+            android:id="@+id/capacitance_snubber_text"
+            android:layout_width="177dp"
+            android:layout_height="39dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="start|center_vertical"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/capacitance_snubber"
+            android:layout_width="88dp"
+            android:layout_height="39dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toEndOf="@+id/capacitance_snubber_text"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/colorGreen"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/capacitance_snubber_text" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/resistance_snubber_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:visibility="gone"
+        android:background="@drawable/rounded_box"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/capacitance_snubber_layout">
+
+        <TextView
+            android:id="@+id/resistance_snubber_text"
+            android:layout_width="177dp"
+            android:layout_height="39dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="start|center_vertical"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/resistance_snubber"
+            android:layout_width="88dp"
+            android:layout_height="39dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toEndOf="@+id/resistance_snubber_text"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/colorGreen"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/resistance_snubber_text" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/power_snubber_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:visibility="gone"
+        android:background="@drawable/rounded_box"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resistance_snubber_layout">
+
+        <TextView
+            android:id="@+id/power_snubber_text"
+            android:layout_width="177dp"
+            android:layout_height="39dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="start|center_vertical"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/power_snubber"
+            android:layout_width="88dp"
+            android:layout_height="39dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toEndOf="@+id/power_snubber_text"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/colorGreen"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/power_snubber_text" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintTop_toBottomOf="@+id/power_snubber_layout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -5,7 +5,7 @@ import static com.example.dcdcconvertersdesign.ReverseDesign.*;
 import android.util.Log;
 
 public class CalculateConverterVariablesReverse {
-    private static String TAG = "CalculateReverse";
+    private static final String TAG = "CalculateReverse";
     public static void buckCalculations() {
         // Pre-global-variables
         outputPower = Math.pow(outputVoltage, 2) / resistance;
@@ -147,7 +147,6 @@ public class CalculateConverterVariablesReverse {
                 ", Switch Current = " + switchCurrent +
                 ", Diode Current = " + diodeCurrent +
                 ", Inductor Current = " + inductorCurrent);
-
 
         isCCM = checkBuckBoostConductionMode();
         Log.d(TAG, isCCM + " " +
