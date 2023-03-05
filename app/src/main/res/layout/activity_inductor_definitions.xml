@@ -48,7 +48,8 @@ according to the geometry of the conductors used. \n
         app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView7"
-        android:gravity="start" />
+        android:gravity="start"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/convertersDefinitions"
@@ -87,7 +88,8 @@ some disadvantages in relation to iron-silicon, such as material brittleness and
         app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:gravity="start" />
+        android:gravity="start"
+        tools:ignore="HardcodedText" />
 
     <ImageView
         android:id="@+id/imageView7"
@@ -101,6 +103,6 @@ some disadvantages in relation to iron-silicon, such as material brittleness and
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buck_definition"
-        app:srcCompat="@drawable/inductor_model" />
+        tools:ignore="ContentDescription" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

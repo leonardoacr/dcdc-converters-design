@@ -65,8 +65,6 @@
 
     </FrameLayout>
 
-
-
     <TextView
         android:id="@+id/time_delay_fall_text"
         style="@style/MyInputText"

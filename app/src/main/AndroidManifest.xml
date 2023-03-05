@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dcdcconvertersdesign">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -13,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".Table"></activity>
+        <activity android:name=".Table" />
         <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -31,7 +30,7 @@
         <activity android:name=".BuckBoostConverter" />
         <activity android:name=".Advanced" />
         <activity android:name=".SnubberDesign" />
-        <activity android:name=".InductorProject" />
+        <activity android:name=".InductorDesign" />
         <activity android:name=".ConvertersReverse" />
         <activity android:name=".InductorDefinitions" />
         <activity android:name=".About" />

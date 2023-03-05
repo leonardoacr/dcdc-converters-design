@@ -7,28 +7,30 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.example.dcdcconvertersdesign.helpers.Helpers;
+
 import java.io.InputStream;
 
-public class InductorProject extends AppCompatActivity {
+public class InductorDesign extends AppCompatActivity {
 
-    InputStream inputStream;
-    ToggleButton Results;
-    Button Table;
-    TextView Core_Model_T, Air_Gap_T, size_percent_T, Turn_Number_T, AWG_T, Condutores_em_paralelo_T;
-    TextView Core_Model, Air_Gap, size_percent, Turn_Number, AWG, Condutores_em_paralelo;
-    EditText Jmax, Bmax, Ku;
-    String Modelo_Nucleo;
-    String csvLine;
-    double Jmax_n, Bmax_n, Ku_n;
-    double Inductance_n, ILrms_n, f_n, Delta_IL_n;
-    double Ap_calculado, Ap, Ae, Aw, flag_geral, erro, Diametro_Maximo, Diametro_do_Cobre;
-    double Entreferro, Porcentagem_de_area, Porcentagem_de_area_util, u0, ur, p, pi = 3.1415;
-    double Sf, St, Area_condutor_isolado, Numero_de_espiras, AWG_n, Condutores_em_paralelo_n;
-    int  flag, i, i_N, Nc, Nl, Cl, Cc;
+    private ToggleButton Results;
+    private Button Table;
+    private TextView Core_Model_T, Air_Gap_T, size_percent_T, Turn_Number_T, AWG_T, Condutores_em_paralelo_T;
+    private TextView Core_Model, Air_Gap, size_percent, Turn_Number, AWG, Condutores_em_paralelo;
+    private EditText Jmax, Bmax, Ku;
+    private ImageView inductorImage;
+    private String Modelo_Nucleo;
+    private double Jmax_n, Bmax_n, Ku_n;
+    private double Inductance_n, ILrms_n, f_n, Delta_IL_n;
+    private double Ap_calculado, Ap, Ae, Aw, flag_geral, erro, Diametro_Maximo, Diametro_do_Cobre;
+    private double Entreferro, Porcentagem_de_area, Porcentagem_de_area_util, u0, ur, p, pi = 3.1415;
+    private double Sf, St, Area_condutor_isolado, Numero_de_espiras, AWG_n, Condutores_em_paralelo_n;
+    private int  flag, i, i_N, Nc, Nl, Cl, Cc;
 
         // Tables
         String[] Modelos =
@@ -88,84 +90,82 @@ public class InductorProject extends AppCompatActivity {
                         {40, 0.008, 0.01, 0.023, 0.00005, 0.000086},
                         {41, 0.007, 0.009, 0.018, 0.00004, 0.00007}};
 
-    public void createObjects() {
-
-        // Text
-        Core_Model_T = (TextView) findViewById(R.id.Core_Model_T);
-        Air_Gap_T = (TextView) findViewById(R.id.Air_Gap_T);
-        size_percent_T = (TextView) findViewById(R.id.size_percent_T);
-        Turn_Number_T = (TextView) findViewById(R.id.Turn_Number_T);
-        AWG_T = (TextView) findViewById(R.id.AWG_T);
-        Condutores_em_paralelo_T = (TextView) findViewById(R.id.Condutores_em_paralelo_T);
-
-        // Text Values
-        Core_Model = (TextView) findViewById(R.id.Core_Model);
-        Air_Gap = (TextView) findViewById(R.id.Air_Gap);
-        size_percent = (TextView) findViewById(R.id.size_percent);
-        Turn_Number = (TextView) findViewById(R.id.Turn_Number);
-        AWG = (TextView) findViewById(R.id.AWG);
-        Condutores_em_paralelo = (TextView) findViewById(R.id.Condutores_em_paralelo);
-
-        // Values
-        Jmax = (EditText) findViewById(R.id.Jmax);
-        Bmax = (EditText) findViewById(R.id.Bmax);
-        Ku = (EditText) findViewById(R.id.Ku);
-
-        // Button
-        Table = (Button) findViewById(R.id.Table);
-
-        // Toggle Button
-        Results = (ToggleButton) findViewById(R.id.Results);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inductor_project);
+        setContentView(R.layout.activity_inductor_design);
+        Helpers.setMinActionBar(this);
         createObjects();
+        setInductorImage();
 
-        Results.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-                if(b){
-                    if (isEmpty()) {
-                        Toast.makeText(getApplicationContext(), "Error! Something is empty", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    Values();
-                    InductorProjectCalculations();
-
-                    // Writing Text
-                    Core_Model_T.setText("Core Model");
-                    Air_Gap_T.setText("Air Gap (mm)");
-                    size_percent_T.setText("Size Percent (%)");
-                    Turn_Number_T.setText("Number of Turns");
-                    AWG_T.setText("AWG");
-                    Condutores_em_paralelo_T.setText("Parallel Conductors");
-
-                    // Writing Values
-                    Core_Model.setText(Modelo_Nucleo);
-                    Air_Gap.setText(String.format("%.4f", Entreferro*1000));
-                    size_percent.setText(String.format("%.2f", Porcentagem_de_area));
-                    Turn_Number.setText(String.format("%.0f", Numero_de_espiras));
-                    AWG.setText(String.format("%.0f", AWG_n));
-                    Condutores_em_paralelo.setText(String.format("%.0f", Condutores_em_paralelo_n));
-
-                    Table.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                            Intent intent = new Intent(InductorProject.this, Table.class);
-
-                            startActivity(intent);
-                        }
-                    });
-
+        Results.setOnCheckedChangeListener((buttonView, btn) -> {
+            if(btn){
+                if (isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Error! Something is empty", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+
+                Values();
+                InductorProjectCalculations();
+
+                // Writing Text
+                Core_Model_T.setText("Core Model");
+                Air_Gap_T.setText("Air Gap (mm)");
+                size_percent_T.setText("Size Percent (%)");
+                Turn_Number_T.setText("Number of Turns");
+                AWG_T.setText("AWG");
+                Condutores_em_paralelo_T.setText("Parallel Conductors");
+
+                // Writing Values
+                Core_Model.setText(Modelo_Nucleo);
+                Air_Gap.setText(String.format("%.4f", Entreferro*1000));
+                size_percent.setText(String.format("%.2f", Porcentagem_de_area));
+                Turn_Number.setText(String.format("%.0f", Numero_de_espiras));
+                AWG.setText(String.format("%.0f", AWG_n));
+                Condutores_em_paralelo.setText(String.format("%.0f", Condutores_em_paralelo_n));
+
+                Table.setOnClickListener(v -> {
+
+                    Intent intent = new Intent(InductorDesign.this, Table.class);
+
+                    startActivity(intent);
+                });
+
             }
         });
 
+    }
+
+    public void createObjects() {
+        // Text
+        Core_Model_T = (TextView) findViewById(R.id.core_model_text_inductor_design);
+        Air_Gap_T = (TextView) findViewById(R.id.air_gap_text_inductor_design);
+        size_percent_T = (TextView) findViewById(R.id.size_percent_text_inductor_design);
+        Turn_Number_T = (TextView) findViewById(R.id.turn_number_text_inductor_design);
+        AWG_T = (TextView) findViewById(R.id.awg_text_inductor_design);
+        Condutores_em_paralelo_T = (TextView) findViewById(R.id.parallel_conductors_text_inductor_design);
+
+        // Text Values
+        Core_Model = (TextView) findViewById(R.id.core_model_inductor_design);
+        Air_Gap = (TextView) findViewById(R.id.air_gap_inductor_design);
+        size_percent = (TextView) findViewById(R.id.size_percent_inductor_design);
+        Turn_Number = (TextView) findViewById(R.id.turn_number_inductor_design);
+        AWG = (TextView) findViewById(R.id.awg_inductor_design);
+        Condutores_em_paralelo = (TextView) findViewById(R.id.parallel_conductors_inductor_design);
+
+        // Values
+        Jmax = (EditText) findViewById(R.id.jmax_constant_inductor_design);
+        Bmax = (EditText) findViewById(R.id.bmax_inductor_design);
+        Ku = (EditText) findViewById(R.id.ku_inductor_design);
+
+        // Button
+        Table = (Button) findViewById(R.id.table_inductor_design);
+
+        // Toggle Button
+        Results = (ToggleButton) findViewById(R.id.results_inductor_design);
+
+        // Image
+        inductorImage = findViewById(R.id.inductor_image);
     }
 
     public boolean isEmpty() {
@@ -178,7 +178,11 @@ public class InductorProject extends AppCompatActivity {
         // Convert Values to Double
         Jmax_n = Double.parseDouble(Jmax.getText().toString());
         Bmax_n = Double.parseDouble(Bmax.getText().toString());
-        Ku_n = Double.parseDouble(Ku.getText().toString()) / 100;
+        Ku_n = Double.parseDouble(Ku.getText().toString()) / 100; // winding fill factor
+    }
+
+    private void setInductorImage() {
+        inductorImage.setImageResource(R.drawable.inductor_model);
     }
 
     public void InductorProjectCalculations() {

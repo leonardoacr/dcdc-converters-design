@@ -83,7 +83,6 @@ public class SnubberDesign extends AppCompatActivity {
         resistanceSnubberLayout = findViewById(R.id.resistance_snubber_layout);
         capacitanceSnubberLayout = findViewById(R.id.capacitance_snubber_layout);
         powerSnubberLayout = findViewById(R.id.power_snubber_layout);
-
     }
 
     private void setSnubberImage(){

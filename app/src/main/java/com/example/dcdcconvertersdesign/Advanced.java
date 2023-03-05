@@ -25,7 +25,7 @@ public class Advanced extends AppCompatActivity {
             deltaInductorCurrentTextView, deltaCapacitorVoltageTextView, obsinductor;
     private Button snubberDesignBtn, inductorDesignBtn;
 
-    private String TAG = "Advanced";
+    private final String TAG = "Advanced";
 
     @SuppressLint({"SetTextI18n", "DefaultLocale"})
     @Override
@@ -64,7 +64,7 @@ public class Advanced extends AppCompatActivity {
             inductorDesignBtn.setOnClickListener(v -> {
 
                 // Sending data to Inductor Project
-                Intent intentInductor = new Intent(Advanced.this, InductorProject.class);
+                Intent intentInductor = new Intent(Advanced.this, InductorDesign.class);
                 sendingDataToInductorProject(intentInductor);
             });
         }
