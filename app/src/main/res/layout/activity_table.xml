@@ -16,12 +16,11 @@
 
         <TextView
             android:id="@+id/Inductor_Project"
+            style="@style/MyDefaultText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:text="Inductor Design"
-            android:textAppearance="@style/TextAppearance.AppCompat.Menu"
-            android:textColor="?android:attr/colorBackground"
             android:textSize="36sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -30,6 +29,7 @@
 
         <TextView
             android:id="@+id/inductor_Project"
+            style="@style/MyDefaultText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -45,11 +45,8 @@
         <ImageView
             android:id="@+id/imageView11"
             android:layout_width="match_parent"
-            android:layout_height="1108dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_height="800dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inductor_Project"
@@ -59,13 +56,14 @@
 
         <TextView
             android:id="@+id/description"
-            android:layout_width="312dp"
-            android:layout_height="224dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:gravity="start"
+            android:gravity="start|center_vertical"
             android:text="
             Descriptions:\n
             le = magnetic length \n
@@ -74,7 +72,6 @@
             android:textColor="?android:attr/colorBackground"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.493"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView11"
             tools:ignore="HardcodedText" />

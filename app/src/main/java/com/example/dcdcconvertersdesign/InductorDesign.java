@@ -1,5 +1,6 @@
 package com.example.dcdcconvertersdesign;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -15,25 +17,29 @@ import android.widget.ToggleButton;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 
 import java.io.InputStream;
+import java.util.Locale;
 
 public class InductorDesign extends AppCompatActivity {
 
-    private ToggleButton Results;
-    private Button Table;
-    private TextView Core_Model_T, Air_Gap_T, size_percent_T, Turn_Number_T, AWG_T, Condutores_em_paralelo_T;
-    private TextView Core_Model, Air_Gap, size_percent, Turn_Number, AWG, Condutores_em_paralelo;
-    private EditText Jmax, Bmax, Ku;
+    private ToggleButton resultsInductorDesign;
+    private Button tableBtn, exampleBtn;
+    private TextView coreModelText, airGapText, sizePercentText, turnNumberText, awgText, parallelConductorsText;
+    private TextView coreModelTextView, airGapTextView, sizePercentTextView, turnNumberTextView, awgTextView, parallelConductorsTextView;
+    private EditText jmaxEditText, bmaxEditText, kuEditText;
     private ImageView inductorImage;
-    private String Modelo_Nucleo;
-    private double Jmax_n, Bmax_n, Ku_n;
-    private double Inductance_n, ILrms_n, f_n, Delta_IL_n;
-    private double Ap_calculado, Ap, Ae, Aw, flag_geral, erro, Diametro_Maximo, Diametro_do_Cobre;
-    private double Entreferro, Porcentagem_de_area, Porcentagem_de_area_util, u0, ur, p, pi = 3.1415;
-    private double Sf, St, Area_condutor_isolado, Numero_de_espiras, AWG_n, Condutores_em_paralelo_n;
+    private String coreModel;
+    private double jmax, bmax, ku;
+    private double inductance, inductorCurrentRMS, frequency, deltaInductorCurrent;
+    private double apCalculated, ap, ae, Aw, flagGeneral, error, maximumDiameter, copperDiameter;
+    private double airGap, areaPercentage, percentageOfUsableArea, u0, ur, p, pi = 3.1415;
+    private double sf, st, isolatedConductorArea, turnNumber, awg, parallelConductors;
     private int  flag, i, i_N, Nc, Nl, Cl, Cc;
 
+    private RelativeLayout sizePercentLayout, airGapLayout, coreModelLayout, turnNumberLayout,
+            awgLayout, parallelConductorsLayout;
+
         // Tables
-        String[] Modelos =
+        String[] models =
                 {"EE-20/15",
                 "EE-30/07",
                 "EE-30/14",
@@ -44,7 +50,7 @@ public class InductorDesign extends AppCompatActivity {
                 "EE-65/26",
                 "EE-65/39"};
 
-        double[][] Nucleos =
+        double[][] cores =
                 {{0.312, 0.26, 0.08112},
                 {0.6, 0.8, 0.48},
                 {1.2, 0.85, 1.02},
@@ -55,8 +61,7 @@ public class InductorDesign extends AppCompatActivity {
                 {5.32, 3.7, 19.684},
                 {7.98, 3.7, 29.526}};
 
-
-        double[][] Condutores =
+        double[][] conductors =
                         {{10, 0.259, 0.273, 23.679, 0.052620, 0.058572},
                         {11, 0.231, 0.244, 18.778, 0.041729, 0.046738},
                         {12, 0.205, 0.218, 14.892, 0.033092, 0.037309},
@@ -90,6 +95,7 @@ public class InductorDesign extends AppCompatActivity {
                         {40, 0.008, 0.01, 0.023, 0.00005, 0.000086},
                         {41, 0.007, 0.009, 0.018, 0.00004, 0.00007}};
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,33 +104,19 @@ public class InductorDesign extends AppCompatActivity {
         createObjects();
         setInductorImage();
 
-        Results.setOnCheckedChangeListener((buttonView, btn) -> {
+        resultsInductorDesign.setOnCheckedChangeListener((buttonView, btn) -> {
             if(btn){
                 if (isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Error! Something is empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                Values();
-                InductorProjectCalculations();
+                convertInputsToDouble();
+                retrieveDataFromAdvanced();
+                inductorDesignEquations();
+                formatAndSetResources();
 
-                // Writing Text
-                Core_Model_T.setText("Core Model");
-                Air_Gap_T.setText("Air Gap (mm)");
-                size_percent_T.setText("Size Percent (%)");
-                Turn_Number_T.setText("Number of Turns");
-                AWG_T.setText("AWG");
-                Condutores_em_paralelo_T.setText("Parallel Conductors");
-
-                // Writing Values
-                Core_Model.setText(Modelo_Nucleo);
-                Air_Gap.setText(String.format("%.4f", Entreferro*1000));
-                size_percent.setText(String.format("%.2f", Porcentagem_de_area));
-                Turn_Number.setText(String.format("%.0f", Numero_de_espiras));
-                AWG.setText(String.format("%.0f", AWG_n));
-                Condutores_em_paralelo.setText(String.format("%.0f", Condutores_em_paralelo_n));
-
-                Table.setOnClickListener(v -> {
+                tableBtn.setOnClickListener(v -> {
 
                     Intent intent = new Intent(InductorDesign.this, Table.class);
 
@@ -134,83 +126,123 @@ public class InductorDesign extends AppCompatActivity {
             }
         });
 
+        // Example button listener
+        exampleBtn.setOnClickListener(v -> {
+            kuEditText.setText("70");
+            jmaxEditText.setText("450");
+            bmaxEditText.setText("0.3");
+        });
     }
 
     public void createObjects() {
         // Text
-        Core_Model_T = (TextView) findViewById(R.id.core_model_text_inductor_design);
-        Air_Gap_T = (TextView) findViewById(R.id.air_gap_text_inductor_design);
-        size_percent_T = (TextView) findViewById(R.id.size_percent_text_inductor_design);
-        Turn_Number_T = (TextView) findViewById(R.id.turn_number_text_inductor_design);
-        AWG_T = (TextView) findViewById(R.id.awg_text_inductor_design);
-        Condutores_em_paralelo_T = (TextView) findViewById(R.id.parallel_conductors_text_inductor_design);
+        coreModelText = (TextView) findViewById(R.id.core_model_text_inductor_design);
+        airGapText = (TextView) findViewById(R.id.air_gap_text_inductor_design);
+        sizePercentText = (TextView) findViewById(R.id.size_percent_text_inductor_design);
+        turnNumberText = (TextView) findViewById(R.id.turn_number_text_inductor_design);
+        awgText = (TextView) findViewById(R.id.awg_text_inductor_design);
+        parallelConductorsText = (TextView) findViewById(R.id.parallel_conductors_text_inductor_design);
 
-        // Text Values
-        Core_Model = (TextView) findViewById(R.id.core_model_inductor_design);
-        Air_Gap = (TextView) findViewById(R.id.air_gap_inductor_design);
-        size_percent = (TextView) findViewById(R.id.size_percent_inductor_design);
-        Turn_Number = (TextView) findViewById(R.id.turn_number_inductor_design);
-        AWG = (TextView) findViewById(R.id.awg_inductor_design);
-        Condutores_em_paralelo = (TextView) findViewById(R.id.parallel_conductors_inductor_design);
+        // Text
+        coreModelTextView = (TextView) findViewById(R.id.core_model_inductor_design);
+        airGapTextView = (TextView) findViewById(R.id.air_gap_inductor_design);
+        sizePercentTextView = (TextView) findViewById(R.id.size_percent_inductor_design);
+        turnNumberTextView = (TextView) findViewById(R.id.turn_number_inductor_design);
+        awgTextView = (TextView) findViewById(R.id.awg_inductor_design);
+        parallelConductorsTextView = (TextView) findViewById(R.id.parallel_conductors_inductor_design);
 
-        // Values
-        Jmax = (EditText) findViewById(R.id.jmax_constant_inductor_design);
-        Bmax = (EditText) findViewById(R.id.bmax_inductor_design);
-        Ku = (EditText) findViewById(R.id.ku_inductor_design);
+        // Inputs
+        jmaxEditText = (EditText) findViewById(R.id.jmax_constant_inductor_design);
+        bmaxEditText = (EditText) findViewById(R.id.bmax_inductor_design);
+        kuEditText = (EditText) findViewById(R.id.ku_inductor_design);
 
         // Button
-        Table = (Button) findViewById(R.id.table_inductor_design);
+        tableBtn = (Button) findViewById(R.id.table_button_inductor_design);
+        exampleBtn = (Button) findViewById(R.id.example_inductor_design_btn);
 
         // Toggle Button
-        Results = (ToggleButton) findViewById(R.id.results_inductor_design);
+        resultsInductorDesign = (ToggleButton) findViewById(R.id.results_inductor_design);
 
         // Image
         inductorImage = findViewById(R.id.inductor_image);
+
+        // Layouts
+        sizePercentLayout = findViewById(R.id.size_percent_inductor_layout);
+        airGapLayout = findViewById(R.id.air_gap_inductor_layout);
+        coreModelLayout = findViewById(R.id.core_model_inductor_layout);
+        turnNumberLayout = findViewById(R.id.turn_number_inductor_layout);
+        awgLayout = findViewById(R.id.awg_inductor_layout);
+        parallelConductorsLayout = findViewById(R.id.parallel_conductors_inductor_layout);
+
     }
 
     public boolean isEmpty() {
-        return Jmax.getText().toString().isEmpty() ||
-                Bmax.getText().toString().isEmpty() ||
-                Ku.getText().toString().isEmpty();
+        return jmaxEditText.getText().toString().isEmpty() ||
+                bmaxEditText.getText().toString().isEmpty() ||
+                kuEditText.getText().toString().isEmpty();
     }
 
-    public void Values() {
-        // Convert Values to Double
-        Jmax_n = Double.parseDouble(Jmax.getText().toString());
-        Bmax_n = Double.parseDouble(Bmax.getText().toString());
-        Ku_n = Double.parseDouble(Ku.getText().toString()) / 100; // winding fill factor
+    public void convertInputsToDouble() {
+        jmax = Double.parseDouble(jmaxEditText.getText().toString()); // current density
+        bmax = Double.parseDouble(bmaxEditText.getText().toString()); // flux density
+        ku = Double.parseDouble(kuEditText.getText().toString()) / 100; // winding fill factor
     }
 
     private void setInductorImage() {
         inductorImage.setImageResource(R.drawable.inductor_model);
     }
 
-    public void InductorProjectCalculations() {
-        // Recovering necessary data
-        Bundle data4 = getIntent().getExtras();
-        Inductance_n = data4.getDouble("Inductance");
-        ILrms_n = data4.getDouble("ILrms");
-        Delta_IL_n = data4.getDouble("DeltaIL");
-        f_n = data4.getDouble("Frequency");
+    @SuppressLint("SetTextI18n")
+    private void formatAndSetResources() {
+        // Writing Text
+        coreModelText.setText("Core Model");
+        airGapText.setText("Air Gap (mm)");
+        sizePercentText.setText("Size Percent (%)");
+        turnNumberText.setText("Number of Turns");
+        awgText.setText("awgTextView");
+        parallelConductorsText.setText("Parallel Conductors");
 
-        // Cálculo do produto das áreas
-        Ap_calculado = Inductance_n * Delta_IL_n * ILrms_n * 1e4 / (Ku_n * Bmax_n * Jmax_n);
-        Nc = 2;
+        // Writing Values
+        coreModelTextView.setText(coreModel);
+        airGapTextView.setText(String.format(Locale.US, "%.4f", airGap*1000));
+        sizePercentTextView.setText(String.format(Locale.US, "%.2f", areaPercentage));
+        turnNumberTextView.setText(String.format(Locale.US, "%.0f", turnNumber));
+        awgTextView.setText(String.format(Locale.US, "%.0f", awg));
+        parallelConductorsTextView.setText(String.format(Locale.US, "%.0f", parallelConductors));
+
+        // Set layouts visible
+        sizePercentLayout.setVisibility(View.VISIBLE);
+        airGapLayout.setVisibility(View.VISIBLE);
+        coreModelLayout.setVisibility(View.VISIBLE);
+        turnNumberLayout.setVisibility(View.VISIBLE);
+        awgLayout.setVisibility(View.VISIBLE);
+        parallelConductorsLayout.setVisibility(View.VISIBLE);
+
+        // Set table button visible
+        tableBtn.setVisibility(View.VISIBLE);
+    }
+
+    public void inductorDesignEquations() {
+        // Product of areas
+
+        apCalculated = inductance * deltaInductorCurrent * inductorCurrentRMS * 1e4 /
+                (ku * bmax * jmax); // copper winding cross-sectional area
+        Nc = 2; //
         Nl = 8;
-        flag_geral = 0;
-        erro = 0;
+        flagGeneral = 0;
+        error = 0;
 
-        while (flag_geral == 0) {
+        while (flagGeneral == 0) {
 
             flag = 0;
 
-            if (Ap_calculado <= 29.526 && Ap_calculado >= 0.08112) {
+            if (apCalculated <= 29.526 && apCalculated >= 0.08112) {
                 for (i = Nl; i >= 0; i--){
                     if (i > 0 && flag == 0) {
-                        if (Nucleos[i - 1][Nc] <= Ap_calculado) {
-                            Ap = Nucleos[i][Nc];
-                            Modelo_Nucleo = Modelos[i];
-                            Ae = Nucleos[i][0];
+                        if (cores[i - 1][Nc] <= apCalculated) {
+                            ap = cores[i][Nc];
+                            coreModel = models[i];
+                            ae = cores[i][0];
                             i_N = i;
                             flag = 1;
                         }
@@ -218,85 +250,93 @@ public class InductorDesign extends AppCompatActivity {
                 }
             }
 
-            if (Ap_calculado > 29.526) {
+            if (apCalculated > 29.526) {
                 i_N = Nl;
-                Ap = Nucleos[Nl][Nc];
-                Modelo_Nucleo = Modelos[Nl];
-                Ae = Nucleos[Nl][0];
+                ap = cores[Nl][Nc];
+                coreModel = models[Nl];
+                ae = cores[Nl][0];
             }
 
-            if (Ap_calculado < 0.08112) {
+            if (apCalculated < 0.08112) {
                 i_N = 0;
-                Ap = Nucleos[0][Nc];
-                Modelo_Nucleo = Modelos[0];
-                Ae = Nucleos[0][0];
+                ap = cores[0][Nc];
+                coreModel = models[0];
+                ae = cores[0][0];
             }
 
-            Aw = Ap / Ae;
-            // Cálculo do Condutor a ser utilizado
-            Numero_de_espiras = Inductance_n * (ILrms_n + Delta_IL_n) * 1e4 / (Bmax_n * Ae);
-            St = ILrms_n / Jmax_n;
+            Aw = ap / ae;
+            // Conductor Calculation to be used
+            turnNumber = inductance * (inductorCurrentRMS + deltaInductorCurrent) * 1e4 / (bmax * ae);
+            st = inductorCurrentRMS / jmax;
             p = 1.72e-4;
             u0 = 4 * pi * 1e-7;
             ur = 1;
-            Diametro_Maximo = 2 * Math.sqrt(p / (pi * u0 * ur * f_n));
+            maximumDiameter = 2 * Math.sqrt(p / (pi * u0 * ur * frequency));
 
-            // Buscando na tabela
+            // Searching in the table
             Cl = 31;
             Cc = 5;
             flag = 0;
 
-            if (Diametro_Maximo >= 0.007 && Diametro_Maximo <= 0.259) {
+            if (maximumDiameter >= 0.007 && maximumDiameter <= 0.259) {
                 for (i = 0; i <= Cl; i++){
                     if (flag == 0) {
-                        if (Condutores[i + 1][1] < Diametro_Maximo) {
-                            Diametro_do_Cobre = Condutores[i + 1][1];
-                            AWG_n = Condutores[i + 1][0];
-                            Sf = Condutores[i + 1][4];
-                            Area_condutor_isolado = Condutores[i + 1][5];
+                        if (conductors[i + 1][1] < maximumDiameter) {
+                            copperDiameter = conductors[i + 1][1];
+                            awg = conductors[i + 1][0];
+                            sf = conductors[i + 1][4];
+                            isolatedConductorArea = conductors[i + 1][5];
                             flag = 1;
                         }
                     }
                 }
             }
 
-            if (Diametro_Maximo < 0.007) {
-                Diametro_do_Cobre = Condutores[Cl][1];
-                AWG_n = Condutores[Cl][0];
-                Sf = Condutores[Cl][4];
-                Area_condutor_isolado = Condutores[Cl][5];
+            if (maximumDiameter < 0.007) {
+                copperDiameter = conductors[Cl][1];
+                awg = conductors[Cl][0];
+                sf = conductors[Cl][4];
+                isolatedConductorArea = conductors[Cl][5];
             }
 
-            if (Diametro_Maximo > 0.259) {
-                Diametro_do_Cobre = Condutores[0][1];
-                AWG_n = Condutores[0][0];
-                Sf = Condutores[0][4];
-                Area_condutor_isolado = Condutores[0][5];
-            }
-            Condutores_em_paralelo_n = St / Sf;
-
-            // Pega o próximo número inteiro maior que o calculado
-            Numero_de_espiras = Math.ceil(Numero_de_espiras);
-            Condutores_em_paralelo_n = Math.ceil(Condutores_em_paralelo_n);
-
-            Porcentagem_de_area = Condutores_em_paralelo_n * Numero_de_espiras * Area_condutor_isolado * 100 / Aw;
-            Porcentagem_de_area_util = 100;
-
-            if (Porcentagem_de_area <= Porcentagem_de_area_util) {
-                flag_geral = 1;
+            if (maximumDiameter > 0.259) {
+                copperDiameter = conductors[0][1];
+                awg = conductors[0][0];
+                sf = conductors[0][4];
+                isolatedConductorArea = conductors[0][5];
             }
 
-            if (Porcentagem_de_area > Porcentagem_de_area_util) {
+            parallelConductors = st / sf;
+
+            // Gets the next integer greater than the calculated
+            turnNumber = Math.ceil(turnNumber);
+            parallelConductors = Math.ceil(parallelConductors);
+
+            areaPercentage = parallelConductors * turnNumber * isolatedConductorArea * 100 / Aw;
+            percentageOfUsableArea = 100;
+
+            if (areaPercentage <= percentageOfUsableArea) {
+                flagGeneral = 1;
+            }
+
+            if (areaPercentage > percentageOfUsableArea) {
                 if (1 + i_N > Nl) {
-                    Toast.makeText(getApplicationContext(), "Error! Doesn't exist core registered for this operation frequency", Toast.LENGTH_SHORT).show();
-                    erro = 1;
+                    Toast.makeText(getApplicationContext(), "Error! Doesn't exist core" +
+                            " registered for this operation frequency", Toast.LENGTH_SHORT).show();
+                    error = 1;
                     return;
                 } else {
-                    Ap_calculado = Nucleos[1 + i_N][Nc] - 1e-3;
+                    apCalculated = cores[1 + i_N][Nc] - 1e-3;
                 }
             }
         }
-            Entreferro = Math.pow(Numero_de_espiras, 2) * u0 * ur * Ae * 1e-4 / Inductance_n;
-
+            airGap = Math.pow(turnNumber, 2) * u0 * ur * ae * 1e-4 / inductance;
+    }
+    private void retrieveDataFromAdvanced() {
+        Bundle data4 = getIntent().getExtras();
+        inductance = data4.getDouble("Inductance");
+        inductorCurrentRMS = data4.getDouble("ILrms");
+        deltaInductorCurrent = data4.getDouble("DeltaIL");
+        frequency = data4.getDouble("Frequency");
     }
 }

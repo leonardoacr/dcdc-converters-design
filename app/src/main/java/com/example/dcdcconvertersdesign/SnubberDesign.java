@@ -24,7 +24,7 @@ public class SnubberDesign extends AppCompatActivity {
     TextView capacitanceSnubberTextView, resistanceSnubberTextView, powerSnubberTextView, capacitanceSnubberText, resistanceSnubberText, powerSnubberText;
     EditText timeDelayOffEditText, timeDelayFallEditText;
     ImageView snubberImage;
-    ToggleButton resultsSnubber;
+    ToggleButton resultsSnubberDesign;
 
     String TAG = "SnubberDesign";
 
@@ -45,7 +45,7 @@ public class SnubberDesign extends AppCompatActivity {
             setSnubberImage();
 
             // Writing Results
-            resultsSnubber.setOnCheckedChangeListener((buttonView, btn) -> {
+            resultsSnubberDesign.setOnCheckedChangeListener((buttonView, btn) -> {
                 if(btn) {
                     if (isEmpty()) {
                         Helpers.showToast(SnubberDesign.this, "Error! Something is empty");
@@ -54,7 +54,7 @@ public class SnubberDesign extends AppCompatActivity {
 
                     getValuesFromUI();
                     snubberEquations();
-                    formatAndSetValues();
+                    formatAndSetResources();
                 }
             });
         }
@@ -74,7 +74,7 @@ public class SnubberDesign extends AppCompatActivity {
         timeDelayFallEditText = findViewById(R.id.time_delay_fall);
 
         // Toggle Button
-        resultsSnubber = findViewById(R.id.results_snubber);
+        resultsSnubberDesign = findViewById(R.id.results_snubber);
 
         // Image
         snubberImage = findViewById(R.id.snubber_image);
@@ -107,7 +107,7 @@ public class SnubberDesign extends AppCompatActivity {
     }
 
     @SuppressLint("SetTextI18n")
-    private void formatAndSetValues(){
+    private void formatAndSetResources(){
         String formattedUnit;
 
         // Capacitance
