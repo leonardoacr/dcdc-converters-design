@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".Table" />
-        <activity android:name=".MainActivity"
+        <activity android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,13 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UsualDesign" />
+        <activity android:name=".view.UsualDesignActivity" />
         <activity android:name=".ReverseDesign" />
         <activity android:name=".Symbols" />
         <activity android:name=".ConvertersDefinitions" />
-        <activity android:name=".BuckConverter" />
-        <activity android:name=".BoostConverter" />
-        <activity android:name=".BuckBoostConverter" />
+        <activity android:name=".view.ConverterActivity" />
         <activity android:name=".Advanced" />
         <activity android:name=".SnubberDesign" />
         <activity android:name=".InductorDesign" />

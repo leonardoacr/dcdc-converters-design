@@ -1,5 +1,8 @@
 package com.example.dcdcconvertersdesign;
 
+import static com.example.dcdcconvertersdesign.convertersutilities.ConvertersUtils.inductance;
+import static com.example.dcdcconvertersdesign.convertersutilities.ConvertersUtils.inductanceCritical;
+
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;

@@ -1,15 +1,16 @@
 package com.example.dcdcconvertersdesign.convertersutilities;
 
-import static com.example.dcdcconvertersdesign.UsualDesign.*;
+import static com.example.dcdcconvertersdesign.view.UsualDesignActivity.*;
 import static com.example.dcdcconvertersdesign.helpers.Helpers.showToast;
 
 import android.app.Activity;
 import android.widget.Toast;
 
-import com.example.dcdcconvertersdesign.UsualDesign;
-
 public class VerifyInputErrors {
-    public static void verifyInputCommonErrors(Activity activity) {
+    public static void verifyInputCommonErrors(Activity activity, double inputVoltage,
+                                               double outputVoltage, double dutyCycle,
+                                               double efficiency, double resistance,
+                                               double capacitance, double inductance) {
         if ((dutyCycle > 0.95 || dutyCycle < 0.05) && inputVoltage !=
                 outputVoltage && efficiency <= 100) {
             showToast(activity, "Error! Duty Cycle is out of the security range (0.05 < D > 0.95)");
@@ -31,7 +32,10 @@ public class VerifyInputErrors {
         }
     }
 
-    public static void verifyInputErrorsBuck(Activity activity) {
+    public static void verifyInputErrorsBuck(Activity activity, double inputVoltage,
+                                             double outputVoltage, double dutyCycle,
+                                             double efficiency, double resistance,
+                                             double capacitance, double inductance) {
         if (inputVoltage < outputVoltage) {
             showToast(activity, "Error! Output bigger than Input");
             return;
@@ -43,10 +47,14 @@ public class VerifyInputErrors {
                 inputVoltage > outputVoltage && efficiency <= 100) {
             showToast(activity, "Error! Duty Cycle is out of the security range (0.05 < D > 0.95)");
         }
-        verifyInputCommonErrors(activity);
+        verifyInputCommonErrors(activity, inputVoltage, outputVoltage, dutyCycle, efficiency,
+                resistance, capacitance, inductance);
     }
 
-    public static void verifyInputErrorsBoost(Activity activity) {
+    public static void verifyInputErrorsBoost(Activity activity, double inputVoltage,
+                                              double outputVoltage, double dutyCycle,
+                                              double efficiency, double resistance,
+                                              double capacitance, double inductance) {
         if (inputVoltage == outputVoltage) {
             showToast(activity, "Error! Input and Output are equal");
             return;
@@ -55,14 +63,15 @@ public class VerifyInputErrors {
             showToast(activity, "Error! Input bigger than Output");
             return;
         }
-        verifyInputCommonErrors(activity);
+        verifyInputCommonErrors(activity, inputVoltage, outputVoltage, dutyCycle, efficiency,
+                resistance, capacitance, inductance);
     }
-    public static void verifyInputErrorsBuckBoost(Activity activity) {
-        if (inputVoltage == outputVoltage) {
-            Toast.makeText(activity,
-                    "Error! Input and Output are equal", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        verifyInputCommonErrors(activity);
-    }
+//    public static void verifyInputErrorsBuckBoost(Activity activity) {
+//        if (inputVoltage == outputVoltage) {
+//            Toast.makeText(activity,
+//                    "Error! Input and Output are equal", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//        verifyInputCommonErrors(activity);
+//    }
 }

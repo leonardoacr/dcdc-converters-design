@@ -1,11 +1,22 @@
 package com.example.dcdcconvertersdesign.convertersutilities;
 
-import static com.example.dcdcconvertersdesign.UsualDesign.*;
-
 import android.util.Log;
+import com.example.dcdcconvertersdesign.convertersutilities.ConverterData;
+
 
 public class CalculateConverterVariables {
-    public static void buckCalculations() {
+    public static double outputCurrent, inputCurrent, outputVoltageMax, outputVoltageMin,
+            deltaInductorCurrent, deltaCapacitorVoltage, inductorCurrentMax, inductorCurrentMin;
+
+    public static double dutyCycle, dutyCycleIdeal, resistance, capacitance, inductance,
+            inductanceCritical, inductorCurrent, switchCurrent, diodeCurrent,
+            inductorCurrentRMS;
+
+    public static boolean isCCM;
+
+    public static ConverterData buckCalculations(double inputVoltage, double outputVoltage, double outputPower,
+                        double rippleInductorCurrent, double rippleCapacitorVoltage,
+                        double frequency, double efficiency) {
         // Pre-global-variables
         resistance = Math.pow(outputVoltage, 2) / outputPower;
         outputCurrent = outputPower / outputVoltage;
@@ -17,7 +28,9 @@ public class CalculateConverterVariables {
         outputVoltageMin = outputVoltage - outputVoltage * rippleCapacitorVoltage / 200.0;
         deltaCapacitorVoltage = outputVoltageMax - outputVoltageMin;
 
-        isCCM = checkBuckConductionMode();
+        isCCM = checkBuckConductionMode(outputVoltage, inputVoltage, efficiency,
+                rippleInductorCurrent, frequency);
+
         Log.d("CalculateVariables", isCCM + " " +
                 inductanceCritical + " " + inductance + " " + dutyCycle);
 
@@ -50,10 +63,23 @@ public class CalculateConverterVariables {
         capacitance = (inputVoltage * (1 - dutyCycle) * dutyCycle) / (
                 16 * inductance * deltaCapacitorVoltage * Math.pow(frequency, 2));
 
+        // create a ConverterData object
+        ConverterData data = new ConverterData();
+
+        // set data using the setData() method
+        setData(data, dutyCycle, dutyCycleIdeal, resistance, capacitance, inductance,
+                inductanceCritical, inputCurrent, outputCurrent, inductorCurrent, switchCurrent,
+                diodeCurrent, deltaInductorCurrent, deltaCapacitorVoltage, inductorCurrentRMS, isCCM,
+                inputVoltage, outputVoltage, frequency);
+
         Log.d("CalculateVariables", isCCM + " " + inductanceCritical + " " + inductance + " " + dutyCycle);
+
+        // return the data object
+        return data;
     }
 
-    private static boolean checkBuckConductionMode() {
+    private static boolean checkBuckConductionMode(double outputVoltage, double inputVoltage,
+                                            double efficiency, double rippleInductorCurrent, double frequency) {
         dutyCycleIdeal = outputVoltage / inputVoltage;
         dutyCycle = dutyCycleIdeal / (efficiency / 100);
         inductorCurrentMax = outputCurrent + outputCurrent * (rippleInductorCurrent / 200);
@@ -61,11 +87,14 @@ public class CalculateConverterVariables {
         deltaInductorCurrent = (inductorCurrentMax - inductorCurrentMin);
         inductance = (inputVoltage * (1 - dutyCycle) * dutyCycle) /
                 (frequency * deltaInductorCurrent);
-        inductanceCritical = dutyCycleIdeal * (inputVoltage - outputVoltage) * resistance / (2 * frequency * outputVoltage);
+        inductanceCritical = dutyCycleIdeal * (inputVoltage - outputVoltage) * resistance /
+                (2 * frequency * outputVoltage);
         return inductanceCritical <= inductance;
     }
 
-    public static void boostCalculations() {
+    public static ConverterData boostCalculations(double inputVoltage, double outputVoltage, double outputPower,
+                        double rippleInductorCurrent, double rippleCapacitorVoltage,
+                        double frequency, double efficiency) {
         // Pre-global-variables
         resistance = Math.pow(outputVoltage, 2) / outputPower;
         outputCurrent = outputPower / outputVoltage;
@@ -83,7 +112,8 @@ public class CalculateConverterVariables {
                 ", Min Output Voltage = " + outputVoltageMin +
                 ", Delta Capacitor Voltage = " + deltaCapacitorVoltage);
 
-        isCCM = checkBoostConductionMode();
+        isCCM = checkBoostConductionMode(outputVoltage, inputVoltage, efficiency,
+                rippleInductorCurrent, frequency, outputPower);
         Log.d(TAG, isCCM + " " +
                 inductanceCritical + " " + inductance + " " + dutyCycle);
 
@@ -132,9 +162,23 @@ public class CalculateConverterVariables {
                 ", Resistance = " + resistance +
                 ", Inductance = " + inductance +
                 ", Capacitance = " + capacitance);
+
+        // create a ConverterData object
+        ConverterData data = new ConverterData();
+
+        // set data using the setData() method
+        setData(data, dutyCycle, dutyCycleIdeal, resistance, capacitance, inductance,
+                inductanceCritical, inputCurrent, outputCurrent, inductorCurrent, switchCurrent,
+                diodeCurrent, deltaInductorCurrent, deltaCapacitorVoltage, inductorCurrentRMS, isCCM,
+                inputVoltage, outputVoltage, frequency);
+
+        // return the data object
+        return data;
     }
 
-    private static boolean checkBoostConductionMode() {
+    private static boolean checkBoostConductionMode(double outputVoltage, double inputVoltage,
+                                                    double efficiency, double rippleInductorCurrent,
+                                                    double frequency, double outputPower) {
         dutyCycleIdeal = (outputVoltage - inputVoltage) / outputVoltage;
         dutyCycle = dutyCycleIdeal / (efficiency / 100);
         inductorCurrentMax = inputCurrent + inputCurrent * (rippleInductorCurrent / 200);
@@ -145,7 +189,9 @@ public class CalculateConverterVariables {
         return inductanceCritical <= inductance;
     }
 
-    public static void buckBoostCalculations() {
+    public static ConverterData buckBoostCalculations(double inputVoltage, double outputVoltage, double outputPower,
+                                             double rippleInductorCurrent, double rippleCapacitorVoltage,
+                                             double frequency, double efficiency) {
         // Pre-global-variables
         resistance = Math.pow(outputVoltage, 2) / outputPower;
         outputCurrent = outputPower / outputVoltage;
@@ -166,7 +212,8 @@ public class CalculateConverterVariables {
                 ", Min Output Voltage = " + outputVoltageMin +
                 ", Delta Capacitor Voltage = " + deltaCapacitorVoltage);
 
-        isCCM = checkBuckBoostConductionMode();
+        isCCM = checkBuckBoostConductionMode(outputVoltage, inputVoltage, efficiency,
+                rippleInductorCurrent, frequency, outputPower);
         Log.d(TAG, isCCM + " " +
                 inductanceCritical + " " + inductance + " " + dutyCycle);
 
@@ -213,9 +260,23 @@ public class CalculateConverterVariables {
                 ", Resistance = " + resistance +
                 ", Inductance = " + inductance +
                 ", Capacitance = " + capacitance);
+
+        // create a ConverterData object
+        ConverterData data = new ConverterData();
+
+        // set data using the setData() method
+        setData(data, dutyCycle, dutyCycleIdeal, resistance, capacitance, inductance,
+                inductanceCritical, inputCurrent, outputCurrent, inductorCurrent, switchCurrent,
+                diodeCurrent, deltaInductorCurrent, deltaCapacitorVoltage, inductorCurrentRMS, isCCM,
+                inputVoltage, outputVoltage, frequency);
+
+        // return the data object
+        return data;
     }
 
-    private static boolean checkBuckBoostConductionMode() {
+    private static boolean checkBuckBoostConductionMode(double outputVoltage, double inputVoltage,
+                                                        double efficiency, double rippleInductorCurrent,
+                                                        double frequency, double outputPower) {
         dutyCycleIdeal = (outputVoltage) / (inputVoltage + outputVoltage);
         dutyCycle = ((outputVoltage) / (inputVoltage + outputVoltage)) / (efficiency / 100);
         inductorCurrentMax = inputCurrent + inputCurrent * (rippleInductorCurrent / 200);
@@ -224,5 +285,32 @@ public class CalculateConverterVariables {
         inductance = (inputVoltage * dutyCycle) / (frequency * deltaInductorCurrent);
         inductanceCritical = (Math.pow(inputVoltage, 2) * dutyCycle) / (2 * outputPower * frequency);
         return inductanceCritical <= inductance;
+    }
+
+    public static void setData(ConverterData data, double dutyCycle, double dutyCycleIdeal,
+                               double resistance, double capacitance, double inductance,
+                               double inductanceCritical, double inputCurrent, double outputCurrent,
+                               double inductorCurrent, double switchCurrent, double diodeCurrent,
+                               double deltaInductorCurrent, double deltaCapacitorVoltage,
+                               double inductorCurrentRMS, boolean isCCM, double inputVoltage,
+                               double outputVoltage, double frequency) {
+        data.setDutyCycle(dutyCycle);
+        data.setDutyCycleIdeal(dutyCycleIdeal);
+        data.setResistance(resistance);
+        data.setCapacitance(capacitance);
+        data.setInductance(inductance);
+        data.setInductanceCritical(inductanceCritical);
+        data.setInputCurrent(inputCurrent);
+        data.setOutputCurrent(outputCurrent);
+        data.setInductorCurrent(inductorCurrent);
+        data.setSwitchCurrent(switchCurrent);
+        data.setDiodeCurrent(diodeCurrent);
+        data.setDeltaInductorCurrent(deltaInductorCurrent);
+        data.setDeltaCapacitorVoltage(deltaCapacitorVoltage);
+        data.setInductorCurrentRMS(inductorCurrentRMS);
+        data.setIsCCM(isCCM);
+        data.setInputVoltage(inputVoltage);
+        data.setOutputVoltage(outputVoltage);
+        data.setFrequency(frequency);
     }
 }

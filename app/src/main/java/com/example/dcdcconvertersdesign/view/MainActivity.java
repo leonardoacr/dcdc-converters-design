@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesign;
+package com.example.dcdcconvertersdesign.view;
 
 import static com.example.dcdcconvertersdesign.R.*;
 
@@ -12,18 +12,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import com.example.dcdcconvertersdesign.About;
+import com.example.dcdcconvertersdesign.ConvertersDefinitions;
+import com.example.dcdcconvertersdesign.InductorDefinitions;
+import com.example.dcdcconvertersdesign.R;
+import com.example.dcdcconvertersdesign.ReverseDesign;
+import com.example.dcdcconvertersdesign.SnubberDefinitions;
+import com.example.dcdcconvertersdesign.Symbols;
+import com.example.dcdcconvertersdesign.controller.MainController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button UsualDesign, ReverseEngineering;
-
-    public void createObjects()
-    {
-        // Buttons
-        UsualDesign = findViewById(id.UsualDesign);
-        ReverseEngineering = findViewById(id.ReverseEngineering);
-    }
+    private MainController controller;
+    private Button usualDesignBtn, reverseEngineeringBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,20 +33,37 @@ public class MainActivity extends AppCompatActivity {
         setContentView(layout.activity_main);
         Helpers.setMainActionBar(this);
 
-        // Set the text color
-        setTheme(style.AppTheme);
-        createObjects();
+        // Set up the controller
+        controller = new MainController(this);
 
-        // Usual Design
-        UsualDesign.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, UsualDesign.class);
-            startActivity(intent);
-        });
-        // Reverse Engineering
-        ReverseEngineering.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, ReverseDesign.class);
-            startActivity(intent);
-        });
+        // Set the text color and UI components
+        setTheme(style.AppTheme);
+        setUIComponents();
+
+        // Set up the buttons listeners
+        setButtonsListeners();
+    }
+
+    private void setUIComponents()
+    {
+        // Buttons
+        usualDesignBtn = findViewById(id.usual_design_button);
+        reverseEngineeringBtn = findViewById(id.reverse_design_button);
+    }
+
+    private void setButtonsListeners() {
+        usualDesignBtn.setOnClickListener(v -> controller.onUsualDesignClicked());
+        reverseEngineeringBtn.setOnClickListener(v -> controller.onReverseDesignClicked());
+    }
+
+    public void navigateToUsualDesign() {
+        Intent intent = new Intent(this, UsualDesignActivity.class);
+        startActivity(intent);
+    }
+
+    public void navigateToReverseEngineering() {
+        Intent intent = new Intent(this, ReverseDesign.class);
+        startActivity(intent);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -54,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
     }
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-
             case id.Symbols:
                 Intent intent_symbols = new Intent(MainActivity.this, Symbols.class);
                 startActivity(intent_symbols);
@@ -84,4 +102,4 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-    }
+}

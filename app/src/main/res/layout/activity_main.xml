@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/MyBackground"
-        tools:context=".MainActivity">
+        tools:context=".view.MainActivity">
 
         <TextView
             android:id="@+id/Choose"
@@ -79,7 +79,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
-                android:id="@+id/UsualDesign"
+                android:id="@+id/usual_design_button"
                 android:layout_width="215dp"
                 android:layout_height="40dp"
                 android:layout_below="@+id/textView19"
@@ -95,7 +95,7 @@
                 android:id="@+id/imageViewBolt"
                 android:layout_width="match_parent"
                 android:layout_height="79dp"
-                android:layout_below="@+id/UsualDesign"
+                android:layout_below="@+id/usual_design_button"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="-10dp"
@@ -153,7 +153,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/ReverseEngineering"
+                android:id="@+id/reverse_design_button"
                 android:layout_width="215dp"
                 android:layout_height="40dp"
                 android:layout_below="@+id/textView18"
@@ -170,7 +170,7 @@
                 android:id="@+id/imageViewRLC"
                 android:layout_width="wrap_content"
                 android:layout_height="25dp"
-                android:layout_below="@+id/ReverseEngineering"
+                android:layout_below="@+id/reverse_design_button"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="15dp"
