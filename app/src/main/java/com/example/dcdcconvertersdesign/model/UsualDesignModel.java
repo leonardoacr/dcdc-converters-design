@@ -2,7 +2,7 @@ package com.example.dcdcconvertersdesign.model;
 
 import android.os.Bundle;
 
-import com.example.dcdcconvertersdesign.convertersutilities.ConverterData;
+import com.example.dcdcconvertersdesign.convertersutils.ConverterData;
 
 public class UsualDesignModel {
     public Bundle setBundleVariables(ConverterData converterData){

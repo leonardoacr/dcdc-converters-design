@@ -1,7 +1,6 @@
-package com.example.dcdcconvertersdesign.convertersutilities;
+package com.example.dcdcconvertersdesign.convertersutils;
 
 import android.util.Log;
-import com.example.dcdcconvertersdesign.convertersutilities.ConverterData;
 
 
 public class CalculateConverterVariables {

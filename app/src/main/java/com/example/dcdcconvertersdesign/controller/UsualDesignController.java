@@ -1,14 +1,13 @@
 package com.example.dcdcconvertersdesign.controller;
 
-import static com.example.dcdcconvertersdesign.convertersutilities.VerifyInputErrors.*;
+import static com.example.dcdcconvertersdesign.helpers.VerifyInputErrors.*;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.dcdcconvertersdesign.convertersutilities.CalculateConverterVariables;
-import com.example.dcdcconvertersdesign.convertersutilities.ConverterData;
+import com.example.dcdcconvertersdesign.convertersutils.CalculateConverterVariables;
+import com.example.dcdcconvertersdesign.convertersutils.ConverterData;
 import com.example.dcdcconvertersdesign.model.UsualDesignModel;
 import com.example.dcdcconvertersdesign.view.ConverterActivity;
 import com.example.dcdcconvertersdesign.view.UsualDesignActivity;
@@ -80,6 +79,34 @@ public class UsualDesignController {
         if (!(inputVoltage < outputVoltage && isValid(dutyCycle, resistance, capacitance,
                 inductance, efficiency))) {
             verifyInputErrorsBoost(view, inputVoltage, outputVoltage, dutyCycle, efficiency,
+                    resistance, capacitance, inductance);
+            return;
+        }
+
+        navigateToConverter(data);
+    }
+
+    public void onBuckBoostConverterClicked() {
+        flag = 3;
+        if (view.isEmpty()) {
+            return;
+        }
+
+        // Get input variables from Edit Text
+        getInputData();
+
+        // Converter equations
+        ConverterData data = CalculateConverterVariables.buckBoostCalculations(inputVoltage,
+                outputVoltage, outputPower, rippleInductorCurrent, rippleCapacitorVoltage,
+                frequency, efficiency);
+
+        // Save flag
+        data.setFlag(flag);
+        getConverterData(data);
+
+        if (!(inputVoltage != outputVoltage && isValid(dutyCycle, resistance, capacitance,
+                inductance, efficiency))) {
+            verifyInputErrorsBuckBoost(view, inputVoltage, outputVoltage, dutyCycle, efficiency,
                     resistance, capacitance, inductance);
             return;
         }

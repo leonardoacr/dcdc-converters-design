@@ -47,6 +47,10 @@ public class UsualDesignActivity extends AppCompatActivity {
 
         // Boost Converter
         boostBtn.setOnClickListener(v -> controller.onBoostConverterClicked());
+
+        // Buck Converter
+        buckBoostBtn.setOnClickListener(v -> controller.onBuckBoostConverterClicked());
+
 //        boostBtn.setOnClickListener(v -> {
 //            flag = 2;
 //            if (isEmpty()) {

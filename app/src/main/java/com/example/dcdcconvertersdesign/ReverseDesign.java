@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.dcdcconvertersdesign.convertersutilities.CalculateConverterVariablesReverse;
+import com.example.dcdcconvertersdesign.convertersutils.CalculateConverterVariablesReverse;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 
 public class ReverseDesign extends AppCompatActivity {

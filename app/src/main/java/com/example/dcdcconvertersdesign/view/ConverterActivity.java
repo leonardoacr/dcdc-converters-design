@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dcdcconvertersdesign.R;
 import com.example.dcdcconvertersdesign.controller.ConverterController;
-import com.example.dcdcconvertersdesign.convertersutilities.ConverterData;
+import com.example.dcdcconvertersdesign.convertersutils.ConverterData;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 
 public class ConverterActivity extends AppCompatActivity {

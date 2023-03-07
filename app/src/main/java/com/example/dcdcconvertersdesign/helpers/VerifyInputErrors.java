@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesign.convertersutilities;
+package com.example.dcdcconvertersdesign.helpers;
 
 import static com.example.dcdcconvertersdesign.view.UsualDesignActivity.*;
 import static com.example.dcdcconvertersdesign.helpers.Helpers.showToast;
@@ -13,7 +13,8 @@ public class VerifyInputErrors {
                                                double capacitance, double inductance) {
         if ((dutyCycle > 0.95 || dutyCycle < 0.05) && inputVoltage !=
                 outputVoltage && efficiency <= 100) {
-            showToast(activity, "Error! Duty Cycle is out of the security range (0.05 < D > 0.95)");
+            showToast(activity, "Error! Duty Cycle is out of the security range " +
+                    "(0.05 < D > 0.95)");
         }
         if (dutyCycle < 0.95 && dutyCycle > 0.05 && inputVoltage !=
                 outputVoltage && resistance < 0) {
@@ -28,7 +29,8 @@ public class VerifyInputErrors {
             showToast(activity, "This project is not possible. Inductance is negative");
         }
         if (efficiency > 100) {
-            showToast(activity, "This project is not possible. Efficiency is bigger then 100%");
+            showToast(activity, "This project is not possible. Efficiency is bigger " +
+                    "then 100%");
         }
     }
 
@@ -45,7 +47,8 @@ public class VerifyInputErrors {
         }
         if ((dutyCycle > 0.95 || dutyCycle < 0.05) &&
                 inputVoltage > outputVoltage && efficiency <= 100) {
-            showToast(activity, "Error! Duty Cycle is out of the security range (0.05 < D > 0.95)");
+            showToast(activity, "Error! Duty Cycle is out of the security range " +
+                    "(0.05 < D > 0.95)");
         }
         verifyInputCommonErrors(activity, inputVoltage, outputVoltage, dutyCycle, efficiency,
                 resistance, capacitance, inductance);
@@ -66,12 +69,16 @@ public class VerifyInputErrors {
         verifyInputCommonErrors(activity, inputVoltage, outputVoltage, dutyCycle, efficiency,
                 resistance, capacitance, inductance);
     }
-//    public static void verifyInputErrorsBuckBoost(Activity activity) {
-//        if (inputVoltage == outputVoltage) {
-//            Toast.makeText(activity,
-//                    "Error! Input and Output are equal", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//        verifyInputCommonErrors(activity);
-//    }
+    public static void verifyInputErrorsBuckBoost(Activity activity, double inputVoltage,
+                                                  double outputVoltage, double dutyCycle,
+                                                  double efficiency, double resistance,
+                                                  double capacitance, double inductance) {
+        if (inputVoltage == outputVoltage) {
+            Toast.makeText(activity,
+                    "Error! Input and Output are equal", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        verifyInputCommonErrors(activity, inputVoltage, outputVoltage, dutyCycle, efficiency,
+                resistance, capacitance, inductance);
+    }
 }
