@@ -53,6 +53,19 @@ public class Helpers {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
+    public static String formatValue(double value, String unit) {
+        String[] units = {"n", "μ", "m", "", "k", "M"};
+        int exponent = (int) Math.floor(Math.log10(Math.abs(value)));
+        int index = (exponent + 9) / 3;
+        if (index < 0) {
+            index = 0;
+        } else if (index >= units.length) {
+            index = units.length - 1;
+        }
+        double scaledValue = value / Math.pow(10, index * 3 - 9);
+        return stringFormat(scaledValue) + " " + units[index] + unit;
+    }
+
     public static String stringFormat(double input) {
         return String.format(Locale.US, "%.2f", input);
     }

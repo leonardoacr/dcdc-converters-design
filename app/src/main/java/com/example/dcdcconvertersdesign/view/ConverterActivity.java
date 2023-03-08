@@ -16,14 +16,12 @@ import com.example.dcdcconvertersdesign.convertersutils.ConverterData;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 
 public class ConverterActivity extends AppCompatActivity {
-    public TextView dutyCycleTextView, resistanceTextView, capacitanceTextView, inductanceTextView;
+    private TextView dutyCycleTextView, resistanceTextView, capacitanceTextView, inductanceTextView;
     public TextView dutyCycleText, resistanceText, inductanceText, capacitanceText, modeWarning,
             converterTitle, modeTextView;
     public ImageView converterFigure;
     public Button simulationBtn, advancedBtn;
     private ConverterController controller;
-
-    private ConverterData data;
 
     String TAG = "Converter";
 
@@ -34,52 +32,48 @@ public class ConverterActivity extends AppCompatActivity {
         Helpers.setMinActionBar(this);
 
         // Set UI
-        setUIComponents(this);
+        setUIComponents();
+
+        // Retrieve data from past activity
+        Bundle bundle = getIntent().getExtras();
 
         // Set up the controller
         controller = new ConverterController(this);
-        Bundle bundle = getIntent().getExtras();
         controller.onCreateController(bundle);
 
         // Simulation
         simulationBtn.setOnClickListener(v -> controller.onSimulationClicked());
 
         // Advanced
-        advancedBtn.setOnClickListener(v -> controller.onAdvancedClicked());
+        advancedBtn.setOnClickListener(v -> controller.onAdvancedClicked(bundle));
     }
 
-//    public void navigateToAdvanced(ConverterData converterData) {
-//        Intent intent = new Intent(ConverterActivity.this, Advanced.class);
-//
-//    }
-
-    public void setUIComponents(Activity activity)
+    public void setUIComponents()
     {
         // Values
-        dutyCycleTextView = (TextView) activity.findViewById(R.id.duty_cycle);
-        resistanceTextView = (TextView) activity.findViewById(R.id.resistance);
-        capacitanceTextView = (TextView) activity.findViewById(R.id.capacitance);
-        inductanceTextView = (TextView) activity.findViewById(R.id.inductance);
+        dutyCycleTextView = findViewById(R.id.duty_cycle);
+        resistanceTextView = findViewById(R.id.resistance);
+        capacitanceTextView = findViewById(R.id.capacitance);
+        inductanceTextView = findViewById(R.id.inductance);
 
         // Texts
-        dutyCycleText = activity.findViewById(R.id.duty_cycle_text);
-        resistanceText = activity.findViewById(R.id.resistance_text);
-        inductanceText = activity.findViewById(R.id.inductance_text);
-        capacitanceText = activity.findViewById(R.id.capacitance_text);
-        modeWarning = (TextView) activity.findViewById(R.id.mode_warning);
-        converterTitle = (TextView) activity.findViewById(R.id.converter_title);
-        modeTextView = (TextView) activity.findViewById(R.id.mode);
+        dutyCycleText = findViewById(R.id.duty_cycle_text);
+        resistanceText = findViewById(R.id.resistance_text);
+        inductanceText = findViewById(R.id.inductance_text);
+        capacitanceText = findViewById(R.id.capacitance_text);
+        modeWarning = findViewById(R.id.mode_warning);
+        converterTitle = findViewById(R.id.converter_title);
+        modeTextView = findViewById(R.id.mode);
 
         // Image
-        converterFigure = (ImageView) activity.findViewById(R.id.converter_image);
+        converterFigure = findViewById(R.id.converter_image);
 
         // Buttons
-        simulationBtn = (Button) activity.findViewById(R.id.simulation_btn);
-        advancedBtn = (Button) activity.findViewById(R.id.advanced_btn);
+        simulationBtn = findViewById(R.id.simulation_btn);
+        advancedBtn = findViewById(R.id.advanced_btn);
     }
 
-    public void setResources(boolean isCCM, double dutyCycle, double resistance,
-                                   double capacitance, double inductance, int flag) {
+    public void setResources(int flag) {
         // Set Title and Image
         if (flag == 1) {
             converterTitle.setText(R.string.buckText);
@@ -93,76 +87,29 @@ public class ConverterActivity extends AppCompatActivity {
             converterTitle.setText(R.string.buckBoostText);
             converterFigure.setImageResource(R.drawable.buck_boost);
         }
+    }
 
-        // Writing Values
-        String formattedUnit;
+    public void updateDisplayValues(double dutyCycle, double resistance, double capacitance, double inductance) {
+        // Duty Cycle
+        String dutyCycleValueText = getString(R.string.duty_cycle_value, (int)(dutyCycle*100));
+        dutyCycleTextView.setText(dutyCycleValueText);
 
-        formattedUnit = stringFormat(dutyCycle*100) + " %";
-        dutyCycleTextView.setText(formattedUnit);
+        // Resistance
+        resistanceTextView.setText(Helpers.formatValue(resistance, "Ω"));
 
+        // Capacitance
+        capacitanceTextView.setText(Helpers.formatValue(capacitance, "F"));
+
+        // Inductance
+        inductanceTextView.setText(Helpers.formatValue(inductance, "H"));
+    }
+
+    public void updateDisplayTexts(boolean isCCM) {
         dutyCycleText.setText(R.string.duty_cycle_text);
         resistanceText.setText(R.string.resistance);
         capacitanceText.setText(R.string.capacitance);
         inductanceText.setText(R.string.inductance);
-
         modeTextView.setText(isCCM ? "Continuous Conduction Mode\n (CCM)" :
                 "Discontinuous Conduction Mode\n (DCM)");
-
-        // Resistance
-        if (resistance > 1e6) {
-            formattedUnit = stringFormat(resistance / 1e6) + " MΩ";
-            resistanceTextView.setText(formattedUnit);
-        } else if (resistance > 1e3) {
-            formattedUnit = stringFormat(resistance / 1e3) + " kΩ";
-            resistanceTextView.setText(formattedUnit);
-        } else if (resistance >= 1) {
-            formattedUnit = stringFormat(resistance) + " Ω";
-            resistanceTextView.setText(formattedUnit);
-        } else if (resistance >= 1e-3) {
-            formattedUnit = stringFormat(resistance / 1e-3) + " mΩ";
-            resistanceTextView.setText(formattedUnit);
-        } else if (resistance >= 1e-6) {
-            formattedUnit = stringFormat(resistance / 1e-6) + " μΩ";
-            resistanceTextView.setText(formattedUnit);
-        } else {
-            formattedUnit = stringFormat(resistance / 1e-9) + " nΩ";
-            resistanceTextView.setText(formattedUnit);
-        }
-
-        // Capacitance
-        if(capacitance > 1){
-            formattedUnit = stringFormat(capacitance) + " F";
-            capacitanceTextView.setText(formattedUnit);
-        }
-        if(capacitance >= 1e-3 && capacitance < 1) {
-            formattedUnit = stringFormat(capacitance * 1e3) + " mF";
-            capacitanceTextView.setText(formattedUnit);
-        }
-        if(capacitance < 1e-3 && capacitance >= 1e-6) {
-            formattedUnit = stringFormat(capacitance * 1e6) + " μF";
-            capacitanceTextView.setText(formattedUnit);
-        }
-        if(capacitance < 1e-6){
-            formattedUnit = stringFormat(capacitance * 1e9) + " nF";
-            capacitanceTextView.setText(formattedUnit);
-        }
-
-        //Inductance
-        if(inductance > 1){
-            formattedUnit = stringFormat(inductance) + " H";
-            inductanceTextView.setText(formattedUnit);
-        }
-        if(inductance >= 1e-3 && inductance < 1) {
-            formattedUnit = stringFormat(inductance * 1e3) + " mF";
-            inductanceTextView.setText(formattedUnit);
-        }
-        if(inductance < 1e-3 && inductance >= 1e-6) {
-            formattedUnit = stringFormat(inductance * 1e6) + " μF";
-            inductanceTextView.setText(formattedUnit);
-        }
-        if(inductance < 1e-6){
-            formattedUnit = stringFormat(inductance * 1e9) + " nF";
-            inductanceTextView.setText(formattedUnit);
-        }
     }
 }

@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dcdcconvertersdesign.helpers.Helpers;
+import com.example.dcdcconvertersdesign.view.AdvancedActivity;
 
 import java.util.Locale;
 
@@ -216,7 +216,7 @@ public class ConvertersReverse extends AppCompatActivity {
     }
 
     private void sendDataToAdvanced() {
-        Intent intentAdvanced = new Intent( getApplicationContext(), Advanced.class);
+        Intent intentAdvanced = new Intent( getApplicationContext(), AdvancedActivity.class);
         Bundle data2 = new Bundle();
         data2.putDouble("Inductance", inductance);
         data2.putDouble("Inductance_Crit", inductanceCritical);

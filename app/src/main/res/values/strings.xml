@@ -7,6 +7,7 @@
     <string name="boostText">BOOST</string>
     <string name="buckBoostText">BUCK-BOOST</string>
     <string name="duty_cycle_text">Duty Cycle</string>
+    <string name="duty_cycle_value">%d %%</string>
     <string name="converters">Converters</string>
     <string name="resistance">Resistance</string>
     <string name="capacitance">Capacitance</string>
@@ -17,5 +18,6 @@
         Please note that simulating for extended periods of time or using excessive storage space
         (above 10 MB) may cause bugs on your device. Proceed at your own risk if you need to
         exceed this limit.</string>
+    <string name="reverse_mode_inductor_note">For the reverse mode, the designed inductor shows the ideal component for the design</string>
 
 </resources>

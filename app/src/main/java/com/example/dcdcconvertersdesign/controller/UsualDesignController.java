@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.dcdcconvertersdesign.convertersutils.CalculateConverterVariables;
+import com.example.dcdcconvertersdesign.model.ConverterModel;
 import com.example.dcdcconvertersdesign.convertersutils.ConverterData;
 import com.example.dcdcconvertersdesign.model.UsualDesignModel;
 import com.example.dcdcconvertersdesign.view.ConverterActivity;
@@ -18,11 +18,13 @@ public class UsualDesignController {
     private double dutyCycle, resistance, capacitance, inductance;
     private int flag;
     private final UsualDesignActivity view;
+    private final UsualDesignModel model;
 
     private String TAG = "UsualDesignController";
 
-    public UsualDesignController(UsualDesignActivity view) {
+    public UsualDesignController(UsualDesignActivity view, UsualDesignModel model) {
         this.view = view;
+        this.model = model;
     }
 
     public void onExampleClicked() {
@@ -40,7 +42,7 @@ public class UsualDesignController {
         getInputData();
 
         // Converter equations
-        ConverterData data = CalculateConverterVariables.buckCalculations(inputVoltage,
+        ConverterData data = ConverterModel.buckCalculations(inputVoltage,
                 outputVoltage, outputPower, rippleInductorCurrent, rippleCapacitorVoltage,
                 frequency, efficiency);
 
@@ -68,7 +70,7 @@ public class UsualDesignController {
         getInputData();
 
         // Converter equations
-        ConverterData data = CalculateConverterVariables.boostCalculations(inputVoltage,
+        ConverterData data = ConverterModel.boostCalculations(inputVoltage,
                 outputVoltage, outputPower, rippleInductorCurrent, rippleCapacitorVoltage,
                 frequency, efficiency);
 
@@ -96,7 +98,7 @@ public class UsualDesignController {
         getInputData();
 
         // Converter equations
-        ConverterData data = CalculateConverterVariables.buckBoostCalculations(inputVoltage,
+        ConverterData data = ConverterModel.buckBoostCalculations(inputVoltage,
                 outputVoltage, outputPower, rippleInductorCurrent, rippleCapacitorVoltage,
                 frequency, efficiency);
 
@@ -139,9 +141,7 @@ public class UsualDesignController {
 
     public void navigateToConverter(ConverterData converterData) {
         Intent intent = new Intent(view, ConverterActivity.class);
-        UsualDesignModel model = new UsualDesignModel();
-        Bundle bundle = model.setBundleVariables(converterData);
-        Log.d(TAG, "Heey USUAL CONTROLLER: " + converterData.getDutyCycle());
+        Bundle bundle = model.sendDataToConverterActivity(converterData);
         intent.putExtras(bundle);
         view.startActivity(intent);
     }

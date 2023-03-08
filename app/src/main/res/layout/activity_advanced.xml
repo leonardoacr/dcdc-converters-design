@@ -12,7 +12,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     style="@style/MyBackground"
-    tools:context=".Advanced"
+    tools:context=".view.AdvancedActivity"
     android:id="@+id/relativeLayout7">
 
     <TextView
@@ -427,7 +427,7 @@
         app:layout_constraintTop_toBottomOf="@+id/snubber_design_btn_advanced" />
 
     <TextView
-        android:id="@+id/obsinductor"
+        android:id="@+id/inductor_reverse_note"
         android:layout_width="340dp"
         android:layout_height="88dp"
         android:layout_marginStart="16dp"

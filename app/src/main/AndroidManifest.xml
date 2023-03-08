@@ -26,7 +26,7 @@
         <activity android:name=".Symbols" />
         <activity android:name=".ConvertersDefinitions" />
         <activity android:name=".view.ConverterActivity" />
-        <activity android:name=".Advanced" />
+        <activity android:name=".view.AdvancedActivity" />
         <activity android:name=".SnubberDesign" />
         <activity android:name=".InductorDesign" />
         <activity android:name=".ConvertersReverse" />

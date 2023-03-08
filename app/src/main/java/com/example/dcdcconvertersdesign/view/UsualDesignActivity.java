@@ -12,6 +12,7 @@ import android.widget.EditText;
 import com.example.dcdcconvertersdesign.R;
 import com.example.dcdcconvertersdesign.controller.UsualDesignController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
+import com.example.dcdcconvertersdesign.model.UsualDesignModel;
 
 public class UsualDesignActivity extends AppCompatActivity {
     // UI-related variables
@@ -23,6 +24,7 @@ public class UsualDesignActivity extends AppCompatActivity {
     // Calculation-related variables
 
     private UsualDesignController controller;
+    private UsualDesignModel model;
 
     // Flags and constants
     private static final String TAG = "UsualDesign";
@@ -33,8 +35,9 @@ public class UsualDesignActivity extends AppCompatActivity {
         setContentView(R.layout.activity_usual_design);
         Helpers.setMainActionBar(this);
 
-        // Set up the controller
-        controller = new UsualDesignController(this);
+        // Set up model and controller
+        model = new UsualDesignModel();
+        controller = new UsualDesignController(this, model);
 
         // Set up the UI
         setUIComponents();
@@ -50,41 +53,6 @@ public class UsualDesignActivity extends AppCompatActivity {
 
         // Buck Converter
         buckBoostBtn.setOnClickListener(v -> controller.onBuckBoostConverterClicked());
-
-//        boostBtn.setOnClickListener(v -> {
-//            flag = 2;
-//            if (isEmpty()) {
-//                return;
-//            }
-//
-////            getInputs();
-////            CalculateConverterVariables.boostCalculations();
-//
-//            if (!(inputVoltage < outputVoltage && isValid())) {
-//                verifyInputErrorsBoost(this);
-//                return;
-//            }
-//
-//            navigateToBoostConverter();
-//        });
-
-        // Buck-Boost Calculations
-//        buckBoostBtn.setOnClickListener(v -> {
-//            flag = 3;
-//            if (isEmpty()) {
-//                return;
-//            }
-//
-////            getInputs();
-////            CalculateConverterVariables.buckBoostCalculations();
-//
-//            if (!(inputVoltage != outputVoltage && isValid())) {
-//                verifyInputErrorsBuckBoost(this);
-//                return;
-//            }
-//
-//            navigateToBuckBoostConverter();
-//        });
     }
 
     public void setUIComponents() {
