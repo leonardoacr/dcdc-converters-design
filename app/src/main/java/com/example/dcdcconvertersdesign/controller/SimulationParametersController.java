@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.dcdcconvertersdesign.Simulation;
+import com.example.dcdcconvertersdesign.view.SimulationActivity;
 import com.example.dcdcconvertersdesign.model.SimulationParametersModel;
 import com.example.dcdcconvertersdesign.view.SimulationParametersActivity;
 
@@ -47,10 +47,10 @@ public class SimulationParametersController {
     }
 
     public void navigateToSimulation(double maxTime, double timeStep, String receivedID){
-        Intent intentSimulation = new Intent(view, Simulation.class);
+        Intent intentSimulation = new Intent(view, SimulationActivity.class);
         Bundle bundle = new Bundle();
 
-        // copy all extras from the previous activity
+        // Copy all extras from the previous activity
         bundle.putAll(view.getIntent().getExtras());
         String MAX_TIME_KEY = "Max_Time";
         String TIME_STEP_KEY = "Time_Step";

@@ -1,7 +1,6 @@
 package com.example.dcdcconvertersdesign.view;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +14,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.dcdcconvertersdesign.R;
-import com.example.dcdcconvertersdesign.Simulation;
 import com.example.dcdcconvertersdesign.controller.SimulationParametersController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 import com.example.dcdcconvertersdesign.model.SimulationParametersModel;

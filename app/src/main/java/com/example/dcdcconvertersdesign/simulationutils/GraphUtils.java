@@ -129,4 +129,11 @@ public class GraphUtils {
             }
         }
     }
+
+    public void loadDataAndPlotGraph(double[] timeArray, double[] outputArray, int numStep,
+                                      String fileNameKey, LineChart chart) {
+        loadData(timeArray, outputArray, numStep, fileNameKey, chart);
+        plotGraph(chart, null, null,
+                null, null);
+    }
 }

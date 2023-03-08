@@ -18,8 +18,23 @@
         Please note that simulating for extended periods of time or using excessive storage space
         (above 10 MB) may cause bugs on your device. Proceed at your own risk if you need to
         exceed this limit.</string>
-    <string name="reverse_mode_inductor_note">For the reverse mode, the designed inductor shows the ideal component for the design</string>
+    <string name="reverse_mode_inductor_note">For the reverse mode, the designed inductor shows
+        the ideal component for the design</string>
     <string name="mode_warning_simulation">Simulation not available for DCM mode</string>
     <string name="time_step_text">Time Step</string>
-
+    <string name="max_time_simulation_text">Define the maximum time of the simulation</string>
+    <string name="default_text_simulation">Default time step is defined as 1/1000 of the
+        switching frequency.</string>
+    <string name="switch_current_btn_simulation">Switch Current</string>
+    <string name="capacitor_current_btn_simulation">Capacitor Current</string>
+    <string name="inductor_current_btn_simulation">Inductor Current</string>
+    <string name="diode_current_btn_simulation">Diode Current</string>
+    <string name="input_current_btn_simulation">Input Current</string>
+    <string name="output_current_btn_simulation">Output Current</string>
+    <string name="output_voltage_btn_simulation">Output Voltage</string>
+    <string name="simulation_options">Simulation Variable</string>
+    <string name="switching_frequency_text_simulation">Switching Frequency</string>
+    <string name="max_time_text_2">Duration (ms)</string>
+    <string name="max_time_simulation">Max Time</string>
+    <string name="simulation_parameters">Simulation</string>
 </resources>

@@ -1,12 +1,18 @@
 package com.example.dcdcconvertersdesign.simulationutils;
 
-import static com.example.dcdcconvertersdesign.Simulation.inductorCurrentArray;
-import static com.example.dcdcconvertersdesign.Simulation.outputVoltageArray;
-import static com.example.dcdcconvertersdesign.Simulation.sArray;
-import static com.example.dcdcconvertersdesign.Simulation.timeArray;
+//import static com.example.dcdcconvertersdesign.view.SimulationActivity.inductorCurrentArray;
+//import static com.example.dcdcconvertersdesign.view.SimulationActivity.outputVoltageArray;
+//import static com.example.dcdcconvertersdesign.view.SimulationActivity.sArray;
+//import static com.example.dcdcconvertersdesign.view.SimulationActivity.timeArray;
 
 public class SolveDiffEquations {
     private static final String TAG = "SolveDiffEquations";
+
+    private static double[] outputVoltageArray;
+    private static double[] inductorCurrentArray;
+    private static double[] timeArray;
+    private static double[] sArray;
+
     public static void buckConverter(double outputVoltage, double inputVoltage, double dutyCycle,
                                      double inductance, double capacitance, double resistance,
                                      double frequency, double timeStep, int numStep) {
@@ -138,5 +144,20 @@ public class SolveDiffEquations {
             timeArray[i+1] = t;
             sArray[i] = s;
         }
+    }
+    public static double[] getOutputVoltageArray() {
+        return outputVoltageArray;
+    }
+
+    public static double[] getInductorCurrentArray() {
+        return inductorCurrentArray;
+    }
+
+    public static double[] getTimeArray() {
+        return timeArray;
+    }
+
+    public static double[] getSArray() {
+        return sArray;
     }
 }
