@@ -1,11 +1,9 @@
-package com.example.dcdcconvertersdesign.simulationutilities;
+package com.example.dcdcconvertersdesign.simulationutils;
 
 import static com.example.dcdcconvertersdesign.Simulation.inductorCurrentArray;
 import static com.example.dcdcconvertersdesign.Simulation.outputVoltageArray;
 import static com.example.dcdcconvertersdesign.Simulation.sArray;
 import static com.example.dcdcconvertersdesign.Simulation.timeArray;
-
-import android.util.Log;
 
 public class SolveDiffEquations {
     private static final String TAG = "SolveDiffEquations";

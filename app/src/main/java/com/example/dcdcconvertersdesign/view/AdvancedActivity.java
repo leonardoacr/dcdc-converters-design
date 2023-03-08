@@ -40,12 +40,15 @@ public class AdvancedActivity extends AppCompatActivity {
         Helpers.setMinActionBar(this);
         setUIComponents();
 
+        // Retrieve data from past activity
+        Bundle bundle = getIntent().getExtras();
+
         // Set up model and controller
         model = new AdvancedModel();
         controller = new AdvancedController(this, model);
 
         // Initiating controller and setting resources
-        controller.onCreateController();
+        controller.onCreateController(bundle);
 
         // Snubber Project
         snubberDesignBtn.setOnClickListener(v -> controller.onSnubberDesignClicked());

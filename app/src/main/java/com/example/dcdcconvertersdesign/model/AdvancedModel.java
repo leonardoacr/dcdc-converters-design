@@ -18,28 +18,44 @@ public class AdvancedModel {
     private boolean isCCM;
     private int flag;
     private int flagReverse;
+
+    public static final String INDUCTANCE_KEY = "Inductance";
+    public static final String INDUCTANCE_CRITICAL_KEY = "Inductance_Crit";
+    public static final String INPUT_CURRENT_KEY = "Input_Current";
+    public static final String OUTPUT_CURRENT_KEY = "Output_Current";
+    public static final String INDUCTOR_CURRENT_KEY = "Inductor_Current";
+    public static final String SWITCH_CURRENT_KEY = "Switch_Current";
+    public static final String DIODE_CURRENT_KEY = "Diode_Current";
+    public static final String OUTPUT_VOLTAGE_KEY = "Output_Voltage";
+    public static final String FREQUENCY_KEY = "Frequency";
+    public static final String DELTA_INDUCTOR_CURRENT_KEY = "DeltaIL";
+    public static final String DELTA_CAPACITOR_VOLTAGE_KEY = "DeltaVC";
+    public static final String INDUCTOR_CURRENT_RMS_KEY = "Inductor_Current_RMS";
+    public static final String IS_CCM_KEY = "is_ccm";
+    public static final String FLAG_KEY = "Flag";
+    public static final String REVERSE_FLAG_KEY = "Reverse_Flag";
+
     public void retrieveDataFromConverterActivity(Bundle bundle) {
-        inductance = bundle.getDouble("Inductance");
-        inductanceCritical = bundle.getDouble("Inductance_Crit");
-        inputCurrent = bundle.getDouble("Input_Current");
-        outputCurrent = bundle.getDouble("Output_Current");
-        inductorCurrent = bundle.getDouble("Inductor_Current");
-        switchCurrent = bundle.getDouble("Switch_Current");
-        diodeCurrent = bundle.getDouble("Diode_Current");
-        outputVoltage = bundle.getDouble("Output_Voltage");
-        frequency = bundle.getDouble("Frequency");
-        deltaInductorCurrent = bundle.getDouble("DeltaIL");
-        deltaCapacitorVoltage = bundle.getDouble("DeltaVC");
-        inductorCurrentRMS = bundle.getDouble("ILrms");
-        isCCM = bundle.getBoolean("is_ccm");
-        flag = bundle.getInt("Flag");
-        flagReverse = bundle.getInt("Reverse_Flag");
+        inductance = bundle.getDouble(INDUCTANCE_KEY);
+        inductanceCritical = bundle.getDouble(INDUCTANCE_CRITICAL_KEY);
+        inputCurrent = bundle.getDouble(INPUT_CURRENT_KEY);
+        outputCurrent = bundle.getDouble(OUTPUT_CURRENT_KEY);
+        inductorCurrent = bundle.getDouble(INDUCTOR_CURRENT_KEY);
+        switchCurrent = bundle.getDouble(SWITCH_CURRENT_KEY);
+        diodeCurrent = bundle.getDouble(DIODE_CURRENT_KEY);
+        outputVoltage = bundle.getDouble(OUTPUT_VOLTAGE_KEY);
+        frequency = bundle.getDouble(FREQUENCY_KEY);
+        deltaInductorCurrent = bundle.getDouble(DELTA_INDUCTOR_CURRENT_KEY);
+        deltaCapacitorVoltage = bundle.getDouble(DELTA_CAPACITOR_VOLTAGE_KEY);
+        inductorCurrentRMS = bundle.getDouble(INDUCTOR_CURRENT_RMS_KEY);
+        isCCM = bundle.getBoolean(IS_CCM_KEY);
+        flag = bundle.getInt(FLAG_KEY);
+        flagReverse = bundle.getInt(REVERSE_FLAG_KEY);
     }
 
     public double getInductance() {
         return inductance;
     }
-
     public double getInductanceCritical() {
         return inductanceCritical;
     }
@@ -73,11 +89,9 @@ public class AdvancedModel {
     }
 
     public double getDeltaInductorCurrent() { return deltaInductorCurrent; }
-
     public double getDeltaCapacitorVoltage() {
         return deltaCapacitorVoltage;
     }
-
     public double getInductorCurrentRMS() {
         return inductorCurrentRMS;
     }
@@ -87,6 +101,5 @@ public class AdvancedModel {
     }
 
     public int getFlag() { return flag; }
-
     public int getFlagReverse() { return flagReverse; }
 }

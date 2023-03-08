@@ -28,11 +28,9 @@ public class AdvancedController {
         this.model = model;
     }
 
-    public void onCreateController() {
-        Bundle bundle = view.getIntent().getExtras();
-
+    public void onCreateController(Bundle bundle) {
         if(bundle != null) {
-            // Retrieve bundle from the Bundle and set the model variables
+            // Retrieve data from bundle
             model.retrieveDataFromConverterActivity(bundle);
 
             // Update view with model data

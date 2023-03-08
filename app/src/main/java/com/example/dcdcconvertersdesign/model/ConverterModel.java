@@ -5,7 +5,6 @@ import android.util.Log;
 
 import com.example.dcdcconvertersdesign.convertersutils.ConverterData;
 
-
 public class ConverterModel {
     private static double dutyCycle;
     private static double dutyCycleIdeal;
@@ -32,6 +31,25 @@ public class ConverterModel {
     private static boolean isCCM;
     private static int flag;
 
+    private final String DUTY_CYCLE_KEY = "Duty_Cycle";
+    private final String DUTY_CYCLE_IDEAL_KEY = "Duty_Cycle_Ideal";
+    private final String RESISTANCE_KEY = "Resistance";
+    private final String CAPACITANCE_KEY = "Capacitance";
+    private final String INDUCTANCE_KEY = "Inductance";
+    private final String INDUCTANCE_CRITICAL_KEY = "Inductance_Crit";
+    private final String INPUT_CURRENT_KEY = "Input_Current";
+    private final String OUTPUT_CURRENT_KEY = "Output_Current";
+    private final String INDUCTOR_CURRENT_KEY = "Inductor_Current";
+    private final String SWITCH_CURRENT_KEY = "Switch_Current";
+    private final String DIODE_CURRENT_KEY = "Diode_Current";
+    private final String INPUT_VOLTAGE_KEY = "Input_Voltage";
+    private final String OUTPUT_VOLTAGE_KEY = "Output_Voltage";
+    private final String FREQUENCY_KEY = "Frequency";
+    private final String DELTA_INDUCTOR_CURRENT_KEY = "DeltaIL";
+    private final String DELTA_CAPACITOR_VOLTAGE_KEY = "DeltaVC";
+    private final String INDUCTOR_CURRENT_RMS_KEY = "Inductor_Current_RMS";
+    private final String IS_CCM_KEY = "is_ccm";
+    private final String FLAG_KEY = "Flag";
     public static ConverterData buckCalculations(double inputVoltage, double outputVoltage, double outputPower,
                                                  double rippleInductorCurrent, double rippleCapacitorVoltage,
                                                  double frequency, double efficiency) {
@@ -204,9 +222,10 @@ public class ConverterModel {
         return inductanceCritical <= inductance;
     }
 
-    public static ConverterData buckBoostCalculations(double inputVoltage, double outputVoltage, double outputPower,
-                                             double rippleInductorCurrent, double rippleCapacitorVoltage,
-                                             double frequency, double efficiency) {
+    public static ConverterData buckBoostCalculations(double inputVoltage, double outputVoltage,
+                                                      double outputPower, double rippleInductorCurrent,
+                                                      double rippleCapacitorVoltage, double frequency,
+                                                      double efficiency) {
         // Pre-global-variables
         resistance = Math.pow(outputVoltage, 2) / outputPower;
         outputCurrent = outputPower / outputVoltage;
@@ -300,99 +319,38 @@ public class ConverterModel {
     }
 
     public void retrieveDataFromUsualDesignActivity(Bundle bundle) {
-        dutyCycle = bundle.getDouble("Duty_Cycle");
-        dutyCycleIdeal = bundle.getDouble("Duty_Cycle_Ideal");
-        resistance = bundle.getDouble("Resistance");
-        capacitance = bundle.getDouble("Capacitance");
-        inductance = bundle.getDouble("Inductance");
-        inductanceCritical = bundle.getDouble("Inductance_Crit");
-        inputCurrent = bundle.getDouble("Input_Current");
-        outputCurrent = bundle.getDouble("Output_Current");
-        inductorCurrent = bundle.getDouble("Inductor_Current");
-        switchCurrent = bundle.getDouble("Switch_Current");
-        diodeCurrent = bundle.getDouble("Diode_Current");
-        inputVoltage = bundle.getDouble("Input_Voltage");
-        outputVoltage = bundle.getDouble("Output_Voltage");
-        frequency = bundle.getDouble("Frequency");
-        deltaInductorCurrent = bundle.getDouble("DeltaIL");
-        rippleCapacitorVoltage = bundle.getDouble("DeltaVC");
-        inductorCurrentRMS = bundle.getDouble("ILrms");
-        isCCM = bundle.getBoolean("is_ccm");
-        flag = bundle.getInt("Flag");
+        dutyCycle = bundle.getDouble(DUTY_CYCLE_KEY);
+        dutyCycleIdeal = bundle.getDouble(DUTY_CYCLE_IDEAL_KEY);
+        resistance = bundle.getDouble(RESISTANCE_KEY);
+        capacitance = bundle.getDouble(CAPACITANCE_KEY);
+        inductance = bundle.getDouble(INDUCTANCE_KEY);
+        inductanceCritical = bundle.getDouble(INDUCTANCE_CRITICAL_KEY);
+        inputCurrent = bundle.getDouble(INPUT_CURRENT_KEY);
+        outputCurrent = bundle.getDouble(OUTPUT_CURRENT_KEY);
+        inductorCurrent = bundle.getDouble(INDUCTOR_CURRENT_KEY);
+        switchCurrent = bundle.getDouble(SWITCH_CURRENT_KEY);
+        diodeCurrent = bundle.getDouble(DIODE_CURRENT_KEY);
+        inputVoltage = bundle.getDouble(INPUT_VOLTAGE_KEY);
+        outputVoltage = bundle.getDouble(OUTPUT_VOLTAGE_KEY);
+        frequency = bundle.getDouble(FREQUENCY_KEY);
+        deltaInductorCurrent = bundle.getDouble(DELTA_INDUCTOR_CURRENT_KEY);
+        deltaCapacitorVoltage = bundle.getDouble(DELTA_CAPACITOR_VOLTAGE_KEY);
+        inductorCurrentRMS = bundle.getDouble(INDUCTOR_CURRENT_RMS_KEY);
+        isCCM = bundle.getBoolean(IS_CCM_KEY);
+        flag = bundle.getInt(FLAG_KEY);
     }
 
-    public double getDutyCycle() {
-        return dutyCycle;
-    }
-
-    public double getDutyCycleIdeal() {
-        return dutyCycleIdeal;
-    }
-
+    public double getDutyCycle() { return dutyCycle; }
     public double getResistance() {
         return resistance;
     }
-
     public double getCapacitance() {
         return capacitance;
     }
-
     public double getInductance() {
         return inductance;
     }
-
-    public double getInductanceCritical() {
-        return inductanceCritical;
-    }
-
-    public double getInputCurrent() {
-        return inputCurrent;
-    }
-
-    public double getOutputCurrent() {
-        return outputCurrent;
-    }
-
-    public double getInductorCurrent() {
-        return inductorCurrent;
-    }
-
-    public double getSwitchCurrent() {
-        return switchCurrent;
-    }
-
-    public double getDiodeCurrent() {
-        return diodeCurrent;
-    }
-
-    public double getInputVoltage() {
-        return inputVoltage;
-    }
-
-    public double getOutputVoltage() {
-        return outputVoltage;
-    }
-
-    public double getFrequency() {
-        return frequency;
-    }
-
-    public double getDeltaInductorCurrent() {
-        return deltaInductorCurrent;
-    }
-
-    public double getRippleCapacitorVoltage() {
-        return rippleCapacitorVoltage;
-    }
-
-    public double getInductorCurrentRMS() {
-        return inductorCurrentRMS;
-    }
-
-    public boolean getIsCCM() {
-        return isCCM;
-    }
-
+    public boolean getIsCCM() { return isCCM; }
     public int getFlag() {
         return flag;
     }

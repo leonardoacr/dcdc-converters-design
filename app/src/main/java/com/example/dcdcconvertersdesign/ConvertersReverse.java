@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 import com.example.dcdcconvertersdesign.view.AdvancedActivity;
+import com.example.dcdcconvertersdesign.view.SimulationParametersActivity;
 
 import java.util.Locale;
 
@@ -239,7 +240,7 @@ public class ConvertersReverse extends AppCompatActivity {
 
     private void sendDataToSimulation() {
         Intent intentSimulationDefinitions = new Intent(
-                ConvertersReverse.this, SimulationParameters.class);
+                ConvertersReverse.this, SimulationParametersActivity.class);
         Bundle simulationData = new Bundle();
         simulationData.putDouble("Output_Voltage", outputVoltage);
         simulationData.putDouble("Input_Voltage", inputVoltage);

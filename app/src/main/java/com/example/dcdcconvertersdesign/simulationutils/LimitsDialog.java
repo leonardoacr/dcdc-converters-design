@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesign.simulationutilities;
+package com.example.dcdcconvertersdesign.simulationutils;
 
 import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;

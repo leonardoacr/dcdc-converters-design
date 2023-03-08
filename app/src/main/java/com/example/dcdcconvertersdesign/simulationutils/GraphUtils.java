@@ -1,8 +1,6 @@
-package com.example.dcdcconvertersdesign.simulationutilities;
+package com.example.dcdcconvertersdesign.simulationutils;
 
 import android.graphics.Color;
-import android.os.Build;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.example.dcdcconvertersdesign.R;

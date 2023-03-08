@@ -4,45 +4,57 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.dcdcconvertersdesign.view.SimulationParametersActivity;
 import com.example.dcdcconvertersdesign.view.AdvancedActivity;
 import com.example.dcdcconvertersdesign.model.ConverterModel;
 import com.example.dcdcconvertersdesign.view.ConverterActivity;
 
 public class ConverterController {
     private final ConverterActivity view;
-
+    private final ConverterModel model;
     private final String TAG = "ConverterController";
 
-    public ConverterController(ConverterActivity view) {
+    public ConverterController(ConverterActivity view, ConverterModel model) {
         this.view = view;
+        this.model = model;
     }
 
     public void onCreateController(Bundle bundle) {
        if(bundle != null) {
-           // Create an instance of ConverterModel
-           ConverterModel model = new ConverterModel();
-
            // Retrieve data from the Bundle and set the model variables
            model.retrieveDataFromUsualDesignActivity(bundle);
 
            // Update view with model data
-           updateDisplay(model);
+           updateDisplay();
        } else {
            Log.d(TAG, "Bundle in ConverterController is null");
        }
     }
 
     public void onAdvancedClicked(Bundle bundle) {
+        Log.d(TAG, "ConverterController: " + bundle.getDouble("Duty_Cycle"));
         Intent intent = new Intent(view, AdvancedActivity.class);
         intent.putExtras(bundle);
         view.startActivity(intent);
     }
 
-    public void onSimulationClicked() {
-//        view.navigateToSimulation(data);
+    public void onSimulationClicked(Bundle bundle) {
+        boolean isCCM = model.getIsCCM();
+
+        if(isCCM){
+            navigateToSimulation(bundle);
+        } else {
+            view.setModeWarning();
+        }
     }
 
-    private void updateDisplay(ConverterModel model) {
+    private void navigateToSimulation(Bundle bundle) {
+        Intent intent = new Intent(view, SimulationParametersActivity.class);
+        intent.putExtras(bundle);
+        view.startActivity(intent);
+    }
+
+    private void updateDisplay() {
         // Set resources in view
         boolean isCCM = model.getIsCCM();
         double dutyCycle = model.getDutyCycle();

@@ -20,7 +20,7 @@ public class UsualDesignController {
     private final UsualDesignActivity view;
     private final UsualDesignModel model;
 
-    private String TAG = "UsualDesignController";
+    private final String TAG = "UsualDesignController";
 
     public UsualDesignController(UsualDesignActivity view, UsualDesignModel model) {
         this.view = view;
@@ -50,10 +50,8 @@ public class UsualDesignController {
         data.setFlag(flag);
         getConverterData(data);
 
-        if (!(inputVoltage > outputVoltage && isValid(dutyCycle, resistance, capacitance,
-                inductance, efficiency))) {
-            verifyInputErrorsBuck(view, inputVoltage, outputVoltage, dutyCycle, efficiency,
-                    resistance, capacitance, inductance);
+        if(verifyInputErrorsBuck(view, inputVoltage, outputVoltage, dutyCycle, efficiency,
+                resistance, capacitance, inductance)) {
             return;
         }
 
@@ -78,10 +76,8 @@ public class UsualDesignController {
         data.setFlag(flag);
         getConverterData(data);
 
-        if (!(inputVoltage < outputVoltage && isValid(dutyCycle, resistance, capacitance,
-                inductance, efficiency))) {
-            verifyInputErrorsBoost(view, inputVoltage, outputVoltage, dutyCycle, efficiency,
-                    resistance, capacitance, inductance);
+        if(verifyInputErrorsBoost(view, inputVoltage, outputVoltage, dutyCycle, efficiency,
+                resistance, capacitance, inductance)) {
             return;
         }
 
@@ -106,10 +102,8 @@ public class UsualDesignController {
         data.setFlag(flag);
         getConverterData(data);
 
-        if (!(inputVoltage != outputVoltage && isValid(dutyCycle, resistance, capacitance,
-                inductance, efficiency))) {
-            verifyInputErrorsBuckBoost(view, inputVoltage, outputVoltage, dutyCycle, efficiency,
-                    resistance, capacitance, inductance);
+        if(verifyInputErrorsBuckBoost(view, inputVoltage, outputVoltage, dutyCycle, efficiency,
+                resistance, capacitance, inductance)) {
             return;
         }
 
@@ -131,12 +125,6 @@ public class UsualDesignController {
         rippleCapacitorVoltage = view.getRippleCapacitorVoltage();
         frequency = view.getFrequency();
         efficiency = view.getEfficiency();
-    }
-
-    private boolean isValid(double dutyCycle, double resistance, double capacitance,
-                           double inductance, double efficiency) {
-        return dutyCycle <= 0.95 && dutyCycle >= 0.05 && resistance > 0 && inductance > 0 &&
-                capacitance > 0 && efficiency <= 100;
     }
 
     public void navigateToConverter(ConverterData converterData) {

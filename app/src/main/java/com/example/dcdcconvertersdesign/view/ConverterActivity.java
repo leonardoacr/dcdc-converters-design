@@ -4,6 +4,7 @@ import static com.example.dcdcconvertersdesign.helpers.Helpers.stringFormat;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,6 +15,7 @@ import com.example.dcdcconvertersdesign.R;
 import com.example.dcdcconvertersdesign.controller.ConverterController;
 import com.example.dcdcconvertersdesign.convertersutils.ConverterData;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
+import com.example.dcdcconvertersdesign.model.ConverterModel;
 
 public class ConverterActivity extends AppCompatActivity {
     private TextView dutyCycleTextView, resistanceTextView, capacitanceTextView, inductanceTextView;
@@ -22,6 +24,7 @@ public class ConverterActivity extends AppCompatActivity {
     public ImageView converterFigure;
     public Button simulationBtn, advancedBtn;
     private ConverterController controller;
+    private ConverterModel model;
 
     String TAG = "Converter";
 
@@ -37,14 +40,16 @@ public class ConverterActivity extends AppCompatActivity {
         // Retrieve data from past activity
         Bundle bundle = getIntent().getExtras();
 
-        // Set up the controller
-        controller = new ConverterController(this);
+        // Set up model and controller
+        model = new ConverterModel();
+        controller = new ConverterController(this, model);
         controller.onCreateController(bundle);
 
         // Simulation
-        simulationBtn.setOnClickListener(v -> controller.onSimulationClicked());
+        simulationBtn.setOnClickListener(v -> controller.onSimulationClicked(bundle));
 
         // Advanced
+        Log.d(TAG, "ConverterActivity: " + bundle.getDouble("Duty_Cycle"));
         advancedBtn.setOnClickListener(v -> controller.onAdvancedClicked(bundle));
     }
 
@@ -111,5 +116,9 @@ public class ConverterActivity extends AppCompatActivity {
         inductanceText.setText(R.string.inductance);
         modeTextView.setText(isCCM ? "Continuous Conduction Mode\n (CCM)" :
                 "Discontinuous Conduction Mode\n (DCM)");
+    }
+
+    public void setModeWarning() {
+        modeWarning.setText(R.string.mode_warning_simulation);
     }
 }

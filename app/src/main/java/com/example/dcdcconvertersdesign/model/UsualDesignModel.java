@@ -1,6 +1,7 @@
 package com.example.dcdcconvertersdesign.model;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.dcdcconvertersdesign.convertersutils.ConverterData;
 
@@ -24,6 +25,8 @@ public class UsualDesignModel {
     public static final String INDUCTOR_CURRENT_RMS_KEY = "Inductor_Current_RMS";
     public static final String IS_CCM_KEY = "is_ccm";
     public static final String FLAG_KEY = "Flag";
+
+    private String TAG = "UsualDesignModel";
     public Bundle sendDataToConverterActivity(ConverterData converterData){
         Bundle bundle = new Bundle();
         double dutyCycle = converterData.getDutyCycle();

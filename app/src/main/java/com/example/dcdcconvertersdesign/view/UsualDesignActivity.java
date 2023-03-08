@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.dcdcconvertersdesign.R;
+import com.example.dcdcconvertersdesign.controller.ConverterController;
 import com.example.dcdcconvertersdesign.controller.UsualDesignController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 import com.example.dcdcconvertersdesign.model.UsualDesignModel;
@@ -21,11 +22,6 @@ public class UsualDesignActivity extends AppCompatActivity {
             frequencyEditText, efficiencyEditText;
     private Button buckBtn, boostBtn, buckBoostBtn, exampleBtn;
 
-    // Calculation-related variables
-
-    private UsualDesignController controller;
-    private UsualDesignModel model;
-
     // Flags and constants
     private static final String TAG = "UsualDesign";
 
@@ -36,23 +32,12 @@ public class UsualDesignActivity extends AppCompatActivity {
         Helpers.setMainActionBar(this);
 
         // Set up model and controller
-        model = new UsualDesignModel();
-        controller = new UsualDesignController(this, model);
+        UsualDesignModel model = new UsualDesignModel();
+        UsualDesignController controller = new UsualDesignController(this, model);
 
         // Set up the UI
         setUIComponents();
-
-        // Example button listener
-        exampleBtn.setOnClickListener(v -> controller.onExampleClicked());
-
-        // Buck Converter
-        buckBtn.setOnClickListener(v -> controller.onBuckConverterClicked());
-
-        // Boost Converter
-        boostBtn.setOnClickListener(v -> controller.onBoostConverterClicked());
-
-        // Buck Converter
-        buckBoostBtn.setOnClickListener(v -> controller.onBuckBoostConverterClicked());
+        handleButtons(controller);
     }
 
     public void setUIComponents() {
@@ -82,6 +67,20 @@ public class UsualDesignActivity extends AppCompatActivity {
         frequencyEditText.setText(String.valueOf(frequency));
         rippleInductorCurrentEditText.setText(String.valueOf(rippleInductorCurrent));
         rippleCapacitorVoltageEditText.setText(String.valueOf(rippleCapacitorVoltage));
+    }
+
+    private void handleButtons(UsualDesignController controller) {
+        // Example button listener
+        exampleBtn.setOnClickListener(v -> controller.onExampleClicked());
+
+        // Buck Converter
+        buckBtn.setOnClickListener(v -> controller.onBuckConverterClicked());
+
+        // Boost Converter
+        boostBtn.setOnClickListener(v -> controller.onBoostConverterClicked());
+
+        // Buck Converter
+        buckBoostBtn.setOnClickListener(v -> controller.onBuckBoostConverterClicked());
     }
 
     public boolean isEmpty() {

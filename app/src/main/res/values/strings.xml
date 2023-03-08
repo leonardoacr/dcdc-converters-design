@@ -19,5 +19,7 @@
         (above 10 MB) may cause bugs on your device. Proceed at your own risk if you need to
         exceed this limit.</string>
     <string name="reverse_mode_inductor_note">For the reverse mode, the designed inductor shows the ideal component for the design</string>
+    <string name="mode_warning_simulation">Simulation not available for DCM mode</string>
+    <string name="time_step_text">Time Step</string>
 
 </resources>

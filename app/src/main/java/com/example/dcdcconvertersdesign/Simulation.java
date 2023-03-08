@@ -16,21 +16,18 @@ import android.widget.TextView;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Objects;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CountDownLatch;
 
 import com.example.dcdcconvertersdesign.helpers.Helpers;
-import com.example.dcdcconvertersdesign.simulationutilities.CalculateBoostArrays;
-import com.example.dcdcconvertersdesign.simulationutilities.CalculateBuckBoostArrays;
-import com.example.dcdcconvertersdesign.simulationutilities.CalculateBuckArrays;
-import com.example.dcdcconvertersdesign.simulationutilities.GraphUtils;
-import com.example.dcdcconvertersdesign.simulationutilities.LimitsDialog;
-import com.example.dcdcconvertersdesign.simulationutilities.SaveDialog;
-import com.example.dcdcconvertersdesign.simulationutilities.SolveDiffEquations;
+import com.example.dcdcconvertersdesign.simulationutils.CalculateBoostArrays;
+import com.example.dcdcconvertersdesign.simulationutils.CalculateBuckBoostArrays;
+import com.example.dcdcconvertersdesign.simulationutils.CalculateBuckArrays;
+import com.example.dcdcconvertersdesign.simulationutils.GraphUtils;
+import com.example.dcdcconvertersdesign.simulationutils.LimitsDialog;
+import com.example.dcdcconvertersdesign.simulationutils.SaveDialog;
+import com.example.dcdcconvertersdesign.simulationutils.SolveDiffEquations;
+import com.example.dcdcconvertersdesign.view.SimulationParametersActivity;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.data.LineData;
 
 public class Simulation extends AppCompatActivity {
     // define a tag for logging purposes
@@ -167,7 +164,7 @@ public class Simulation extends AppCompatActivity {
         }
 
 //        SimulationParameters.hideProgressBar();
-        new Handler().postDelayed(SimulationParameters::hideProgressBar, numStep/200);
+        new Handler().postDelayed(SimulationParametersActivity::hideProgressBar, numStep/200);
 
         Log.d(TAG, String.valueOf(chart.getData().getEntryCount()));
         Log.d(TAG, String.valueOf(outputVoltageArray.length-1));
