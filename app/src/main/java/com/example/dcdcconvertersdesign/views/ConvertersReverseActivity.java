@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesign;
+package com.example.dcdcconvertersdesign.views;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -9,13 +9,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.dcdcconvertersdesign.R;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
-import com.example.dcdcconvertersdesign.view.AdvancedActivity;
-import com.example.dcdcconvertersdesign.view.SimulationParametersActivity;
 
 import java.util.Locale;
 
-public class ConvertersReverse extends AppCompatActivity {
+public class ConvertersReverseActivity extends AppCompatActivity {
     private double inputVoltage;
     private double outputVoltage;
     private double outputPower;
@@ -240,7 +239,7 @@ public class ConvertersReverse extends AppCompatActivity {
 
     private void sendDataToSimulation() {
         Intent intentSimulationDefinitions = new Intent(
-                ConvertersReverse.this, SimulationParametersActivity.class);
+                ConvertersReverseActivity.this, SimulationParametersActivity.class);
         Bundle simulationData = new Bundle();
         simulationData.putDouble("Output_Voltage", outputVoltage);
         simulationData.putDouble("Input_Voltage", inputVoltage);

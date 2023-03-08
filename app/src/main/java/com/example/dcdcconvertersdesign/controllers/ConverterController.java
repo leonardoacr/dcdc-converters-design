@@ -1,13 +1,13 @@
-package com.example.dcdcconvertersdesign.controller;
+package com.example.dcdcconvertersdesign.controllers;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.dcdcconvertersdesign.view.SimulationParametersActivity;
-import com.example.dcdcconvertersdesign.view.AdvancedActivity;
-import com.example.dcdcconvertersdesign.model.ConverterModel;
-import com.example.dcdcconvertersdesign.view.ConverterActivity;
+import com.example.dcdcconvertersdesign.views.SimulationParametersActivity;
+import com.example.dcdcconvertersdesign.views.AdvancedActivity;
+import com.example.dcdcconvertersdesign.models.ConverterModel;
+import com.example.dcdcconvertersdesign.views.ConverterActivity;
 
 public class ConverterController {
     private final ConverterActivity view;

@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesign.model;
+package com.example.dcdcconvertersdesign.models;
 
 public class SimulationParametersModel {
     private double maxTimeRecommended;

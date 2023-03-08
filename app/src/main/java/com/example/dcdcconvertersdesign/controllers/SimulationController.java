@@ -1,22 +1,18 @@
-package com.example.dcdcconvertersdesign.controller;
+package com.example.dcdcconvertersdesign.controllers;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 
-import com.example.dcdcconvertersdesign.model.SimulationModel;
+import com.example.dcdcconvertersdesign.models.SimulationModel;
 import com.example.dcdcconvertersdesign.simulationutils.FileSaver;
 import com.example.dcdcconvertersdesign.simulationutils.GraphUtils;
 import com.example.dcdcconvertersdesign.simulationutils.LimitsDialog;
 import com.example.dcdcconvertersdesign.simulationutils.SaveDialog;
 import com.example.dcdcconvertersdesign.simulationutils.SolveDiffEquations;
-import com.example.dcdcconvertersdesign.view.SimulationActivity;
+import com.example.dcdcconvertersdesign.views.SimulationActivity;
 import com.github.mikephil.charting.charts.LineChart;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Objects;
 
 public class SimulationController {

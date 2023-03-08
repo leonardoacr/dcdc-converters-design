@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.dcdcconvertersdesign.convertersutils.CalculateConverterVariablesReverse;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
+import com.example.dcdcconvertersdesign.views.ConvertersReverseActivity;
 
 public class ReverseDesign extends AppCompatActivity {
     public int flag;
@@ -154,7 +155,7 @@ public class ReverseDesign extends AppCompatActivity {
     }
 
     public void sendDataToConvertersR() {
-        Intent intent = new Intent(getApplicationContext(), ConvertersReverse.class);
+        Intent intent = new Intent(getApplicationContext(), ConvertersReverseActivity.class);
         Bundle data = new Bundle();
 
         // Sending Data to Write Values

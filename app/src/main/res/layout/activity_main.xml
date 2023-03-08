@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/MyBackground"
-        tools:context=".view.MainActivity">
+        tools:context=".views.MainActivity">
 
         <TextView
             android:id="@+id/Choose"

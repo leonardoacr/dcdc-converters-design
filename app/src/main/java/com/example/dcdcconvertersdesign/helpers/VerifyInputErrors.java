@@ -1,10 +1,8 @@
 package com.example.dcdcconvertersdesign.helpers;
 
-import static com.example.dcdcconvertersdesign.view.UsualDesignActivity.*;
 import static com.example.dcdcconvertersdesign.helpers.Helpers.showToast;
 
 import android.app.Activity;
-import android.widget.Toast;
 
 public class VerifyInputErrors {
     public static Boolean verifyInputCommonErrors(Activity activity, double inputVoltage,

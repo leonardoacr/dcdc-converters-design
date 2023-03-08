@@ -1,6 +1,6 @@
-package com.example.dcdcconvertersdesign.controller;
+package com.example.dcdcconvertersdesign.controllers;
 
-import com.example.dcdcconvertersdesign.view.MainActivity;
+import com.example.dcdcconvertersdesign.views.MainActivity;
 
 public class MainController {
     private MainActivity view;

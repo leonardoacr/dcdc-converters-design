@@ -1,12 +1,12 @@
-package com.example.dcdcconvertersdesign.controller;
+package com.example.dcdcconvertersdesign.controllers;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.dcdcconvertersdesign.view.SimulationActivity;
-import com.example.dcdcconvertersdesign.model.SimulationParametersModel;
-import com.example.dcdcconvertersdesign.view.SimulationParametersActivity;
+import com.example.dcdcconvertersdesign.views.SimulationActivity;
+import com.example.dcdcconvertersdesign.models.SimulationParametersModel;
+import com.example.dcdcconvertersdesign.views.SimulationParametersActivity;
 
 public class SimulationParametersController {
     private final SimulationParametersActivity view;

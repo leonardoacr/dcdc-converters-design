@@ -1,16 +1,15 @@
-package com.example.dcdcconvertersdesign.controller;
+package com.example.dcdcconvertersdesign.controllers;
 
 import static com.example.dcdcconvertersdesign.helpers.VerifyInputErrors.*;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
-import com.example.dcdcconvertersdesign.model.ConverterModel;
+import com.example.dcdcconvertersdesign.models.ConverterModel;
 import com.example.dcdcconvertersdesign.convertersutils.ConverterData;
-import com.example.dcdcconvertersdesign.model.UsualDesignModel;
-import com.example.dcdcconvertersdesign.view.ConverterActivity;
-import com.example.dcdcconvertersdesign.view.UsualDesignActivity;
+import com.example.dcdcconvertersdesign.models.UsualDesignModel;
+import com.example.dcdcconvertersdesign.views.ConverterActivity;
+import com.example.dcdcconvertersdesign.views.UsualDesignActivity;
 
 public class UsualDesignController {
     private double outputPower, rippleInductorCurrent, rippleCapacitorVoltage, outputVoltage,

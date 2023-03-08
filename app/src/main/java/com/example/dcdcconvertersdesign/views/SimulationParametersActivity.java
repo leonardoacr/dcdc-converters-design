@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesign.view;
+package com.example.dcdcconvertersdesign.views;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
@@ -14,9 +14,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.dcdcconvertersdesign.R;
-import com.example.dcdcconvertersdesign.controller.SimulationParametersController;
+import com.example.dcdcconvertersdesign.controllers.SimulationParametersController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
-import com.example.dcdcconvertersdesign.model.SimulationParametersModel;
+import com.example.dcdcconvertersdesign.models.SimulationParametersModel;
 
 public class SimulationParametersActivity extends AppCompatActivity {
     private static final String TAG = "Simulation";

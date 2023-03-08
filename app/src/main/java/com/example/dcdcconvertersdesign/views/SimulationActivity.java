@@ -1,34 +1,20 @@
-package com.example.dcdcconvertersdesign.view;
+package com.example.dcdcconvertersdesign.views;
 
 import android.annotation.SuppressLint;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Environment;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Handler;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Objects;
-
 import com.example.dcdcconvertersdesign.R;
-import com.example.dcdcconvertersdesign.controller.SimulationController;
+import com.example.dcdcconvertersdesign.controllers.SimulationController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
-import com.example.dcdcconvertersdesign.model.SimulationModel;
-import com.example.dcdcconvertersdesign.simulationutils.CalculateBoostArrays;
-import com.example.dcdcconvertersdesign.simulationutils.CalculateBuckBoostArrays;
-import com.example.dcdcconvertersdesign.simulationutils.CalculateBuckArrays;
+import com.example.dcdcconvertersdesign.models.SimulationModel;
 import com.example.dcdcconvertersdesign.simulationutils.GraphUtils;
-import com.example.dcdcconvertersdesign.simulationutils.LimitsDialog;
-import com.example.dcdcconvertersdesign.simulationutils.SaveDialog;
-import com.example.dcdcconvertersdesign.simulationutils.SolveDiffEquations;
 import com.github.mikephil.charting.charts.LineChart;
 
 public class SimulationActivity extends AppCompatActivity {

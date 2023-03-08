@@ -1,26 +1,16 @@
-package com.example.dcdcconvertersdesign.view;
+package com.example.dcdcconvertersdesign.views;
 
-import static com.example.dcdcconvertersdesign.helpers.Helpers.stringFormat;
-
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.dcdcconvertersdesign.InductorDesign;
 import com.example.dcdcconvertersdesign.R;
-import com.example.dcdcconvertersdesign.SnubberDesign;
-import com.example.dcdcconvertersdesign.controller.AdvancedController;
-import com.example.dcdcconvertersdesign.controller.ConverterController;
+import com.example.dcdcconvertersdesign.controllers.AdvancedController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
-import com.example.dcdcconvertersdesign.model.AdvancedModel;
-
-import java.util.Locale;
+import com.example.dcdcconvertersdesign.models.AdvancedModel;
 
 public class AdvancedActivity extends AppCompatActivity {
     private TextView inductanceCriticalTextView, inputCurrentTextView, outputCurrentTextView,

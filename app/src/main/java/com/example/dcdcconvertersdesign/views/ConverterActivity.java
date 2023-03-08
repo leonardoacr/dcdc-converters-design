@@ -1,8 +1,5 @@
-package com.example.dcdcconvertersdesign.view;
+package com.example.dcdcconvertersdesign.views;
 
-import static com.example.dcdcconvertersdesign.helpers.Helpers.stringFormat;
-
-import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -12,10 +9,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dcdcconvertersdesign.R;
-import com.example.dcdcconvertersdesign.controller.ConverterController;
-import com.example.dcdcconvertersdesign.convertersutils.ConverterData;
+import com.example.dcdcconvertersdesign.controllers.ConverterController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
-import com.example.dcdcconvertersdesign.model.ConverterModel;
+import com.example.dcdcconvertersdesign.models.ConverterModel;
 
 public class ConverterActivity extends AppCompatActivity {
     private TextView dutyCycleTextView, resistanceTextView, capacitanceTextView, inductanceTextView;

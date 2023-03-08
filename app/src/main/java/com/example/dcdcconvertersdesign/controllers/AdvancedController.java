@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesign.controller;
+package com.example.dcdcconvertersdesign.controllers;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,8 +6,8 @@ import android.util.Log;
 
 import com.example.dcdcconvertersdesign.InductorDesign;
 import com.example.dcdcconvertersdesign.SnubberDesign;
-import com.example.dcdcconvertersdesign.model.AdvancedModel;
-import com.example.dcdcconvertersdesign.view.AdvancedActivity;
+import com.example.dcdcconvertersdesign.models.AdvancedModel;
+import com.example.dcdcconvertersdesign.views.AdvancedActivity;
 
 public class AdvancedController {
     private static final String OUTPUT_CURRENT_KEY = "Output_Current";

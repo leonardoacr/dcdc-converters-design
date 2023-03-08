@@ -1,7 +1,6 @@
-package com.example.dcdcconvertersdesign.model;
+package com.example.dcdcconvertersdesign.models;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.dcdcconvertersdesign.convertersutils.ConverterData;
 

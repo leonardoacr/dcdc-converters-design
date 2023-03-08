@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesign.view;
+package com.example.dcdcconvertersdesign.views;
 
 import static com.example.dcdcconvertersdesign.R.*;
 
@@ -19,7 +19,7 @@ import com.example.dcdcconvertersdesign.R;
 import com.example.dcdcconvertersdesign.ReverseDesign;
 import com.example.dcdcconvertersdesign.SnubberDefinitions;
 import com.example.dcdcconvertersdesign.Symbols;
-import com.example.dcdcconvertersdesign.controller.MainController;
+import com.example.dcdcconvertersdesign.controllers.MainController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 
 public class MainActivity extends AppCompatActivity {

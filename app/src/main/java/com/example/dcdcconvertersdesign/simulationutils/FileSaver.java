@@ -3,8 +3,7 @@ package com.example.dcdcconvertersdesign.simulationutils;
 import android.graphics.Bitmap;
 import android.util.Log;
 
-import com.example.dcdcconvertersdesign.model.SimulationModel;
-import com.example.dcdcconvertersdesign.view.SimulationActivity;
+import com.example.dcdcconvertersdesign.views.SimulationActivity;
 import com.github.mikephil.charting.charts.LineChart;
 
 import java.io.File;

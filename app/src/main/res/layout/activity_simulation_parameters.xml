@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/MyBackground"
-        tools:context=".view.MainActivity">
+        tools:context=".views.MainActivity">
 
         <ProgressBar
             android:id="@+id/progress_bar"

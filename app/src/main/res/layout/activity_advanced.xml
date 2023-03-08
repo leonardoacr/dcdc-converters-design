@@ -12,7 +12,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     style="@style/MyBackground"
-    tools:context=".view.AdvancedActivity"
+    tools:context=".views.AdvancedActivity"
     android:id="@+id/relativeLayout7">
 
     <TextView

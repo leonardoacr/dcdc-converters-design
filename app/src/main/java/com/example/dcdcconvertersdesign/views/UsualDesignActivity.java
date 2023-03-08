@@ -1,19 +1,17 @@
-package com.example.dcdcconvertersdesign.view;
+package com.example.dcdcconvertersdesign.views;
 
 import static com.example.dcdcconvertersdesign.helpers.Helpers.showToast;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.dcdcconvertersdesign.R;
-import com.example.dcdcconvertersdesign.controller.ConverterController;
-import com.example.dcdcconvertersdesign.controller.UsualDesignController;
+import com.example.dcdcconvertersdesign.controllers.UsualDesignController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
-import com.example.dcdcconvertersdesign.model.UsualDesignModel;
+import com.example.dcdcconvertersdesign.models.UsualDesignModel;
 
 public class UsualDesignActivity extends AppCompatActivity {
     // UI-related variables
