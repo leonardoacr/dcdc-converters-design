@@ -2,11 +2,11 @@ package com.example.dcdcconvertersdesign.models;
 
 import android.os.Bundle;
 
-import com.example.dcdcconvertersdesign.simulationutils.CalculateBoostArrays;
-import com.example.dcdcconvertersdesign.simulationutils.CalculateBuckArrays;
-import com.example.dcdcconvertersdesign.simulationutils.CalculateBuckBoostArrays;
-import com.example.dcdcconvertersdesign.simulationutils.GraphUtils;
-import com.example.dcdcconvertersdesign.simulationutils.SolveDiffEquations;
+import com.example.dcdcconvertersdesign.utils.simulationutils.CalculateBoostArrays;
+import com.example.dcdcconvertersdesign.utils.simulationutils.CalculateBuckArrays;
+import com.example.dcdcconvertersdesign.utils.simulationutils.CalculateBuckBoostArrays;
+import com.example.dcdcconvertersdesign.utils.simulationutils.GraphUtils;
+import com.example.dcdcconvertersdesign.utils.simulationutils.SolveDiffEquations;
 import com.github.mikephil.charting.charts.LineChart;
 
 public class SimulationModel {

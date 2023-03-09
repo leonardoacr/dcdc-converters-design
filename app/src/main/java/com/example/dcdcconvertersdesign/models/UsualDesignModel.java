@@ -2,7 +2,7 @@ package com.example.dcdcconvertersdesign.models;
 
 import android.os.Bundle;
 
-import com.example.dcdcconvertersdesign.convertersutils.ConverterData;
+import com.example.dcdcconvertersdesign.utils.convertersutils.ConverterData;
 
 public class UsualDesignModel {
     public static final String DUTY_CYCLE_KEY = "Duty_Cycle";

@@ -19,9 +19,6 @@ public class ConverterActivity extends AppCompatActivity {
             converterTitle, modeTextView;
     public ImageView converterFigure;
     public Button simulationBtn, advancedBtn;
-    private ConverterController controller;
-    private ConverterModel model;
-
     String TAG = "Converter";
 
     @Override
@@ -37,8 +34,8 @@ public class ConverterActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 
         // Set up model and controller
-        model = new ConverterModel();
-        controller = new ConverterController(this, model);
+        ConverterModel model = new ConverterModel();
+        ConverterController controller = new ConverterController(this, model);
         controller.onCreateController(bundle);
 
         // Simulation

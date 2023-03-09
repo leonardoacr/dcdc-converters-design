@@ -2,15 +2,17 @@ package com.example.dcdcconvertersdesign.controllers;
 
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
 
 import com.example.dcdcconvertersdesign.models.SimulationModel;
-import com.example.dcdcconvertersdesign.simulationutils.FileSaver;
-import com.example.dcdcconvertersdesign.simulationutils.GraphUtils;
-import com.example.dcdcconvertersdesign.simulationutils.LimitsDialog;
-import com.example.dcdcconvertersdesign.simulationutils.SaveDialog;
-import com.example.dcdcconvertersdesign.simulationutils.SolveDiffEquations;
+import com.example.dcdcconvertersdesign.utils.simulationutils.FileSaver;
+import com.example.dcdcconvertersdesign.utils.simulationutils.GraphUtils;
+import com.example.dcdcconvertersdesign.utils.simulationutils.LimitsDialog;
+import com.example.dcdcconvertersdesign.utils.simulationutils.SaveDialog;
+import com.example.dcdcconvertersdesign.utils.simulationutils.SolveDiffEquations;
 import com.example.dcdcconvertersdesign.views.SimulationActivity;
+import com.example.dcdcconvertersdesign.views.SimulationParametersActivity;
 import com.github.mikephil.charting.charts.LineChart;
 
 import java.util.Objects;
@@ -45,6 +47,10 @@ public class SimulationController {
                     handleID(model.getReceivedID(), model.getFlag(), chart, graphUtils);
                 }
             }
+
+            long delayToHideProgressBar = model.getNumStep() / 200;
+            new Handler().postDelayed(SimulationParametersActivity::hideProgressBar,
+                    delayToHideProgressBar);
 
             Log.d(TAG, String.valueOf(chart.getData().getEntryCount()));
             Log.d(TAG, "numStep: " + model.getNumStep());

@@ -1,6 +1,6 @@
-package com.example.dcdcconvertersdesign.simulationutils;
+package com.example.dcdcconvertersdesign.utils.simulationutils;
 
-public class CalculateBoostArrays {
+public class CalculateBuckBoostArrays {
     private static double[] diodeCurrentArray;
     public static double[] calculateOutputCurrentArray(double[] outputVoltageArray, double resistance) {
         double[] outputCurrentArray = new double[outputVoltageArray.length];
@@ -10,22 +10,27 @@ public class CalculateBoostArrays {
         return outputCurrentArray;
     }
 
+    public static double[] calculateInputCurrentArray(double[] inductorCurrentArray, double[] sArray) {
+        double[] inputCurrentArray = new double[inductorCurrentArray.length];
+        for (int i = 0; i < inductorCurrentArray.length; i++) {
+            inputCurrentArray[i] = -inductorCurrentArray[i] * sArray[i];
+        }
+        return inputCurrentArray;
+    }
+
     public static double[] calculateDiodeCurrentArray(double[] inductorCurrentArray, double[] sArray) {
         diodeCurrentArray = new double[inductorCurrentArray.length];
 
         for (int i = 0; i < diodeCurrentArray.length; i++) {
-            diodeCurrentArray[i] = inductorCurrentArray[i] * (1 - sArray[i]);
+            diodeCurrentArray[i] = -inductorCurrentArray[i] * (1 - sArray[i]);
         }
         return diodeCurrentArray;
     }
 
     public static double[] calculateSwitchCurrentArray(double[] inductorCurrentArray, double[] sArray) {
-        diodeCurrentArray = new double[inductorCurrentArray.length];
         double[] switchCurrentArray = new double[inductorCurrentArray.length];
-        diodeCurrentArray = calculateDiodeCurrentArray(inductorCurrentArray, sArray);
-
-        for (int i = 0; i < switchCurrentArray.length; i++) {
-            switchCurrentArray[i] = inductorCurrentArray[i] - diodeCurrentArray[i];
+        for (int i = 0; i < inductorCurrentArray.length; i++) {
+            switchCurrentArray[i] = -inductorCurrentArray[i] * sArray[i];
         }
         return switchCurrentArray;
     }
@@ -40,7 +45,7 @@ public class CalculateBoostArrays {
         diodeCurrentArray = calculateDiodeCurrentArray(inductorCurrentArray, sArray);
 
         for (int i = 0; i < capacitorCurrentArray.length; i++) {
-            capacitorCurrentArray[i] = diodeCurrentArray[i] - outputCurrentArray[i];
+            capacitorCurrentArray[i] = - (outputCurrentArray[i] + diodeCurrentArray[i]);
         }
         return capacitorCurrentArray;
     }

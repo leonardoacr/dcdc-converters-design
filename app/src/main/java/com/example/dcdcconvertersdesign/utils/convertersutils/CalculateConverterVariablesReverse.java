@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesign.convertersutils;
+package com.example.dcdcconvertersdesign.utils.convertersutils;
 
 import static com.example.dcdcconvertersdesign.ReverseDesign.*;
 

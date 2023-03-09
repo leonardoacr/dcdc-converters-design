@@ -14,7 +14,7 @@ import com.example.dcdcconvertersdesign.R;
 import com.example.dcdcconvertersdesign.controllers.SimulationController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 import com.example.dcdcconvertersdesign.models.SimulationModel;
-import com.example.dcdcconvertersdesign.simulationutils.GraphUtils;
+import com.example.dcdcconvertersdesign.utils.simulationutils.GraphUtils;
 import com.github.mikephil.charting.charts.LineChart;
 
 public class SimulationActivity extends AppCompatActivity {

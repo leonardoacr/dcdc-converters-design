@@ -3,7 +3,7 @@ package com.example.dcdcconvertersdesign.models;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.dcdcconvertersdesign.convertersutils.ConverterData;
+import com.example.dcdcconvertersdesign.utils.convertersutils.ConverterData;
 
 public class ConverterModel {
     private static double dutyCycle;
@@ -26,7 +26,6 @@ public class ConverterModel {
     private static double outputVoltageMax;
     private static double outputVoltageMin;
     private static double deltaCapacitorVoltage;
-    private static double rippleCapacitorVoltage;
     private static double inductorCurrentRMS;
     private static boolean isCCM;
     private static int flag;

@@ -1,7 +1,6 @@
-package com.example.dcdcconvertersdesign.simulationutils;
+package com.example.dcdcconvertersdesign.utils.simulationutils;
 
-public class CalculateBuckBoostArrays {
-    private static double[] diodeCurrentArray;
+public class CalculateBuckArrays {
     public static double[] calculateOutputCurrentArray(double[] outputVoltageArray, double resistance) {
         double[] outputCurrentArray = new double[outputVoltageArray.length];
         for (int i = 0; i < outputVoltageArray.length; i++) {
@@ -13,39 +12,35 @@ public class CalculateBuckBoostArrays {
     public static double[] calculateInputCurrentArray(double[] inductorCurrentArray, double[] sArray) {
         double[] inputCurrentArray = new double[inductorCurrentArray.length];
         for (int i = 0; i < inductorCurrentArray.length; i++) {
-            inputCurrentArray[i] = -inductorCurrentArray[i] * sArray[i];
+            inputCurrentArray[i] = inductorCurrentArray[i] * sArray[i];
         }
         return inputCurrentArray;
     }
 
+    public static double[] calculateSwitchCurrentArray(double[] inductorCurrentArray, double[] sArray) {
+        double[] switchCurrentArray = new double[inductorCurrentArray.length];
+        switchCurrentArray = calculateInputCurrentArray(inductorCurrentArray, sArray);
+        return switchCurrentArray;
+    }
+
     public static double[] calculateDiodeCurrentArray(double[] inductorCurrentArray, double[] sArray) {
-        diodeCurrentArray = new double[inductorCurrentArray.length];
+        double[] diodeCurrentArray = new double[inductorCurrentArray.length];
+        double[] inputCurrentArray = calculateInputCurrentArray(inductorCurrentArray, sArray);
 
         for (int i = 0; i < diodeCurrentArray.length; i++) {
-            diodeCurrentArray[i] = -inductorCurrentArray[i] * (1 - sArray[i]);
+            diodeCurrentArray[i] = inductorCurrentArray[i] - inputCurrentArray[i];
         }
         return diodeCurrentArray;
     }
 
-    public static double[] calculateSwitchCurrentArray(double[] inductorCurrentArray, double[] sArray) {
-        double[] switchCurrentArray = new double[inductorCurrentArray.length];
-        for (int i = 0; i < inductorCurrentArray.length; i++) {
-            switchCurrentArray[i] = -inductorCurrentArray[i] * sArray[i];
-        }
-        return switchCurrentArray;
-    }
-
     public static double[] calculateCapacitorCurrentArray(double[] outputVoltageArray,
                                                           double[] inductorCurrentArray,
-                                                          double resistance, double[] sArray) {
-        diodeCurrentArray = new double[inductorCurrentArray.length];
+                                                          double resistance) {
         double[] capacitorCurrentArray = new double[inductorCurrentArray.length];
         double[] outputCurrentArray = calculateOutputCurrentArray(outputVoltageArray, resistance);
 
-        diodeCurrentArray = calculateDiodeCurrentArray(inductorCurrentArray, sArray);
-
         for (int i = 0; i < capacitorCurrentArray.length; i++) {
-            capacitorCurrentArray[i] = - (outputCurrentArray[i] + diodeCurrentArray[i]);
+            capacitorCurrentArray[i] = inductorCurrentArray[i] - outputCurrentArray[i];
         }
         return capacitorCurrentArray;
     }

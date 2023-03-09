@@ -29,7 +29,7 @@
         <activity android:name=".views.AdvancedActivity" />
         <activity android:name=".SnubberDesign" />
         <activity android:name=".InductorDesign" />
-        <activity android:name=".views.ConvertersReverseActivity" />
+        <activity android:name=".views.ConverterReverseActivity" />
         <activity android:name=".InductorDefinitions" />
         <activity android:name=".About" />
         <activity android:name=".views.SimulationActivity" />

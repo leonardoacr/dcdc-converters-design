@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.dcdcconvertersdesign.models.ConverterModel;
-import com.example.dcdcconvertersdesign.convertersutils.ConverterData;
+import com.example.dcdcconvertersdesign.utils.convertersutils.ConverterData;
 import com.example.dcdcconvertersdesign.models.UsualDesignModel;
 import com.example.dcdcconvertersdesign.views.ConverterActivity;
 import com.example.dcdcconvertersdesign.views.UsualDesignActivity;

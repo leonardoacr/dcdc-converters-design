@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesign.simulationutils;
+package com.example.dcdcconvertersdesign.utils.simulationutils;
 
 import android.graphics.Bitmap;
 import android.util.Log;
