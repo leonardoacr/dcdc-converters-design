@@ -30,25 +30,6 @@ public class ConverterModel {
     private static boolean isCCM;
     private static int flag;
 
-    private final String DUTY_CYCLE_KEY = "Duty_Cycle";
-    private final String DUTY_CYCLE_IDEAL_KEY = "Duty_Cycle_Ideal";
-    private final String RESISTANCE_KEY = "Resistance";
-    private final String CAPACITANCE_KEY = "Capacitance";
-    private final String INDUCTANCE_KEY = "Inductance";
-    private final String INDUCTANCE_CRITICAL_KEY = "Inductance_Crit";
-    private final String INPUT_CURRENT_KEY = "Input_Current";
-    private final String OUTPUT_CURRENT_KEY = "Output_Current";
-    private final String INDUCTOR_CURRENT_KEY = "Inductor_Current";
-    private final String SWITCH_CURRENT_KEY = "Switch_Current";
-    private final String DIODE_CURRENT_KEY = "Diode_Current";
-    private final String INPUT_VOLTAGE_KEY = "Input_Voltage";
-    private final String OUTPUT_VOLTAGE_KEY = "Output_Voltage";
-    private final String FREQUENCY_KEY = "Frequency";
-    private final String DELTA_INDUCTOR_CURRENT_KEY = "DeltaIL";
-    private final String DELTA_CAPACITOR_VOLTAGE_KEY = "DeltaVC";
-    private final String INDUCTOR_CURRENT_RMS_KEY = "Inductor_Current_RMS";
-    private final String IS_CCM_KEY = "is_ccm";
-    private final String FLAG_KEY = "Flag";
     public static ConverterData buckCalculations(double inputVoltage, double outputVoltage, double outputPower,
                                                  double rippleInductorCurrent, double rippleCapacitorVoltage,
                                                  double frequency, double efficiency) {
@@ -99,10 +80,11 @@ public class ConverterModel {
         ConverterData data = new ConverterData();
 
         // set data using the setData() method
-        setData(data, dutyCycle, dutyCycleIdeal, resistance, capacitance, inductance,
+        data.setData(data, dutyCycle, dutyCycleIdeal, resistance, capacitance, inductance,
                 inductanceCritical, inputCurrent, outputCurrent, inductorCurrent, switchCurrent,
                 diodeCurrent, deltaInductorCurrent, deltaCapacitorVoltage, inductorCurrentRMS, isCCM,
-                inputVoltage, outputVoltage, frequency);
+                inputVoltage, outputVoltage, frequency, outputPower, rippleInductorCurrent,
+                rippleCapacitorVoltage);
 
         Log.d("CalculateVariables", isCCM + " " + inductanceCritical + " " + inductance + " " + dutyCycle);
 
@@ -199,10 +181,11 @@ public class ConverterModel {
         ConverterData data = new ConverterData();
 
         // set data using the setData() method
-        setData(data, dutyCycle, dutyCycleIdeal, resistance, capacitance, inductance,
+        data.setData(data, dutyCycle, dutyCycleIdeal, resistance, capacitance, inductance,
                 inductanceCritical, inputCurrent, outputCurrent, inductorCurrent, switchCurrent,
                 diodeCurrent, deltaInductorCurrent, deltaCapacitorVoltage, inductorCurrentRMS, isCCM,
-                inputVoltage, outputVoltage, frequency);
+                inputVoltage, outputVoltage, frequency, outputPower, rippleInductorCurrent,
+                rippleCapacitorVoltage);
 
         // return the data object
         return data;
@@ -268,10 +251,11 @@ public class ConverterModel {
         ConverterData data = new ConverterData();
 
         // set data using the setData() method
-        setData(data, dutyCycle, dutyCycleIdeal, resistance, capacitance, inductance,
+        data.setData(data, dutyCycle, dutyCycleIdeal, resistance, capacitance, inductance,
                 inductanceCritical, inputCurrent, outputCurrent, inductorCurrent, switchCurrent,
                 diodeCurrent, deltaInductorCurrent, deltaCapacitorVoltage, inductorCurrentRMS, isCCM,
-                inputVoltage, outputVoltage, frequency);
+                inputVoltage, outputVoltage, frequency, outputPower, rippleInductorCurrent,
+                rippleCapacitorVoltage);
 
         // return the data object
         return data;
@@ -290,34 +274,27 @@ public class ConverterModel {
         return inductanceCritical <= inductance;
     }
 
-    public static void setData(ConverterData data, double dutyCycle, double dutyCycleIdeal,
-                               double resistance, double capacitance, double inductance,
-                               double inductanceCritical, double inputCurrent, double outputCurrent,
-                               double inductorCurrent, double switchCurrent, double diodeCurrent,
-                               double deltaInductorCurrent, double deltaCapacitorVoltage,
-                               double inductorCurrentRMS, boolean isCCM, double inputVoltage,
-                               double outputVoltage, double frequency) {
-        data.setDutyCycle(dutyCycle);
-        data.setDutyCycleIdeal(dutyCycleIdeal);
-        data.setResistance(resistance);
-        data.setCapacitance(capacitance);
-        data.setInductance(inductance);
-        data.setInductanceCritical(inductanceCritical);
-        data.setInputCurrent(inputCurrent);
-        data.setOutputCurrent(outputCurrent);
-        data.setInductorCurrent(inductorCurrent);
-        data.setSwitchCurrent(switchCurrent);
-        data.setDiodeCurrent(diodeCurrent);
-        data.setDeltaInductorCurrent(deltaInductorCurrent);
-        data.setDeltaCapacitorVoltage(deltaCapacitorVoltage);
-        data.setInductorCurrentRMS(inductorCurrentRMS);
-        data.setIsCCM(isCCM);
-        data.setInputVoltage(inputVoltage);
-        data.setOutputVoltage(outputVoltage);
-        data.setFrequency(frequency);
-    }
-
     public void retrieveDataFromUsualDesignActivity(Bundle bundle) {
+        String DUTY_CYCLE_KEY = "Duty_Cycle";
+        String DUTY_CYCLE_IDEAL_KEY = "Duty_Cycle_Ideal";
+        String RESISTANCE_KEY = "Resistance";
+        String CAPACITANCE_KEY = "Capacitance";
+        String INDUCTANCE_KEY = "Inductance";
+        String INDUCTANCE_CRITICAL_KEY = "Inductance_Crit";
+        String INPUT_CURRENT_KEY = "Input_Current";
+        String OUTPUT_CURRENT_KEY = "Output_Current";
+        String INDUCTOR_CURRENT_KEY = "Inductor_Current";
+        String SWITCH_CURRENT_KEY = "Switch_Current";
+        String DIODE_CURRENT_KEY = "Diode_Current";
+        String INPUT_VOLTAGE_KEY = "Input_Voltage";
+        String OUTPUT_VOLTAGE_KEY = "Output_Voltage";
+        String FREQUENCY_KEY = "Frequency";
+        String DELTA_INDUCTOR_CURRENT_KEY = "DeltaIL";
+        String DELTA_CAPACITOR_VOLTAGE_KEY = "DeltaVC";
+        String INDUCTOR_CURRENT_RMS_KEY = "Inductor_Current_RMS";
+        String IS_CCM_KEY = "is_ccm";
+        String FLAG_KEY = "Flag";
+
         dutyCycle = bundle.getDouble(DUTY_CYCLE_KEY);
         dutyCycleIdeal = bundle.getDouble(DUTY_CYCLE_IDEAL_KEY);
         resistance = bundle.getDouble(RESISTANCE_KEY);

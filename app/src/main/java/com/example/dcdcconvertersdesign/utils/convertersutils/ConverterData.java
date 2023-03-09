@@ -16,14 +16,48 @@ public class ConverterData {
     private double switchCurrent;
     private double diodeCurrent;
     private double deltaInductorCurrent;
+    private double rippleInductorCurrent;
     private double deltaCapacitorVoltage;
+    private double rippleCapacitorVoltage;
     private double inductorCurrentRMS;
+    private double outputPower;
     private boolean isCCM;
 
     private int flag;
 
     public ConverterData() {
         // constructor
+    }
+
+    public void setData(ConverterData data, double dutyCycle, double dutyCycleIdeal,
+                               double resistance, double capacitance, double inductance,
+                               double inductanceCritical, double inputCurrent, double outputCurrent,
+                               double inductorCurrent, double switchCurrent, double diodeCurrent,
+                               double deltaInductorCurrent, double deltaCapacitorVoltage,
+                               double inductorCurrentRMS, boolean isCCM, double inputVoltage,
+                               double outputVoltage, double frequency, double outputPower,
+                               double rippleInductorCurrent, double rippleCapacitorVoltage) {
+        data.setDutyCycle(dutyCycle);
+        data.setDutyCycleIdeal(dutyCycleIdeal);
+        data.setResistance(resistance);
+        data.setCapacitance(capacitance);
+        data.setInductance(inductance);
+        data.setInductanceCritical(inductanceCritical);
+        data.setInputCurrent(inputCurrent);
+        data.setOutputCurrent(outputCurrent);
+        data.setInductorCurrent(inductorCurrent);
+        data.setSwitchCurrent(switchCurrent);
+        data.setDiodeCurrent(diodeCurrent);
+        data.setDeltaInductorCurrent(deltaInductorCurrent);
+        data.setRippleInductorCurrent(rippleInductorCurrent);
+        data.setDeltaCapacitorVoltage(deltaCapacitorVoltage);
+        data.setRippleCapacitorVoltage(rippleCapacitorVoltage);
+        data.setInductorCurrentRMS(inductorCurrentRMS);
+        data.setIsCCM(isCCM);
+        data.setInputVoltage(inputVoltage);
+        data.setOutputVoltage(outputVoltage);
+        data.setFrequency(frequency);
+        data.setOutputPower(outputPower);
     }
 
     // setters
@@ -83,8 +117,15 @@ public class ConverterData {
         this.deltaInductorCurrent = deltaInductorCurrent;
     }
 
+    public void setRippleInductorCurrent(double rippleInductorCurrent) {
+        this.rippleInductorCurrent = rippleInductorCurrent;
+    }
     public void setDeltaCapacitorVoltage(double deltaCapacitorVoltage) {
         this.deltaCapacitorVoltage = deltaCapacitorVoltage;
+    }
+
+    public void setRippleCapacitorVoltage(double rippleCapacitorVoltage) {
+        this.rippleCapacitorVoltage = rippleCapacitorVoltage;
     }
 
     public void setInductorCurrentRMS(double inductorCurrentRMS) {
@@ -94,6 +135,8 @@ public class ConverterData {
     public void setIsCCM(boolean isCCM) {
         this.isCCM = isCCM;
     }
+
+    public void setOutputPower(double outputPower) { this.outputPower = outputPower; }
 
     // getters
     public double getInputVoltage() { return inputVoltage; }
@@ -152,9 +195,12 @@ public class ConverterData {
         return deltaInductorCurrent;
     }
 
+    public double getRippleInductorCurrent() { return rippleInductorCurrent; }
     public double getDeltaCapacitorVoltage() {
         return deltaCapacitorVoltage;
     }
+
+    public double getRippleCapacitorVoltage() { return rippleCapacitorVoltage; }
 
     public double getInductorCurrentRMS() {
         return inductorCurrentRMS;
@@ -163,4 +209,6 @@ public class ConverterData {
     public boolean getIsCCM() {
         return isCCM;
     }
+
+    public double getOutputPower() { return outputPower; }
 }

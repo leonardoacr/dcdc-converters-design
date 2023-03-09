@@ -1,29 +1,20 @@
 package com.example.dcdcconvertersdesign.views;
 
+import static com.example.dcdcconvertersdesign.helpers.Helpers.showToast;
+
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.dcdcconvertersdesign.R;
-import com.example.dcdcconvertersdesign.utils.convertersutils.CalculateConverterVariablesReverse;
+import com.example.dcdcconvertersdesign.controllers.ReverseDesignController;
+import com.example.dcdcconvertersdesign.models.ReverseDesignModel;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 
 public class ReverseDesignActivity extends AppCompatActivity {
-    public int flag;
-    public static double inputVoltage, outputVoltage, outputPower, rippleInductorCurrent,
-        rippleCapacitorVoltage, frequency, switchCurrent, diodeCurrent,  inductorCurrentRMS,
-            efficiency, inductorCurrentMax, inductorCurrentMin, inductorCurrent, outputVoltageMax,
-            outputVoltageMin;
-    public static double inputCurrent, outputCurrent, deltaInductorCurrent, deltaCapacitorVoltage;
-    public static double dutyCycle, dutyCycleIdeal, resistance, capacitance, inductance, inductanceCritical;
-
-    public static boolean isCCM;
     private EditText inductanceEditText, resistanceEditText, capacitanceEditText, inputVoltageEditText,
             outputVoltageEditText, frequencyEditText, efficiencyEditText;
     private Button buckBtn, boostBtn, buckBoostBtn, exampleBtn;
@@ -36,89 +27,16 @@ public class ReverseDesignActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reverse_design);
         Helpers.setMainActionBar(this);
-        createObjects();
 
-        // Example button listener
-        exampleBtn.setOnClickListener(v -> {
-            inputVoltageEditText.setText("24");
-            outputVoltageEditText.setText("12");
-            inductanceEditText.setText("71.11");
-            capacitanceEditText.setText("17.36");
-            resistanceEditText.setText("1.44");
-            frequencyEditText.setText("50");
-            efficiencyEditText.setText("90");
-        });
+        ReverseDesignModel model = new ReverseDesignModel();
+        ReverseDesignController controller = new ReverseDesignController(this, model);
 
-        buckBtn.setOnClickListener(v -> {
-            flag = 1;
-            if (isEmpty()) {
-                Helpers.showToast(this, "Error! Something is empty");
-                return;
-            }
-
-            InputValues();
-            CalculateConverterVariablesReverse.buckCalculations();
-            Log.d(TAG, "HEY" + dutyCycle);
-            if (inputVoltage > outputVoltage && dutyCycle <= 0.95 && dutyCycle >= 0.05) {
-                sendDataToConvertersR();
-            }
-            if (inputVoltage < outputVoltage) {
-                Helpers.showToast(this, "Error! Output bigger than Input");
-            }
-            if (inputVoltage == outputVoltage) {
-                Helpers.showToast(this, "Error! Input and Output are equal");
-            }
-            if((dutyCycle > 0.95 || dutyCycle < 0.05) && inputVoltage > outputVoltage) {
-                Helpers.showToast(this, "Error! Duty Cycle is out of the security range (0.05 < D > 0.95)");
-            }
-        });
-
-        boostBtn.setOnClickListener(v -> {
-            flag = 2;
-            if (isEmpty()) {
-                Helpers.showToast(this, "Error! Something is empty");
-                return;
-            }
-            InputValues();
-            CalculateConverterVariablesReverse.boostCalculations();
-
-            if(inputVoltage < outputVoltage && dutyCycle <= 0.95 && dutyCycle >= 0.05) {
-                sendDataToConvertersR();
-            }
-            if (inputVoltage == outputVoltage) {
-                Toast.makeText(getApplicationContext(), "Error! Input and Output are equal", Toast.LENGTH_SHORT).show();
-            }
-            if(inputVoltage > outputVoltage) {
-                Toast.makeText(getApplicationContext(), "Error! Input bigger than Output", Toast.LENGTH_SHORT ).show();
-            }
-            if((dutyCycle > 0.95 || dutyCycle < 0.05) && inputVoltage < outputVoltage) {
-                Toast.makeText(getApplicationContext(), "Error! Duty Cycle is out of the security range (0.05 < D > 0.95)", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        buckBoostBtn.setOnClickListener(v -> {
-            flag = 3;
-            if (isEmpty()) {
-                Helpers.showToast(this, "Error! Something is empty");
-                return;
-            }
-            InputValues();
-            CalculateConverterVariablesReverse.buckBoostCalculations();
-
-            if (inputVoltage != outputVoltage && dutyCycle <= 0.95 && dutyCycle >= 0.05) {
-                sendDataToConvertersR();
-            }
-            if (inputVoltage == outputVoltage) {
-                Helpers.showToast(this, "Error! Input and Output are equal");
-            }
-            if((dutyCycle > 0.95 || dutyCycle < 0.05) && inputVoltage != outputVoltage) {
-                Helpers.showToast(this, "Error! Duty Cycle is out of the security range (0.05 < D > 0.95)");
-            }
-        });
-
+        // Set up the UI
+        setUIComponents();
+        handleButtons(controller);
     }
 
-    public void createObjects() {
+    public void setUIComponents() {
         // Input Values
         inputVoltageEditText = findViewById(R.id.input_voltage_reverse);
         outputVoltageEditText = findViewById(R.id.output_voltage);
@@ -135,58 +53,69 @@ public class ReverseDesignActivity extends AppCompatActivity {
         exampleBtn = findViewById(R.id.example_reverse_design_btn);
     }
 
-    public boolean isEmpty(){
-        return inputVoltageEditText.getText().toString().isEmpty() ||
-                outputVoltageEditText.getText().toString().isEmpty() ||
-                inductanceEditText.getText().toString().isEmpty() ||
-                resistanceEditText.getText().toString().isEmpty() ||
-                capacitanceEditText.getText().toString().isEmpty() ||
-                frequencyEditText.getText().toString().isEmpty();
+    public void updateUIComponents(double inputVoltage, double outputVoltage,
+                                   double resistance, double inductance, double capacitance,
+                                   double frequency, double efficiency) {
+        inputVoltageEditText.setText(String.valueOf(inputVoltage));
+        outputVoltageEditText.setText(String.valueOf(outputVoltage));
+        resistanceEditText.setText(String.valueOf(resistance));
+        inductanceEditText.setText(String.valueOf(inductance));
+        capacitanceEditText.setText(String.valueOf(capacitance));
+        frequencyEditText.setText(String.valueOf(frequency));
+        efficiencyEditText.setText(String.valueOf(efficiency));
     }
 
-    public void InputValues() {
-        inputVoltage = Double.parseDouble(inputVoltageEditText.getText().toString());
-        outputVoltage = Double.parseDouble(outputVoltageEditText.getText().toString());
-        resistance = Double.parseDouble(resistanceEditText.getText().toString());
-        inductance = Double.parseDouble(inductanceEditText.getText().toString()) / 1e6;
-        capacitance = Double.parseDouble(capacitanceEditText.getText().toString()) / 1e6;
-        frequency = Double.parseDouble(frequencyEditText.getText().toString()) * 1e3;
-        efficiency = Double.parseDouble(efficiencyEditText.getText().toString());
+    private void handleButtons(ReverseDesignController controller) {
+        // Example button listener
+        exampleBtn.setOnClickListener(v -> controller.onExampleClicked());
+
+        // Buck Converter
+        buckBtn.setOnClickListener(v -> controller.onBuckConverterClicked());
+
+        // Boost Converter
+        boostBtn.setOnClickListener(v -> controller.onBoostConverterClicked());
+
+        // Buck Converter
+        buckBoostBtn.setOnClickListener(v -> controller.onBuckBoostConverterClicked());
     }
 
-    public void sendDataToConvertersR() {
-        Intent intent = new Intent(getApplicationContext(), ConverterReverseActivity.class);
-        Bundle data = new Bundle();
+    public boolean isEmpty() {
+        EditText[] fields = {inputVoltageEditText, outputVoltageEditText, inductanceEditText,
+                resistanceEditText, capacitanceEditText, frequencyEditText, efficiencyEditText};
+        for (EditText field : fields) {
+            if (field.getText().toString().isEmpty()) {
+                showToast(this, "Error! Something is empty");
+                return true;
+            }
+        }
+        return false;
+    }
 
-        // Sending Data to Write Values
-        data.putDouble("Duty_Cycle", dutyCycle);
-        data.putDouble("Duty_Cycle_Ideal", dutyCycleIdeal);
-        data.putDouble("Inductance_Crit", inductanceCritical);
-        data.putDouble("Ripplevc", rippleCapacitorVoltage);
-        data.putDouble("Rippleil", rippleInductorCurrent);
-        data.putDouble("Output_Power", outputPower);
-        data.putDouble("Inductance", inductance);
-        data.putDouble("Resistance", resistance);
-        data.putDouble("Capacitance", capacitance);
+    public Double getInputVoltage() {
+        return Double.parseDouble(inputVoltageEditText.getText().toString());
+    }
 
-        data.putBoolean("is_ccm", isCCM);
-        data.putInt("Flag", flag);
+    public Double getOutputVoltage() {
+        return Double.parseDouble(outputVoltageEditText.getText().toString());
+    }
 
-        // Sending data to Advanced
-        data.putDouble("Input_Current", inputCurrent);
-        data.putDouble("Output_Current", outputCurrent);
-        data.putDouble("Inductor_Current", inductorCurrent);
-        data.putDouble("Switch_Current", switchCurrent);
-        data.putDouble("Diode_Current", diodeCurrent);
-        data.putDouble("Input_Voltage", inputVoltage);
-        data.putDouble("Output_Voltage", outputVoltage);
-        data.putDouble("Frequency", frequency);
-        data.putDouble("DeltaIL", deltaInductorCurrent);
-        data.putDouble("DeltaVC", deltaCapacitorVoltage);
-        data.putDouble("ILrms", inductorCurrentRMS);
+    public Double getResistance() {
+        return Double.parseDouble(resistanceEditText.getText().toString());
+    }
 
-        intent.putExtras(data);
+    public Double getInductance() {
+        return Double.parseDouble(inductanceEditText.getText().toString()) / 1e6;
+    }
 
-        startActivity(intent);
+    public Double getCapacitance() {
+        return Double.parseDouble(capacitanceEditText.getText().toString()) / 1e6;
+    }
+
+    public Double getFrequency() {
+        return Double.parseDouble(frequencyEditText.getText().toString()) * 1e3;
+    }
+
+    public Double getEfficiency() {
+        return Double.parseDouble(efficiencyEditText.getText().toString());
     }
 }
