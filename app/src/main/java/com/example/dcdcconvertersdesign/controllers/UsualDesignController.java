@@ -4,6 +4,7 @@ import static com.example.dcdcconvertersdesign.helpers.VerifyInputErrors.*;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.dcdcconvertersdesign.models.ConverterModel;
 import com.example.dcdcconvertersdesign.utils.convertersutils.ConverterData;
@@ -45,7 +46,6 @@ public class UsualDesignController {
                 outputVoltage, outputPower, rippleInductorCurrent, rippleCapacitorVoltage,
                 frequency, efficiency);
 
-        // Save flag
         data.setFlag(flag);
         getConverterData(data);
 

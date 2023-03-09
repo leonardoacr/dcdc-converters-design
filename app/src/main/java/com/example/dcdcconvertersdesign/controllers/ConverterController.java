@@ -23,7 +23,6 @@ public class ConverterController {
        if(bundle != null) {
            // Retrieve data from the Bundle and set the model variables
            model.retrieveDataFromUsualDesignActivity(bundle);
-
            // Update view with model data
            updateDisplay();
        } else {

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -16,7 +15,6 @@ import android.widget.ToggleButton;
 
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 
-import java.io.InputStream;
 import java.util.Locale;
 
 public class InductorDesign extends AppCompatActivity {
@@ -118,7 +116,7 @@ public class InductorDesign extends AppCompatActivity {
 
                 tableBtn.setOnClickListener(v -> {
 
-                    Intent intent = new Intent(InductorDesign.this, Table.class);
+                    Intent intent = new Intent(InductorDesign.this, InductorDesignTable.class);
 
                     startActivity(intent);
                 });
@@ -199,7 +197,7 @@ public class InductorDesign extends AppCompatActivity {
         airGapText.setText("Air Gap (mm)");
         sizePercentText.setText("Size Percent (%)");
         turnNumberText.setText("Number of Turns");
-        awgText.setText("awgTextView");
+        awgText.setText("AWG");
         parallelConductorsText.setText("Parallel Conductors");
 
         // Writing Values
@@ -335,7 +333,7 @@ public class InductorDesign extends AppCompatActivity {
     private void retrieveDataFromAdvanced() {
         Bundle data4 = getIntent().getExtras();
         inductance = data4.getDouble("Inductance");
-        inductorCurrentRMS = data4.getDouble("ILrms");
+        inductorCurrentRMS = data4.getDouble("Inductor_Current_RMS");
         deltaInductorCurrent = data4.getDouble("DeltaIL");
         frequency = data4.getDouble("Frequency");
     }

@@ -169,7 +169,7 @@ public class ConverterReverseModel {
         }
 
         inductanceCritical = (Math.pow(inputVoltage, 2) * dutyCycle) / (2 * outputPower * frequency);
-        deltaCapacitorVoltage = 2 * (outputCurrent * dutyCycle) / (capacitance * frequency);
+        deltaCapacitorVoltage = (outputCurrent * dutyCycle) / (capacitance * frequency);
         rippleCapacitorVoltage = 100 * deltaCapacitorVoltage / outputVoltage;
         outputVoltageMax = outputVoltage + outputVoltage * (rippleCapacitorVoltage / 200);
         outputVoltageMin = outputVoltage - outputVoltage * (rippleCapacitorVoltage / 200);
@@ -238,7 +238,7 @@ public class ConverterReverseModel {
                 ", Inductor Current = " + inductorCurrent);
 
         isCCM = checkBuckBoostConductionMode(inputVoltage, outputVoltage, frequency,
-                inductance, efficiency);
+                inductance, efficiency, inductorCurrent);
         Log.d(TAG, isCCM + " " +
                 inductanceCritical + " " + inductance + " " + dutyCycle);
 
@@ -252,6 +252,7 @@ public class ConverterReverseModel {
             inductorCurrentMin = inductorCurrent - inductorCurrent * (rippleInductorCurrent / 200);
             inductorCurrentRMS = Math.sqrt(Math.pow(inductorCurrentMax, 2) +
                     Math.pow(deltaInductorCurrent / 12, 2));
+            inductanceCritical = inputVoltage * dutyCycle  / (frequency * inductorCurrent * 2);
         } else {
             // DCM Mode
             deltaInductorCurrent = Math.sqrt(2 * outputCurrent * outputVoltage /
@@ -262,10 +263,11 @@ public class ConverterReverseModel {
             dutyCycleIdeal = (outputVoltage / inputVoltage) *
                     Math.sqrt((2 * inductance * frequency) / resistance);
             dutyCycle = dutyCycleIdeal / (efficiency / 100);
+            inductanceCritical = 2 * outputCurrent * outputVoltage /
+                    (Math.pow(2 * inductorCurrent, 2) * frequency);
         }
-        inductanceCritical = (Math.pow(inputVoltage, 2) * dutyCycle) /
-                (2 * outputPower * frequency);
-        deltaCapacitorVoltage =  (outputCurrent * dutyCycle * 2) / (capacitance * frequency);
+
+        deltaCapacitorVoltage =  (outputCurrent * dutyCycle) / (capacitance * frequency);
         rippleCapacitorVoltage = 100 * deltaCapacitorVoltage / outputVoltage;
 
         Log.d(TAG, "Check variables after the MODE: " +
@@ -301,10 +303,10 @@ public class ConverterReverseModel {
 
     private static boolean checkBuckBoostConductionMode(double inputVoltage, double outputVoltage,
                                                    double frequency, double inductance,
-                                                   double efficiency) {
+                                                   double efficiency, double inductorCurrent) {
         dutyCycleIdeal = (outputVoltage) / (inputVoltage + outputVoltage);
         dutyCycle = ((outputVoltage) / (inputVoltage + outputVoltage)) / (efficiency / 100);
-        inductanceCritical = (Math.pow(inputVoltage, 2) * dutyCycle) / (2 * outputPower * frequency);
+        inductanceCritical = inputVoltage * dutyCycle  / (frequency * inductorCurrent * 2);
         return inductanceCritical <= inductance;
     }
 

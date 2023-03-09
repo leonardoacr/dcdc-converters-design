@@ -3,7 +3,7 @@ package com.example.dcdcconvertersdesign;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Symbols extends AppCompatActivity {
+public class SymbolsDefinitions extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

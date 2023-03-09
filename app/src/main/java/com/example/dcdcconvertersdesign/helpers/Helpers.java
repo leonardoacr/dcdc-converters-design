@@ -22,25 +22,33 @@ import java.util.Objects;
 public class Helpers {
     public static void setMainActionBar(Activity activity){
         ActionBar actionBar = ((AppCompatActivity) activity).getSupportActionBar();
+        assert actionBar != null;
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setIcon(R.mipmap.app_icon);
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#293239")));
 
         SpannableString s = new SpannableString("DCDC Converters Design");
-        s.setSpan(new TypefaceSpan("montserrat_regular"), 0, s.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        s.setSpan(new AbsoluteSizeSpan(20, true), 0, s.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, s.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        s.setSpan(new TypefaceSpan("montserrat_regular"), 0, s.length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        s.setSpan(new AbsoluteSizeSpan(20, true), 0, s.length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, s.length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         actionBar.setTitle(s);
     }
     public static void setMinActionBar(Activity activity) {
         ActionBar actionBar = ((AppCompatActivity) activity).getSupportActionBar();
+        assert actionBar != null;
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#293239")));
 
         SpannableString s = new SpannableString("DCDC Converters Design");
-        s.setSpan(new TypefaceSpan("montserrat_regular"), 0, s.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        s.setSpan(new AbsoluteSizeSpan(20, true), 0, s.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, s.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        s.setSpan(new TypefaceSpan("montserrat_regular"), 0, s.length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        s.setSpan(new AbsoluteSizeSpan(20, true), 0, s.length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, s.length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
 
     public static void unsetActionBar(Activity activity) {

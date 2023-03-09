@@ -17,7 +17,7 @@ import com.example.dcdcconvertersdesign.ConvertersDefinitions;
 import com.example.dcdcconvertersdesign.InductorDefinitions;
 import com.example.dcdcconvertersdesign.R;
 import com.example.dcdcconvertersdesign.SnubberDefinitions;
-import com.example.dcdcconvertersdesign.Symbols;
+import com.example.dcdcconvertersdesign.SymbolsDefinitions;
 import com.example.dcdcconvertersdesign.controllers.MainController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 
@@ -71,34 +71,35 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case id.Symbols:
-                Intent intent_symbols = new Intent(MainActivity.this, Symbols.class);
-                startActivity(intent_symbols);
-                return true;
+        int id = item.getItemId();
 
-            case id.ConvertersDefinitions:
-                Intent intent_converters_definitions = new Intent(MainActivity.this, ConvertersDefinitions.class);
-                startActivity(intent_converters_definitions);
-                return true;
-
-            case id.InductorDefinitions:
-                Intent intent_inductor_definitions = new Intent(MainActivity.this, InductorDefinitions.class);
-                startActivity(intent_inductor_definitions);
-                return true;
-
-            case id.SnubberDefinitions:
-                Intent intent_snubber_definitions = new Intent(MainActivity.this, SnubberDefinitions.class);
-                startActivity(intent_snubber_definitions);
-                return true;
-
-            case id.About:
-                Intent intent_about = new Intent(MainActivity.this, About.class);
-                startActivity(intent_about);
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
+        if (id == R.id.Symbols) {
+            Intent intent_symbols = new Intent(MainActivity.this,
+                    SymbolsDefinitions.class);
+            startActivity(intent_symbols);
+            return true;
+        } else if (id == R.id.ConvertersDefinitions) {
+            Intent intent_converters_definitions = new Intent(MainActivity.this,
+                    ConvertersDefinitions.class);
+            startActivity(intent_converters_definitions);
+            return true;
+        } else if (id == R.id.InductorDefinitions) {
+            Intent intent_inductor_definitions = new Intent(MainActivity.this,
+                    InductorDefinitions.class);
+            startActivity(intent_inductor_definitions);
+            return true;
+        } else if (id == R.id.SnubberDefinitions) {
+            Intent intent_snubber_definitions = new Intent(MainActivity.this,
+                    SnubberDefinitions.class);
+            startActivity(intent_snubber_definitions);
+            return true;
+        } else if (id == R.id.About) {
+            Intent intent_about = new Intent(MainActivity.this, About.class);
+            startActivity(intent_about);
+            return true;
         }
+
+        return super.onOptionsItemSelected(item);
     }
+
 }

@@ -17,9 +17,6 @@ public class ConverterModel {
     private static double inductorCurrent;
     private static double switchCurrent;
     private static double diodeCurrent;
-    private static double inputVoltage;
-    private static double outputVoltage;
-    private static double frequency;
     private static double inductorCurrentMax;
     private static double inductorCurrentMin;
     private static double deltaInductorCurrent;
@@ -54,8 +51,8 @@ public class ConverterModel {
             inductorCurrentMax = outputCurrent + outputCurrent * (rippleInductorCurrent / 200);
             inductorCurrentMin = outputCurrent - outputCurrent * (rippleInductorCurrent / 200);
             deltaInductorCurrent = (inductorCurrentMax - inductorCurrentMin);
-            inductorCurrentRMS = outputCurrent * Math.sqrt(1 + ((1 / 12.0) *
-                    Math.pow(deltaInductorCurrent / outputCurrent, 2)));
+            inductorCurrentRMS = inductorCurrent * Math.sqrt(1 + ((1 / 12.0) *
+                    Math.pow(deltaInductorCurrent / inductorCurrent, 2)));
 
             inductance = (inputVoltage * (1 - dutyCycle) * dutyCycle) /
                     (frequency * deltaInductorCurrent);
@@ -136,12 +133,14 @@ public class ConverterModel {
             dutyCycle = dutyCycleIdeal / (efficiency / 100);
             switchCurrent = dutyCycle * inputCurrent;
             diodeCurrent = (1 - dutyCycle) * inputCurrent;
-            inductorCurrentRMS = inputCurrent;
             inductorCurrentMax = inputCurrent + inputCurrent * (rippleInductorCurrent / 200);
             inductorCurrentMin = inputCurrent - inputCurrent * (rippleInductorCurrent / 200);
             deltaInductorCurrent = inductorCurrentMax - inductorCurrentMin;
+            inductorCurrentRMS = inductorCurrent * Math.sqrt(1 + ((1 / 12.0) *
+                    Math.pow(deltaInductorCurrent / inductorCurrent, 2)));
             inductance = (inputVoltage * dutyCycle) / (frequency * deltaInductorCurrent);
-            inductanceCritical = (Math.pow(inputVoltage, 2) * dutyCycle) / (2 * outputPower * frequency);
+            inductanceCritical = (Math.pow(inputVoltage, 2) * dutyCycle) /
+                    (2 * outputPower * frequency);
         } else {
             // DCM mode
             inductorCurrentMax = inputCurrent * (rippleInductorCurrent / 100);
@@ -154,9 +153,9 @@ public class ConverterModel {
             dutyCycle = dutyCycleIdeal / (efficiency / 100);
             switchCurrent = dutyCycle * inputCurrent;
             diodeCurrent = (1 - dutyCycle) * inputCurrent;
-            inductorCurrentRMS = inputCurrent * Math.sqrt((1 - dutyCycle) / 3);
+            inductorCurrentRMS = inductorCurrent * Math.sqrt((1 - dutyCycle) / 3);
         }
-        capacitance = (outputCurrent * dutyCycle) * 2 / (deltaCapacitorVoltage * frequency);
+        capacitance = outputCurrent * dutyCycle / (frequency * deltaCapacitorVoltage);
 
         Log.d(TAG, "Check variables after the MODE: " +
                 "Duty Cycle Ideal = " + dutyCycleIdeal +
@@ -220,7 +219,7 @@ public class ConverterModel {
         deltaCapacitorVoltage = outputVoltageMax - outputVoltageMin;
 
         isCCM = checkBuckBoostConductionMode(outputVoltage, inputVoltage, efficiency,
-                rippleInductorCurrent, frequency, outputPower);
+                rippleInductorCurrent, frequency, inductorCurrent);
 
         if(isCCM) {
             // CCM Mode
@@ -229,11 +228,10 @@ public class ConverterModel {
             inductorCurrentMax = inductorCurrent + inductorCurrent * (rippleInductorCurrent / 200);
             inductorCurrentMin = inductorCurrent - inductorCurrent * (rippleInductorCurrent / 200);
             deltaInductorCurrent = inductorCurrentMax - inductorCurrentMin;
-            inductorCurrentRMS = Math.sqrt(Math.pow(inductorCurrentMax, 2) +
-                    Math.pow(deltaInductorCurrent / 12, 2));
+            inductorCurrentRMS = inductorCurrent * Math.sqrt(1 + ((1 / 12.0) *
+                    Math.pow(deltaInductorCurrent / inductorCurrent, 2)));
             inductance = (inputVoltage * dutyCycle) / (frequency * deltaInductorCurrent);
-            inductanceCritical = (Math.pow(inputVoltage, 2) * dutyCycle) /
-                    (2 * outputPower * frequency);
+            inductanceCritical = inputVoltage * dutyCycle  / (frequency * inductorCurrent * 2);
         } else {
             // DCM Mode
             inductorCurrentMax = inductorCurrent * (rippleInductorCurrent / 100);
@@ -241,12 +239,14 @@ public class ConverterModel {
             deltaInductorCurrent = inductorCurrentMax;
             inductance = 2 * outputCurrent * outputVoltage / (Math.pow(deltaInductorCurrent, 2) *
                     frequency);
+            inductanceCritical = 2 * outputCurrent * outputVoltage /
+                    (Math.pow(2 * inductorCurrent, 2) * frequency);
             dutyCycleIdeal = (outputVoltage / inputVoltage) *
                     Math.sqrt((2 * inductance * frequency) / resistance);
             dutyCycle = dutyCycleIdeal / (efficiency / 100);
+            inductorCurrentRMS = inductorCurrent * Math.sqrt((1 - dutyCycle) / 3);
         }
-        capacitance = (outputCurrent * dutyCycle) * 2 / (deltaCapacitorVoltage * frequency);
-
+        capacitance = (outputCurrent * dutyCycle) / (deltaCapacitorVoltage * frequency);
         // create a ConverterData object
         ConverterData data = new ConverterData();
 
@@ -263,14 +263,15 @@ public class ConverterModel {
 
     private static boolean checkBuckBoostConductionMode(double outputVoltage, double inputVoltage,
                                                         double efficiency, double rippleInductorCurrent,
-                                                        double frequency, double outputPower) {
+                                                        double frequency, double inductorCurrent) {
         dutyCycleIdeal = (outputVoltage) / (inputVoltage + outputVoltage);
         dutyCycle = ((outputVoltage) / (inputVoltage + outputVoltage)) / (efficiency / 100);
         inductorCurrentMax = inputCurrent + inputCurrent * (rippleInductorCurrent / 200);
         inductorCurrentMin = inputCurrent - inputCurrent * (rippleInductorCurrent / 200);
         deltaInductorCurrent = inductorCurrentMax - inductorCurrentMin;
         inductance = (inputVoltage * dutyCycle) / (frequency * deltaInductorCurrent);
-        inductanceCritical = (Math.pow(inputVoltage, 2) * dutyCycle) / (2 * outputPower * frequency);
+        inductanceCritical = inputVoltage * dutyCycle  / (frequency * inductorCurrent * 2);
+
         return inductanceCritical <= inductance;
     }
 
@@ -306,9 +307,9 @@ public class ConverterModel {
         inductorCurrent = bundle.getDouble(INDUCTOR_CURRENT_KEY);
         switchCurrent = bundle.getDouble(SWITCH_CURRENT_KEY);
         diodeCurrent = bundle.getDouble(DIODE_CURRENT_KEY);
-        inputVoltage = bundle.getDouble(INPUT_VOLTAGE_KEY);
-        outputVoltage = bundle.getDouble(OUTPUT_VOLTAGE_KEY);
-        frequency = bundle.getDouble(FREQUENCY_KEY);
+        double inputVoltage = bundle.getDouble(INPUT_VOLTAGE_KEY);
+        double outputVoltage = bundle.getDouble(OUTPUT_VOLTAGE_KEY);
+        double frequency = bundle.getDouble(FREQUENCY_KEY);
         deltaInductorCurrent = bundle.getDouble(DELTA_INDUCTOR_CURRENT_KEY);
         deltaCapacitorVoltage = bundle.getDouble(DELTA_CAPACITOR_VOLTAGE_KEY);
         inductorCurrentRMS = bundle.getDouble(INDUCTOR_CURRENT_RMS_KEY);
