@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesign;
+package com.example.dcdcconvertersdesign.views;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -13,11 +13,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.example.dcdcconvertersdesign.R;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 
 import java.util.Locale;
 
-public class InductorDesign extends AppCompatActivity {
+public class InductorDesignActivity extends AppCompatActivity {
 
     private ToggleButton resultsInductorDesign;
     private Button tableBtn, exampleBtn;
@@ -116,7 +117,7 @@ public class InductorDesign extends AppCompatActivity {
 
                 tableBtn.setOnClickListener(v -> {
 
-                    Intent intent = new Intent(InductorDesign.this, InductorDesignTable.class);
+                    Intent intent = new Intent(InductorDesignActivity.this, InductorDesignTableActivity.class);
 
                     startActivity(intent);
                 });

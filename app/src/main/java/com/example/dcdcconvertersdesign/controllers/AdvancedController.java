@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.dcdcconvertersdesign.InductorDesign;
+import com.example.dcdcconvertersdesign.views.InductorDesignActivity;
 import com.example.dcdcconvertersdesign.views.SnubberDesignActivity;
 import com.example.dcdcconvertersdesign.models.AdvancedModel;
 import com.example.dcdcconvertersdesign.views.AdvancedActivity;
@@ -53,7 +53,7 @@ public class AdvancedController {
 
     public void onInductorDesignClicked() {
         // Sending bundle to Inductor Design
-        Intent intent = new Intent(view, InductorDesign.class);
+        Intent intent = new Intent(view, InductorDesignActivity.class);
         Bundle bundle = createInductorDesignBundle();
         intent.putExtras(bundle);
         view.startActivity(intent);

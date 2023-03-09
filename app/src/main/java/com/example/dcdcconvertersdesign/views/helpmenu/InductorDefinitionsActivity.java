@@ -1,9 +1,11 @@
-package com.example.dcdcconvertersdesign;
+package com.example.dcdcconvertersdesign.views.helpmenu;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class InductorDefinitions extends AppCompatActivity {
+import com.example.dcdcconvertersdesign.R;
+
+public class InductorDefinitionsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

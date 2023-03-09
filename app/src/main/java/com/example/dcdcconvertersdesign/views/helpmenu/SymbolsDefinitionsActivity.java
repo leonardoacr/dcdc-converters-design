@@ -1,14 +1,16 @@
-package com.example.dcdcconvertersdesign;
+package com.example.dcdcconvertersdesign.views.helpmenu;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class SnubberDefinitions extends AppCompatActivity {
+import com.example.dcdcconvertersdesign.R;
+
+public class SymbolsDefinitionsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setBackgroundDrawableResource(R.drawable.bg_help);
-        setContentView(R.layout.activity_snubber_definitions);
+        setContentView(R.layout.activity_symbols);
     }
 }

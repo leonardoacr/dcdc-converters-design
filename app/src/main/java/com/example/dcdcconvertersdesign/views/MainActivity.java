@@ -12,12 +12,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
 
-import com.example.dcdcconvertersdesign.About;
-import com.example.dcdcconvertersdesign.ConvertersDefinitions;
-import com.example.dcdcconvertersdesign.InductorDefinitions;
+import com.example.dcdcconvertersdesign.views.helpmenu.AboutActivity;
+import com.example.dcdcconvertersdesign.views.helpmenu.ConvertersDefinitionsActivity;
+import com.example.dcdcconvertersdesign.views.helpmenu.InductorDefinitionsActivity;
 import com.example.dcdcconvertersdesign.R;
-import com.example.dcdcconvertersdesign.SnubberDefinitions;
-import com.example.dcdcconvertersdesign.SymbolsDefinitions;
+import com.example.dcdcconvertersdesign.views.helpmenu.SnubberDefinitionsActivity;
+import com.example.dcdcconvertersdesign.views.helpmenu.SymbolsDefinitionsActivity;
 import com.example.dcdcconvertersdesign.controllers.MainController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 
@@ -75,26 +75,26 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.Symbols) {
             Intent intent_symbols = new Intent(MainActivity.this,
-                    SymbolsDefinitions.class);
+                    SymbolsDefinitionsActivity.class);
             startActivity(intent_symbols);
             return true;
         } else if (id == R.id.ConvertersDefinitions) {
             Intent intent_converters_definitions = new Intent(MainActivity.this,
-                    ConvertersDefinitions.class);
+                    ConvertersDefinitionsActivity.class);
             startActivity(intent_converters_definitions);
             return true;
         } else if (id == R.id.InductorDefinitions) {
             Intent intent_inductor_definitions = new Intent(MainActivity.this,
-                    InductorDefinitions.class);
+                    InductorDefinitionsActivity.class);
             startActivity(intent_inductor_definitions);
             return true;
         } else if (id == R.id.SnubberDefinitions) {
             Intent intent_snubber_definitions = new Intent(MainActivity.this,
-                    SnubberDefinitions.class);
+                    SnubberDefinitionsActivity.class);
             startActivity(intent_snubber_definitions);
             return true;
         } else if (id == R.id.About) {
-            Intent intent_about = new Intent(MainActivity.this, About.class);
+            Intent intent_about = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(intent_about);
             return true;
         }

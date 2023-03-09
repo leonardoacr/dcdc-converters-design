@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".InductorDesignTable" />
+        <activity android:name=".views.InductorDesignTableActivity" />
         <activity android:name=".views.MainActivity"
             android:exported="true">
             <intent-filter>
@@ -23,15 +23,15 @@
         </activity>
         <activity android:name=".views.UsualDesignActivity" />
         <activity android:name=".views.ReverseDesignActivity" />
-        <activity android:name=".SymbolsDefinitions" />
-        <activity android:name=".ConvertersDefinitions" />
+        <activity android:name=".views.helpmenu.SymbolsDefinitionsActivity" />
+        <activity android:name=".views.helpmenu.ConvertersDefinitionsActivity" />
         <activity android:name=".views.ConverterActivity" />
         <activity android:name=".views.AdvancedActivity" />
         <activity android:name=".views.SnubberDesignActivity" />
-        <activity android:name=".InductorDesign" />
+        <activity android:name=".views.InductorDesignActivity" />
         <activity android:name=".views.ConverterReverseActivity" />
-        <activity android:name=".InductorDefinitions" />
-        <activity android:name=".About" />
+        <activity android:name=".views.helpmenu.InductorDefinitionsActivity" />
+        <activity android:name=".views.helpmenu.AboutActivity" />
         <activity android:name=".views.SimulationActivity" />
         <activity android:name=".views.SimulationParametersActivity" />
     </application>

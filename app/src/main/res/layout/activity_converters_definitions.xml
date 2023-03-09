@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top"
         style="@style/MyBackground"
-        tools:context=".ConvertersDefinitions">
+        tools:context=".views.helpmenu.ConvertersDefinitionsActivity">
 
         <ImageView
             android:id="@+id/imageViewBuckDefinitions"

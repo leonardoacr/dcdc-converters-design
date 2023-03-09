@@ -1,12 +1,14 @@
-package com.example.dcdcconvertersdesign;
+package com.example.dcdcconvertersdesign.views.helpmenu;
 
-import android.media.Image;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.widget.ImageView;
 import android.widget.TextView;
-public class ConvertersDefinitions extends AppCompatActivity {
+
+import com.example.dcdcconvertersdesign.R;
+
+public class ConvertersDefinitionsActivity extends AppCompatActivity {
 
     TextView Buck_definition, Boost_definition, BuckBoost_definition;
 

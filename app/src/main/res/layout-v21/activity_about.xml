@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
-        tools:context=".About">
+        tools:context=".views.helpmenu.AboutActivity">
 
     <me.biubiubiu.justifytext.library.JustifyTextView
         android:id="@+id/buck_definition3"
