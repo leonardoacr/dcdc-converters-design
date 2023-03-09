@@ -37,4 +37,18 @@
     <string name="max_time_text_2">Duration (ms)</string>
     <string name="max_time_simulation">Max Time</string>
     <string name="simulation_parameters">Simulation</string>
+    <string name="reverse_design_text">Reverse Design</string>
+    <string name="results">Input Values</string>
+    <string name="capacitance_text_reverse">Capacitance (µF)</string>
+    <string name="resistance_reverse_text">Resistance (Ω)</string>
+    <string name="inductance_reverse_text">Inductance (µH)</string>
+    <string name="example_design_btn">EXAMPLE</string>
+    <string name="converters_text">Converters</string>
+    <string name="frequency_text">Frequency (kHz)</string>
+    <string name="ripple_capacitor_voltage_text">Ripple Cap. Voltage (%)</string>
+    <string name="output_power_text">Output Power (W)</string>
+    <string name="output_voltage_text">Output Voltage (V)</string>
+    <string name="ripple_inductor_current_text">Ripple Ind. Current (%)</string>
+    <string name="input_voltage_text">Input Voltage (V)</string>
+    <string name="efficiency_text">Efficiency (%)</string>
 </resources>
