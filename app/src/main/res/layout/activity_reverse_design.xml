@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         style="@style/MyBackground"
-        tools:context=".ReverseDesign">
+        tools:context=".views.ReverseDesignActivity">
 
         <TextView
             android:id="@+id/reverse_engineering_text"

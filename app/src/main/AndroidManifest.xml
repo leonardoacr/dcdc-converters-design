@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".views.UsualDesignActivity" />
-        <activity android:name=".ReverseDesign" />
+        <activity android:name=".views.ReverseDesignActivity" />
         <activity android:name=".Symbols" />
         <activity android:name=".ConvertersDefinitions" />
         <activity android:name=".views.ConverterActivity" />

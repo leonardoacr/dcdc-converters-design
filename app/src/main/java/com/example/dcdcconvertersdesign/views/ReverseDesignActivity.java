@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesign;
+package com.example.dcdcconvertersdesign.views;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -10,11 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.dcdcconvertersdesign.R;
 import com.example.dcdcconvertersdesign.utils.convertersutils.CalculateConverterVariablesReverse;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
-import com.example.dcdcconvertersdesign.views.ConverterReverseActivity;
 
-public class ReverseDesign extends AppCompatActivity {
+public class ReverseDesignActivity extends AppCompatActivity {
     public int flag;
     public static double inputVoltage, outputVoltage, outputPower, rippleInductorCurrent,
         rippleCapacitorVoltage, frequency, switchCurrent, diodeCurrent,  inductorCurrentRMS,

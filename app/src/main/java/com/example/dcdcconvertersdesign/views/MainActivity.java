@@ -16,7 +16,6 @@ import com.example.dcdcconvertersdesign.About;
 import com.example.dcdcconvertersdesign.ConvertersDefinitions;
 import com.example.dcdcconvertersdesign.InductorDefinitions;
 import com.example.dcdcconvertersdesign.R;
-import com.example.dcdcconvertersdesign.ReverseDesign;
 import com.example.dcdcconvertersdesign.SnubberDefinitions;
 import com.example.dcdcconvertersdesign.Symbols;
 import com.example.dcdcconvertersdesign.controllers.MainController;
@@ -62,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void navigateToReverseEngineering() {
-        Intent intent = new Intent(this, ReverseDesign.class);
+        Intent intent = new Intent(this, ReverseDesignActivity.class);
         startActivity(intent);
     }
 

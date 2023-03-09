@@ -1,6 +1,6 @@
 package com.example.dcdcconvertersdesign.utils.convertersutils;
 
-import static com.example.dcdcconvertersdesign.ReverseDesign.*;
+import static com.example.dcdcconvertersdesign.views.ReverseDesignActivity.*;
 
 import android.util.Log;
 
