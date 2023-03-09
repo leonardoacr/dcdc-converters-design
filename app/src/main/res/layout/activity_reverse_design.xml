@@ -11,17 +11,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/reverse_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         style="@style/MyBackground"
         tools:context=".views.ReverseDesignActivity">
 
         <TextView
-            android:id="@+id/reverse_engineering_text"
+            android:id="@+id/reverse_design_text"
             style="@style/MyDefaultText"
             android:layout_width="wrap_content"
             android:layout_height="47dp"
             android:layout_marginTop="32dp"
-            android:text="Reverse Design"
+            android:text="@string/reverse_design_text"
             android:textAppearance="@style/TextAppearance.AppCompat.Menu"
             android:textColor="@color/colorGreen"
             android:textSize="36sp"
@@ -33,99 +33,121 @@
             android:id="@+id/input_voltage_reverse"
             style="@style/MyInput"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="40dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/input_voltage_reverse_text"
-            app:layout_constraintTop_toBottomOf="@+id/results_reverse" />
+            app:layout_constraintStart_toEndOf="@+id/results_reverse"
+            app:layout_constraintTop_toBottomOf="@+id/results_reverse"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor"/>
 
         <EditText
             android:id="@+id/output_voltage"
             style="@style/MyInput"
-            android:layout_marginRight="16dp"
+            android:layout_marginEnd="40dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/output_voltage_reverse_text"
-            app:layout_constraintTop_toBottomOf="@+id/input_voltage_reverse" />
+            app:layout_constraintStart_toEndOf="@+id/results_reverse"
+            app:layout_constraintTop_toBottomOf="@+id/input_voltage_reverse"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor"/>
 
         <EditText
             android:id="@+id/inductance_reverse"
             style="@style/MyInput"
+            android:layout_marginEnd="40dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/inductance_reverse_text"
-            app:layout_constraintTop_toBottomOf="@+id/output_voltage" />
+            app:layout_constraintStart_toEndOf="@+id/results_reverse"
+            app:layout_constraintTop_toBottomOf="@+id/output_voltage"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor" />
 
         <EditText
             android:id="@+id/capacitance_reverse"
             style="@style/MyInput"
+            android:layout_marginEnd="40dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/capacitance_text_reverse"
-            app:layout_constraintTop_toBottomOf="@+id/inductance_reverse" />
+            app:layout_constraintStart_toEndOf="@+id/results_reverse"
+            app:layout_constraintTop_toBottomOf="@+id/inductance_reverse"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor"/>
 
         <EditText
             android:id="@+id/resistance_reverse"
             style="@style/MyInput"
+            android:layout_marginEnd="40dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/resistance_reverse_text"
-            app:layout_constraintTop_toBottomOf="@+id/capacitance_reverse" />
+            app:layout_constraintStart_toEndOf="@+id/results_reverse"
+            app:layout_constraintTop_toBottomOf="@+id/capacitance_reverse"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor"/>
 
         <EditText
             android:id="@+id/frequency_reverse"
             style="@style/MyInput"
+            android:layout_marginEnd="40dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/frequency_text_reverse"
-            app:layout_constraintTop_toBottomOf="@+id/resistance_reverse" />
+            app:layout_constraintStart_toEndOf="@+id/results_reverse"
+            app:layout_constraintTop_toBottomOf="@+id/resistance_reverse"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor" />
 
         <EditText
             android:id="@+id/efficiency_reverse"
             style="@style/MyInput"
+            android:layout_marginEnd="40dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/efficiency_text_reverse"
-            app:layout_constraintTop_toBottomOf="@+id/frequency_reverse" />
+            app:layout_constraintStart_toEndOf="@+id/results_reverse"
+            app:layout_constraintTop_toBottomOf="@+id/frequency_reverse"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor"/>
 
-        <TextView
-            android:id="@+id/capacitance_text_reverse"
-            android:text="Capacitance (\u00B5F)"
-            style="@style/MyInputText"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inductance_reverse_text"/>
         <TextView
             android:id="@+id/results_reverse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Input Values"
+            android:text="@string/results"
             android:fontFamily="@font/montserrat_bold"
             android:textAppearance="@style/TextAppearance.AppCompat.Menu"
             android:textColor="?android:attr/colorBackground"
             android:textSize="28sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/reverse_engineering_text" />
+            app:layout_constraintTop_toBottomOf="@+id/reverse_design_text" />
 
         <TextView
             android:id="@+id/input_voltage_reverse_text"
-            android:text="Input Voltage (V)"
             style="@style/MyInputText"
             android:layout_marginTop="16dp"
+            android:text="@string/input_voltage_text"
+            app:layout_constraintEnd_toStartOf="@+id/input_voltage_reverse"
+            app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/results_reverse" />
 
         <TextView
-            android:id="@+id/output_voltage_reverse_text"
-            android:text="Output Voltage (V)"
+            android:id="@+id/capacitance_text_reverse"
             style="@style/MyInputText"
+            android:text="@string/capacitance_text_reverse"
+            app:layout_constraintEnd_toStartOf="@+id/capacitance_reverse"
+            app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/input_voltage_reverse_text"/>
+            app:layout_constraintTop_toBottomOf="@+id/inductance_reverse_text" />
 
         <TextView
             android:id="@+id/frequency_text_reverse"
             style="@style/MyInputText"
-            android:text="Frequency (kHz)"
+            android:text="@string/frequency_text"
+            app:layout_constraintEnd_toStartOf="@+id/frequency_reverse"
+            app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/resistance_reverse_text" />
 
         <TextView
             android:id="@+id/efficiency_text_reverse"
             style="@style/MyInputText"
-            android:text="Efficiency (%)"
+            android:text="@string/efficiency_text"
+            app:layout_constraintEnd_toStartOf="@+id/efficiency_reverse"
+            app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/frequency_text_reverse" />
 
@@ -133,16 +155,29 @@
             android:id="@+id/resistance_reverse_text"
             style="@style/MyInputText"
             android:layout_marginStart="16dp"
-            android:text="Resistance (\u2126)"
+            android:text="@string/resistance_reverse_text"
+            app:layout_constraintEnd_toStartOf="@+id/resistance_reverse"
+            app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/capacitance_text_reverse" />
 
         <TextView
             android:id="@+id/inductance_reverse_text"
-            android:text="Inductance (\u00B5H)"
             style="@style/MyInputText"
+            android:text="@string/inductance_reverse_text"
+            app:layout_constraintEnd_toStartOf="@+id/inductance_reverse"
+            app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/output_voltage_reverse_text" />
+
+        <TextView
+            android:id="@+id/output_voltage_reverse_text"
+            style="@style/MyInputText"
+            android:text="@string/output_voltage_text"
+            app:layout_constraintEnd_toStartOf="@+id/output_voltage"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/input_voltage_reverse_text" />
 
         <Button
             android:id="@+id/example_reverse_design_btn"
@@ -151,7 +186,7 @@
             android:layout_marginTop="32dp"
             android:fontFamily="@font/montserrat_regular"
             android:gravity="center"
-            android:text="EXAMPLE"
+            android:text="@string/example_design_btn"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
@@ -168,7 +203,7 @@
             android:layout_marginTop="32dp"
             android:fontFamily="@font/montserrat_bold"
             android:gravity="center_horizontal"
-            android:text="Converters"
+            android:text="@string/converters_text"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textColor="?android:attr/colorBackground"
@@ -188,7 +223,7 @@
             android:gravity="center"
             android:textAlignment="center"
             android:layout_marginTop="16dp"
-            android:text="Buck"
+            android:text="@string/buckText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -205,7 +240,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/montserrat_regular"
             android:gravity="center"
-            android:text="Boost"
+            android:text="@string/boostText"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -220,7 +255,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/montserrat_regular"
             android:gravity="center"
-            android:text="Buck-Boost"
+            android:text="@string/buckBoostText"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             app:layout_constraintHorizontal_bias="0.503"

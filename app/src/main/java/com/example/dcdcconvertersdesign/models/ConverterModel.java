@@ -71,7 +71,7 @@ public class ConverterModel {
         }
 
         capacitance = (inputVoltage * (1 - dutyCycle) * dutyCycle) / (
-                16 * inductance * deltaCapacitorVoltage * Math.pow(frequency, 2));
+                8 * inductance * deltaCapacitorVoltage * Math.pow(frequency, 2));
 
         // create a ConverterData object
         ConverterData data = new ConverterData();

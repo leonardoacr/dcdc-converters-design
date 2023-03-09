@@ -87,7 +87,7 @@ public class ConverterActivity extends AppCompatActivity {
         }
     }
 
-    public void updateDisplayValues(double dutyCycle, double resistance, double capacitance, double inductance) {
+    public void updateUIValues(double dutyCycle, double resistance, double capacitance, double inductance) {
         // Duty Cycle
         String dutyCycleValueText = getString(R.string.duty_cycle_value, (int)(dutyCycle*100));
         dutyCycleTextView.setText(dutyCycleValueText);
@@ -102,7 +102,7 @@ public class ConverterActivity extends AppCompatActivity {
         inductanceTextView.setText(Helpers.formatValue(inductance, "H"));
     }
 
-    public void updateDisplayTexts(boolean isCCM) {
+    public void updateUITexts(boolean isCCM) {
         dutyCycleText.setText(R.string.duty_cycle_text);
         resistanceText.setText(R.string.resistance);
         capacitanceText.setText(R.string.capacitance);

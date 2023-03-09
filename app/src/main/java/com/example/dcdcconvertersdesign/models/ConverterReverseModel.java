@@ -59,7 +59,7 @@ public class ConverterReverseModel {
             rippleInductorCurrent = 100 * deltaInductorCurrent / outputCurrent;
             inductorCurrentRMS = outputCurrent * Math.sqrt(1 + ((1 / 12.0) *
                     Math.pow(deltaInductorCurrent / outputCurrent, 2)));
-            deltaCapacitorVoltage = (inputVoltage * (1 - dutyCycle) * dutyCycle) / (16 * inductance * capacitance * Math.pow(frequency, 2));
+            deltaCapacitorVoltage = (inputVoltage * (1 - dutyCycle) * dutyCycle) / (8 * inductance * capacitance * Math.pow(frequency, 2));
             rippleCapacitorVoltage = 100 * deltaCapacitorVoltage / outputVoltage;
         } else {
             // DCM mode
@@ -69,7 +69,7 @@ public class ConverterReverseModel {
                     (frequency * inductance);
             rippleInductorCurrent = 100 * deltaInductorCurrent / outputCurrent;
             deltaCapacitorVoltage = (inputVoltage * (1 - dutyCycle) * dutyCycle) /
-                    (16 * inductance * capacitance * Math.pow(frequency, 2));
+                    (8 * inductance * capacitance * Math.pow(frequency, 2));
             rippleCapacitorVoltage = 100 * deltaCapacitorVoltage / outputVoltage;
             double dcm2 = inductorCurrentMax * frequency * inductance / outputVoltage;
             double dcm1 = 1 - dutyCycle - dcm2;

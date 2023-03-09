@@ -17,6 +17,13 @@ android {
         }
     }
     namespace 'com.example.dcdcconvertersdesign'
+    sourceSets {
+        main {
+            res {
+                srcDirs 'src\\main\\res'
+            }
+        }
+    }
 }
 
 repositories {

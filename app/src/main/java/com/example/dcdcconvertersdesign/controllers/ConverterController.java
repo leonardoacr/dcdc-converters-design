@@ -62,7 +62,7 @@ public class ConverterController {
         double inductance = model.getInductance();
         int flag = model.getFlag();
         view.setResources(flag);
-        view.updateDisplayValues(dutyCycle, resistance, capacitance, inductance);
-        view.updateDisplayTexts(isCCM);
+        view.updateUIValues(dutyCycle, resistance, capacitance, inductance);
+        view.updateUITexts(isCCM);
     }
 }

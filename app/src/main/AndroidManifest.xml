@@ -35,5 +35,4 @@
         <activity android:name=".views.SimulationActivity" />
         <activity android:name=".views.SimulationParametersActivity" />
     </application>
-
 </manifest>
