@@ -6,17 +6,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/MyDefaultText"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
-        style="@style/MyBackground"
+        style="@style/MyBackgroundHelp"
         tools:context=".views.helpmenu.ConvertersDefinitionsActivity">
 
         <ImageView
-            android:id="@+id/imageViewBuckDefinitions"
+            android:id="@+id/buck_definition_image"
             android:layout_width="333dp"
             android:layout_height="144dp"
             android:layout_marginEnd="16dp"
@@ -29,50 +30,47 @@
 
         <TextView
             android:id="@+id/ConvertersDefinitions"
+            style="@style/MyDefaultText"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
-            android:layout_marginTop="40dp"
-            android:fontFamily="sans-serif"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
             android:text=" Converters Definitions"
-            android:textAppearance="@android:style/TextAppearance.WindowTitle"
-            android:textColor="@color/cardview_dark_background"
-            android:textSize="36sp"
-            android:typeface="sans"
+            android:textSize="28sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView
             android:id="@+id/textView10"
+            style="@style/MyDefaultText"
+            android:fontFamily="@font/montserrat_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
             android:gravity="center"
             android:text="Buck Converter"
             android:textSize="24sp"
             android:textStyle="bold"
+            android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/ConvertersDefinitions" />
 
-        <me.biubiubiu.justifytext.library.JustifyTextView
-            android:id="@+id/Buck_definition"
-            android:layout_width="333dp"
+        <TextView
+            android:id="@+id/buck_definition"
+            style="@style/MyDefaultText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="  TThe Buck Converter is design in order to obtain an output voltage lower than input, shown an drop voltage with better efficiency than simple resistors. The circuit use a Low Pass Filter in your output, filtering the signal switched by the MOSFET transistor.\n
-    In this way, the filter is able to cut the higher frequency produced by the PWM (Pulse Width Modulation), shown at the output the almost continuous voltage that left, which is controlled by the Duty Cycle (width of the produced pulse).\n
-    The figure below, shows the behavior of the Low Pass Filter at the domain of Frequency versus dB."
-            android:textAlignment="viewStart"
-            android:textSize="14sp"
+            android:text="@string/buck_definition_text"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewBuckDefinitions" />
+            app:layout_constraintTop_toBottomOf="@+id/buck_definition_image" />
 
         <ImageView
             android:id="@+id/imageView3"
@@ -83,25 +81,29 @@
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Buck_definition"
-            app:srcCompat="@drawable/lowpassfilter" />
+            app:layout_constraintTop_toBottomOf="@+id/buck_definition"
+            app:srcCompat="@drawable/lowpassfilter"
+            android:contentDescription="@string/low_pass_filter_description" />
 
-        <me.biubiubiu.justifytext.library.JustifyTextView
-            android:id="@+id/Low_filter"
-            android:layout_width="340dp"
+        <TextView
+            android:id="@+id/low_filter"
+            style="@style/MyDefaultText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="  FFor this example, was designed a Buck Converter for 25kHz of switching frequency, giving a cut frequency of 1591Hz, which let almost constant voltage in the output, producing the required voltage manipulating the Duty Cycle.\n"
+            android:text="@string/low_filter"
             android:textAlignment="viewStart"
-            android:textSize="14sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
         <TextView
             android:id="@+id/textView11"
+            style="@style/MyDefaultText"
+            android:fontFamily="@font/montserrat_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -113,10 +115,10 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Low_filter" />
+            app:layout_constraintTop_toBottomOf="@+id/low_filter" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/boost_definition_image"
             android:layout_width="333dp"
             android:layout_height="144dp"
             android:layout_marginEnd="16dp"
@@ -128,23 +130,25 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
-        <me.biubiubiu.justifytext.library.JustifyTextView
-            android:id="@+id/Boost_definition"
+        <TextView
+            android:id="@+id/boost_definition"
+            style="@style/MyDefaultText"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="  TThe Boost Converter, in the other hand, is design to 'step up' the input voltage. The inductor is charged during the time that the switch is ON, and discharged when the switch is OFF, enabling the circuit to boost up the voltage level.\n
-    The capacitor in this circuit, has the same function of the Buck Converter, which is filter the high frequency switched.\n"
+            android:text="@string/boost_definition"
             android:textAlignment="viewStart"
-            android:textSize="14sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+            app:layout_constraintTop_toBottomOf="@+id/boost_definition_image" />
 
         <TextView
             android:id="@+id/textView12"
+            style="@style/MyDefaultText"
+            android:fontFamily="@font/montserrat_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -156,10 +160,10 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Boost_definition" />
+            app:layout_constraintTop_toBottomOf="@+id/boost_definition" />
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/buck_boost_definition_image"
             android:layout_width="333dp"
             android:layout_height="144dp"
             android:layout_marginEnd="16dp"
@@ -171,22 +175,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
-        <me.biubiubiu.justifytext.library.JustifyTextView
-            android:id="@+id/BuckBoost_definition"
+        <TextView
+            style="@style/MyDefaultText"
+            android:id="@+id/buck_boost_definition"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="  TThis is also known as a Step Up / Step Down Converter. This circuit is able to increase or reduce the input voltage as required, respecting the limits of the Duty Cycle.\n
-    In this converter, when the switch is ON, the inductor becomes charged, and when is OFF, his reverse polarity causes it to discharge through the diode and the load.\n
-    For this circuit, when the Duty Cycle is between 0 and 0.5, act like an Buck Converter. In the other hand, when the Duty Cycle is between 0.5 and 1, the circuit act like a Boost Converter.\n
-    For all the Converter in this app, was supposed some security limits for the Duty Cycle, varying between 0.05 and 0.95.\n"
+            android:text="@string/buck_boost_definition"
             android:textAlignment="viewStart"
-            android:textSize="14sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+            app:layout_constraintTop_toBottomOf="@+id/buck_boost_definition_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

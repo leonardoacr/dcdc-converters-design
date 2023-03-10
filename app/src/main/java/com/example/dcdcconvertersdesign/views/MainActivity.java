@@ -6,7 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ContextThemeWrapper;
+import androidx.appcompat.widget.PopupMenu;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -65,35 +68,37 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.Symbols) {
+        if (id == R.id.symbols_item) {
             Intent intent_symbols = new Intent(MainActivity.this,
                     SymbolsDefinitionsActivity.class);
             startActivity(intent_symbols);
             return true;
-        } else if (id == R.id.ConvertersDefinitions) {
+        } else if (id == R.id.converter_definitions_item) {
             Intent intent_converters_definitions = new Intent(MainActivity.this,
                     ConvertersDefinitionsActivity.class);
             startActivity(intent_converters_definitions);
             return true;
-        } else if (id == R.id.InductorDefinitions) {
+        } else if (id == R.id.inductor_definitions_item) {
             Intent intent_inductor_definitions = new Intent(MainActivity.this,
                     InductorDefinitionsActivity.class);
             startActivity(intent_inductor_definitions);
             return true;
-        } else if (id == R.id.SnubberDefinitions) {
+        } else if (id == R.id.snubber_definitions_item) {
             Intent intent_snubber_definitions = new Intent(MainActivity.this,
                     SnubberDefinitionsActivity.class);
             startActivity(intent_snubber_definitions);
             return true;
-        } else if (id == R.id.About) {
+        } else if (id == R.id.about_item) {
             Intent intent_about = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(intent_about);
             return true;
@@ -101,5 +106,4 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 }

@@ -12,88 +12,61 @@ android:fillViewport="true">
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="top"
+    style="@style/MyBackgroundHelp"
     tools:context=".views.helpmenu.InductorDefinitionsActivity">
 
 
-    <me.biubiubiu.justifytext.library.JustifyTextView
-        android:id="@+id/buck_definition2"
-        android:layout_width="333dp"
+    <TextView
+        android:id="@+id/inductor_definitions_2"
+        style="@style/MyDefaultText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:text="
-        Where: \n
-        Lc: Magnetic Length; \n
-        Aw: Window area; \n
-        Ac: Core cross-sectional area. \n\n
-        Usually, the values ​​used to initiate the project are: \n\n
-        Kw (%) = 70 \n
-        Jmax (A / mm²) = 450 \n
-        Bmax (T) = 0.3 \n\n
-        For ferrite core, the value of Kw (factor of copper occupancy within the reel) is generally set at 70%, however, it varies according to the skill of the person responsible for making the windings and
-according to the geometry of the conductors used. \n
-        The value of Jmax (current density), which indicates the current capacity per unit area, depends on the conductors used. Generally around 450 A / mm². \n
-        Finally, the value of Bmax (flux density), is around 0.3 T, this is due to the magnetization curve of the material used. \n
-        The results are:\n
-        - Size Percent (%)\n
-        - Air Gap (mm)\n
-        - Core Model \n
-        - Number of Turns \n
-        - AWG (American Wire Gauge) \n
-        - Parallel Conductors \n"
-        android:textAlignment="viewStart"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7"
         android:gravity="start"
-        tools:ignore="HardcodedText" />
+        android:text="@string/inductor_definitions_2"
+        android:textAlignment="viewStart"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inductor_image_definitions" />
 
     <TextView
-        android:id="@+id/convertersDefinitions"
+        style="@style/MyDefaultText"
+        android:id="@+id/inductorDefinitionsTitle"
         android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginTop="40dp"
-        android:fontFamily="sans-serif"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/montserrat_bold"
         android:gravity="center"
-        android:text="Inductor Definitions"
-        android:textAppearance="@android:style/TextAppearance.WindowTitle"
-        android:textColor="@color/cardview_dark_background"
-        android:textSize="36sp"
+        android:text="@string/inductorDefinitionsTitle"
+        android:textSize="32sp"
         android:typeface="sans"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <me.biubiubiu.justifytext.library.JustifyTextView
-        android:id="@+id/buck_definition"
-        android:layout_width="333dp"
+    <TextView
+        style="@style/MyDefaultText"
+        android:id="@+id/inductor_definition"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="200dp"
         android:layout_marginEnd="16dp"
-        android:text="
-        The purpose of a magnetic core is to provide adequate path for the magnetic flux. Among the types of material used to construct the core, the most used are iron-silicon and ferrite.
-While the first has advantages at low frequency operation, ferrite behaves better at higher frequencies, resulting in hysteresis losses and lower temperatures for use. However, this type of core has
-some disadvantages in relation to iron-silicon, such as material brittleness and low saturation flux density. \n
-        For this app, the method used for the inductor design is the method by product of the areas. \n
-        Internally, an automated and smart code routine involving the data entered by the user is used, aiming to obtain the best possible and feasible design for the complete design of an E-core inductor. \n
-        The figure below shows the graphical representation of an E-core inductor.\n"
-        android:textAlignment="viewStart"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="32dp"
         android:gravity="start"
-        tools:ignore="HardcodedText" />
+        android:text="@string/inductor_definition"
+        android:textAlignment="viewStart"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inductorDefinitionsTitle" />
 
     <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="287dp"
+        android:id="@+id/inductor_image_definitions"
+        android:layout_width="match_parent"
         android:layout_height="229dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
@@ -102,7 +75,7 @@ some disadvantages in relation to iron-silicon, such as material brittleness and
         android:layout_marginRight="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buck_definition"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/inductor_definition"
+        android:contentDescription="@string/inductor_image_description" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

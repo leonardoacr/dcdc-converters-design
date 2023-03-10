@@ -1,6 +1,7 @@
 package com.example.dcdcconvertersdesign.views.helpmenu;
 
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.widget.ImageView;
@@ -10,24 +11,25 @@ import com.example.dcdcconvertersdesign.R;
 
 public class ConvertersDefinitionsActivity extends AppCompatActivity {
 
-    TextView Buck_definition, Boost_definition, BuckBoost_definition;
+    ImageView Buck_definition, boostDefinitionImage, buckBoostDefinitionImage;
 
-    ImageView imageViewBuckDefinitions;
-
-    public void createObjects(){
-        // Image ID
-        imageViewBuckDefinitions = (ImageView) findViewById(R.id.imageViewBuckDefinitions);
-        imageViewBuckDefinitions.setImageResource(R.drawable.buck);
-//        Boost_definition = findViewById(R.id.Boost_definition);
-//        BuckBoost_definition = findViewById(R.id.BuckBoost_definition);
-
-    }
+    ImageView buckDefinitionImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setBackgroundDrawableResource(R.drawable.bg_help);
         setContentView(R.layout.activity_converters_definitions);
-        createObjects();
+        setUIComponents();
     }
+
+    public void setUIComponents() {
+        // Image ID
+        buckDefinitionImage = findViewById(R.id.buck_definition_image);
+        buckDefinitionImage.setImageResource(R.drawable.buck);
+        boostDefinitionImage = findViewById(R.id.boost_definition_image);
+        boostDefinitionImage.setImageResource(R.drawable.boost);
+        buckBoostDefinitionImage = findViewById(R.id.buck_boost_definition_image);
+        buckBoostDefinitionImage.setImageResource(R.drawable.buck_boost);
     }
+}

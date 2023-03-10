@@ -25,6 +25,7 @@
         <activity android:name=".views.ReverseDesignActivity" />
         <activity android:name=".views.helpmenu.SymbolsDefinitionsActivity" />
         <activity android:name=".views.helpmenu.ConvertersDefinitionsActivity" />
+        <activity android:name=".views.helpmenu.SnubberDefinitionsActivity" />
         <activity android:name=".views.ConverterActivity" />
         <activity android:name=".views.AdvancedActivity" />
         <activity android:name=".views.SnubberDesignActivity" />

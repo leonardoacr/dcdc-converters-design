@@ -16,12 +16,12 @@
         tools:context=".views.MainActivity">
 
         <TextView
-            android:id="@+id/Choose"
+            android:id="@+id/usual_design_mode_title"
             android:layout_width="335dp"
             android:layout_height="57dp"
             android:layout_marginTop="32dp"
             android:gravity="center"
-            android:text="Design Mode"
+            android:text="@string/usual_design_mode_title"
             android:textAppearance="@style/TextAppearance.AppCompat.Menu"
             android:textColor="@color/cardview_light_background"
             android:textSize="28sp"
@@ -40,7 +40,7 @@
             android:background="@drawable/rounded_box"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Choose">
+            app:layout_constraintTop_toBottomOf="@+id/usual_design_mode_title">
 
             <TextView
                 android:id="@+id/textView13"
@@ -54,7 +54,7 @@
                 android:layout_marginEnd="0dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
-                android:text="If you have the parameters"
+                android:text="@string/textView13"
                 android:textColor="@color/cardview_light_background"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +72,7 @@
                 android:layout_marginEnd="0dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
-                android:text="(Voltages, Ripples &amp; Currents)"
+                android:text="@string/textView19"
                 android:textColor="@color/cardview_light_background"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -87,12 +87,12 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:shadowColor="@color/ic_launcher_background"
-                android:text="Usual Design"
+                android:text="@string/usual_design_button"
                 style="@style/MyButtonStyle"
                 android:textSize="14sp" />
 
             <ImageView
-                android:id="@+id/imageViewBolt"
+                android:id="@+id/image_view_bolt"
                 android:layout_width="match_parent"
                 android:layout_height="79dp"
                 android:layout_below="@+id/usual_design_button"
@@ -101,7 +101,8 @@
                 android:layout_marginTop="-10dp"
                 android:layout_marginEnd="0dp"
                 android:layout_marginBottom="-14dp"
-                android:src="@drawable/ic_bolt" />
+                android:src="@drawable/ic_bolt"
+                android:contentDescription="@string/image_view_bolt" />
 
         </RelativeLayout>
 
@@ -127,7 +128,7 @@
                 android:layout_marginEnd="0dp"
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/montserrat_regular"
-                android:text="If you have the converter"
+                android:text="@string/textView14"
                 android:textAlignment="center"
                 android:textColor="@color/cardview_light_background"
                 android:textSize="16sp"
@@ -145,7 +146,7 @@
                 android:layout_marginTop="0dp"
                 android:layout_marginEnd="0dp"
                 android:fontFamily="@font/montserrat_regular"
-                android:text="(Voltages, Frequency,  Components)"
+                android:text="@string/textView18"
                 android:textAlignment="center"
                 android:textColor="@color/cardview_light_background"
                 android:textSize="16sp"
@@ -161,7 +162,7 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:shadowColor="@color/ic_launcher_background"
-                android:text="Reverse Design"
+                android:text="@string/reverse_design_button"
                 android:textColor="@android:color/white"
                 style="@style/MyButtonStyle"
                 android:textSize="14sp"  />
@@ -175,9 +176,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="8dp"
-                android:src="@drawable/ic_rlc" />
-
+                android:src="@drawable/ic_rlc"
+                android:contentDescription="@string/imageViewRLC" />
         </RelativeLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

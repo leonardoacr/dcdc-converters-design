@@ -12,18 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
+        style="@style/MyBackgroundHelp"
         tools:context=".views.helpmenu.SnubberDefinitionsActivity">
 
 
-        <me.biubiubiu.justifytext.library.JustifyTextView
+        <TextView
             android:id="@+id/buck_definition2"
-            android:layout_width="333dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:text="
-        When the high-switch (MOSFET) is OFF, the snubber capacitor will charge through the snubber resistor. When the MOSFET turns ON, the capacitor will discharge through the resistor to the MOSFET and to the circuit ground. The cycle will repeat until the capacitor is empty. \n
+            android:text="When the high-switch (MOSFET) is OFF, the snubber capacitor will charge through the snubber resistor. When the MOSFET turns ON, the capacitor will discharge through the resistor to the MOSFET and to the circuit ground. The cycle will repeat until the capacitor is empty. \n
         The resistor is the only component that is contribute of power loss in this snubber circuit. Because of this, a dichotomy is open in the sense of having a higher yield with less losses or vice versa. A very high resistance will contribute with less losses, but will not be an effective snubber. On the other hand, a small resistance will contribute a better snubber however it ends up directly affecting the efficiency of the system. In this app, the design is made with the best possible choice and is highly recommended for use in circuits that require a high operating frequency.\n"
             android:textAlignment="viewStart"
             android:textSize="14sp"

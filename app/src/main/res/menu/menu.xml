@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    app:popupTheme="@style/PopupMenu"
+    android:background="@color/colorPrimaryDark">
+
     <item
         android:id="@+id/help"
-        android:icon="@drawable/ic_help"
-        android:title="@string/help"
-        app:showAsAction="always" >
+        android:title="Help"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_help">
         <menu>
             <item
-                android:id="@+id/Symbols"
-                android:title="Symbols" />
+                android:id="@+id/symbols_item"
+                android:title="@string/symbols" />
             <item
-                android:id="@+id/ConvertersDefinitions"
-                android:title="Converters Definitions"/>
+                android:id="@+id/converter_definitions_item"
+                android:title="@string/converters_definitions" />
             <item
-                android:id="@+id/InductorDefinitions"
-                android:title="Inductor Definitions" />
+                android:id="@+id/inductor_definitions_item"
+                android:title="@string/inductor_definitions" />
             <item
-                android:id="@+id/SnubberDefinitions"
-                android:title="Snubber Definitions" />
+                android:id="@+id/snubber_definitions_item"
+                android:title="@string/snubber_definitions" />
             <item
-                android:id="@+id/About"
-                android:title="About" />
+                android:id="@+id/about_item"
+                android:title="@string/about" />
         </menu>
     </item>
 </menu>
-
