@@ -14,9 +14,9 @@ import com.example.dcdcconvertersdesign.controllers.ReverseDesignController;
 import com.example.dcdcconvertersdesign.models.ReverseDesignModel;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 
-public class ReverseDesignActivity extends AppCompatActivity {
-    private EditText inductanceEditText, resistanceEditText, capacitanceEditText, inputVoltageEditText,
-            outputVoltageEditText, frequencyEditText, efficiencyEditText;
+public class ReverseDesignView extends AppCompatActivity {
+    private EditText inductanceEditText, resistanceEditText, capacitanceEditText,
+            inputVoltageEditText, outputVoltageEditText, frequencyEditText, efficiencyEditText;
     private Button buckBtn, boostBtn, buckBoostBtn, exampleBtn;
 
     String TAG = "ReverseDesign";

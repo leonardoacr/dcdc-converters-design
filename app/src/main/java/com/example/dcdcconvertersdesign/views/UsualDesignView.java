@@ -13,12 +13,20 @@ import com.example.dcdcconvertersdesign.controllers.UsualDesignController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 import com.example.dcdcconvertersdesign.models.UsualDesignModel;
 
-public class UsualDesignActivity extends AppCompatActivity {
+public class UsualDesignView extends AppCompatActivity {
     // UI-related variables
-    private EditText inputVoltageEditText, outputVoltageEditText, outputPowerEditText,
-            rippleInductorCurrentEditText, rippleCapacitorVoltageEditText,
-            frequencyEditText, efficiencyEditText;
-    private Button buckBtn, boostBtn, buckBoostBtn, exampleBtn;
+    private EditText inputVoltageEditText;
+    private EditText outputVoltageEditText;
+    private EditText outputPowerEditText;
+    private EditText rippleInductorCurrentEditText;
+    private EditText rippleCapacitorVoltageEditText;
+    private EditText frequencyEditText;
+    private EditText efficiencyEditText;
+
+    private Button buckBtn;
+    private Button boostBtn;
+    private Button buckBoostBtn;
+    private Button exampleBtn;
 
     // Flags and constants
     private static final String TAG = "UsualDesign";

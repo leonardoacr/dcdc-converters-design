@@ -17,7 +17,7 @@ import com.example.dcdcconvertersdesign.models.SimulationModel;
 import com.example.dcdcconvertersdesign.utils.simulationutils.GraphUtils;
 import com.github.mikephil.charting.charts.LineChart;
 
-public class SimulationActivity extends AppCompatActivity {
+public class SimulationView extends AppCompatActivity {
     // define a tag for logging purposes
     private static final String TAG = "Simulation";
     private final SimulationModel model = new SimulationModel();

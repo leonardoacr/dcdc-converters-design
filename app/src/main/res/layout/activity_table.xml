@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#2b2b2b"
-        tools:context=".views.InductorDesignActivity">
+        tools:context=".views.InductorDesignView">
 
         <TextView
             android:id="@+id/Inductor_Project"

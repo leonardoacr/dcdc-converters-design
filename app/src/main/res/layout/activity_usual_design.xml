@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/MyBackground"
-        tools:context=".views.MainActivity">
+        tools:context=".views.MainView">
 
         <EditText
             android:id="@+id/input_voltage"

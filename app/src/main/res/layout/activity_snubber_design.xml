@@ -11,7 +11,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#2b2b2b"
-    tools:context=".views.SnubberDesignActivity"
+    tools:context=".views.SnubberDesignView"
     tools:ignore="HardcodedText"
     android:id="@+id/relativeLayout2">
 

@@ -17,97 +17,129 @@
 
 
         <TextView
-            android:id="@+id/buck_definition2"
+            style="@style/MyDefaultText"
+            android:id="@+id/buck_boost_definition_snubber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:text="When the high-switch (MOSFET) is OFF, the snubber capacitor will charge through the snubber resistor. When the MOSFET turns ON, the capacitor will discharge through the resistor to the MOSFET and to the circuit ground. The cycle will repeat until the capacitor is empty. \n
-        The resistor is the only component that is contribute of power loss in this snubber circuit. Because of this, a dichotomy is open in the sense of having a higher yield with less losses or vice versa. A very high resistance will contribute with less losses, but will not be an effective snubber. On the other hand, a small resistance will contribute a better snubber however it ends up directly affecting the efficiency of the system. In this app, the design is made with the best possible choice and is highly recommended for use in circuits that require a high operating frequency.\n"
+            android:text="@string/buck_boost_definition_snubber"
             android:textAlignment="viewStart"
-            android:textSize="14sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.526"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView9"
-            android:gravity="start" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView9" />
 
         <TextView
-            android:id="@+id/convertersDefinitions"
+            style="@style/MyDefaultText"
+            android:id="@+id/snubber_text_definitions_title"
             android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:layout_marginTop="40dp"
-            android:fontFamily="sans-serif"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:gravity="center"
-            android:text="Snubber Definitions"
-            android:textAppearance="@android:style/TextAppearance.WindowTitle"
-            android:textColor="@color/cardview_dark_background"
-            android:textSize="36sp"
-            android:typeface="sans"
+            android:text="@string/snubber_text_definitions_title"
+            android:fontFamily="@font/montserrat_bold"
+            android:textSize="32sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <me.biubiubiu.justifytext.library.JustifyTextView
-            android:id="@+id/buck_definition"
-            android:layout_width="333dp"
+        <TextView
+            android:id="@+id/snubber_definitions_text"
+            style="@style/MyDefaultText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:text="
-        In the DC-DC converters, many high-frequency noises are generated at switch nodes. A Snubber circuit presents a way to reduce these noises with a path to these currents. This note serves as information for the Snubber design. \n
-        The three figures below represent in blue the Snubber circuit to be implemented. In a real circuit, there are several parasitic inductances and capacitances present, which causes an accumulation of energy
-that causes a resonance of hundreds of MHz, causing deterioration by Electromagnetic Interference (EMI) and spikes in the waveform.\n"
-            android:textAlignment="viewStart"
-            android:textSize="14sp"
+            android:text="@string/snubber_definitions_text"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.526"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:gravity="start" />
+            app:layout_constraintTop_toBottomOf="@+id/snubber_text_definitions_title" />
+
+        <TextView
+            android:id="@+id/buck_title_snubber"
+            style="@style/MyDefaultText"
+            android:fontFamily="@font/montserrat_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/buck_converter_title"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/snubber_definitions_text" />
 
         <ImageView
             android:id="@+id/imageView7"
-            android:layout_width="287dp"
-            android:layout_height="229dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
+            android:contentDescription="@string/buck_converter_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buck_definition"
+            app:layout_constraintTop_toBottomOf="@+id/buck_title_snubber"
             app:srcCompat="@drawable/snubber_buck" />
+
+        <TextView
+            android:id="@+id/boost_title_snubber"
+            style="@style/MyDefaultText"
+            android:fontFamily="@font/montserrat_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/boost_converter_title"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+
         <ImageView
             android:id="@+id/imageView8"
-            android:layout_width="287dp"
-            android:layout_height="229dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
+            android:contentDescription="@string/boost_converter_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView7"
+            app:layout_constraintTop_toBottomOf="@+id/boost_title_snubber"
             app:srcCompat="@drawable/snubber_boost" />
+
+        <TextView
+            android:id="@+id/buck_boost_title_snubber"
+            style="@style/MyDefaultText"
+            android:fontFamily="@font/montserrat_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/buck_boost_converter_title"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
         <ImageView
             android:id="@+id/imageView9"
-            android:layout_width="287dp"
-            android:layout_height="229dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView8"
+            app:layout_constraintTop_toBottomOf="@+id/buck_boost_title_snubber"
             app:srcCompat="@drawable/snubber_buck_boost" />
 
 

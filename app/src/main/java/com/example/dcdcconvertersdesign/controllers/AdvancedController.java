@@ -4,10 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.dcdcconvertersdesign.views.InductorDesignActivity;
-import com.example.dcdcconvertersdesign.views.SnubberDesignActivity;
+import com.example.dcdcconvertersdesign.views.InductorDesignView;
+import com.example.dcdcconvertersdesign.views.SnubberDesignView;
 import com.example.dcdcconvertersdesign.models.AdvancedModel;
-import com.example.dcdcconvertersdesign.views.AdvancedActivity;
+import com.example.dcdcconvertersdesign.views.AdvancedView;
 
 public class AdvancedController {
     private static final String OUTPUT_CURRENT_KEY = "Output_Current";
@@ -19,11 +19,11 @@ public class AdvancedController {
     private static final String INDUCTOR_CURRENT_RMS_KEY = "Inductor_Current_RMS";
     private static final String DELTA_IL_KEY = "DeltaIL";
     private static final String TAG = "AdvancedController";
-    private final AdvancedActivity view;
+    private final AdvancedView view;
 
     private final AdvancedModel model;
 
-    public AdvancedController(AdvancedActivity view, AdvancedModel model) {
+    public AdvancedController(AdvancedView view, AdvancedModel model) {
         this.view = view;
         this.model = model;
     }
@@ -45,7 +45,7 @@ public class AdvancedController {
 
     public void onSnubberDesignClicked() {
         // Sending bundle to Snubber Design
-        Intent intent = new Intent(view, SnubberDesignActivity.class);
+        Intent intent = new Intent(view, SnubberDesignView.class);
         Bundle bundle = createSnubberDesignBundle();
         intent.putExtras(bundle);
         view.startActivity(intent);
@@ -53,7 +53,7 @@ public class AdvancedController {
 
     public void onInductorDesignClicked() {
         // Sending bundle to Inductor Design
-        Intent intent = new Intent(view, InductorDesignActivity.class);
+        Intent intent = new Intent(view, InductorDesignView.class);
         Bundle bundle = createInductorDesignBundle();
         intent.putExtras(bundle);
         view.startActivity(intent);

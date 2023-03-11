@@ -2,14 +2,13 @@ package com.example.dcdcconvertersdesign.controllers;
 
 import android.os.Bundle;
 
-import com.example.dcdcconvertersdesign.helpers.Helpers;
 import com.example.dcdcconvertersdesign.models.SnubberDesignModel;
-import com.example.dcdcconvertersdesign.views.SnubberDesignActivity;
+import com.example.dcdcconvertersdesign.views.SnubberDesignView;
 
 public class SnubberDesignController {
-    private final SnubberDesignActivity view;
+    private final SnubberDesignView view;
     private final SnubberDesignModel model;
-    public SnubberDesignController(SnubberDesignActivity view, SnubberDesignModel model) {
+    public SnubberDesignController(SnubberDesignView view, SnubberDesignModel model) {
         this.view = view;
         this.model = model;
     }

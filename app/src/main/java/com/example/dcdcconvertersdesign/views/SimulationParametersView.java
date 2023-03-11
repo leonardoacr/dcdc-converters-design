@@ -18,16 +18,14 @@ import com.example.dcdcconvertersdesign.controllers.SimulationParametersControll
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 import com.example.dcdcconvertersdesign.models.SimulationParametersModel;
 
-public class SimulationParametersActivity extends AppCompatActivity {
+public class SimulationParametersView extends AppCompatActivity {
     private static final String TAG = "Simulation";
-
-    private String unit;
     private TextView switchingFrequencyTextView, timeStepTextView, timeStepText;
     private TextView requiredMemoryText, requiredMemoryEditText, requiredMemoryBigText,
             maxTimeRecommendedTextView, maxTimeRecommendedText;
     private EditText  maxTimeEditText;
-    private Button outputVoltageBtn, outputCurrentBtn, inputCurrentBtn, switchCurrentBtn, diodeCurrentBtn,
-            inductorCurrentBtn, capacitorCurrentBtn;
+    private Button outputVoltageBtn, outputCurrentBtn, inputCurrentBtn, switchCurrentBtn,
+            diodeCurrentBtn, inductorCurrentBtn, capacitorCurrentBtn;
 
     private RelativeLayout requiredMemoryLayout, maxTimeRecommendedLayout;
 

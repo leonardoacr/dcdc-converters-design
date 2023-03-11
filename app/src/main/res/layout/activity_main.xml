@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/MyBackground"
-        tools:context=".views.MainActivity">
+        tools:context=".views.MainView">
 
         <TextView
             android:id="@+id/usual_design_mode_title"

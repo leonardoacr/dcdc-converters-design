@@ -4,25 +4,24 @@ import static com.example.dcdcconvertersdesign.helpers.VerifyInputErrors.*;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.dcdcconvertersdesign.models.ConverterModel;
 import com.example.dcdcconvertersdesign.utils.convertersutils.ConverterData;
 import com.example.dcdcconvertersdesign.models.UsualDesignModel;
-import com.example.dcdcconvertersdesign.views.ConverterActivity;
-import com.example.dcdcconvertersdesign.views.UsualDesignActivity;
+import com.example.dcdcconvertersdesign.views.ConverterView;
+import com.example.dcdcconvertersdesign.views.UsualDesignView;
 
 public class UsualDesignController {
     private double outputPower, rippleInductorCurrent, rippleCapacitorVoltage, outputVoltage,
             inputVoltage, frequency, efficiency;
     private double dutyCycle, resistance, capacitance, inductance;
     private int flag;
-    private final UsualDesignActivity view;
+    private final UsualDesignView view;
     private final UsualDesignModel model;
 
     private final String TAG = "UsualDesignController";
 
-    public UsualDesignController(UsualDesignActivity view, UsualDesignModel model) {
+    public UsualDesignController(UsualDesignView view, UsualDesignModel model) {
         this.view = view;
         this.model = model;
     }
@@ -127,7 +126,7 @@ public class UsualDesignController {
     }
 
     public void navigateToConverter(ConverterData converterData) {
-        Intent intent = new Intent(view, ConverterActivity.class);
+        Intent intent = new Intent(view, ConverterView.class);
         Bundle bundle = model.sendDataToConverterActivity(converterData);
         intent.putExtras(bundle);
         view.startActivity(intent);

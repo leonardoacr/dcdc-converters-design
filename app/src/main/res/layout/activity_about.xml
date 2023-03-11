@@ -12,60 +12,53 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
+        style="@style/MyBackgroundHelp"
         tools:context=".views.helpmenu.AboutActivity">
 
-    <me.biubiubiu.justifytext.library.JustifyTextView
-        android:id="@+id/buck_definition3"
-        android:layout_width="333dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="16dp"
-        android:text="
-        This application was developed by Leonardo Acosta Rodrigues, Electrical Engineering student at Federal University of Pampa, Alegrete, Brazil. All information contained herein was obtained
-through conversations with Ph.D's in Electrical Engineering and research in articles at the Institute of Electrical and Electronics Engineers (IEEE). All figures used for development were created by the
-author himself, claiming all copyright for them. \n
-        For questions, suggestions or complaints, please contact us at the email below. \n"
-        android:textAlignment="viewStart"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:gravity="start" />
+        <TextView
+            android:id="@+id/about_definitions_text"
+            style="@style/MyDefaultText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/about_definitions_text"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/about_title" />
 
     <TextView
-        android:id="@+id/convertersDefinitions2"
+        style="@style/MyDefaultText"
+        android:id="@+id/about_title"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
-        android:layout_marginTop="40dp"
-        android:fontFamily="sans-serif"
+        android:layout_marginTop="32dp"
         android:gravity="center"
-        android:text="About the app"
+        android:text="@string/about_the_app"
         android:textAppearance="@android:style/TextAppearance.WindowTitle"
-        android:textColor="@color/cardview_dark_background"
-        android:textSize="36sp"
-        android:typeface="sans"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/email"
-            style="@android:style/Widget.Material.Button.Inset"
-            android:layout_width="321dp"
-            android:layout_height="43dp"
+            style="@style/MyButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:text="dcdcconvertersproject@gmail.com"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buck_definition3"
-            tools:targetApi="lollipop" />
-
+            app:layout_constraintTop_toBottomOf="@+id/about_definitions_text" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -4,17 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.dcdcconvertersdesign.views.SimulationParametersActivity;
-import com.example.dcdcconvertersdesign.views.AdvancedActivity;
+import com.example.dcdcconvertersdesign.views.SimulationParametersView;
+import com.example.dcdcconvertersdesign.views.AdvancedView;
 import com.example.dcdcconvertersdesign.models.ConverterModel;
-import com.example.dcdcconvertersdesign.views.ConverterActivity;
+import com.example.dcdcconvertersdesign.views.ConverterView;
 
 public class ConverterController {
-    private final ConverterActivity view;
+    private final ConverterView view;
     private final ConverterModel model;
     private final String TAG = "ConverterController";
 
-    public ConverterController(ConverterActivity view, ConverterModel model) {
+    public ConverterController(ConverterView view, ConverterModel model) {
         this.view = view;
         this.model = model;
     }
@@ -32,7 +32,7 @@ public class ConverterController {
 
     public void onAdvancedClicked(Bundle bundle) {
         Log.d(TAG, "ConverterController: " + bundle.getDouble("Duty_Cycle"));
-        Intent intent = new Intent(view, AdvancedActivity.class);
+        Intent intent = new Intent(view, AdvancedView.class);
         intent.putExtras(bundle);
         view.startActivity(intent);
     }
@@ -48,7 +48,7 @@ public class ConverterController {
     }
 
     private void navigateToSimulation(Bundle bundle) {
-        Intent intent = new Intent(view, SimulationParametersActivity.class);
+        Intent intent = new Intent(view, SimulationParametersView.class);
         intent.putExtras(bundle);
         view.startActivity(intent);
     }

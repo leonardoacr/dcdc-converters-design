@@ -12,7 +12,7 @@ import com.example.dcdcconvertersdesign.controllers.AdvancedController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 import com.example.dcdcconvertersdesign.models.AdvancedModel;
 
-public class AdvancedActivity extends AppCompatActivity {
+public class AdvancedView extends AppCompatActivity {
     private TextView inductanceCriticalTextView, inputCurrentTextView, outputCurrentTextView,
             inductorCurrentTextView, switchCurrentTextView, diodeCurrentTextView,
             deltaInductorCurrentTextView, deltaCapacitorVoltageTextView, inductorReverseNote;

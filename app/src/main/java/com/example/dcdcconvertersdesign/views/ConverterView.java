@@ -13,7 +13,7 @@ import com.example.dcdcconvertersdesign.controllers.ConverterController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 import com.example.dcdcconvertersdesign.models.ConverterModel;
 
-public class ConverterActivity extends AppCompatActivity {
+public class ConverterView extends AppCompatActivity {
     private TextView dutyCycleTextView, resistanceTextView, capacitanceTextView, inductanceTextView;
     public TextView dutyCycleText, resistanceText, inductanceText, capacitanceText, modeWarning,
             converterTitle, modeTextView;

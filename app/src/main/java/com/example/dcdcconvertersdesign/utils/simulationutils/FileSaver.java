@@ -3,7 +3,7 @@ package com.example.dcdcconvertersdesign.utils.simulationutils;
 import android.graphics.Bitmap;
 import android.util.Log;
 
-import com.example.dcdcconvertersdesign.views.SimulationActivity;
+import com.example.dcdcconvertersdesign.views.SimulationView;
 import com.github.mikephil.charting.charts.LineChart;
 
 import java.io.File;
@@ -13,7 +13,7 @@ import java.io.IOException;
 public class FileSaver {
     private static final String TAG = "FileSaver";
    public static void savePNG(String directoryPath, LineChart chart, String fileNameKey,
-                              SimulationActivity view) {
+                              SimulationView view) {
         // Save the chart to PNG
         File directory = new File(directoryPath);
         if (!directory.exists()) {
@@ -63,7 +63,7 @@ public class FileSaver {
         return stringBuilder.toString();
     }
 
-    public static void saveCSV(String directoryPath, String fileNameKey, SimulationActivity view) {
+    public static void saveCSV(String directoryPath, String fileNameKey, SimulationView view) {
         // Save the chart to CSV
         File directory = new File(directoryPath);
         if (!directory.exists()) {

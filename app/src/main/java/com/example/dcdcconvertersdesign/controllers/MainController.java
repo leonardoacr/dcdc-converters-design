@@ -1,11 +1,11 @@
 package com.example.dcdcconvertersdesign.controllers;
 
-import com.example.dcdcconvertersdesign.views.MainActivity;
+import com.example.dcdcconvertersdesign.views.MainView;
 
 public class MainController {
-    private MainActivity view;
+    private final MainView view;
 
-    public MainController(MainActivity view) {
+    public MainController(MainView view) {
         this.view = view;
     }
 

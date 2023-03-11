@@ -1,7 +1,6 @@
 package com.example.dcdcconvertersdesign.views;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +17,7 @@ import com.example.dcdcconvertersdesign.models.ConverterReverseModel;
 
 import java.util.Locale;
 
-public class ConverterReverseActivity extends AppCompatActivity {
+public class ConverterReverseView extends AppCompatActivity {
     private TextView converterTitle;
     private TextView outputPowerText;
     private TextView rippleInductorCurrentText;

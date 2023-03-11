@@ -6,12 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.ContextThemeWrapper;
-import androidx.appcompat.widget.PopupMenu;
 
-import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
 
@@ -24,7 +20,7 @@ import com.example.dcdcconvertersdesign.views.helpmenu.SymbolsDefinitionsActivit
 import com.example.dcdcconvertersdesign.controllers.MainController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 
-public class MainActivity extends AppCompatActivity {
+public class MainView extends AppCompatActivity {
 
     private MainController controller;
     private Button usualDesignBtn, reverseEngineeringBtn;
@@ -59,12 +55,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void navigateToUsualDesign() {
-        Intent intent = new Intent(this, UsualDesignActivity.class);
+        Intent intent = new Intent(this, UsualDesignView.class);
         startActivity(intent);
     }
 
     public void navigateToReverseEngineering() {
-        Intent intent = new Intent(this, ReverseDesignActivity.class);
+        Intent intent = new Intent(this, ReverseDesignView.class);
         startActivity(intent);
     }
 
@@ -79,27 +75,27 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.symbols_item) {
-            Intent intent_symbols = new Intent(MainActivity.this,
+            Intent intent_symbols = new Intent(MainView.this,
                     SymbolsDefinitionsActivity.class);
             startActivity(intent_symbols);
             return true;
         } else if (id == R.id.converter_definitions_item) {
-            Intent intent_converters_definitions = new Intent(MainActivity.this,
+            Intent intent_converters_definitions = new Intent(MainView.this,
                     ConvertersDefinitionsActivity.class);
             startActivity(intent_converters_definitions);
             return true;
         } else if (id == R.id.inductor_definitions_item) {
-            Intent intent_inductor_definitions = new Intent(MainActivity.this,
+            Intent intent_inductor_definitions = new Intent(MainView.this,
                     InductorDefinitionsActivity.class);
             startActivity(intent_inductor_definitions);
             return true;
         } else if (id == R.id.snubber_definitions_item) {
-            Intent intent_snubber_definitions = new Intent(MainActivity.this,
+            Intent intent_snubber_definitions = new Intent(MainView.this,
                     SnubberDefinitionsActivity.class);
             startActivity(intent_snubber_definitions);
             return true;
         } else if (id == R.id.about_item) {
-            Intent intent_about = new Intent(MainActivity.this, AboutActivity.class);
+            Intent intent_about = new Intent(MainView.this, AboutActivity.class);
             startActivity(intent_about);
             return true;
         }

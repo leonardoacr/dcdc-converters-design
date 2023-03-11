@@ -4,19 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.dcdcconvertersdesign.models.ConverterModel;
 import com.example.dcdcconvertersdesign.models.ConverterReverseModel;
-import com.example.dcdcconvertersdesign.views.AdvancedActivity;
-import com.example.dcdcconvertersdesign.views.ConverterActivity;
-import com.example.dcdcconvertersdesign.views.ConverterReverseActivity;
-import com.example.dcdcconvertersdesign.views.SimulationParametersActivity;
+import com.example.dcdcconvertersdesign.views.AdvancedView;
+import com.example.dcdcconvertersdesign.views.ConverterReverseView;
+import com.example.dcdcconvertersdesign.views.SimulationParametersView;
 
 public class ConverterReverseController {
-    private final ConverterReverseActivity view;
+    private final ConverterReverseView view;
     private final ConverterReverseModel model;
     private final String TAG = "ConverterReverseController";
 
-    public ConverterReverseController(ConverterReverseActivity view, ConverterReverseModel model) {
+    public ConverterReverseController(ConverterReverseView view, ConverterReverseModel model) {
         this.view = view;
         this.model = model;
     }
@@ -35,7 +33,7 @@ public class ConverterReverseController {
 
     public void onAdvancedClicked(Bundle bundle) {
         Log.d(TAG, "ConverterController: " + bundle.getDouble("Duty_Cycle"));
-        Intent intent = new Intent(view, AdvancedActivity.class);
+        Intent intent = new Intent(view, AdvancedView.class);
         final int flagReverse = 1;
         bundle.putDouble("Flag_Reverse", flagReverse);
         intent.putExtras(bundle);
@@ -53,7 +51,7 @@ public class ConverterReverseController {
     }
 
     private void navigateToSimulation(Bundle bundle) {
-        Intent intent = new Intent(view, SimulationParametersActivity.class);
+        Intent intent = new Intent(view, SimulationParametersView.class);
         intent.putExtras(bundle);
         view.startActivity(intent);
     }

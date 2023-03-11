@@ -11,11 +11,11 @@ import android.util.Log;
 import com.example.dcdcconvertersdesign.models.ConverterReverseModel;
 import com.example.dcdcconvertersdesign.models.ReverseDesignModel;
 import com.example.dcdcconvertersdesign.utils.convertersutils.ConverterData;
-import com.example.dcdcconvertersdesign.views.ConverterReverseActivity;
-import com.example.dcdcconvertersdesign.views.ReverseDesignActivity;
+import com.example.dcdcconvertersdesign.views.ConverterReverseView;
+import com.example.dcdcconvertersdesign.views.ReverseDesignView;
 
 public class ReverseDesignController {
-    private final ReverseDesignActivity view;
+    private final ReverseDesignView view;
     private final ReverseDesignModel model;
     private int flag;
     double inputVoltage;
@@ -28,7 +28,7 @@ public class ReverseDesignController {
 
     private final String TAG = "ReverseDesignController";
 
-    public ReverseDesignController(ReverseDesignActivity view, ReverseDesignModel model) {
+    public ReverseDesignController(ReverseDesignView view, ReverseDesignModel model) {
         this.view = view;
         this.model = model;
     }
@@ -123,7 +123,7 @@ public class ReverseDesignController {
     }
 
     public void navigateToConverterReverse(ConverterData converterData) {
-        Intent intent = new Intent(view.getApplicationContext(), ConverterReverseActivity.class);
+        Intent intent = new Intent(view.getApplicationContext(), ConverterReverseView.class);
         Bundle bundle = model.sendDataToConverterReverseActivity(converterData);
         intent.putExtras(bundle);
         view.startActivity(intent);

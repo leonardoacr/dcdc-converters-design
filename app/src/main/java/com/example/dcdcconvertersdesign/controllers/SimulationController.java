@@ -11,18 +11,18 @@ import com.example.dcdcconvertersdesign.utils.simulationutils.GraphUtils;
 import com.example.dcdcconvertersdesign.utils.simulationutils.LimitsDialog;
 import com.example.dcdcconvertersdesign.utils.simulationutils.SaveDialog;
 import com.example.dcdcconvertersdesign.utils.simulationutils.SolveDiffEquations;
-import com.example.dcdcconvertersdesign.views.SimulationActivity;
-import com.example.dcdcconvertersdesign.views.SimulationParametersActivity;
+import com.example.dcdcconvertersdesign.views.SimulationView;
+import com.example.dcdcconvertersdesign.views.SimulationParametersView;
 import com.github.mikephil.charting.charts.LineChart;
 
 import java.util.Objects;
 
 public class SimulationController {
-    private final SimulationActivity view;
+    private final SimulationView view;
     private final SimulationModel model;
     private final String TAG = "SimulationController";
 
-    public SimulationController(SimulationActivity view, SimulationModel model) {
+    public SimulationController(SimulationView view, SimulationModel model) {
         this.view = view;
         this.model = model;
     }
@@ -49,7 +49,7 @@ public class SimulationController {
             }
 
             long delayToHideProgressBar = model.getNumStep() / 200;
-            new Handler().postDelayed(SimulationParametersActivity::hideProgressBar,
+            new Handler().postDelayed(SimulationParametersView::hideProgressBar,
                     delayToHideProgressBar);
 
             Log.d(TAG, String.valueOf(chart.getData().getEntryCount()));

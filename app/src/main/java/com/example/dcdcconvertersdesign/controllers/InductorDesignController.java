@@ -2,17 +2,16 @@ package com.example.dcdcconvertersdesign.controllers;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.example.dcdcconvertersdesign.models.InductorDesignModel;
-import com.example.dcdcconvertersdesign.views.InductorDesignActivity;
-import com.example.dcdcconvertersdesign.views.InductorDesignTableActivity;
+import com.example.dcdcconvertersdesign.views.InductorDesignView;
+import com.example.dcdcconvertersdesign.views.InductorDesignTableView;
 
 public class InductorDesignController implements InductorDesignModel.ModelListener {
-    private final InductorDesignActivity view;
+    private final InductorDesignView view;
     private final InductorDesignModel model;
 
-    public InductorDesignController(InductorDesignActivity view, InductorDesignModel model) {
+    public InductorDesignController(InductorDesignView view, InductorDesignModel model) {
         this.view = view;
         this.model = model;
     }
@@ -34,7 +33,7 @@ public class InductorDesignController implements InductorDesignModel.ModelListen
     }
 
     public void onTableClicked() {
-        Intent intent = new Intent(view, InductorDesignTableActivity.class);
+        Intent intent = new Intent(view, InductorDesignTableView.class);
         view.startActivity(intent);
     }
 

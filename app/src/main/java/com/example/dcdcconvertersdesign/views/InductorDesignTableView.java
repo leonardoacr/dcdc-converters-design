@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.dcdcconvertersdesign.R;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 
-public class InductorDesignTableActivity extends AppCompatActivity {
+public class InductorDesignTableView extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,8 +1,5 @@
 package com.example.dcdcconvertersdesign.views;
 
-import static com.example.dcdcconvertersdesign.helpers.Helpers.showToast;
-import static com.example.dcdcconvertersdesign.helpers.Helpers.stringFormat;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
@@ -22,7 +19,7 @@ import com.example.dcdcconvertersdesign.controllers.SnubberDesignController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 import com.example.dcdcconvertersdesign.models.SnubberDesignModel;
 
-public class SnubberDesignActivity extends AppCompatActivity {
+public class SnubberDesignView extends AppCompatActivity {
     TextView capacitanceSnubberTextView, resistanceSnubberTextView, powerSnubberTextView,
             capacitanceSnubberText, resistanceSnubberText, powerSnubberText;
     EditText timeDelayOffEditText, timeDelayFallEditText;
@@ -80,6 +77,7 @@ public class SnubberDesignActivity extends AppCompatActivity {
         }
         if (flag == 2) {
             snubberImage.setImageResource(R.drawable.snubber_boost);
+
             // Create a new LayoutParams object to add a margin to the image layout
             int layoutMargin = 8;
             setLayoutMargin(layoutMargin);

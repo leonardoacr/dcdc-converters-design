@@ -4,19 +4,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.dcdcconvertersdesign.views.SimulationActivity;
+import com.example.dcdcconvertersdesign.views.SimulationView;
 import com.example.dcdcconvertersdesign.models.SimulationParametersModel;
-import com.example.dcdcconvertersdesign.views.SimulationParametersActivity;
+import com.example.dcdcconvertersdesign.views.SimulationParametersView;
 
 public class SimulationParametersController {
-    private final SimulationParametersActivity view;
+    private final SimulationParametersView view;
     private final SimulationParametersModel model;
 
     private double timeStep;
 
     private final String TAG = "SimulationParameters";
 
-    public SimulationParametersController(SimulationParametersActivity view, SimulationParametersModel model) {
+    public SimulationParametersController(SimulationParametersView view, SimulationParametersModel model) {
         this.view = view;
         this.model = model;
     }
@@ -47,7 +47,7 @@ public class SimulationParametersController {
     }
 
     public void navigateToSimulation(double maxTime, double timeStep, String receivedID){
-        Intent intentSimulation = new Intent(view, SimulationActivity.class);
+        Intent intentSimulation = new Intent(view, SimulationView.class);
         Bundle bundle = new Bundle();
 
         // Copy all extras from the previous activity

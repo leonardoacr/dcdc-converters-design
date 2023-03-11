@@ -12,8 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".views.InductorDesignTableActivity" />
-        <activity android:name=".views.MainActivity"
+        <activity android:name=".views.InductorDesignTableView" />
+        <activity android:name=".views.MainView"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,19 +21,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.UsualDesignActivity" />
-        <activity android:name=".views.ReverseDesignActivity" />
+        <activity android:name=".views.UsualDesignView" />
+        <activity android:name=".views.ReverseDesignView" />
         <activity android:name=".views.helpmenu.SymbolsDefinitionsActivity" />
         <activity android:name=".views.helpmenu.ConvertersDefinitionsActivity" />
         <activity android:name=".views.helpmenu.SnubberDefinitionsActivity" />
-        <activity android:name=".views.ConverterActivity" />
-        <activity android:name=".views.AdvancedActivity" />
-        <activity android:name=".views.SnubberDesignActivity" />
-        <activity android:name=".views.InductorDesignActivity" />
-        <activity android:name=".views.ConverterReverseActivity" />
+        <activity android:name=".views.ConverterView" />
+        <activity android:name=".views.AdvancedView" />
+        <activity android:name=".views.SnubberDesignView" />
+        <activity android:name=".views.InductorDesignView" />
+        <activity android:name=".views.ConverterReverseView" />
         <activity android:name=".views.helpmenu.InductorDefinitionsActivity" />
         <activity android:name=".views.helpmenu.AboutActivity" />
-        <activity android:name=".views.SimulationActivity" />
-        <activity android:name=".views.SimulationParametersActivity" />
+        <activity android:name=".views.SimulationView" />
+        <activity android:name=".views.SimulationParametersView" />
     </application>
 </manifest>

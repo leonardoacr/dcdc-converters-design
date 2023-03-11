@@ -3,7 +3,6 @@ package com.example.dcdcconvertersdesign.views;
 import static com.example.dcdcconvertersdesign.helpers.Helpers.showToast;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
@@ -22,7 +21,7 @@ import com.example.dcdcconvertersdesign.models.InductorDesignModel;
 
 import java.util.Locale;
 
-public class InductorDesignActivity extends AppCompatActivity {
+public class InductorDesignView extends AppCompatActivity {
 
     private ToggleButton resultsInductorDesign;
     private Button tableBtn, exampleBtn;
@@ -56,7 +55,6 @@ public class InductorDesignActivity extends AppCompatActivity {
                 controller.onResultsClicked();
 
                 tableBtn.setOnClickListener(v -> controller.onTableClicked());
-
             }
         });
 
