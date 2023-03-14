@@ -10,8 +10,10 @@ import android.os.Bundle;
 
 import com.example.dcdcconvertersdesign.interfaces.controllers.ConverterDesignInterface;
 import com.example.dcdcconvertersdesign.interfaces.controllers.DesignControllerInterface;
-import com.example.dcdcconvertersdesign.models.ConverterModel;
 import com.example.dcdcconvertersdesign.models.UsualDesignModel;
+import com.example.dcdcconvertersdesign.models.converters.boost.BoostConverterCalculator;
+import com.example.dcdcconvertersdesign.models.converters.buck.BuckConverterCalculator;
+import com.example.dcdcconvertersdesign.models.converters.buckboost.BuckBoostConverterCalculator;
 import com.example.dcdcconvertersdesign.utils.convertersutils.ConverterData;
 import com.example.dcdcconvertersdesign.views.ConverterView;
 import com.example.dcdcconvertersdesign.views.UsualDesignView;
@@ -107,7 +109,7 @@ public class UsualDesignController implements DesignControllerInterface {
 
         public ConverterData performCalculations() {
             UsualDesignView view = (UsualDesignView) mContext;
-            return ConverterModel.buckCalculations(view.getInputVoltage(),
+            return BuckConverterCalculator.calculateBuckVariables(view.getInputVoltage(),
                     view.getOutputVoltage(), view.getOutputPower(), view.getRippleInductorCurrent(),
                     view.getRippleCapacitorVoltage(), view.getFrequency(), view.getEfficiency());
         }
@@ -128,7 +130,7 @@ public class UsualDesignController implements DesignControllerInterface {
 
         public ConverterData performCalculations() {
             UsualDesignView view = (UsualDesignView) mContext;
-            return ConverterModel.boostCalculations(view.getInputVoltage(),
+            return BoostConverterCalculator.calculateBoostVariables(view.getInputVoltage(),
                     view.getOutputVoltage(), view.getOutputPower(), view.getRippleInductorCurrent(),
                     view.getRippleCapacitorVoltage(), view.getFrequency(), view.getEfficiency());
         }
@@ -149,7 +151,7 @@ public class UsualDesignController implements DesignControllerInterface {
 
         public ConverterData performCalculations() {
             UsualDesignView view = (UsualDesignView) mContext;
-            return ConverterModel.buckBoostCalculations(view.getInputVoltage(),
+            return BuckBoostConverterCalculator.calculateBuckBoostVariables(view.getInputVoltage(),
                     view.getOutputVoltage(), view.getOutputPower(), view.getRippleInductorCurrent(),
                     view.getRippleCapacitorVoltage(), view.getFrequency(), view.getEfficiency());
         }

@@ -1,6 +1,6 @@
-package com.example.dcdcconvertersdesign.utils.simulationutils;
+package com.example.dcdcconvertersdesign.models.converters.boost;
 
-public class CalculateBoostArrays {
+public class BoostConverterArrays {
     private static double[] diodeCurrentArray;
     public static double[] calculateOutputCurrentArray(double[] outputVoltageArray, double resistance) {
         double[] outputCurrentArray = new double[outputVoltageArray.length];

@@ -3,11 +3,13 @@ package com.example.dcdcconvertersdesign.models;
 import android.os.Bundle;
 
 import com.example.dcdcconvertersdesign.interfaces.models.SimulationModelInterface;
-import com.example.dcdcconvertersdesign.utils.simulationutils.CalculateBoostArrays;
-import com.example.dcdcconvertersdesign.utils.simulationutils.CalculateBuckArrays;
-import com.example.dcdcconvertersdesign.utils.simulationutils.CalculateBuckBoostArrays;
+import com.example.dcdcconvertersdesign.models.converters.boost.BoostConverterArrays;
+import com.example.dcdcconvertersdesign.models.converters.boost.BoostConverterSimulator;
+import com.example.dcdcconvertersdesign.models.converters.buck.BuckConverterArrays;
+import com.example.dcdcconvertersdesign.models.converters.buck.BuckConverterSimulator;
+import com.example.dcdcconvertersdesign.models.converters.buckboost.BuckBoostConverterArrays;
+import com.example.dcdcconvertersdesign.models.converters.buckboost.BuckBoostConverterSimulator;
 import com.example.dcdcconvertersdesign.utils.simulationutils.GraphUtils;
-import com.example.dcdcconvertersdesign.utils.simulationutils.SolveDiffEquations;
 import com.github.mikephil.charting.charts.LineChart;
 
 public class SimulationModel implements SimulationModelInterface {
@@ -47,15 +49,15 @@ public class SimulationModel implements SimulationModelInterface {
                                double frequency, double timeStep, int numStep, int flag) {
         switch (flag) {
             case 1:
-                SolveDiffEquations.buckConverter(outputVoltage, inputVoltage, dutyCycleIdeal,
+                BuckConverterSimulator.solveDiffEquations(outputVoltage, inputVoltage, dutyCycleIdeal,
                         inductance, capacitance, resistance, frequency, timeStep, numStep);
                 break;
             case 2:
-                SolveDiffEquations.boostConverter(outputVoltage, inputVoltage, dutyCycleIdeal,
+                BoostConverterSimulator.solveDiffEquations(outputVoltage, inputVoltage, dutyCycleIdeal,
                         inductance, capacitance, resistance, frequency, timeStep, numStep);
                 break;
             case 3:
-                SolveDiffEquations.buckBoostConverter(outputVoltage, inputVoltage, dutyCycleIdeal,
+                BuckBoostConverterSimulator.solveDiffEquations(outputVoltage, inputVoltage, dutyCycleIdeal,
                         inductance, capacitance, resistance, frequency, timeStep, numStep);
                 break;
         }
@@ -63,8 +65,22 @@ public class SimulationModel implements SimulationModelInterface {
 
     public void handleOutputVoltage(GraphUtils graphUtils, LineChart chart) {
         fileNameKey = "OutputVoltage";
-        double[] outputVoltageArray = SolveDiffEquations.getOutputVoltageArray();
-        double[] timeArray = SolveDiffEquations.getTimeArray();
+        double[] outputVoltageArray = new double[numStep + 1];
+        double[] timeArray = new double[numStep + 1];
+
+        if (flag == 1) {
+            outputVoltageArray = BuckConverterSimulator.getOutputVoltageArray();
+            timeArray = BuckConverterSimulator.getTimeArray();
+        }
+        if (flag == 2) {
+            outputVoltageArray = BoostConverterSimulator.getOutputVoltageArray();
+            timeArray = BoostConverterSimulator.getTimeArray();
+        }
+        if (flag == 3) {
+            outputVoltageArray = BuckBoostConverterSimulator.getOutputVoltageArray();
+            timeArray = BuckBoostConverterSimulator.getTimeArray();
+        }
+
         graphUtils.loadDataAndPlotGraph(timeArray, outputVoltageArray, getNumStep(), fileNameKey, chart);
     }
 
@@ -72,19 +88,25 @@ public class SimulationModel implements SimulationModelInterface {
         fileNameKey = "OutputCurrent";
         numStep = getNumStep();
         double[] outputCurrentArray = new double[numStep + 1];
-        double[] outputVoltageArray = SolveDiffEquations.getOutputVoltageArray();
-        double[] timeArray = SolveDiffEquations.getTimeArray();
+        double[] outputVoltageArray;
+        double[] timeArray = new double[numStep + 1];
 
         if (flag == 1) {
-            outputCurrentArray = CalculateBuckArrays.calculateOutputCurrentArray(
+            outputVoltageArray = BuckConverterSimulator.getOutputVoltageArray();
+            timeArray = BuckConverterSimulator.getTimeArray();
+            outputCurrentArray = BuckConverterArrays.calculateOutputCurrentArray(
                     outputVoltageArray, resistance);
         }
         if (flag == 2) {
-            outputCurrentArray = CalculateBoostArrays.calculateOutputCurrentArray(
+            outputVoltageArray = BoostConverterSimulator.getOutputVoltageArray();
+            timeArray = BoostConverterSimulator.getTimeArray();
+            outputCurrentArray = BoostConverterArrays.calculateOutputCurrentArray(
                     outputVoltageArray, resistance);
         }
         if (flag == 3) {
-            outputCurrentArray = CalculateBuckBoostArrays.calculateOutputCurrentArray(
+            outputVoltageArray = BuckBoostConverterSimulator.getOutputVoltageArray();
+            timeArray = BuckBoostConverterSimulator.getTimeArray();
+            outputCurrentArray = BuckBoostConverterArrays.calculateOutputCurrentArray(
                     outputVoltageArray, resistance);
         }
 
@@ -95,19 +117,27 @@ public class SimulationModel implements SimulationModelInterface {
         fileNameKey = "InputCurrent";
         numStep = getNumStep();
         double[] inputCurrentArray = new double[numStep + 1];
-        double[] inductorCurrentArray = SolveDiffEquations.getInductorCurrentArray();
-        double[] timeArray = SolveDiffEquations.getTimeArray();
-        double[] sArray = SolveDiffEquations.getSArray();
+        double[] timeArray = new double[numStep + 1];
+        double[] inductorCurrentArray;
+        double[] sArray;
 
         if (flag == 1) {
-            inputCurrentArray = CalculateBuckArrays.calculateInputCurrentArray(
+            inductorCurrentArray = BuckConverterSimulator.getInductorCurrentArray();
+            sArray = BuckConverterSimulator.getSArray();
+            timeArray = BuckConverterSimulator.getTimeArray();
+            inputCurrentArray = BuckConverterArrays.calculateInputCurrentArray(
                     inductorCurrentArray, sArray);
         }
         if (flag == 2) {
+            inductorCurrentArray = BoostConverterSimulator.getInductorCurrentArray();
+            timeArray = BoostConverterSimulator.getTimeArray();
             inputCurrentArray = inductorCurrentArray;
         }
         if (flag == 3) {
-            inputCurrentArray = CalculateBuckBoostArrays.calculateInputCurrentArray(
+            inductorCurrentArray = BuckBoostConverterSimulator.getInductorCurrentArray();
+            sArray = BuckBoostConverterSimulator.getSArray();
+            timeArray = BuckBoostConverterSimulator.getTimeArray();
+            inputCurrentArray = BuckBoostConverterArrays.calculateInputCurrentArray(
                     inductorCurrentArray, sArray);
         }
 
@@ -117,21 +147,30 @@ public class SimulationModel implements SimulationModelInterface {
     public void handleDiodeCurrent(GraphUtils graphUtils, LineChart chart, int flag) {
         fileNameKey = "DiodeCurrent";
         numStep = getNumStep();
+        double[] timeArray = new double[numStep + 1];
         double[] diodeCurrentArray = new double[numStep + 1];
-        double[] inductorCurrentArray = SolveDiffEquations.getInductorCurrentArray();
-        double[] timeArray = SolveDiffEquations.getTimeArray();
-        double[] sArray = SolveDiffEquations.getSArray();
+        double[] inductorCurrentArray;
+        double[] sArray;
 
         if (flag == 1) {
-            diodeCurrentArray = CalculateBuckArrays.calculateDiodeCurrentArray(
+            inductorCurrentArray = BuckConverterSimulator.getInductorCurrentArray();
+            sArray = BuckConverterSimulator.getSArray();
+            timeArray = BuckConverterSimulator.getTimeArray();
+            diodeCurrentArray = BuckConverterArrays.calculateDiodeCurrentArray(
                     inductorCurrentArray, sArray);
         }
         if (flag == 2) {
-            diodeCurrentArray = CalculateBoostArrays.calculateDiodeCurrentArray(
+            inductorCurrentArray = BoostConverterSimulator.getInductorCurrentArray();
+            timeArray = BoostConverterSimulator.getTimeArray();
+            sArray = BoostConverterSimulator.getSArray();
+            diodeCurrentArray = BoostConverterArrays.calculateDiodeCurrentArray(
                     inductorCurrentArray, sArray);
         }
         if (flag == 3) {
-            diodeCurrentArray = CalculateBuckBoostArrays.calculateDiodeCurrentArray(
+            inductorCurrentArray = BuckBoostConverterSimulator.getInductorCurrentArray();
+            timeArray = BuckBoostConverterSimulator.getTimeArray();
+            sArray = BuckBoostConverterSimulator.getSArray();
+            diodeCurrentArray = BuckBoostConverterArrays.calculateDiodeCurrentArray(
                     inductorCurrentArray, sArray);
         }
 
@@ -142,20 +181,29 @@ public class SimulationModel implements SimulationModelInterface {
         fileNameKey = "SwitchCurrent";
         numStep = getNumStep();
         double[] switchCurrentArray = new double[numStep + 1];
-        double[] inductorCurrentArray = SolveDiffEquations.getInductorCurrentArray();
-        double[] timeArray = SolveDiffEquations.getTimeArray();
-        double[] sArray = SolveDiffEquations.getSArray();
+        double[] inductorCurrentArray;
+        double[] timeArray = new double[numStep + 1];
+        double[] sArray;
 
         if (flag == 1) {
-            switchCurrentArray = CalculateBuckArrays.calculateSwitchCurrentArray(
+            inductorCurrentArray = BuckConverterSimulator.getInductorCurrentArray();
+            sArray = BuckConverterSimulator.getSArray();
+            timeArray = BuckConverterSimulator.getTimeArray();
+            switchCurrentArray = BuckConverterArrays.calculateSwitchCurrentArray(
                     inductorCurrentArray, sArray);
         }
         if (flag == 2) {
-            switchCurrentArray = CalculateBoostArrays.calculateSwitchCurrentArray(
+            inductorCurrentArray = BoostConverterSimulator.getInductorCurrentArray();
+            sArray = BoostConverterSimulator.getSArray();
+            timeArray = BoostConverterSimulator.getTimeArray();
+            switchCurrentArray = BoostConverterArrays.calculateSwitchCurrentArray(
                     inductorCurrentArray, sArray);
         }
         if (flag == 3) {
-            switchCurrentArray = CalculateBuckBoostArrays.calculateSwitchCurrentArray(
+            inductorCurrentArray = BuckBoostConverterSimulator.getInductorCurrentArray();
+            sArray = BuckBoostConverterSimulator.getSArray();
+            timeArray = BuckBoostConverterSimulator.getTimeArray();
+            switchCurrentArray = BuckBoostConverterArrays.calculateSwitchCurrentArray(
                     inductorCurrentArray, sArray);
         }
 
@@ -165,30 +213,55 @@ public class SimulationModel implements SimulationModelInterface {
     public void handleInductorCurrent(GraphUtils graphUtils, LineChart chart) {
         fileNameKey = "InductorCurrent";
         numStep = getNumStep();
-        double[] inductorCurrentArray = SolveDiffEquations.getInductorCurrentArray();
-        double[] timeArray = SolveDiffEquations.getTimeArray();
+        double[] inductorCurrentArray = new double[numStep + 1];
+        double[] timeArray = new double[numStep + 1];
+
+        if (flag == 1) {
+            inductorCurrentArray = BuckConverterSimulator.getInductorCurrentArray();
+            timeArray = BuckConverterSimulator.getTimeArray();
+        }
+        if (flag == 2) {
+            inductorCurrentArray = BoostConverterSimulator.getInductorCurrentArray();
+            timeArray = BoostConverterSimulator.getTimeArray();
+        }
+        if (flag == 3) {
+            inductorCurrentArray = BuckBoostConverterSimulator.getInductorCurrentArray();
+            timeArray = BuckBoostConverterSimulator.getTimeArray();
+        }
+
         graphUtils.loadDataAndPlotGraph(timeArray, inductorCurrentArray, numStep, fileNameKey, chart);
     }
 
     public void handleCapacitorCurrent(GraphUtils graphUtils, LineChart chart, int flag) {
         fileNameKey = "CapacitorCurrent";
         numStep = getNumStep();
-        double[] outputVoltageArray = SolveDiffEquations.getOutputVoltageArray();
         double[] capacitorCurrentArray = new double[numStep + 1];
-        double[] inductorCurrentArray = SolveDiffEquations.getInductorCurrentArray();
-        double[] timeArray = SolveDiffEquations.getTimeArray();
-        double[] sArray = SolveDiffEquations.getSArray();
+        double[] timeArray = new double[numStep + 1];
+        double[] outputVoltageArray;
+        double[] inductorCurrentArray;
+        double[] sArray;
 
         if (flag == 1) {
-            capacitorCurrentArray = CalculateBuckArrays.calculateCapacitorCurrentArray(
+            outputVoltageArray = BuckConverterSimulator.getOutputVoltageArray();
+            inductorCurrentArray = BuckConverterSimulator.getInductorCurrentArray();
+            timeArray = BuckConverterSimulator.getTimeArray();
+            capacitorCurrentArray = BuckConverterArrays.calculateCapacitorCurrentArray(
                     outputVoltageArray, inductorCurrentArray, resistance);
         }
         if (flag == 2) {
-            capacitorCurrentArray = CalculateBoostArrays.calculateCapacitorCurrentArray(
+            outputVoltageArray = BoostConverterSimulator.getOutputVoltageArray();
+            inductorCurrentArray = BoostConverterSimulator.getInductorCurrentArray();
+            sArray = BoostConverterSimulator.getSArray();
+            timeArray = BoostConverterSimulator.getTimeArray();
+            capacitorCurrentArray = BoostConverterArrays.calculateCapacitorCurrentArray(
                     outputVoltageArray, inductorCurrentArray, resistance, sArray);
         }
         if (flag == 3) {
-            capacitorCurrentArray = CalculateBuckBoostArrays.calculateCapacitorCurrentArray(
+            outputVoltageArray = BuckBoostConverterSimulator.getOutputVoltageArray();
+            inductorCurrentArray = BuckBoostConverterSimulator.getInductorCurrentArray();
+            sArray = BuckBoostConverterSimulator.getSArray();
+            timeArray = BuckBoostConverterSimulator.getTimeArray();
+            capacitorCurrentArray = BuckBoostConverterArrays.calculateCapacitorCurrentArray(
                     outputVoltageArray, inductorCurrentArray, resistance, sArray);
         }
 

@@ -1,6 +1,6 @@
-package com.example.dcdcconvertersdesign.utils.simulationutils;
+package com.example.dcdcconvertersdesign.models.converters.buckboost;
 
-public class CalculateBuckBoostArrays {
+public class BuckBoostConverterArrays {
     private static double[] diodeCurrentArray;
     public static double[] calculateOutputCurrentArray(double[] outputVoltageArray, double resistance) {
         double[] outputCurrentArray = new double[outputVoltageArray.length];

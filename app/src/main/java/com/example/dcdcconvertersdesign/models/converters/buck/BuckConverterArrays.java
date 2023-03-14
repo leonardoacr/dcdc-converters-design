@@ -1,6 +1,6 @@
-package com.example.dcdcconvertersdesign.utils.simulationutils;
+package com.example.dcdcconvertersdesign.models.converters.buck;
 
-public class CalculateBuckArrays {
+public class BuckConverterArrays {
     public static double[] calculateOutputCurrentArray(double[] outputVoltageArray, double resistance) {
         double[] outputCurrentArray = new double[outputVoltageArray.length];
         for (int i = 0; i < outputVoltageArray.length; i++) {
@@ -18,7 +18,7 @@ public class CalculateBuckArrays {
     }
 
     public static double[] calculateSwitchCurrentArray(double[] inductorCurrentArray, double[] sArray) {
-        double[] switchCurrentArray = new double[inductorCurrentArray.length];
+        double[] switchCurrentArray;
         switchCurrentArray = calculateInputCurrentArray(inductorCurrentArray, sArray);
         return switchCurrentArray;
     }

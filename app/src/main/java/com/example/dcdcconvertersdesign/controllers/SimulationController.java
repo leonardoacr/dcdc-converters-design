@@ -6,11 +6,13 @@ import android.os.Handler;
 
 import com.example.dcdcconvertersdesign.interfaces.controllers.SimulationControllerInterface;
 import com.example.dcdcconvertersdesign.models.SimulationModel;
+import com.example.dcdcconvertersdesign.models.converters.boost.BoostConverterSimulator;
+import com.example.dcdcconvertersdesign.models.converters.buck.BuckConverterSimulator;
+import com.example.dcdcconvertersdesign.models.converters.buckboost.BuckBoostConverterSimulator;
 import com.example.dcdcconvertersdesign.utils.simulationutils.FileSaver;
 import com.example.dcdcconvertersdesign.utils.simulationutils.GraphUtils;
 import com.example.dcdcconvertersdesign.utils.simulationutils.LimitsDialog;
 import com.example.dcdcconvertersdesign.utils.simulationutils.SaveDialog;
-import com.example.dcdcconvertersdesign.utils.simulationutils.SolveDiffEquations;
 import com.example.dcdcconvertersdesign.views.SimulationView;
 import com.example.dcdcconvertersdesign.views.SimulationParametersView;
 import com.github.mikephil.charting.charts.LineChart;
@@ -20,7 +22,7 @@ import java.util.Objects;
 public class SimulationController implements SimulationControllerInterface {
     private final SimulationView view;
     private final SimulationModel model;
-    private final String TAG = "SimulationController";
+//    private final String TAG = "SimulationController";
 
     public SimulationController(SimulationView view) {
         this.view = view;
@@ -42,9 +44,25 @@ public class SimulationController implements SimulationControllerInterface {
             //        Log.d(TAG, String.valueOf(chart.getData()));
 
             synchronized (this) {
-                while (chart.getData() == null || chart.getData().getEntryCount() !=
-                        SolveDiffEquations.getOutputVoltageArray().length - 1) {
-                    handleID(model.getReceivedID(), model.getFlag(), chart, graphUtils);
+                switch (model.getFlag()) {
+                    case 1:
+                        while (chart.getData() == null || chart.getData().getEntryCount() !=
+                                BuckConverterSimulator.getOutputVoltageArray().length - 1) {
+                            handleID(model.getReceivedID(), model.getFlag(), chart, graphUtils);
+                        }
+                        break;
+                    case 2:
+                        while (chart.getData() == null || chart.getData().getEntryCount() !=
+                                BoostConverterSimulator.getOutputVoltageArray().length - 1) {
+                            handleID(model.getReceivedID(), model.getFlag(), chart, graphUtils);
+                        }
+                        break;
+                    case 3:
+                        while (chart.getData() == null || chart.getData().getEntryCount() !=
+                                BuckBoostConverterSimulator.getOutputVoltageArray().length - 1) {
+                            handleID(model.getReceivedID(), model.getFlag(), chart, graphUtils);
+                        }
+                        break;
                 }
             }
 
@@ -96,9 +114,8 @@ public class SimulationController implements SimulationControllerInterface {
         // Create a new instance of the LimitsDialogFragment
         LimitsDialog dialog = new LimitsDialog();
 
-        dialog.setListener((xLowerLimit, xUpperLimit, yLowerLimit, yUpperLimit) -> {
-            graphUtils.plotGraph(chart, xLowerLimit, xUpperLimit, yLowerLimit, yUpperLimit);
-        });
+        dialog.setListener((xLowerLimit, xUpperLimit, yLowerLimit, yUpperLimit) ->
+                graphUtils.plotGraph(chart, xLowerLimit, xUpperLimit, yLowerLimit, yUpperLimit));
         // Show the dialog
         dialog.show(view.getSupportFragmentManager(), "LimitsDialog");
     }
