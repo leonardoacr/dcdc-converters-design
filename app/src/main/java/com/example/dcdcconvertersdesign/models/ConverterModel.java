@@ -81,7 +81,7 @@ public class ConverterModel {
                 inductanceCritical, inputCurrent, outputCurrent, inductorCurrent, switchCurrent,
                 diodeCurrent, deltaInductorCurrent, deltaCapacitorVoltage, inductorCurrentRMS, isCCM,
                 inputVoltage, outputVoltage, frequency, outputPower, rippleInductorCurrent,
-                rippleCapacitorVoltage);
+                rippleCapacitorVoltage, efficiency);
 
         Log.d("CalculateVariables", isCCM + " " + inductanceCritical + " " + inductance + " " + dutyCycle);
 
@@ -184,7 +184,7 @@ public class ConverterModel {
                 inductanceCritical, inputCurrent, outputCurrent, inductorCurrent, switchCurrent,
                 diodeCurrent, deltaInductorCurrent, deltaCapacitorVoltage, inductorCurrentRMS, isCCM,
                 inputVoltage, outputVoltage, frequency, outputPower, rippleInductorCurrent,
-                rippleCapacitorVoltage);
+                rippleCapacitorVoltage, efficiency);
 
         // return the data object
         return data;
@@ -255,7 +255,7 @@ public class ConverterModel {
                 inductanceCritical, inputCurrent, outputCurrent, inductorCurrent, switchCurrent,
                 diodeCurrent, deltaInductorCurrent, deltaCapacitorVoltage, inductorCurrentRMS, isCCM,
                 inputVoltage, outputVoltage, frequency, outputPower, rippleInductorCurrent,
-                rippleCapacitorVoltage);
+                rippleCapacitorVoltage, efficiency);
 
         // return the data object
         return data;
@@ -287,9 +287,6 @@ public class ConverterModel {
         String INDUCTOR_CURRENT_KEY = "Inductor_Current";
         String SWITCH_CURRENT_KEY = "Switch_Current";
         String DIODE_CURRENT_KEY = "Diode_Current";
-        String INPUT_VOLTAGE_KEY = "Input_Voltage";
-        String OUTPUT_VOLTAGE_KEY = "Output_Voltage";
-        String FREQUENCY_KEY = "Frequency";
         String DELTA_INDUCTOR_CURRENT_KEY = "DeltaIL";
         String DELTA_CAPACITOR_VOLTAGE_KEY = "DeltaVC";
         String INDUCTOR_CURRENT_RMS_KEY = "Inductor_Current_RMS";
@@ -307,9 +304,6 @@ public class ConverterModel {
         inductorCurrent = bundle.getDouble(INDUCTOR_CURRENT_KEY);
         switchCurrent = bundle.getDouble(SWITCH_CURRENT_KEY);
         diodeCurrent = bundle.getDouble(DIODE_CURRENT_KEY);
-        double inputVoltage = bundle.getDouble(INPUT_VOLTAGE_KEY);
-        double outputVoltage = bundle.getDouble(OUTPUT_VOLTAGE_KEY);
-        double frequency = bundle.getDouble(FREQUENCY_KEY);
         deltaInductorCurrent = bundle.getDouble(DELTA_INDUCTOR_CURRENT_KEY);
         deltaCapacitorVoltage = bundle.getDouble(DELTA_CAPACITOR_VOLTAGE_KEY);
         inductorCurrentRMS = bundle.getDouble(INDUCTOR_CURRENT_RMS_KEY);

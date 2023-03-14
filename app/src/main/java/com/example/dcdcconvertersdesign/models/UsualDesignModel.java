@@ -5,6 +5,14 @@ import android.os.Bundle;
 import com.example.dcdcconvertersdesign.utils.convertersutils.ConverterData;
 
 public class UsualDesignModel {
+    private double inputVoltage;
+    private double outputVoltage;
+    private double outputPower;
+    private double rippleInductorCurrent;
+    private double rippleCapacitorVoltage;
+    private double frequency;
+    private double efficiency;
+    
     public static final String DUTY_CYCLE_KEY = "Duty_Cycle";
     public static final String DUTY_CYCLE_IDEAL_KEY = "Duty_Cycle_Ideal";
     public static final String RESISTANCE_KEY = "Resistance";
@@ -68,5 +76,11 @@ public class UsualDesignModel {
         bundle.putBoolean(IS_CCM_KEY, isCCM);
         bundle.putInt(FLAG_KEY, flag);
         return bundle;
+    }
+
+    public void setExampleData(double inputVoltage, double outputVoltage, double outputPower, double rippleInductorCurrent,
+                               double rippleCapacitorVoltage, double frequency, double efficiency) {
+
+
     }
 }

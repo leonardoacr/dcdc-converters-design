@@ -155,11 +155,9 @@
 
         <TextView
             android:id="@+id/max_time_text"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="16dp"
             android:fontFamily="@font/montserrat_regular"
             android:gravity="center"
             android:text="@string/max_time_simulation_text"
@@ -167,7 +165,6 @@
             android:textColor="@color/colorGrayLight"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/main_container_15" />
 
@@ -224,13 +221,12 @@
 
             <TextView
                 android:id="@+id/switching_frequency_simulation"
-                android:layout_width="wrap_content"
+                android:layout_width="88dp"
                 android:layout_height="39dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_toEndOf="@+id/switching_frequency_text_simulation"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
                 android:textAlignment="center"
@@ -269,13 +265,12 @@
 
             <TextView
                 android:id="@+id/time_step_simulation"
-                android:layout_width="wrap_content"
+                android:layout_width="88dp"
                 android:layout_height="39dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_toEndOf="@+id/time_step_text_simulation"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
                 android:textAlignment="center"
@@ -291,20 +286,21 @@
             android:layout_width="wrap_content"
             android:layout_height="39dp"
             android:layout_alignWithParentIfMissing="false"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:gravity="center"
             android:text="@string/max_time_text_2"
             android:textAlignment="center"
             android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/max_time_simulation"
+            app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/max_time_text" />
 
         <EditText
             android:id="@+id/max_time_simulation"
             style="@style/MyDefaultText"
-            android:layout_width="160dp"
+            android:layout_width="150dp"
             android:layout_height="39dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
@@ -312,6 +308,7 @@
             android:ems="10"
             android:gravity="center"
             android:hint="@string/max_time_simulation"
+            android:importantForAutofill="no"
             android:inputType="numberDecimal"
             android:selectAllOnFocus="false"
             android:singleLine="false"
@@ -319,8 +316,7 @@
             android:textColor="@android:color/background_light"
             android:textColorHint="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/max_time_text"
-            android:importantForAutofill="no" />
+            app:layout_constraintTop_toBottomOf="@+id/max_time_text" />
 
         <RelativeLayout
             android:id="@+id/required_memory_layout"
@@ -373,7 +369,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/rounded_box"
             android:visibility="gone"

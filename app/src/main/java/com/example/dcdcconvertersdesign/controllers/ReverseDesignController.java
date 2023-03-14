@@ -28,9 +28,9 @@ public class ReverseDesignController {
 
     private final String TAG = "ReverseDesignController";
 
-    public ReverseDesignController(ReverseDesignView view, ReverseDesignModel model) {
+    public ReverseDesignController(ReverseDesignView view) {
         this.view = view;
-        this.model = model;
+        this.model = new ReverseDesignModel();
     }
 
     public void onExampleClicked() {

@@ -21,6 +21,7 @@ public class ConverterData {
     private double rippleCapacitorVoltage;
     private double inductorCurrentRMS;
     private double outputPower;
+    private double efficiency;
     private boolean isCCM;
 
     private int flag;
@@ -30,13 +31,14 @@ public class ConverterData {
     }
 
     public void setData(ConverterData data, double dutyCycle, double dutyCycleIdeal,
-                               double resistance, double capacitance, double inductance,
-                               double inductanceCritical, double inputCurrent, double outputCurrent,
-                               double inductorCurrent, double switchCurrent, double diodeCurrent,
-                               double deltaInductorCurrent, double deltaCapacitorVoltage,
-                               double inductorCurrentRMS, boolean isCCM, double inputVoltage,
-                               double outputVoltage, double frequency, double outputPower,
-                               double rippleInductorCurrent, double rippleCapacitorVoltage) {
+                        double resistance, double capacitance, double inductance,
+                        double inductanceCritical, double inputCurrent, double outputCurrent,
+                        double inductorCurrent, double switchCurrent, double diodeCurrent,
+                        double deltaInductorCurrent, double deltaCapacitorVoltage,
+                        double inductorCurrentRMS, boolean isCCM, double inputVoltage,
+                        double outputVoltage, double frequency, double outputPower,
+                        double rippleInductorCurrent, double rippleCapacitorVoltage,
+                        double efficiency) {
         data.setDutyCycle(dutyCycle);
         data.setDutyCycleIdeal(dutyCycleIdeal);
         data.setResistance(resistance);
@@ -58,6 +60,7 @@ public class ConverterData {
         data.setOutputVoltage(outputVoltage);
         data.setFrequency(frequency);
         data.setOutputPower(outputPower);
+        data.setEfficiency(efficiency);
     }
 
     // setters
@@ -138,6 +141,8 @@ public class ConverterData {
 
     public void setOutputPower(double outputPower) { this.outputPower = outputPower; }
 
+    public void setEfficiency(double efficiency) { this.efficiency = efficiency;}
+
     // getters
     public double getInputVoltage() { return inputVoltage; }
 
@@ -211,4 +216,8 @@ public class ConverterData {
     }
 
     public double getOutputPower() { return outputPower; }
+
+    public double getEfficiency() {
+        return efficiency;
+    }
 }

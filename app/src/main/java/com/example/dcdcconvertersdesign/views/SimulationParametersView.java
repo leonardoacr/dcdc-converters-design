@@ -19,17 +19,29 @@ import com.example.dcdcconvertersdesign.helpers.Helpers;
 import com.example.dcdcconvertersdesign.models.SimulationParametersModel;
 
 public class SimulationParametersView extends AppCompatActivity {
-    private static final String TAG = "Simulation";
-    private TextView switchingFrequencyTextView, timeStepTextView, timeStepText;
-    private TextView requiredMemoryText, requiredMemoryEditText, requiredMemoryBigText,
-            maxTimeRecommendedTextView, maxTimeRecommendedText;
-    private EditText  maxTimeEditText;
-    private Button outputVoltageBtn, outputCurrentBtn, inputCurrentBtn, switchCurrentBtn,
-            diodeCurrentBtn, inductorCurrentBtn, capacitorCurrentBtn;
+    private TextView switchingFrequencyTextView;
+    private TextView timeStepTextView;
+    private TextView timeStepText;
+    private TextView requiredMemoryText;
+    private TextView requiredMemoryBigText;
+    private TextView requiredMemoryTextView;
 
-    private RelativeLayout requiredMemoryLayout, maxTimeRecommendedLayout;
+    private TextView maxTimeRecommendedTextView;
+    private TextView maxTimeRecommendedText;
 
+    private EditText maxTimeEditText;
+    private Button outputVoltageBtn;
+    private Button outputCurrentBtn;
+    private Button inputCurrentBtn;
+    private Button switchCurrentBtn;
+    private Button diodeCurrentBtn;
+    private Button inductorCurrentBtn;
+    private Button capacitorCurrentBtn;
+
+    private RelativeLayout requiredMemoryLayout;
+    private RelativeLayout maxTimeRecommendedLayout;
     private static ProgressBar progressBar;
+
 
     @SuppressLint({"DefaultLocale", "SetTextI18n"})
     @Override
@@ -38,11 +50,10 @@ public class SimulationParametersView extends AppCompatActivity {
         setContentView(R.layout.activity_simulation_parameters);
         Helpers.setMinActionBar(this);
         setUIComponents();
-        // retrieve extras from the intent
+
+        // retrieve extras from the intent and init the controller
         Bundle bundle = getIntent().getExtras();
-        SimulationParametersModel model = new SimulationParametersModel();
-        SimulationParametersController controller =
-                new SimulationParametersController(this, model);
+        SimulationParametersController controller = new SimulationParametersController(this);
         controller.onCreateController(bundle);
 
         maxTimeEditText.setOnEditorActionListener((v, actionId, event) -> {
@@ -63,8 +74,6 @@ public class SimulationParametersView extends AppCompatActivity {
         timeStepText.setText(R.string.time_step_text);
     }
 
-
-
     private void setUIComponents()
     {
         // Output Values
@@ -80,7 +89,7 @@ public class SimulationParametersView extends AppCompatActivity {
 
         // Input Values
         maxTimeEditText = findViewById(R.id.max_time_simulation);
-        requiredMemoryEditText = findViewById(R.id.required_memory);
+        requiredMemoryTextView = findViewById(R.id.required_memory);
 
         // Buttons
         outputVoltageBtn = findViewById(R.id.output_voltage_btn_simulation);
@@ -102,7 +111,7 @@ public class SimulationParametersView extends AppCompatActivity {
 
     public void showSimulationTexts(double memoryCalculated, double maxTimeRecommended) {
         String memoryString = Helpers.stringFormat(memoryCalculated) + " MB";
-        requiredMemoryEditText.setText(memoryString);
+        requiredMemoryTextView.setText(memoryString);
         requiredMemoryText.setText(R.string.required_memory_info);
 
         findViewById(R.id.simulation_options).setVisibility(View.VISIBLE);
@@ -137,48 +146,36 @@ public class SimulationParametersView extends AppCompatActivity {
         outputVoltageBtn.setOnClickListener(view -> {
             showProgressBar();
             String receivedID = "outputVoltage";
-            Log.d(TAG, "Sending ID: " + receivedID);
-            // Send to the simulation activity
             controller.navigateToSimulation(maxTime, timeStep, receivedID);
         });
 
         inputCurrentBtn.setOnClickListener(view -> {
             showProgressBar();
             String receivedID = "inputCurrent";
-            Log.d(TAG, "Sending ID: " + receivedID);
-            // Send to the simulation activity
             controller.navigateToSimulation(maxTime, timeStep, receivedID);
         });
 
         switchCurrentBtn.setOnClickListener(view -> {
             showProgressBar();
             String receivedID = "switchCurrent";
-            Log.d(TAG, "Sending ID: " + receivedID);
-            // Send to the simulation activity
             controller.navigateToSimulation(maxTime, timeStep, receivedID);
         });
 
         outputCurrentBtn.setOnClickListener(view -> {
             showProgressBar();
             String receivedID = "outputCurrent";
-            Log.d(TAG, "Sending ID: " + receivedID);
-            // Send to the simulation activity
             controller.navigateToSimulation(maxTime, timeStep, receivedID);
         });
 
         diodeCurrentBtn.setOnClickListener(view -> {
             showProgressBar();
             String receivedID = "diodeCurrent";
-            Log.d(TAG, "Sending ID: " + receivedID);
-            // Send to the simulation activity
             controller.navigateToSimulation(maxTime, timeStep, receivedID);
         });
 
         inductorCurrentBtn.setOnClickListener(view -> {
             showProgressBar();
             String receivedID = "inductorCurrent";
-            Log.d(TAG, "Sending ID: " + receivedID);
-            // Send to the simulation activity
             controller.navigateToSimulation(maxTime, timeStep, receivedID);
         });
 
@@ -186,15 +183,12 @@ public class SimulationParametersView extends AppCompatActivity {
             showProgressBar();
 
             String receivedID = "capacitorCurrent";
-            Log.d(TAG, "Sending ID: " + receivedID);
-            // Send to the simulation activity
             controller.navigateToSimulation(maxTime, timeStep, receivedID);
         });
     }
     public static void showProgressBar() {
         progressBar.setVisibility(View.VISIBLE);
     }
-
     public static void hideProgressBar() {
         progressBar.setVisibility(View.INVISIBLE);
     }

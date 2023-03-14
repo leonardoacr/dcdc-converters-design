@@ -28,8 +28,7 @@ public class ReverseDesignView extends AppCompatActivity {
         setContentView(R.layout.activity_reverse_design);
         Helpers.setMainActionBar(this);
 
-        ReverseDesignModel model = new ReverseDesignModel();
-        ReverseDesignController controller = new ReverseDesignController(this, model);
+        ReverseDesignController controller = new ReverseDesignController(this);
 
         // Set up the UI
         setUIComponents();

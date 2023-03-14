@@ -34,71 +34,78 @@
             style="@style/MyInput"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="40dp"
+            android:importantForAutofill="no"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.7"
             app:layout_constraintStart_toEndOf="@+id/results_reverse"
             app:layout_constraintTop_toBottomOf="@+id/results_reverse"
-            android:importantForAutofill="no"
-            tools:ignore="LabelFor"/>
+            tools:ignore="LabelFor" />
 
         <EditText
             android:id="@+id/output_voltage"
             style="@style/MyInput"
             android:layout_marginEnd="40dp"
+            android:importantForAutofill="no"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.7"
             app:layout_constraintStart_toEndOf="@+id/results_reverse"
             app:layout_constraintTop_toBottomOf="@+id/input_voltage_reverse"
-            android:importantForAutofill="no"
-            tools:ignore="LabelFor"/>
+            tools:ignore="LabelFor" />
 
         <EditText
             android:id="@+id/inductance_reverse"
             style="@style/MyInput"
             android:layout_marginEnd="40dp"
+            android:importantForAutofill="no"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.7"
             app:layout_constraintStart_toEndOf="@+id/results_reverse"
             app:layout_constraintTop_toBottomOf="@+id/output_voltage"
-            android:importantForAutofill="no"
             tools:ignore="LabelFor" />
 
         <EditText
             android:id="@+id/capacitance_reverse"
             style="@style/MyInput"
             android:layout_marginEnd="40dp"
+            android:importantForAutofill="no"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.7"
             app:layout_constraintStart_toEndOf="@+id/results_reverse"
             app:layout_constraintTop_toBottomOf="@+id/inductance_reverse"
-            android:importantForAutofill="no"
-            tools:ignore="LabelFor"/>
+            tools:ignore="LabelFor" />
 
         <EditText
             android:id="@+id/resistance_reverse"
             style="@style/MyInput"
             android:layout_marginEnd="40dp"
+            android:importantForAutofill="no"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.7"
             app:layout_constraintStart_toEndOf="@+id/results_reverse"
             app:layout_constraintTop_toBottomOf="@+id/capacitance_reverse"
-            android:importantForAutofill="no"
-            tools:ignore="LabelFor"/>
+            tools:ignore="LabelFor" />
 
         <EditText
             android:id="@+id/frequency_reverse"
             style="@style/MyInput"
             android:layout_marginEnd="40dp"
+            android:importantForAutofill="no"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.7"
             app:layout_constraintStart_toEndOf="@+id/results_reverse"
             app:layout_constraintTop_toBottomOf="@+id/resistance_reverse"
-            android:importantForAutofill="no"
             tools:ignore="LabelFor" />
 
         <EditText
             android:id="@+id/efficiency_reverse"
             style="@style/MyInput"
             android:layout_marginEnd="40dp"
+            android:importantForAutofill="no"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.7"
             app:layout_constraintStart_toEndOf="@+id/results_reverse"
             app:layout_constraintTop_toBottomOf="@+id/frequency_reverse"
-            android:importantForAutofill="no"
-            tools:ignore="LabelFor"/>
+            tools:ignore="LabelFor" />
 
         <TextView
             android:id="@+id/results_reverse"
@@ -262,6 +269,13 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/boost_btn_reverse" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="16dp"
+            android:layout_alignParentBottom="true"
+            app:layout_constraintTop_toBottomOf="@+id/buck_boost_btn_reverse" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

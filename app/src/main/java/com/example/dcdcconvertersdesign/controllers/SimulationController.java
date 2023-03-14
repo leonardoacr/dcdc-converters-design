@@ -3,8 +3,8 @@ package com.example.dcdcconvertersdesign.controllers;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.util.Log;
 
+import com.example.dcdcconvertersdesign.interfaces.SimulationControllerInterface;
 import com.example.dcdcconvertersdesign.models.SimulationModel;
 import com.example.dcdcconvertersdesign.utils.simulationutils.FileSaver;
 import com.example.dcdcconvertersdesign.utils.simulationutils.GraphUtils;
@@ -17,14 +17,14 @@ import com.github.mikephil.charting.charts.LineChart;
 
 import java.util.Objects;
 
-public class SimulationController {
+public class SimulationController implements SimulationControllerInterface {
     private final SimulationView view;
     private final SimulationModel model;
     private final String TAG = "SimulationController";
 
-    public SimulationController(SimulationView view, SimulationModel model) {
+    public SimulationController(SimulationView view) {
         this.view = view;
-        this.model = model;
+        this.model = new SimulationModel();
     }
 
     public void onCreateController(Bundle bundle) {
@@ -51,9 +51,6 @@ public class SimulationController {
             long delayToHideProgressBar = model.getNumStep() / 200;
             new Handler().postDelayed(SimulationParametersView::hideProgressBar,
                     delayToHideProgressBar);
-
-            Log.d(TAG, String.valueOf(chart.getData().getEntryCount()));
-            Log.d(TAG, "numStep: " + model.getNumStep());
 
             view.handleDialogButtons(chart, graphUtils);
         }
@@ -90,8 +87,7 @@ public class SimulationController {
                 break;
 
             default:
-                // Handle case when receivedID is not recognized
-                Log.d(TAG, "received ID not recognized");
+                // receivedID is not recognized
                 break;
         }
     }
@@ -101,10 +97,6 @@ public class SimulationController {
         LimitsDialog dialog = new LimitsDialog();
 
         dialog.setListener((xLowerLimit, xUpperLimit, yLowerLimit, yUpperLimit) -> {
-            Log.d(TAG, "X Lower Limit: " + xLowerLimit);
-            Log.d(TAG, "X Upper Limit: " + xUpperLimit);
-            Log.d(TAG, "Y Lower Limit: " + yLowerLimit);
-            Log.d(TAG, "Y Upper Limit: " + yUpperLimit);
             graphUtils.plotGraph(chart, xLowerLimit, xUpperLimit, yLowerLimit, yUpperLimit);
         });
         // Show the dialog
@@ -116,7 +108,6 @@ public class SimulationController {
         SaveDialog dialog = new SaveDialog();
 
         dialog.setListener((saveKey) -> {
-            Log.d(TAG, "Save Graph Key: " + saveKey);
             String folderName = "/DCDCConvertersDesign";
             String directoryPath = Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_DOWNLOADS) + folderName;

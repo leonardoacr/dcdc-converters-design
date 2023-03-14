@@ -1,29 +1,28 @@
 package com.example.dcdcconvertersdesign.controllers;
 
-import static com.example.dcdcconvertersdesign.helpers.VerifyInputErrors.*;
+import static com.example.dcdcconvertersdesign.helpers.VerifyInputErrors.verifyInputErrorsBoost;
+import static com.example.dcdcconvertersdesign.helpers.VerifyInputErrors.verifyInputErrorsBuck;
+import static com.example.dcdcconvertersdesign.helpers.VerifyInputErrors.verifyInputErrorsBuckBoost;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.dcdcconvertersdesign.interfaces.UsualDesignControllerInterface;
 import com.example.dcdcconvertersdesign.models.ConverterModel;
-import com.example.dcdcconvertersdesign.utils.convertersutils.ConverterData;
 import com.example.dcdcconvertersdesign.models.UsualDesignModel;
+import com.example.dcdcconvertersdesign.utils.convertersutils.ConverterData;
 import com.example.dcdcconvertersdesign.views.ConverterView;
 import com.example.dcdcconvertersdesign.views.UsualDesignView;
 
-public class UsualDesignController {
-    private double outputPower, rippleInductorCurrent, rippleCapacitorVoltage, outputVoltage,
-            inputVoltage, frequency, efficiency;
-    private double dutyCycle, resistance, capacitance, inductance;
-    private int flag;
+public class UsualDesignController implements UsualDesignControllerInterface {
+
     private final UsualDesignView view;
     private final UsualDesignModel model;
+    private int flag;
 
-    private final String TAG = "UsualDesignController";
-
-    public UsualDesignController(UsualDesignView view, UsualDesignModel model) {
+    public UsualDesignController(UsualDesignView view) {
         this.view = view;
-        this.model = model;
+        this.model = new UsualDesignModel();
     }
 
     public void onExampleClicked() {
@@ -33,102 +32,120 @@ public class UsualDesignController {
 
     public void onBuckConverterClicked() {
         flag = 1;
-        if (view.isEmpty()) {
-            return;
-        }
-
-        // Get input variables from Edit Text
-        getInputData();
-
-        // Converter equations
-        ConverterData data = ConverterModel.buckCalculations(inputVoltage,
-                outputVoltage, outputPower, rippleInductorCurrent, rippleCapacitorVoltage,
-                frequency, efficiency);
-
+        ConverterData data = performConverterCalculations(flag);
         data.setFlag(flag);
-        getConverterData(data);
 
-        if(verifyInputErrorsBuck(view, inputVoltage, outputVoltage, dutyCycle, efficiency,
-                resistance, capacitance, inductance)) {
+        if (verifyInputErrors(data)) {
             return;
         }
-
         navigateToConverter(data);
     }
 
     public void onBoostConverterClicked() {
         flag = 2;
-        if (view.isEmpty()) {
-            return;
-        }
-
-        // Get input variables from Edit Text
-        getInputData();
-
-        // Converter equations
-        ConverterData data = ConverterModel.boostCalculations(inputVoltage,
-                outputVoltage, outputPower, rippleInductorCurrent, rippleCapacitorVoltage,
-                frequency, efficiency);
-
-        // Save flag
+        ConverterData data = performConverterCalculations(flag);
         data.setFlag(flag);
-        getConverterData(data);
 
-        if(verifyInputErrorsBoost(view, inputVoltage, outputVoltage, dutyCycle, efficiency,
-                resistance, capacitance, inductance)) {
+        if (verifyInputErrors(data)) {
             return;
         }
-
         navigateToConverter(data);
     }
 
     public void onBuckBoostConverterClicked() {
         flag = 3;
-        if (view.isEmpty()) {
-            return;
-        }
-
-        // Get input variables from Edit Text
-        getInputData();
-
-        // Converter equations
-        ConverterData data = ConverterModel.buckBoostCalculations(inputVoltage,
-                outputVoltage, outputPower, rippleInductorCurrent, rippleCapacitorVoltage,
-                frequency, efficiency);
-
-        // Save flag
+        ConverterData data = performConverterCalculations(flag);
         data.setFlag(flag);
-        getConverterData(data);
 
-        if(verifyInputErrorsBuckBoost(view, inputVoltage, outputVoltage, dutyCycle, efficiency,
-                resistance, capacitance, inductance)) {
+        if (verifyInputErrors(data)) {
             return;
         }
-
         navigateToConverter(data);
     }
 
-    private void getConverterData(ConverterData data) {
-        dutyCycle = data.getDutyCycle();
-        resistance = data.getResistance();
-        capacitance = data.getCapacitance();
-        inductance = data.getInductance();
+    private ConverterData performConverterCalculations(int flag) {
+        ConverterData data = null;
+
+        switch (flag) {
+            case 1:
+                data = new BuckConverter().performCalculations(view);
+                break;
+            case 2:
+                data = new BoostConverter().performCalculations(view);
+                break;
+            case 3:
+                data = new BuckBoostConverter().performCalculations(view);
+                break;
+        }
+
+        return data;
     }
 
-    private void getInputData() {
-        inputVoltage = view.getInputVoltage();
-        outputVoltage = view.getOutputVoltage();
-        outputPower = view.getOutputPower();
-        rippleInductorCurrent = view.getRippleInductorCurrent();
-        rippleCapacitorVoltage = view.getRippleCapacitorVoltage();
-        frequency = view.getFrequency();
-        efficiency = view.getEfficiency();
+    private boolean verifyInputErrors(ConverterData data) {
+        switch (data.getFlag()) {
+            case 1:
+                return new BuckConverter().verifyInputErrors(data);
+            case 2:
+                return new BoostConverter().verifyInputErrors(data);
+            case 3:
+                return new BuckBoostConverter().verifyInputErrors(data);
+            default:
+                return false;
+        }
     }
 
-    public void navigateToConverter(ConverterData converterData) {
+    private void navigateToConverter(ConverterData data) {
         Intent intent = new Intent(view, ConverterView.class);
-        Bundle bundle = model.sendDataToConverterActivity(converterData);
+        Bundle bundle = model.sendDataToConverterActivity(data);
         intent.putExtras(bundle);
         view.startActivity(intent);
     }
+
+    private interface ConverterInterface {
+        ConverterData performCalculations(UsualDesignView view);
+        boolean verifyInputErrors(ConverterData data);
+    }
+
+    private class BuckConverter implements ConverterInterface {
+        public ConverterData performCalculations(UsualDesignView view) {
+            return ConverterModel.buckCalculations(view.getInputVoltage(),
+                    view.getOutputVoltage(), view.getOutputPower(), view.getRippleInductorCurrent(),
+                    view.getRippleCapacitorVoltage(), view.getFrequency(), view.getEfficiency());
+        }
+
+        public boolean verifyInputErrors(ConverterData data) {
+            return verifyInputErrorsBuck(view, data.getInputVoltage(),
+                    data.getOutputVoltage(), data.getDutyCycle(), data.getEfficiency(),
+                    data.getResistance(), data.getCapacitance(), data.getInductance());
+        }
+    }
+
+    private class BoostConverter implements ConverterInterface {
+        public ConverterData performCalculations(UsualDesignView view) {
+            return ConverterModel.boostCalculations(view.getInputVoltage(),
+                    view.getOutputVoltage(), view.getOutputPower(), view.getRippleInductorCurrent(),
+                    view.getRippleCapacitorVoltage(), view.getFrequency(), view.getEfficiency());
+        }
+
+        public boolean verifyInputErrors(ConverterData data) {
+            return verifyInputErrorsBoost(view, data.getInputVoltage(),
+                    data.getOutputVoltage(), data.getDutyCycle(), data.getEfficiency(),
+                    data.getResistance(), data.getCapacitance(), data.getInductance());
+        }
+    }
+
+    private class BuckBoostConverter implements ConverterInterface {
+        public ConverterData performCalculations(UsualDesignView view) {
+            return ConverterModel.buckBoostCalculations(view.getInputVoltage(),
+                    view.getOutputVoltage(), view.getOutputPower(), view.getRippleInductorCurrent(),
+                    view.getRippleCapacitorVoltage(), view.getFrequency(), view.getEfficiency());
+        }
+
+        public boolean verifyInputErrors(ConverterData data) {
+            return verifyInputErrorsBuckBoost(view, data.getInputVoltage(),
+                    data.getOutputVoltage(), data.getDutyCycle(), data.getEfficiency(),
+                    data.getResistance(), data.getCapacitance(), data.getInductance());
+        }
+    }
+
 }

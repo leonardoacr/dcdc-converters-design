@@ -15,8 +15,8 @@
     <string name="capacitance_text">%s%s</string>
     <string name="inductance_text">%s%s</string>
     <string name="required_memory_big_text">
-        Please note that simulating for extended periods of time or using excessive storage space
-        (above 10 MB) may cause bugs on your device. Proceed at your own risk if you need to
+        Simulating for extended periods of time or using excessive storage space
+        (above 10 MB) may crash the app. Proceed at your own risk if you need to
         exceed this limit.</string>
     <string name="reverse_mode_inductor_note">For the reverse mode, the designed inductor shows
         the ideal component for the design</string>
@@ -160,4 +160,5 @@
     </string>
     <string name="about_the_app">About the app</string>
     <string name="snubber_text_definitions_title">Snubber Definitions</string>
+    <string name="table_description">Descriptions:\n le = magnetic length \n lt = average length of a turn \n Vn = ferrite volume</string>
 </resources>

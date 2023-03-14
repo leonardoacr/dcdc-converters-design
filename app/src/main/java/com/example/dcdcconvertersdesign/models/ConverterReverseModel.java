@@ -48,7 +48,6 @@ public class ConverterReverseModel {
 
         isCCM = checkBuckConductionMode(inputVoltage, outputVoltage, frequency,
                 inductance, efficiency);
-        Log.d(TAG, "Hello?? " + isCCM);
 
         if (isCCM) {
             // CCM mode
@@ -78,23 +77,6 @@ public class ConverterReverseModel {
 
         inductanceCritical = dutyCycleIdeal * (inputVoltage - outputVoltage) * resistance / (2 * frequency * outputVoltage);
 
-        Log.d(TAG, "Check variables after the MODE: " +
-                "Duty Cycle Ideal = " + dutyCycleIdeal +
-                ", Duty Cycle = " + dutyCycle +
-                ", Output Current = " + outputCurrent +
-                ", Input Current = " + inputCurrent +
-                ", Switch Current = " + switchCurrent +
-                ", Diode Current = " + diodeCurrent +
-                ", Max Inductor Current = " + inductorCurrentMax +
-                ", Min Inductor Current = " + inductorCurrentMin +
-                ", Delta Inductor Current = " + deltaInductorCurrent +
-                ", Delta Capacitor Voltage = " + deltaCapacitorVoltage +
-                ", Inductance = " + inductance +
-                ", Inductor Current RMS = " + inductorCurrentRMS +
-                ", Resistance = " + resistance +
-                ", Inductance = " + inductance +
-                ", Capacitance = " + capacitance);
-
         // create a ConverterData object
         ConverterData data = new ConverterData();
 
@@ -103,9 +85,7 @@ public class ConverterReverseModel {
                 inductanceCritical, inputCurrent, outputCurrent, inductorCurrent, switchCurrent,
                 diodeCurrent, deltaInductorCurrent, deltaCapacitorVoltage, inductorCurrentRMS, isCCM,
                 inputVoltage, outputVoltage, frequency, outputPower, rippleInductorCurrent,
-                rippleCapacitorVoltage);
-
-        Log.d("CalculateVariables", isCCM + " " + inductanceCritical + " " + inductance + " " + dutyCycle);
+                rippleCapacitorVoltage, efficiency);
 
         // return the data object
         return data;
@@ -129,19 +109,8 @@ public class ConverterReverseModel {
         inputCurrent = outputPower / inputVoltage;
         inductorCurrent = inputCurrent;
 
-        Log.d(TAG, "Check variables before MODE: " +
-                "Resistance = " + resistance +
-                ", Output Current = " + outputCurrent +
-                ", Input Current = " + inputCurrent +
-                ", Inductor Current = " + inductorCurrent +
-                ", Max Output Voltage = " + outputVoltageMax +
-                ", Min Output Voltage = " + outputVoltageMin +
-                ", Delta Capacitor Voltage = " + deltaCapacitorVoltage);
-
         isCCM = checkBoostConductionMode(inputVoltage, outputVoltage, frequency,
                 inductance, efficiency);
-        Log.d(TAG, isCCM + " " +
-                inductanceCritical + " " + inductance + " " + dutyCycle);
 
         if(isCCM) {
             dutyCycleIdeal = (outputVoltage - inputVoltage) / outputVoltage;
@@ -174,25 +143,6 @@ public class ConverterReverseModel {
         outputVoltageMax = outputVoltage + outputVoltage * (rippleCapacitorVoltage / 200);
         outputVoltageMin = outputVoltage - outputVoltage * (rippleCapacitorVoltage / 200);
 
-        Log.d(TAG, "Check variables after the MODE: " +
-                "Duty Cycle Ideal = " + dutyCycleIdeal +
-                ", Duty Cycle = " + dutyCycle +
-                ", Output Current = " + outputCurrent +
-                ", Input Current = " + inputCurrent +
-                ", Switch Current = " + switchCurrent +
-                ", Diode Current = " + diodeCurrent +
-                ", Max Inductor Current = " + inductorCurrentMax +
-                ", Min Inductor Current = " + inductorCurrentMin +
-                ", Delta Inductor Current = " + deltaInductorCurrent +
-                ", Max Output Voltage = " + outputVoltageMax +
-                ", Min Output Voltage = " + outputVoltageMin +
-                ", Delta Capacitor Voltage = " + deltaCapacitorVoltage +
-                ", Inductance = " + inductance +
-                ", Inductor Current RMS = " + inductorCurrentRMS +
-                ", Resistance = " + resistance +
-                ", Inductance = " + inductance +
-                ", Capacitance = " + capacitance);
-
         // create a ConverterData object
         ConverterData data = new ConverterData();
 
@@ -201,7 +151,7 @@ public class ConverterReverseModel {
                 inductanceCritical, inputCurrent, outputCurrent, inductorCurrent, switchCurrent,
                 diodeCurrent, deltaInductorCurrent, deltaCapacitorVoltage, inductorCurrentRMS, isCCM,
                 inputVoltage, outputVoltage, frequency, outputPower, rippleInductorCurrent,
-                rippleCapacitorVoltage);
+                rippleCapacitorVoltage, efficiency);
 
         // return the data object
         return data;
@@ -227,20 +177,8 @@ public class ConverterReverseModel {
         diodeCurrent = outputCurrent;
         inductorCurrent = outputCurrent + inputCurrent;
 
-        Log.d(TAG, "Check variables before MODE: " +
-                "Output Power = " + outputPower +
-                ", Output Voltage = " + outputVoltage +
-                ", Output Current = " + outputCurrent +
-                ", Input Voltage = " + inputVoltage +
-                ", Input Current = " + inputCurrent +
-                ", Switch Current = " + switchCurrent +
-                ", Diode Current = " + diodeCurrent +
-                ", Inductor Current = " + inductorCurrent);
-
         isCCM = checkBuckBoostConductionMode(inputVoltage, outputVoltage, frequency,
                 inductance, efficiency, inductorCurrent);
-        Log.d(TAG, isCCM + " " +
-                inductanceCritical + " " + inductance + " " + dutyCycle);
 
         if(isCCM) {
             // CCM Mode
@@ -270,23 +208,6 @@ public class ConverterReverseModel {
         deltaCapacitorVoltage =  (outputCurrent * dutyCycle) / (capacitance * frequency);
         rippleCapacitorVoltage = 100 * deltaCapacitorVoltage / outputVoltage;
 
-        Log.d(TAG, "Check variables after the MODE: " +
-                "Duty Cycle Ideal = " + dutyCycleIdeal +
-                ", Duty Cycle = " + dutyCycle +
-                ", Output Current = " + outputCurrent +
-                ", Input Current = " + inputCurrent +
-                ", Switch Current = " + switchCurrent +
-                ", Diode Current = " + diodeCurrent +
-                ", Max Inductor Current = " + inductorCurrentMax +
-                ", Min Inductor Current = " + inductorCurrentMin +
-                ", Delta Inductor Current = " + deltaInductorCurrent +
-                ", Delta Capacitor Voltage = " + deltaCapacitorVoltage +
-                ", Inductance = " + inductance +
-                ", Inductor Current RMS = " + inductorCurrentRMS +
-                ", Resistance = " + resistance +
-                ", Inductance = " + inductance +
-                ", Capacitance = " + capacitance);
-
         // create a ConverterData object
         ConverterData data = new ConverterData();
 
@@ -295,7 +216,7 @@ public class ConverterReverseModel {
                 inductanceCritical, inputCurrent, outputCurrent, inductorCurrent, switchCurrent,
                 diodeCurrent, deltaInductorCurrent, deltaCapacitorVoltage, inductorCurrentRMS, isCCM,
                 inputVoltage, outputVoltage, frequency, outputPower, rippleInductorCurrent,
-                rippleCapacitorVoltage);
+                rippleCapacitorVoltage, efficiency);
 
         // return the data object
         return data;
@@ -361,9 +282,6 @@ public class ConverterReverseModel {
     public double getDutyCycle() {
         return dutyCycle;
     }
-    public double getDutyCycleIdeal() {
-        return dutyCycleIdeal;
-    }
     public double getResistance() {
         return resistance;
     }
@@ -373,67 +291,18 @@ public class ConverterReverseModel {
     public double getInductance() {
         return inductance;
     }
-    public double getInductanceCritical() {
-        return inductanceCritical;
-    }
     public double getInputCurrent() {
         return inputCurrent;
-    }
-    public double getOutputCurrent() {
-        return outputCurrent;
-    }
-    public double getInductorCurrent() {
-        return inductorCurrent;
-    }
-    public double getSwitchCurrent() {
-        return switchCurrent;
-    }
-    public double getDiodeCurrent() {
-        return diodeCurrent;
-    }
-    public double getInputVoltage() {
-        return inputVoltage;
-    }
-    public double getOutputVoltage() {
-        return outputVoltage;
-    }
-    public double getFrequency() {
-        return frequency;
-    }
-    public double getInductorCurrentMax() {
-        return inductorCurrentMax;
-    }
-    public double getInductorCurrentMin() {
-        return inductorCurrentMin;
-    }
-    public double getDeltaInductorCurrent() {
-        return deltaInductorCurrent;
     }
     public double getRippleInductorCurrent() {
         return rippleInductorCurrent;
     }
-    public double getOutputVoltageMax() {
-        return outputVoltageMax;
-    }
-    public double getOutputVoltageMin() {
-        return outputVoltageMin;
-    }
-    public double getDeltaCapacitorVoltage() {
-        return deltaCapacitorVoltage;
-    }
     public double getRippleCapacitorVoltage() {
         return rippleCapacitorVoltage;
     }
-    public double getInductorCurrentRMS() {
-        return inductorCurrentRMS;
-    }
-    public double getOutputPower() {
-        return outputPower;
-    }
+    public double getOutputPower() { return outputPower; }
     public boolean getIsCCM() {
         return isCCM;
     }
-    public int getFlag() {
-        return flag;
-    }
+    public int getFlag() { return flag; }
 }

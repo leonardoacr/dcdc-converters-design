@@ -20,8 +20,7 @@ import com.github.mikephil.charting.charts.LineChart;
 public class SimulationView extends AppCompatActivity {
     // define a tag for logging purposes
     private static final String TAG = "Simulation";
-    private final SimulationModel model = new SimulationModel();
-    private final SimulationController controller = new SimulationController(this, model);
+    private final SimulationController controller = new SimulationController(this);
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -30,9 +29,8 @@ public class SimulationView extends AppCompatActivity {
         setContentView(R.layout.activity_simulation);
         Helpers.unsetActionBar(this);
 
-        // retrieve extras from the intent
+        // retrieve extras from the intent and init controller
         Bundle bundle = getIntent().getExtras();
-
         controller.onCreateController(bundle);
     }
 

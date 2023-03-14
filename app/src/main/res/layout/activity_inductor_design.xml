@@ -9,19 +9,19 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/relativeLayout"
+        style="@style/MyBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/MyBackground"
         tools:context=".views.InductorDesignView">
 
         <TextView
             android:id="@+id/inductor_design_title"
-            android:text="Inductor Design"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
+            android:text="Inductor Design"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Menu"
             android:textColor="?android:attr/colorBackground"
@@ -47,8 +47,8 @@
             android:id="@+id/results_inductor_layout"
             android:layout_width="138dp"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
             android:layout_marginTop="40dp"
+            android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inductor_image">
@@ -68,9 +68,13 @@
 
         <TextView
             android:id="@+id/ku_text_inductor_design"
-            android:text="Ku (%)"
             style="@style/MyInputText"
+            android:layout_width="208dp"
+            android:layout_height="39dp"
             android:layout_marginTop="16dp"
+            android:text="Ku (%)"
+            app:layout_constraintEnd_toStartOf="@+id/ku_inductor_design"
+            app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/results_inductor_layout"
             tools:ignore="HardcodedText" />
@@ -79,17 +83,22 @@
             android:id="@+id/ku_inductor_design"
             style="@style/MyInput"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="40dp"
+            android:importantForAutofill="no"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ku_text_inductor_design"
+            app:layout_constraintHorizontal_bias="0.7"
+            app:layout_constraintStart_toEndOf="@+id/results_inductor_layout"
             app:layout_constraintTop_toBottomOf="@+id/results_inductor_layout"
             app:layout_constraintVertical_chainStyle="spread_inside"
-            tools:ignore="LabelFor"
-            android:importantForAutofill="no" />
+            tools:ignore="LabelFor" />
 
         <TextView
             android:id="@+id/jmax_constant_text_inductor_design"
             style="@style/MyInputText"
+            android:layout_marginStart="16dp"
             android:text="Jmax (A/mm²)"
+            app:layout_constraintEnd_toStartOf="@+id/jmax_constant_inductor_design"
+            app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ku_text_inductor_design"
             tools:ignore="HardcodedText" />
@@ -97,16 +106,21 @@
         <EditText
             android:id="@+id/jmax_constant_inductor_design"
             style="@style/MyInput"
+            android:layout_marginEnd="40dp"
             android:importantForAutofill="no"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/jmax_constant_text_inductor_design"
+            app:layout_constraintHorizontal_bias="0.7"
+            app:layout_constraintStart_toEndOf="@+id/results_inductor_layout"
             app:layout_constraintTop_toBottomOf="@+id/ku_inductor_design"
             tools:ignore="LabelFor" />
 
         <TextView
             android:id="@+id/bmax_text_inductor_design"
             style="@style/MyInputText"
+            android:layout_marginStart="16dp"
             android:text="Bmax (T)"
+            app:layout_constraintEnd_toStartOf="@+id/bmax_inductor_design"
+            app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/jmax_constant_text_inductor_design"
             tools:ignore="HardcodedText" />
@@ -114,10 +128,12 @@
         <EditText
             android:id="@+id/bmax_inductor_design"
             style="@style/MyInput"
+            android:layout_marginEnd="40dp"
             android:importantForAutofill="no"
             android:inputType="numberDecimal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/bmax_text_inductor_design"
+            app:layout_constraintHorizontal_bias="0.7"
+            app:layout_constraintStart_toEndOf="@+id/results_inductor_layout"
             app:layout_constraintTop_toBottomOf="@+id/jmax_constant_inductor_design"
             tools:ignore="LabelFor" />
 
@@ -147,9 +163,9 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/rounded_box"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@+id/example_inductor_design_btn">
 
             <TextView
@@ -169,13 +185,12 @@
 
             <TextView
                 android:id="@+id/size_percent_inductor_design"
-                android:layout_width="176dp"
+                android:layout_width="88dp"
                 android:layout_height="39dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_toEndOf="@+id/size_percent_text_inductor_design"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
                 android:textAlignment="center"
@@ -185,7 +200,6 @@
                 app:layout_constraintStart_toEndOf="@+id/size_percent_text_inductor_design" />
         </RelativeLayout>
 
-
         <RelativeLayout
             android:id="@+id/air_gap_inductor_layout"
             android:layout_width="match_parent"
@@ -194,9 +208,9 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/rounded_box"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@+id/size_percent_inductor_layout">
 
             <TextView
@@ -213,25 +227,23 @@
                 android:textColor="?android:attr/colorBackground"
                 android:textSize="16sp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/air_gap_inductor_design"
-                android:layout_width="176dp"
+                android:layout_width="88dp"
                 android:layout_height="39dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_toEndOf="@+id/air_gap_text_inductor_design"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
                 android:textAlignment="center"
                 android:textColor="@color/colorGreen"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent" />
         </RelativeLayout>
-
 
         <RelativeLayout
             android:id="@+id/core_model_inductor_layout"
@@ -241,41 +253,41 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/rounded_box"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@+id/air_gap_inductor_layout">
-        <TextView
-            android:id="@+id/core_model_text_inductor_design"
-            android:layout_width="177dp"
-            android:layout_height="39dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:gravity="start|center_vertical"
-            android:textSize="16sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/core_model_inductor_design"
-            android:layout_width="176dp"
-            android:layout_height="39dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:textColor="@color/colorGreen"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_toEndOf="@+id/core_model_text_inductor_design"
-            app:layout_constraintStart_toEndOf="@+id/core_model_text_inductor_design" />
+            <TextView
+                android:id="@+id/core_model_text_inductor_design"
+                android:layout_width="177dp"
+                android:layout_height="39dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="start|center_vertical"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/core_model_inductor_design"
+                android:layout_width="88dp"
+                android:layout_height="39dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="@color/colorGreen"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/core_model_text_inductor_design" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -286,9 +298,9 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/rounded_box"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/core_model_inductor_layout">
 
             <TextView
@@ -307,18 +319,17 @@
 
             <TextView
                 android:id="@+id/turn_number_inductor_design"
-                android:layout_width="176dp"
+                android:layout_width="88dp"
                 android:layout_height="39dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
                 android:textAlignment="center"
                 android:textColor="@color/colorGreen"
                 android:textSize="16sp"
-                android:layout_toEndOf="@+id/turn_number_text_inductor_design"
                 app:layout_constraintEnd_toEndOf="parent" />
         </RelativeLayout>
 
@@ -330,9 +341,9 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/rounded_box"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/turn_number_inductor_layout">
 
             <TextView
@@ -352,13 +363,12 @@
 
             <TextView
                 android:id="@+id/awg_inductor_design"
-                android:layout_width="176dp"
+                android:layout_width="88dp"
                 android:layout_height="39dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_toEndOf="@+id/awg_text_inductor_design"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
                 android:textAlignment="center"
@@ -366,7 +376,6 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent" />
         </RelativeLayout>
-
 
         <RelativeLayout
             android:id="@+id/parallel_conductors_inductor_layout"
@@ -376,9 +385,9 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/rounded_box"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/awg_inductor_layout">
 
             <TextView
@@ -397,31 +406,30 @@
 
             <TextView
                 android:id="@+id/parallel_conductors_inductor_design"
-                android:layout_width="176dp"
+                android:layout_width="88dp"
                 android:layout_height="39dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_toEndOf="@+id/parallel_conductors_text_inductor_design"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/montserrat_regular"
+                android:gravity="center"
                 android:textAlignment="center"
                 android:textColor="@color/colorGreen"
-                android:gravity="center"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent" />
         </RelativeLayout>
 
         <Button
             android:id="@+id/table_button_inductor_design"
+            style="@style/MyButtonStyle"
             android:layout_width="228dp"
             android:layout_height="32dp"
             android:layout_marginTop="32dp"
-            style="@style/MyButtonStyle"
             android:text="Details"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@+id/parallel_conductors_inductor_layout"
             tools:ignore="HardcodedText" />
 

@@ -69,23 +69,29 @@
         android:id="@+id/time_delay_fall_text"
         style="@style/MyInputText"
         android:text="Time Delay Fall (ns)"
+        app:layout_constraintEnd_toStartOf="@+id/time_delay_fall"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time_delay_off_text" />
 
     <EditText
         android:id="@+id/time_delay_fall"
         style="@style/MyInput"
+        android:layout_marginEnd="40dp"
+        android:importantForAutofill="no"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/time_delay_fall_text"
+        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintStart_toEndOf="@+id/results_snubber_layout"
         app:layout_constraintTop_toBottomOf="@+id/time_delay_off"
-        tools:ignore="LabelFor"
-        android:importantForAutofill="no" />
+        tools:ignore="LabelFor" />
 
     <TextView
         android:id="@+id/time_delay_off_text"
-        android:text="Time Delay Off (ns)"
         style="@style/MyInputText"
         android:layout_marginTop="16dp"
+        android:text="Time Delay Off (ns)"
+        app:layout_constraintEnd_toStartOf="@+id/time_delay_off"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/results_snubber_layout"
         tools:ignore="HardcodedText" />
@@ -94,12 +100,14 @@
         android:id="@+id/time_delay_off"
         style="@style/MyInput"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:importantForAutofill="no"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/time_delay_off_text"
+        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintStart_toEndOf="@+id/results_snubber_layout"
         app:layout_constraintTop_toBottomOf="@+id/results_snubber_layout"
         app:layout_constraintVertical_chainStyle="spread_inside"
-        tools:ignore="LabelFor"
-        android:importantForAutofill="no" />
+        tools:ignore="LabelFor" />
 
     <RelativeLayout
         android:id="@+id/capacitance_snubber_layout"

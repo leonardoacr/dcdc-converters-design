@@ -51,11 +51,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inductor_Project"
             app:srcCompat="@drawable/tabela"
+            android:rotation="180"
             android:contentDescription="Inductor design table"
             tools:ignore="HardcodedText" />
 
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/table_description"
+            style="@style/MyDefaultText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -63,18 +65,20 @@
             android:layout_marginLeft="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:gravity="start|center_vertical"
-            android:text="
-            Descriptions:\n
-            le = magnetic length \n
-            lt = average length of a turn \n
-            Vn = ferrite volume"
+            android:gravity="start"
+            android:text="@string/table_description"
             android:textColor="?android:attr/colorBackground"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView11"
-            tools:ignore="HardcodedText" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="16dp"
+            android:layout_alignParentBottom="true"
+            app:layout_constraintTop_toBottomOf="@+id/table_description" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

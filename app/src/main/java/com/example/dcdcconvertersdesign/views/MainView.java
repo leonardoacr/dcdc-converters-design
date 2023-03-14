@@ -23,7 +23,8 @@ import com.example.dcdcconvertersdesign.helpers.Helpers;
 public class MainView extends AppCompatActivity {
 
     private MainController controller;
-    private Button usualDesignBtn, reverseEngineeringBtn;
+    private Button usualDesignBtn;
+    private Button reverseEngineeringBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,34 +73,29 @@ public class MainView extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.symbols_item) {
-            Intent intent_symbols = new Intent(MainView.this,
-                    SymbolsDefinitionsActivity.class);
-            startActivity(intent_symbols);
+        int itemId = item.getItemId();
+        if (itemId == R.id.symbols_item) {
+            navigateTo(SymbolsDefinitionsActivity.class);
             return true;
-        } else if (id == R.id.converter_definitions_item) {
-            Intent intent_converters_definitions = new Intent(MainView.this,
-                    ConvertersDefinitionsActivity.class);
-            startActivity(intent_converters_definitions);
+        } else if (itemId == R.id.converter_definitions_item) {
+            navigateTo(ConvertersDefinitionsActivity.class);
             return true;
-        } else if (id == R.id.inductor_definitions_item) {
-            Intent intent_inductor_definitions = new Intent(MainView.this,
-                    InductorDefinitionsActivity.class);
-            startActivity(intent_inductor_definitions);
+        } else if (itemId == R.id.inductor_definitions_item) {
+            navigateTo(InductorDefinitionsActivity.class);
             return true;
-        } else if (id == R.id.snubber_definitions_item) {
-            Intent intent_snubber_definitions = new Intent(MainView.this,
-                    SnubberDefinitionsActivity.class);
-            startActivity(intent_snubber_definitions);
+        } else if (itemId == R.id.snubber_definitions_item) {
+            navigateTo(SnubberDefinitionsActivity.class);
             return true;
-        } else if (id == R.id.about_item) {
-            Intent intent_about = new Intent(MainView.this, AboutActivity.class);
-            startActivity(intent_about);
+        } else if (itemId == R.id.about_item) {
+            navigateTo(AboutActivity.class);
             return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
+    }
 
-        return super.onOptionsItemSelected(item);
+    private void navigateTo(Class<?> cls) {
+        Intent intent = new Intent(this, cls);
+        startActivity(intent);
     }
 }

@@ -20,12 +20,21 @@ import com.example.dcdcconvertersdesign.helpers.Helpers;
 import com.example.dcdcconvertersdesign.models.SnubberDesignModel;
 
 public class SnubberDesignView extends AppCompatActivity {
-    TextView capacitanceSnubberTextView, resistanceSnubberTextView, powerSnubberTextView,
-            capacitanceSnubberText, resistanceSnubberText, powerSnubberText;
-    EditText timeDelayOffEditText, timeDelayFallEditText;
-    ImageView snubberImage;
-    ToggleButton resultsSnubberDesign;
-    RelativeLayout capacitanceSnubberLayout, resistanceSnubberLayout, powerSnubberLayout;
+    private TextView capacitanceSnubberText;
+    private TextView resistanceSnubberText;
+    private TextView powerSnubberText;
+    private TextView capacitanceSnubberTextView;
+    private TextView resistanceSnubberTextView;
+    private TextView powerSnubberTextView;
+    private EditText timeDelayOffEditText;
+    private EditText timeDelayFallEditText;
+    private ImageView snubberImage;
+    private ToggleButton resultsSnubberDesign;
+    private RelativeLayout capacitanceSnubberLayout;
+    private RelativeLayout resistanceSnubberLayout;
+    private RelativeLayout powerSnubberLayout;
+
+    private SnubberDesignController controller;
     String TAG = "SnubberDesign";
 
     @Override
@@ -37,8 +46,7 @@ public class SnubberDesignView extends AppCompatActivity {
 
         // Recovering data
         Bundle bundle = getIntent().getExtras();
-        SnubberDesignModel model = new SnubberDesignModel();
-        SnubberDesignController controller = new SnubberDesignController(this, model);
+        controller = new SnubberDesignController(this);
         controller.onCreateController(bundle);
 
         // Writing Results
@@ -100,20 +108,29 @@ public class SnubberDesignView extends AppCompatActivity {
     }
 
     @SuppressLint("SetTextI18n")
-    public void updateDisplayTexts() {
+    public void updateUITexts() {
         capacitanceSnubberText.setText("Snubber Capacitor");
-        capacitanceSnubberLayout.setVisibility(View.VISIBLE);
         resistanceSnubberText.setText("Snubber Resistor");
-        resistanceSnubberLayout.setVisibility(View.VISIBLE);
         powerSnubberText.setText("Power Dissipated");
-        powerSnubberLayout.setVisibility(View.VISIBLE);
     }
 
-    public void updateDisplayValues(double capacitanceSnubber, double resistanceSnubber,
+    public void updateUIValues(double capacitanceSnubber, double resistanceSnubber,
                                      double powerSnubber) {
         capacitanceSnubberTextView.setText(Helpers.formatValue(capacitanceSnubber, "F"));
         resistanceSnubberTextView.setText(Helpers.formatValue(resistanceSnubber, "Ω"));
         powerSnubberTextView.setText(Helpers.formatValue(powerSnubber, "W"));
+    }
+
+    public void showResults() {
+        capacitanceSnubberLayout.setVisibility(View.VISIBLE);
+        resistanceSnubberLayout.setVisibility(View.VISIBLE);
+        powerSnubberLayout.setVisibility(View.VISIBLE);
+    }
+
+    public void hideResults() {
+        capacitanceSnubberLayout.setVisibility(View.GONE);
+        resistanceSnubberLayout.setVisibility(View.GONE);
+        powerSnubberLayout.setVisibility(View.GONE);
     }
 
     public Double getTimeDelayOff() {

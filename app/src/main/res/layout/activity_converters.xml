@@ -62,8 +62,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_toEndOf="@+id/duty_cycle_text"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
                 android:textAlignment="center"
@@ -113,7 +112,7 @@
                 android:gravity="start|center_vertical"
                 android:textSize="16sp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/resistance"
@@ -122,8 +121,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_toEndOf="@+id/resistance_text"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
                 android:textAlignment="center"
@@ -158,7 +156,7 @@
                 android:gravity="start|center_vertical"
                 android:textSize="16sp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/capacitance"
@@ -167,8 +165,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_toEndOf="@+id/capacitance_text"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
                 android:textAlignment="center"
@@ -203,7 +200,7 @@
                 android:gravity="start|center_vertical"
                 android:textSize="16sp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/inductance"
@@ -212,8 +209,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_toEndOf="@+id/inductance_text"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
                 android:textAlignment="center"

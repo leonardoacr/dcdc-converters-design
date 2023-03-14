@@ -4,11 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.dcdcconvertersdesign.interfaces.SimulationParametersControllerInterface;
 import com.example.dcdcconvertersdesign.views.SimulationView;
 import com.example.dcdcconvertersdesign.models.SimulationParametersModel;
 import com.example.dcdcconvertersdesign.views.SimulationParametersView;
 
-public class SimulationParametersController {
+public class SimulationParametersController implements SimulationParametersControllerInterface {
     private final SimulationParametersView view;
     private final SimulationParametersModel model;
 
@@ -16,9 +17,9 @@ public class SimulationParametersController {
 
     private final String TAG = "SimulationParameters";
 
-    public SimulationParametersController(SimulationParametersView view, SimulationParametersModel model) {
+    public SimulationParametersController(SimulationParametersView view) {
         this.view = view;
-        this.model = model;
+        this.model = new SimulationParametersModel();
     }
 
     public void onCreateController(Bundle bundle) {

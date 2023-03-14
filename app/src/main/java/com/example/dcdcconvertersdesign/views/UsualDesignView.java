@@ -4,6 +4,8 @@ import static com.example.dcdcconvertersdesign.helpers.Helpers.showToast;
 
 
 import android.os.Bundle;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,14 +34,13 @@ public class UsualDesignView extends AppCompatActivity {
     private static final String TAG = "UsualDesign";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usual_design);
         Helpers.setMainActionBar(this);
 
-        // Set up model and controller
-        UsualDesignModel model = new UsualDesignModel();
-        UsualDesignController controller = new UsualDesignController(this, model);
+        // Set up the controller
+        UsualDesignController controller = new UsualDesignController(this);
 
         // Set up the UI
         setUIComponents();
