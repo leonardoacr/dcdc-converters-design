@@ -3,9 +3,10 @@ package com.example.dcdcconvertersdesign.models;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.dcdcconvertersdesign.interfaces.models.ConverterModelInterface;
 import com.example.dcdcconvertersdesign.utils.convertersutils.ConverterData;
 
-public class ConverterModel {
+public class ConverterModel implements ConverterModelInterface {
     private static double dutyCycle;
     private static double dutyCycleIdeal;
     private static double resistance;

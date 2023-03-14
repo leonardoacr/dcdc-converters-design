@@ -2,7 +2,9 @@ package com.example.dcdcconvertersdesign.models;
 
 import android.os.Bundle;
 
-public class SnubberDesignModel {
+import com.example.dcdcconvertersdesign.interfaces.models.SnubberDesignModelInterface;
+
+public class SnubberDesignModel implements SnubberDesignModelInterface {
     private double inputCurrent;
     private double outputVoltage;
     private double outputCurrent;
@@ -10,7 +12,6 @@ public class SnubberDesignModel {
     private int flag;
     private double capacitanceSnubber;
     private double resistanceSnubber;
-
     private double powerSnubber;
 
     public void snubberEquations(int flag, double outputVoltage, double inputCurrent,
@@ -39,7 +40,6 @@ public class SnubberDesignModel {
         String INPUT_CURRENT_KEY = "Input_Current";
         String OUTPUT_CURRENT_KEY = "Output_Current";
         String OUTPUT_VOLTAGE_KEY = "Output_Voltage";
-        String FREQUENCY_KEY = "Frequency";
         String FLAG_KEY = "Flag";
         inputCurrent = bundle.getDouble(INPUT_CURRENT_KEY);
         outputCurrent = bundle.getDouble(OUTPUT_CURRENT_KEY);

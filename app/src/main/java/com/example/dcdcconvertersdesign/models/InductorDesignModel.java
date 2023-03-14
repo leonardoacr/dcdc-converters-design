@@ -1,7 +1,10 @@
 package com.example.dcdcconvertersdesign.models;
 
 import android.os.Bundle;
-public class InductorDesignModel {
+
+import com.example.dcdcconvertersdesign.interfaces.models.InductorDesignModelInterface;
+
+public class InductorDesignModel implements InductorDesignModelInterface {
     private double inductance;
     private double inductorCurrentRMS;
     private double deltaInductorCurrent;

@@ -2,6 +2,7 @@ package com.example.dcdcconvertersdesign.models;
 
 import android.os.Bundle;
 
+import com.example.dcdcconvertersdesign.interfaces.models.SimulationModelInterface;
 import com.example.dcdcconvertersdesign.utils.simulationutils.CalculateBoostArrays;
 import com.example.dcdcconvertersdesign.utils.simulationutils.CalculateBuckArrays;
 import com.example.dcdcconvertersdesign.utils.simulationutils.CalculateBuckBoostArrays;
@@ -9,7 +10,7 @@ import com.example.dcdcconvertersdesign.utils.simulationutils.GraphUtils;
 import com.example.dcdcconvertersdesign.utils.simulationutils.SolveDiffEquations;
 import com.github.mikephil.charting.charts.LineChart;
 
-public class SimulationModel {
+public class SimulationModel implements SimulationModelInterface {
     private double outputVoltage;
     private double inputVoltage;
     private double dutyCycle;

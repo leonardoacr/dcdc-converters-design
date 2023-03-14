@@ -2,9 +2,10 @@ package com.example.dcdcconvertersdesign.models;
 
 import android.os.Bundle;
 
+import com.example.dcdcconvertersdesign.interfaces.models.ReverseDesignModelInterface;
 import com.example.dcdcconvertersdesign.utils.convertersutils.ConverterData;
 
-public class ReverseDesignModel {
+public class ReverseDesignModel implements ReverseDesignModelInterface {
     public Bundle sendDataToConverterReverseActivity(ConverterData converterData){
         String DUTY_CYCLE_KEY = "Duty_Cycle";
         String DUTY_CYCLE_IDEAL_KEY = "Duty_Cycle_Ideal";

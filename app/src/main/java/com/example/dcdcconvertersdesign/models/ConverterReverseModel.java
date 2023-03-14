@@ -1,40 +1,31 @@
 package com.example.dcdcconvertersdesign.models;
 
 import android.os.Bundle;
-import android.util.Log;
 
+import com.example.dcdcconvertersdesign.interfaces.models.ConverterReverseModelInterface;
 import com.example.dcdcconvertersdesign.utils.convertersutils.ConverterData;
 
-public class ConverterReverseModel {
+public class ConverterReverseModel implements ConverterReverseModelInterface {
     private static double dutyCycle;
     private static double dutyCycleIdeal;
     private static double resistance;
-    private static double capacitance;
-    private static double inductance;
     private static double inductanceCritical;
     private static double inputCurrent;
     private static double outputCurrent;
     private static double inductorCurrent;
     private static double switchCurrent;
     private static double diodeCurrent;
-    private static double inputVoltage;
-    private static double outputVoltage;
     private static double outputPower;
-    private static double frequency;
-    private static double efficiency;
     private static double inductorCurrentMax;
-    private static double inductorCurrentMin;
     private static double deltaInductorCurrent;
     private static double rippleInductorCurrent;
-    private static double outputVoltageMax;
-    private static double outputVoltageMin;
     private static double deltaCapacitorVoltage;
     private static double rippleCapacitorVoltage;
     private static double inductorCurrentRMS;
     private static boolean isCCM;
     private static int flag;
 
-    private static final String TAG = "CalculateReverse";
+//    private static final String TAG = "CalculateReverse";
     public static ConverterData buckCalculations(double inputVoltage, double outputVoltage,
                                                  double resistance, double inductance, double capacitance,
                                                  double frequency, double efficiency) {
@@ -120,7 +111,6 @@ public class ConverterReverseModel {
             deltaInductorCurrent = (inputVoltage * dutyCycle) / (frequency * inductance);
             rippleInductorCurrent = 100 * deltaInductorCurrent / inputCurrent;
             inductorCurrentMax = inputCurrent + inputCurrent * (rippleInductorCurrent / 200);
-            inductorCurrentMin = inputCurrent - inputCurrent * (rippleInductorCurrent / 200);
         } else {
             // DCM mode
             dutyCycleIdeal = (1 / inputVoltage) * Math.sqrt((2 * inductance * outputVoltage *
@@ -130,7 +120,6 @@ public class ConverterReverseModel {
                     (resistance * frequency * inductance));
             rippleInductorCurrent = 100 * deltaInductorCurrent / inputCurrent;
             inductorCurrentMax = deltaInductorCurrent;
-            inductorCurrentMin = 0;
             deltaInductorCurrent = inductorCurrentMax;
             switchCurrent = dutyCycle * inputCurrent;
             diodeCurrent = (1 - dutyCycle) * inputCurrent;
@@ -140,8 +129,8 @@ public class ConverterReverseModel {
         inductanceCritical = (Math.pow(inputVoltage, 2) * dutyCycle) / (2 * outputPower * frequency);
         deltaCapacitorVoltage = (outputCurrent * dutyCycle) / (capacitance * frequency);
         rippleCapacitorVoltage = 100 * deltaCapacitorVoltage / outputVoltage;
-        outputVoltageMax = outputVoltage + outputVoltage * (rippleCapacitorVoltage / 200);
-        outputVoltageMin = outputVoltage - outputVoltage * (rippleCapacitorVoltage / 200);
+//        double outputVoltageMax = outputVoltage + outputVoltage * (rippleCapacitorVoltage / 200);
+//        double outputVoltageMin = outputVoltage - outputVoltage * (rippleCapacitorVoltage / 200);
 
         // create a ConverterData object
         ConverterData data = new ConverterData();
@@ -187,7 +176,6 @@ public class ConverterReverseModel {
             deltaInductorCurrent = (inputVoltage * dutyCycle) / (frequency * inductance);
             rippleInductorCurrent = (100 * deltaInductorCurrent / inductorCurrent);
             inductorCurrentMax = inductorCurrent + inductorCurrent * (rippleInductorCurrent / 200);
-            inductorCurrentMin = inductorCurrent - inductorCurrent * (rippleInductorCurrent / 200);
             inductorCurrentRMS = Math.sqrt(Math.pow(inductorCurrentMax, 2) +
                     Math.pow(deltaInductorCurrent / 12, 2));
             inductanceCritical = inputVoltage * dutyCycle  / (frequency * inductorCurrent * 2);
@@ -196,7 +184,6 @@ public class ConverterReverseModel {
             deltaInductorCurrent = Math.sqrt(2 * outputCurrent * outputVoltage /
                     (inductance * frequency));
             inductorCurrentMax= deltaInductorCurrent;
-            inductorCurrentMin = 0;
             rippleInductorCurrent = 100 * inductorCurrentMax / inductorCurrent;
             dutyCycleIdeal = (outputVoltage / inputVoltage) *
                     Math.sqrt((2 * inductance * frequency) / resistance);
@@ -235,18 +222,13 @@ public class ConverterReverseModel {
         String DUTY_CYCLE_KEY = "Duty_Cycle";
         String DUTY_CYCLE_IDEAL_KEY = "Duty_Cycle_Ideal";
         String RESISTANCE_KEY = "Resistance";
-        String CAPACITANCE_KEY = "Capacitance";
-        String INDUCTANCE_KEY = "Inductance";
         String INDUCTANCE_CRITICAL_KEY = "Inductance_Crit";
         String INPUT_CURRENT_KEY = "Input_Current";
         String OUTPUT_CURRENT_KEY = "Output_Current";
         String INDUCTOR_CURRENT_KEY = "Inductor_Current";
         String SWITCH_CURRENT_KEY = "Switch_Current";
         String DIODE_CURRENT_KEY = "Diode_Current";
-        String INPUT_VOLTAGE_KEY = "Input_Voltage";
-        String OUTPUT_VOLTAGE_KEY = "Output_Voltage";
         String OUTPUT_POWER_KEY = "Output_Power";
-        String FREQUENCY_KEY = "Frequency";
         String DELTA_INDUCTOR_CURRENT_KEY = "DeltaIL";
         String RIPPLE_INDUCTOR_CURRENT_KEY = "RippleIL";
         String DELTA_CAPACITOR_VOLTAGE_KEY = "DeltaVC";
@@ -261,8 +243,6 @@ public class ConverterReverseModel {
         rippleInductorCurrent = data.getDouble(RIPPLE_INDUCTOR_CURRENT_KEY);
         rippleCapacitorVoltage = data.getDouble(RIPPLE_CAPACITOR_VOLTAGE_KEY);
         outputPower = data.getDouble(OUTPUT_POWER_KEY);
-        inductance = data.getDouble(INDUCTANCE_KEY);
-        capacitance = data.getDouble(CAPACITANCE_KEY);
         resistance = data.getDouble(RESISTANCE_KEY);
         isCCM = data.getBoolean(IS_CCM_KEY);
         flag = data.getInt(FLAG_KEY);
@@ -271,9 +251,6 @@ public class ConverterReverseModel {
         inductorCurrent = data.getDouble(INDUCTOR_CURRENT_KEY);
         switchCurrent = data.getDouble(SWITCH_CURRENT_KEY);
         diodeCurrent = data.getDouble(DIODE_CURRENT_KEY);
-        inputVoltage = data.getDouble(INPUT_VOLTAGE_KEY);
-        outputVoltage = data.getDouble(OUTPUT_VOLTAGE_KEY);
-        frequency = data.getDouble(FREQUENCY_KEY);
         deltaInductorCurrent = data.getDouble(DELTA_INDUCTOR_CURRENT_KEY);
         deltaCapacitorVoltage = data.getDouble(DELTA_CAPACITOR_VOLTAGE_KEY);
         inductorCurrentRMS = data.getDouble(INDUCTOR_CURRENT_RMS_KEY);
@@ -281,15 +258,6 @@ public class ConverterReverseModel {
 
     public double getDutyCycle() {
         return dutyCycle;
-    }
-    public double getResistance() {
-        return resistance;
-    }
-    public double getCapacitance() {
-        return capacitance;
-    }
-    public double getInductance() {
-        return inductance;
     }
     public double getInputCurrent() {
         return inputCurrent;

@@ -1,6 +1,8 @@
 package com.example.dcdcconvertersdesign.models;
 
-public class SimulationParametersModel {
+import com.example.dcdcconvertersdesign.interfaces.models.SimulationParametersModelInterface;
+
+public class SimulationParametersModel implements SimulationParametersModelInterface {
     private double maxTimeRecommended;
     private double memoryCalculated;
 

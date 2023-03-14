@@ -2,7 +2,9 @@ package com.example.dcdcconvertersdesign.models;
 
 import android.os.Bundle;
 
-public class AdvancedModel {
+import com.example.dcdcconvertersdesign.interfaces.models.AdvancedModelInterface;
+
+public class AdvancedModel implements AdvancedModelInterface {
     private double inductance;
     private double inductanceCritical;
     private double inputCurrent;
