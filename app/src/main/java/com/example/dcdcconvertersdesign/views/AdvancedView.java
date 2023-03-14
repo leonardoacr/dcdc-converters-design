@@ -10,18 +10,27 @@ import android.widget.TextView;
 import com.example.dcdcconvertersdesign.R;
 import com.example.dcdcconvertersdesign.controllers.AdvancedController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
-import com.example.dcdcconvertersdesign.models.AdvancedModel;
+import com.example.dcdcconvertersdesign.interfaces.views.AdvancedViewInterface;
 
-public class AdvancedView extends AppCompatActivity {
-    private TextView inductanceCriticalTextView, inputCurrentTextView, outputCurrentTextView,
-            inductorCurrentTextView, switchCurrentTextView, diodeCurrentTextView,
-            deltaInductorCurrentTextView, deltaCapacitorVoltageTextView, inductorReverseNote;
-    private Button snubberDesignBtn, inductorDesignBtn;
+public class AdvancedView extends AppCompatActivity implements AdvancedViewInterface {
+    // TextViews
+    private TextView inductanceCriticalTextView;
+    private TextView inputCurrentTextView;
+    private TextView outputCurrentTextView;
+    private TextView inductorCurrentTextView;
+    private TextView switchCurrentTextView;
+    private TextView diodeCurrentTextView;
+    private TextView deltaInductorCurrentTextView;
+    private TextView deltaCapacitorVoltageTextView;
+    private TextView inductorReverseNote;
+
+    // Buttons
+    private Button snubberDesignBtn;
+    private Button inductorDesignBtn;
 
     private AdvancedController controller;
-    private AdvancedModel model;
 
-    private final String TAG = "Advanced";
+//    private final String TAG = "Advanced";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +42,8 @@ public class AdvancedView extends AppCompatActivity {
         // Retrieve data from past activity
         Bundle bundle = getIntent().getExtras();
 
-        // Set up model and controller
-        model = new AdvancedModel();
-        controller = new AdvancedController(this, model);
+        // Set up controller
+        controller = new AdvancedController(this);
 
         // Initiating controller and setting resources
         controller.onCreateController(bundle);

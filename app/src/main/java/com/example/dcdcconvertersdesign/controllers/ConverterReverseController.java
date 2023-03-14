@@ -14,9 +14,9 @@ public class ConverterReverseController implements ConverterControllerInterface 
     private final ConverterReverseModel model;
 //    private final String TAG = "ConverterReverseController";
 
-    public ConverterReverseController(ConverterReverseView view, ConverterReverseModel model) {
+    public ConverterReverseController(ConverterReverseView view) {
         this.view = view;
-        this.model = model;
+        this.model = new ConverterReverseModel();
     }
 
     public void onCreateController(Bundle bundle) {

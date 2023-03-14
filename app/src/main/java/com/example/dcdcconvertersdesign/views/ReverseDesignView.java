@@ -11,15 +11,26 @@ import android.widget.EditText;
 
 import com.example.dcdcconvertersdesign.R;
 import com.example.dcdcconvertersdesign.controllers.ReverseDesignController;
+import com.example.dcdcconvertersdesign.interfaces.views.ReverseDesignViewInterface;
 import com.example.dcdcconvertersdesign.models.ReverseDesignModel;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 
-public class ReverseDesignView extends AppCompatActivity {
-    private EditText inductanceEditText, resistanceEditText, capacitanceEditText,
-            inputVoltageEditText, outputVoltageEditText, frequencyEditText, efficiencyEditText;
-    private Button buckBtn, boostBtn, buckBoostBtn, exampleBtn;
+public class ReverseDesignView extends AppCompatActivity implements ReverseDesignViewInterface {
+    private EditText inductanceEditText;
+    private EditText resistanceEditText;
+    private EditText capacitanceEditText;
+    private EditText inputVoltageEditText;
+    private EditText outputVoltageEditText;
+    private EditText frequencyEditText;
+    private EditText efficiencyEditText;
 
-    String TAG = "ReverseDesign";
+    private Button buckBtn;
+    private Button boostBtn;
+    private Button buckBoostBtn;
+    private Button exampleBtn;
+
+
+//    String TAG = "ReverseDesign";
 
     @SuppressLint("SetTextI18n")
     @Override

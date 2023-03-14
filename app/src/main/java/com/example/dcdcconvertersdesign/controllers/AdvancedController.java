@@ -24,9 +24,9 @@ public class AdvancedController implements AdvancedControllerInterface {
 
     private final AdvancedModel model;
 
-    public AdvancedController(AdvancedView view, AdvancedModel model) {
+    public AdvancedController(AdvancedView view) {
         this.view = view;
-        this.model = model;
+        this.model = new AdvancedModel();
     }
 
     public void onCreateController(Bundle bundle) {

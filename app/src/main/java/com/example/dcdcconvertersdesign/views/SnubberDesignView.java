@@ -17,9 +17,9 @@ import android.widget.ToggleButton;
 import com.example.dcdcconvertersdesign.R;
 import com.example.dcdcconvertersdesign.controllers.SnubberDesignController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
-import com.example.dcdcconvertersdesign.models.SnubberDesignModel;
+import com.example.dcdcconvertersdesign.interfaces.views.SnubberDesignViewInterface;
 
-public class SnubberDesignView extends AppCompatActivity {
+public class SnubberDesignView extends AppCompatActivity implements SnubberDesignViewInterface {
     private TextView capacitanceSnubberText;
     private TextView resistanceSnubberText;
     private TextView powerSnubberText;
@@ -35,7 +35,7 @@ public class SnubberDesignView extends AppCompatActivity {
     private RelativeLayout powerSnubberLayout;
 
     private SnubberDesignController controller;
-    String TAG = "SnubberDesign";
+//    String TAG = "SnubberDesign";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

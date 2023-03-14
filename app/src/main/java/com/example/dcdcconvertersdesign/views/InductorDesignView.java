@@ -17,11 +17,11 @@ import android.widget.ToggleButton;
 import com.example.dcdcconvertersdesign.R;
 import com.example.dcdcconvertersdesign.controllers.InductorDesignController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
-import com.example.dcdcconvertersdesign.models.InductorDesignModel;
+import com.example.dcdcconvertersdesign.interfaces.views.InductorDesignViewInterface;
 
 import java.util.Locale;
 
-public class InductorDesignView extends AppCompatActivity {
+public class InductorDesignView extends AppCompatActivity implements InductorDesignViewInterface {
 
     private TextView coreModelText;
     private TextView airGapText;
@@ -66,8 +66,7 @@ public class InductorDesignView extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
-        InductorDesignModel model = new InductorDesignModel();
-        InductorDesignController controller = new InductorDesignController(this, model);
+        InductorDesignController controller = new InductorDesignController(this);
 
         controller.onCreateController(bundle);
 

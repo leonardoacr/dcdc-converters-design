@@ -1,7 +1,6 @@
 package com.example.dcdcconvertersdesign.views;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,15 +10,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.dcdcconvertersdesign.R;
 import com.example.dcdcconvertersdesign.controllers.ConverterController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
-import com.example.dcdcconvertersdesign.models.ConverterModel;
+import com.example.dcdcconvertersdesign.interfaces.views.ConverterViewInterface;
 
-public class ConverterView extends AppCompatActivity {
-    private TextView dutyCycleTextView, resistanceTextView, capacitanceTextView, inductanceTextView;
-    public TextView dutyCycleText, resistanceText, inductanceText, capacitanceText, modeWarning,
-            converterTitle, modeTextView;
+public class ConverterView extends AppCompatActivity implements ConverterViewInterface {
+    // Private variables
+    private TextView dutyCycleTextView;
+    private TextView resistanceTextView;
+    private TextView capacitanceTextView;
+    private TextView inductanceTextView;
+
+    // Public variables
+    public TextView dutyCycleText;
+    public TextView resistanceText;
+    public TextView inductanceText;
+    public TextView capacitanceText;
+    public TextView modeWarning;
+    public TextView converterTitle;
+    public TextView modeTextView;
     public ImageView converterFigure;
-    public Button simulationBtn, advancedBtn;
-    String TAG = "Converter";
+    public Button simulationBtn;
+    public Button advancedBtn;
+//    String TAG = "Converter";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +44,14 @@ public class ConverterView extends AppCompatActivity {
         // Retrieve data from past activity
         Bundle bundle = getIntent().getExtras();
 
-        // Set up model and controller
-        ConverterModel model = new ConverterModel();
-        ConverterController controller = new ConverterController(this, model);
+        // Set up controller
+        ConverterController controller = new ConverterController(this);
         controller.onCreateController(bundle);
 
         // Simulation
         simulationBtn.setOnClickListener(v -> controller.onSimulationClicked(bundle));
 
         // Advanced
-        Log.d(TAG, "ConverterActivity: " + bundle.getDouble("Duty_Cycle"));
         advancedBtn.setOnClickListener(v -> controller.onAdvancedClicked(bundle));
     }
 

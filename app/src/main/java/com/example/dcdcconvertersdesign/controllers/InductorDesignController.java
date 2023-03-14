@@ -13,9 +13,9 @@ public class InductorDesignController implements InductorDesignControllerInterfa
     private final InductorDesignView view;
     private final InductorDesignModel model;
 
-    public InductorDesignController(InductorDesignView view, InductorDesignModel model) {
+    public InductorDesignController(InductorDesignView view) {
         this.view = view;
-        this.model = model;
+        this.model = new InductorDesignModel();
     }
 
     public void onCreateController(Bundle bundle) {

@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import com.example.dcdcconvertersdesign.interfaces.views.MainViewInterface;
 import com.example.dcdcconvertersdesign.views.helpmenu.AboutActivity;
 import com.example.dcdcconvertersdesign.views.helpmenu.ConvertersDefinitionsActivity;
 import com.example.dcdcconvertersdesign.views.helpmenu.InductorDefinitionsActivity;
@@ -20,7 +21,7 @@ import com.example.dcdcconvertersdesign.views.helpmenu.SymbolsDefinitionsActivit
 import com.example.dcdcconvertersdesign.controllers.MainController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 
-public class MainView extends AppCompatActivity {
+public class MainView extends AppCompatActivity implements MainViewInterface {
 
     private MainController controller;
     private Button usualDesignBtn;

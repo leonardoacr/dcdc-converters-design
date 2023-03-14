@@ -13,12 +13,13 @@ import android.widget.TextView;
 import com.example.dcdcconvertersdesign.R;
 import com.example.dcdcconvertersdesign.controllers.SimulationController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
+import com.example.dcdcconvertersdesign.interfaces.views.SimulationViewInterface;
 import com.example.dcdcconvertersdesign.utils.simulationutils.GraphUtils;
 import com.github.mikephil.charting.charts.LineChart;
 
-public class SimulationView extends AppCompatActivity {
+public class SimulationView extends AppCompatActivity implements SimulationViewInterface {
     // define a tag for logging purposes
-    private static final String TAG = "Simulation";
+//    private static final String TAG = "Simulation";
     private final SimulationController controller = new SimulationController(this);
 
     @SuppressLint("SetTextI18n")
@@ -45,17 +46,13 @@ public class SimulationView extends AppCompatActivity {
         Button optionsButton = findViewById(R.id.options_button);
 
         // Set an onClickListener for the options_button
-        optionsButton.setOnClickListener(v -> {
-            controller.handleOptionsButton(chart, graphUtils);
-        });
+        optionsButton.setOnClickListener(v -> controller.handleOptionsButton(chart, graphUtils));
 
         // Handling Limits button and open dialog:
         Button saveGraphButton = findViewById(R.id.save_button);
 
         // Set an onClickListener for the options_button
-        saveGraphButton.setOnClickListener(v -> {
-            controller.handleSaveGraphButton(chart);
-        });
+        saveGraphButton.setOnClickListener(v -> controller.handleSaveGraphButton(chart));
     }
 
     public void alertBox(String alertString) {

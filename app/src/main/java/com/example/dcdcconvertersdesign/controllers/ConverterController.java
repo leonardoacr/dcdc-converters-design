@@ -14,9 +14,9 @@ public class ConverterController implements ConverterControllerInterface {
     private final ConverterModel model;
 //    private final String TAG = "ConverterController";
 
-    public ConverterController(ConverterView view, ConverterModel model) {
+    public ConverterController(ConverterView view) {
         this.view = view;
-        this.model = model;
+        this.model = new ConverterModel();
     }
 
     public void onCreateController(Bundle bundle) {

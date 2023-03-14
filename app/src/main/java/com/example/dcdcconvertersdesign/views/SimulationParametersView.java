@@ -1,5 +1,6 @@
 package com.example.dcdcconvertersdesign.views;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,8 +15,10 @@ import android.widget.TextView;
 import com.example.dcdcconvertersdesign.R;
 import com.example.dcdcconvertersdesign.controllers.SimulationParametersController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
+import com.example.dcdcconvertersdesign.interfaces.views.SimulationParametersViewInterface;
 
-public class SimulationParametersView extends AppCompatActivity {
+public class SimulationParametersView extends AppCompatActivity implements
+        SimulationParametersViewInterface {
     private TextView switchingFrequencyTextView;
     private TextView timeStepTextView;
     private TextView timeStepText;
@@ -37,6 +40,7 @@ public class SimulationParametersView extends AppCompatActivity {
 
     private RelativeLayout requiredMemoryLayout;
     private RelativeLayout maxTimeRecommendedLayout;
+    @SuppressLint("StaticFieldLeak")
     private static ProgressBar progressBar;
 
 

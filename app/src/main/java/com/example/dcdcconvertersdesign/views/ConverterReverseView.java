@@ -13,11 +13,13 @@ import android.widget.TextView;
 import com.example.dcdcconvertersdesign.R;
 import com.example.dcdcconvertersdesign.controllers.ConverterReverseController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
+import com.example.dcdcconvertersdesign.interfaces.views.ConverterReverseViewInterface;
 import com.example.dcdcconvertersdesign.models.ConverterReverseModel;
 
 import java.util.Locale;
 
-public class ConverterReverseView extends AppCompatActivity {
+public class ConverterReverseView extends AppCompatActivity
+        implements ConverterReverseViewInterface {
     private TextView converterTitle;
     private TextView outputPowerText;
     private TextView rippleInductorCurrentText;
@@ -35,7 +37,7 @@ public class ConverterReverseView extends AppCompatActivity {
     private Button advancedBtn;
     private Button simulationBtn;
 
-    private final String TAG = "ConvertersR";
+//    private final String TAG = "ConvertersR";
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -49,16 +51,14 @@ public class ConverterReverseView extends AppCompatActivity {
         // Retrieve data from past activity
         Bundle bundle = getIntent().getExtras();
 
-        // Set up model and controller
-        ConverterReverseModel model = new ConverterReverseModel();
-        ConverterReverseController controller = new ConverterReverseController(this, model);
+        // Set up controller
+        ConverterReverseController controller = new ConverterReverseController(this);
         controller.onCreateController(bundle);
 
         // Simulation
         simulationBtn.setOnClickListener(v -> controller.onSimulationClicked(bundle));
 
         // Advanced
-        Log.d(TAG, "ConverterActivity: " + bundle.getDouble("Duty_Cycle"));
         advancedBtn.setOnClickListener(v -> controller.onAdvancedClicked(bundle));
     }
 
