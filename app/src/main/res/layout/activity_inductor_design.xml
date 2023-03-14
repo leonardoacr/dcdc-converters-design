@@ -185,7 +185,7 @@
 
             <TextView
                 android:id="@+id/size_percent_inductor_design"
-                android:layout_width="88dp"
+                android:layout_width="110dp"
                 android:layout_height="39dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
@@ -231,7 +231,7 @@
 
             <TextView
                 android:id="@+id/air_gap_inductor_design"
-                android:layout_width="88dp"
+                android:layout_width="110dp"
                 android:layout_height="39dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
@@ -275,7 +275,7 @@
 
             <TextView
                 android:id="@+id/core_model_inductor_design"
-                android:layout_width="88dp"
+                android:layout_width="110dp"
                 android:layout_height="39dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
@@ -319,7 +319,7 @@
 
             <TextView
                 android:id="@+id/turn_number_inductor_design"
-                android:layout_width="88dp"
+                android:layout_width="110dp"
                 android:layout_height="39dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
@@ -363,7 +363,7 @@
 
             <TextView
                 android:id="@+id/awg_inductor_design"
-                android:layout_width="88dp"
+                android:layout_width="110dp"
                 android:layout_height="39dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
@@ -406,7 +406,7 @@
 
             <TextView
                 android:id="@+id/parallel_conductors_inductor_design"
-                android:layout_width="88dp"
+                android:layout_width="110dp"
                 android:layout_height="39dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"

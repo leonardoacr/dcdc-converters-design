@@ -27,7 +27,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Menu"
         android:textColor="?android:attr/colorBackground"
         android:textSize="28sp"
-        android:text="Advanced"
+        android:text="@string/advanced_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -55,14 +55,14 @@
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/montserrat_regular"
             android:gravity="start|center_vertical"
-            android:text="Critical Inductance"
+            android:text="@string/inductance_critical_text_advanced"
             android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/inductance_critical_advanced"
-            android:layout_width="88dp"
+            android:layout_width="110dp"
             android:layout_height="39dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
@@ -101,13 +101,13 @@
             android:fontFamily="@font/montserrat_regular"
             android:gravity="start|center_vertical"
             android:textSize="16sp"
-            android:text="Input Current"
+            android:text="@string/input_current_text_advanced"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
             android:id="@+id/input_current_advanced"
-            android:layout_width="88dp"
+            android:layout_width="110dp"
             android:layout_height="39dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
@@ -146,13 +146,13 @@
             android:fontFamily="@font/montserrat_regular"
             android:gravity="start|center_vertical"
             android:textSize="16sp"
-            android:text="Output Current"
+            android:text="@string/output_current_text_advanced"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
             android:id="@+id/output_current_advanced"
-            android:layout_width="88dp"
+            android:layout_width="110dp"
             android:layout_height="39dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
@@ -191,13 +191,13 @@
             android:fontFamily="@font/montserrat_regular"
             android:gravity="start|center_vertical"
             android:textSize="16sp"
-            android:text="Inductor Current"
+            android:text="@string/inductor_current_text_advanced"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
             android:id="@+id/inductor_current_advanced"
-            android:layout_width="88dp"
+            android:layout_width="110dp"
             android:layout_height="39dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
@@ -237,13 +237,13 @@
             android:fontFamily="@font/montserrat_regular"
             android:gravity="start|center_vertical"
             android:textSize="16sp"
-            android:text="Switch Current"
+            android:text="@string/switch_current_text_advanced"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
             android:id="@+id/switch_current_advanced"
-            android:layout_width="88dp"
+            android:layout_width="110dp"
             android:layout_height="39dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
@@ -282,13 +282,13 @@
         android:fontFamily="@font/montserrat_regular"
         android:gravity="start|center_vertical"
         android:textSize="16sp"
-        android:text="Diode Current"
+        android:text="@string/diode_current_text_advanced"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
             android:id="@+id/diode_current_advanced"
-            android:layout_width="88dp"
+            android:layout_width="110dp"
             android:layout_height="39dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
@@ -327,13 +327,13 @@
             android:fontFamily="@font/montserrat_regular"
             android:gravity="start|center_vertical"
             android:textSize="16sp"
-            android:text="Delta Ind. Current"
+            android:text="@string/delta_inductor_current_text_advanced"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
             android:id="@+id/delta_inductor_current_advanced"
-            android:layout_width="88dp"
+            android:layout_width="110dp"
             android:layout_height="39dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
@@ -372,13 +372,13 @@
             android:fontFamily="@font/montserrat_regular"
             android:gravity="start|center_vertical"
             android:textSize="16sp"
-            android:text="Delta Cap. Voltage"
+            android:text="@string/delta_capacitor_voltage_text_advanced"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
             android:id="@+id/delta_capacitor_voltage_advanced"
-            android:layout_width="88dp"
+            android:layout_width="110dp"
             android:layout_height="39dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
@@ -401,7 +401,7 @@
         android:layout_height="36dp"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/montserrat_regular"
-        android:text="Snubber Design"
+        android:text="@string/snubber_design_btn_advanced"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainContainer_13" />
@@ -413,7 +413,7 @@
         android:layout_height="46dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat_regular"
-        android:text="Inductor Design \n(E-Core)"
+        android:text="@string/inductor_design_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/snubber_design_btn_advanced" />
