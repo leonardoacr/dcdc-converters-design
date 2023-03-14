@@ -37,8 +37,8 @@ public class InductorDesignView extends AppCompatActivity implements InductorDes
     private TextView awgTextView;
     private TextView parallelConductorsTextView;
 
-    private EditText jmaxEditText;
-    private EditText bmaxEditText;
+    private EditText jMaxEditText;
+    private EditText bMaxEditText;
     private EditText kuEditText;
 
     private ToggleButton resultsInductorDesign;
@@ -81,8 +81,8 @@ public class InductorDesignView extends AppCompatActivity implements InductorDes
         // Example button listener
         exampleBtn.setOnClickListener(v -> {
             kuEditText.setText("70");
-            jmaxEditText.setText("450");
-            bmaxEditText.setText("0.3");
+            jMaxEditText.setText("450");
+            bMaxEditText.setText("0.3");
         });
     }
 
@@ -104,8 +104,8 @@ public class InductorDesignView extends AppCompatActivity implements InductorDes
         parallelConductorsTextView = findViewById(R.id.parallel_conductors_inductor_design);
 
         // Inputs
-        jmaxEditText = findViewById(R.id.jmax_constant_inductor_design);
-        bmaxEditText = findViewById(R.id.bmax_inductor_design);
+        jMaxEditText = findViewById(R.id.jmax_constant_inductor_design);
+        bMaxEditText = findViewById(R.id.bmax_inductor_design);
         kuEditText = findViewById(R.id.ku_inductor_design);
 
         // Button
@@ -171,7 +171,7 @@ public class InductorDesignView extends AppCompatActivity implements InductorDes
     }
 
     public boolean isEmpty() {
-        EditText[] fields = {jmaxEditText, bmaxEditText, kuEditText};
+        EditText[] fields = {jMaxEditText, bMaxEditText, kuEditText};
         for (EditText field : fields) {
             if (field.getText().toString().isEmpty()) {
                 showToast(this, "Error! Something is empty");
@@ -182,11 +182,11 @@ public class InductorDesignView extends AppCompatActivity implements InductorDes
     }
 
     public Double getJmax() {
-        return Double.parseDouble(jmaxEditText.getText().toString()); // current density
+        return Double.parseDouble(jMaxEditText.getText().toString()); // current density
     }
 
     public Double getBmax() {
-        return Double.parseDouble(bmaxEditText.getText().toString()); // flux density
+        return Double.parseDouble(bMaxEditText.getText().toString()); // flux density
     }
 
     public Double getKu() {

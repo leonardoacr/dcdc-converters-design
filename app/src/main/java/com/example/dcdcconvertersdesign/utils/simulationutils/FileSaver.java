@@ -1,7 +1,6 @@
 package com.example.dcdcconvertersdesign.utils.simulationutils;
 
 import android.graphics.Bitmap;
-import android.util.Log;
 
 import com.example.dcdcconvertersdesign.views.SimulationView;
 import com.github.mikephil.charting.charts.LineChart;
@@ -11,13 +10,19 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class FileSaver {
-    private static final String TAG = "FileSaver";
+//    private static final String TAG = "FileSaver";
    public static void savePNG(String directoryPath, LineChart chart, String fileNameKey,
                               SimulationView view) {
         // Save the chart to PNG
         File directory = new File(directoryPath);
         if (!directory.exists()) {
-            directory.mkdir();
+            boolean created = directory.mkdir();
+
+            if (created) {
+                view.alertBox("Directory created successfully!");
+            } else {
+                view.alertBox("Failed to create directory!");
+            }
         }
 
         String fileName = fileNameKey + ".png";
@@ -36,12 +41,9 @@ public class FileSaver {
             chartBitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
             outputStream.flush();
             outputStream.close();
-            Log.d(TAG, "File directory: " + directoryPath);
-            Log.d(TAG, "File created: " + file.exists());
             view.alertBox("File saved to " + directoryPath);
         } catch (Exception e) {
             e.printStackTrace();
-            Log.d(TAG, "Failed to save file. ERROR: " + e);
             view.alertBox("Failed to save file. ERROR: " + e);
         } finally {
             if (outputStream != null) {
@@ -67,7 +69,13 @@ public class FileSaver {
         // Save the chart to CSV
         File directory = new File(directoryPath);
         if (!directory.exists()) {
-            directory.mkdir();
+            boolean created = directory.mkdir();
+
+            if (created) {
+                view.alertBox("Directory created successfully!");
+            } else {
+                view.alertBox("Failed to create directory!");
+            }
         }
         String fileName = fileNameKey + ".csv";
         File file = new File(directory, fileName);
@@ -84,12 +92,9 @@ public class FileSaver {
             FileOutputStream outputStream = new FileOutputStream(file);
             outputStream.write(csv.getBytes());
             outputStream.close();
-            Log.d(TAG, "File directory: " + directoryPath);
-            Log.d(TAG, "File created: " + file.exists());
             view.alertBox("File saved to " + directoryPath);
         } catch (Exception e) {
             e.printStackTrace();
-            Log.d(TAG, "Failed to save file. ERROR: " + e);
             view.alertBox("Failed to save file. ERROR: " + e);
         }
     }

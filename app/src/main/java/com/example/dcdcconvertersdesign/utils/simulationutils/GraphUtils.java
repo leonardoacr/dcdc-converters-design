@@ -15,9 +15,11 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
+import java.util.OptionalDouble;
 
 public class GraphUtils {
-    private static final String TAG = "GraphUtils";
+//    private static final String TAG = "GraphUtils";
     public static double[] xGlobal;
     public static double[] yGlobal;
     private int numStepGlobal;
@@ -29,7 +31,7 @@ public class GraphUtils {
         yGlobal = new double[numStep];
 
         // create a new data set for the line chart
-        List<Entry> entries = new ArrayList<Entry>();
+        List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < numStep; i++) {
             xGlobal[i] = x[i]*1000;
             yGlobal[i] = y[i];
@@ -74,14 +76,16 @@ public class GraphUtils {
                 float xVal = e.getX();
                 float yVal = e.getY();
 
-                String formattedX = String.format("%.2f", xVal);
-                String formattedY = String.format("%.2f", yVal);
+                String formattedX = String.format(Locale.US, "%.2f", xVal);
+                String formattedY = String.format(Locale.US,"%.2f", yVal);
 
                 // update TextView objects to show x and y values
                 xValueTextView = chart.getRootView().findViewById(R.id.x_value);
                 yValueTextView = chart.getRootView().findViewById(R.id.y_value);
-                xValueTextView.setText("X: " + formattedX);
-                yValueTextView.setText("Y: " + formattedY);
+                String xValueTextViewContent = "X: " + formattedX;
+                String yValueTextViewContent = "Y: " + formattedY;
+                xValueTextView.setText(xValueTextViewContent);
+                yValueTextView.setText(yValueTextViewContent);
             }
             @Override
             public void onNothingSelected() {
@@ -101,13 +105,13 @@ public class GraphUtils {
             chart.getXAxis().setAxisMaximum((float) xGlobal[numStepGlobal - 1]);
 
             // set up Y-axis
-            double maximumY = Arrays.stream(yGlobal).max().getAsDouble();
+            OptionalDouble optionalMaximumY = Arrays.stream(yGlobal).max();
+            double maximumY = optionalMaximumY.isPresent() ? optionalMaximumY.getAsDouble() : 0.0;
             maximumY = (maximumY >= 0) ? maximumY * 1.1 : maximumY * 0.9;
 
-            double minimumY = Arrays.stream(yGlobal).min().getAsDouble();
-            minimumY = (minimumY > 0) ? minimumY * 0.9 : (minimumY < 0) ?
-                    minimumY * 1.1 : minimumY - 0.5;
-
+            OptionalDouble optionalMinimumY = Arrays.stream(yGlobal).min();
+            double minimumY = optionalMinimumY.isPresent() ? optionalMinimumY.getAsDouble() : 0.0;
+            minimumY = (minimumY > 0) ? minimumY * 0.9 : (minimumY < 0) ? minimumY * 1.1 : minimumY - 0.5;
 
             chart.getAxisLeft().setAxisMaximum((float) (maximumY));
             chart.getAxisLeft().setAxisMinimum((float) (minimumY));

@@ -11,6 +11,8 @@ import android.widget.EditText;
 
 import com.example.dcdcconvertersdesign.R;
 
+import java.util.Objects;
+
 public class LimitsDialog extends DialogFragment {
     private static final String TAG = "LimitsDialog";
     public interface LimitsDialogListener {
@@ -27,23 +29,18 @@ public class LimitsDialog extends DialogFragment {
         // Empty constructor required for DialogFragment
     }
 
-    public static LimitsDialog newInstance() {
-        LimitsDialog frag = new LimitsDialog();
-        return frag;
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_simulation_options, container);
-        getDialog().setTitle("Set Limits");
+        Objects.requireNonNull(getDialog()).setTitle("Set Limits");
 
-        mXLowerLimitEditText = (EditText) view.findViewById(R.id.x_lower_limit_edit_text);
-        mXUpperLimitEditText = (EditText) view.findViewById(R.id.x_upper_limit_edit_text);
-        mYLowerLimitEditText = (EditText) view.findViewById(R.id.y_lower_limit_edit_text);
-        mYUpperLimitEditText = (EditText) view.findViewById(R.id.y_upper_limit_edit_text);
+        mXLowerLimitEditText = view.findViewById(R.id.x_lower_limit_edit_text);
+        mXUpperLimitEditText = view.findViewById(R.id.x_upper_limit_edit_text);
+        mYLowerLimitEditText = view.findViewById(R.id.y_lower_limit_edit_text);
+        mYUpperLimitEditText = view.findViewById(R.id.y_upper_limit_edit_text);
 
-        Button saveButton = (Button) view.findViewById(R.id.save_limits_button);
+        Button saveButton = view.findViewById(R.id.save_limits_button);
         saveButton.setOnClickListener(v -> {
             Double xLowerLimit = null;
             Double xUpperLimit = null;

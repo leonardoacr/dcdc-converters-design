@@ -22,7 +22,7 @@ public class AdvancedModel implements AdvancedModelInterface {
     private int flagReverse;
 
     public static final String INDUCTANCE_KEY = "Inductance";
-    public static final String INDUCTANCE_CRITICAL_KEY = "Inductance_Crit";
+    public static final String INDUCTANCE_CRITICAL_KEY = "Inductance_Critical";
     public static final String INPUT_CURRENT_KEY = "Input_Current";
     public static final String OUTPUT_CURRENT_KEY = "Output_Current";
     public static final String INDUCTOR_CURRENT_KEY = "Inductor_Current";

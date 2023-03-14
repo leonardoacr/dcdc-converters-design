@@ -222,7 +222,7 @@ public class ConverterReverseModel implements ConverterReverseModelInterface {
         String DUTY_CYCLE_KEY = "Duty_Cycle";
         String DUTY_CYCLE_IDEAL_KEY = "Duty_Cycle_Ideal";
         String RESISTANCE_KEY = "Resistance";
-        String INDUCTANCE_CRITICAL_KEY = "Inductance_Crit";
+        String INDUCTANCE_CRITICAL_KEY = "Inductance_Critical";
         String INPUT_CURRENT_KEY = "Input_Current";
         String OUTPUT_CURRENT_KEY = "Output_Current";
         String INDUCTOR_CURRENT_KEY = "Inductor_Current";
@@ -258,9 +258,6 @@ public class ConverterReverseModel implements ConverterReverseModelInterface {
 
     public double getDutyCycle() {
         return dutyCycle;
-    }
-    public double getInputCurrent() {
-        return inputCurrent;
     }
     public double getRippleInductorCurrent() {
         return rippleInductorCurrent;

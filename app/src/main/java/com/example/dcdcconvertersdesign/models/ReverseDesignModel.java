@@ -12,7 +12,7 @@ public class ReverseDesignModel implements ReverseDesignModelInterface {
         String RESISTANCE_KEY = "Resistance";
         String CAPACITANCE_KEY = "Capacitance";
         String INDUCTANCE_KEY = "Inductance";
-        String INDUCTANCE_CRITICAL_KEY = "Inductance_Crit";
+        String INDUCTANCE_CRITICAL_KEY = "Inductance_Critical";
         String INPUT_CURRENT_KEY = "Input_Current";
         String OUTPUT_CURRENT_KEY = "Output_Current";
         String INDUCTOR_CURRENT_KEY = "Inductor_Current";

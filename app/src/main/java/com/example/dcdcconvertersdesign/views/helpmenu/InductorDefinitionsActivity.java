@@ -6,7 +6,6 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dcdcconvertersdesign.R;
-import com.example.dcdcconvertersdesign.helpers.Helpers;
 
 public class InductorDefinitionsActivity extends AppCompatActivity {
     ImageView inductorDefinitionImage;

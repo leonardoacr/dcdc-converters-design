@@ -21,7 +21,7 @@ public class ReverseDesignController implements DesignControllerInterface {
     private final ReverseDesignModel model;
     private int flag;
 
-    private final String TAG = "ReverseDesignController";
+//    private final String TAG = "ReverseDesignController";
 
     public ReverseDesignController(ReverseDesignView view) {
         this.view = view;

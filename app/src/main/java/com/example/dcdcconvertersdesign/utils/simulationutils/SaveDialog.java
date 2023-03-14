@@ -10,6 +10,8 @@ import android.widget.Button;
 
 import com.example.dcdcconvertersdesign.R;
 
+import java.util.Objects;
+
 public class SaveDialog extends DialogFragment {
     private String saveKey;
     private static final String TAG = "SaveDialog";
@@ -22,18 +24,13 @@ public class SaveDialog extends DialogFragment {
         // Empty constructor required for DialogFragment
     }
 
-    public static SaveDialog newInstance() {
-        SaveDialog frag = new SaveDialog();
-        return frag;
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_simulation_save_graph, container);
-        getDialog().setTitle("Set Limits");
+        Objects.requireNonNull(getDialog()).setTitle("Set Limits");
 
-        Button saveCSVButton = (Button) view.findViewById(R.id.save_CSV_button);
+        Button saveCSVButton = view.findViewById(R.id.save_CSV_button);
         saveCSVButton.setOnClickListener(v -> {
 
             // Print the values using Log.d
@@ -46,7 +43,7 @@ public class SaveDialog extends DialogFragment {
             dismiss();
         });
 
-        Button savePNGButton = (Button) view.findViewById(R.id.save_PNG_button);
+        Button savePNGButton = view.findViewById(R.id.save_PNG_button);
         savePNGButton.setOnClickListener(v -> {
 
             // Print the values using Log.d

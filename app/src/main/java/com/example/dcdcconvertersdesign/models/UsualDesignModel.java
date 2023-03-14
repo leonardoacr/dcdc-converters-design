@@ -11,7 +11,7 @@ public class UsualDesignModel implements UsualDesignModelInterface {
     public static final String RESISTANCE_KEY = "Resistance";
     public static final String CAPACITANCE_KEY = "Capacitance";
     public static final String INDUCTANCE_KEY = "Inductance";
-    public static final String INDUCTANCE_CRIT_KEY = "Inductance_Crit";
+    public static final String INDUCTANCE_CRITICAL_KEY = "Inductance_Critical";
     public static final String INPUT_CURRENT_KEY = "Input_Current";
     public static final String OUTPUT_CURRENT_KEY = "Output_Current";
     public static final String INDUCTOR_CURRENT_KEY = "Inductor_Current";
@@ -55,7 +55,7 @@ public class UsualDesignModel implements UsualDesignModelInterface {
         bundle.putDouble(RESISTANCE_KEY, resistance);
         bundle.putDouble(CAPACITANCE_KEY, capacitance);
         bundle.putDouble(INDUCTANCE_KEY, inductance);
-        bundle.putDouble(INDUCTANCE_CRIT_KEY, inductanceCritical);
+        bundle.putDouble(INDUCTANCE_CRITICAL_KEY, inductanceCritical);
         bundle.putDouble(INPUT_CURRENT_KEY, inputCurrent);
         bundle.putDouble(OUTPUT_CURRENT_KEY, outputCurrent);
         bundle.putDouble(INDUCTOR_CURRENT_KEY, inductorCurrent);

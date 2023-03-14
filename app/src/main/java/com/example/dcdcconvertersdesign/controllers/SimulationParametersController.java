@@ -2,7 +2,6 @@ package com.example.dcdcconvertersdesign.controllers;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.dcdcconvertersdesign.interfaces.controllers.SimulationParametersControllerInterface;
 import com.example.dcdcconvertersdesign.views.SimulationView;
@@ -15,7 +14,7 @@ public class SimulationParametersController implements SimulationParametersContr
 
     private double timeStep;
 
-    private final String TAG = "SimulationParameters";
+//    private final String TAG = "SimulationParameters";
 
     public SimulationParametersController(SimulationParametersView view) {
         this.view = view;
@@ -29,8 +28,6 @@ public class SimulationParametersController implements SimulationParametersContr
 
             timeStep = model.calculateTimeStep(frequency);
             view.updateTimeStep(timeStep);
-        } else {
-            Log.d(TAG, "Bundle in SimulationParametersController is null");
         }
     }
 

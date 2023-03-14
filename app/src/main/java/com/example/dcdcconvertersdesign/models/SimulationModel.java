@@ -15,7 +15,6 @@ import com.github.mikephil.charting.charts.LineChart;
 public class SimulationModel implements SimulationModelInterface {
     private double outputVoltage;
     private double inputVoltage;
-    private double dutyCycle;
     private double dutyCycleIdeal;
     private double inductance;
     private double capacitance;
@@ -31,7 +30,6 @@ public class SimulationModel implements SimulationModelInterface {
     public void retrieveSimulationData(Bundle bundle) {
         outputVoltage = bundle.getDouble("Output_Voltage");
         inputVoltage = bundle.getDouble("Input_Voltage");
-        dutyCycle = bundle.getDouble("Duty_Cycle");
         dutyCycleIdeal = bundle.getDouble("Duty_Cycle_Ideal");
         inductance = bundle.getDouble("Inductance");
         capacitance = bundle.getDouble("Capacitance");
@@ -274,10 +272,6 @@ public class SimulationModel implements SimulationModelInterface {
 
     public double getInputVoltage() {
         return inputVoltage;
-    }
-
-    public double getDutyCycle() {
-        return dutyCycle;
     }
 
     public double getDutyCycleIdeal() {

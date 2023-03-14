@@ -12,7 +12,6 @@ import android.widget.EditText;
 import com.example.dcdcconvertersdesign.R;
 import com.example.dcdcconvertersdesign.controllers.ReverseDesignController;
 import com.example.dcdcconvertersdesign.interfaces.views.ReverseDesignViewInterface;
-import com.example.dcdcconvertersdesign.models.ReverseDesignModel;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 
 public class ReverseDesignView extends AppCompatActivity implements ReverseDesignViewInterface {

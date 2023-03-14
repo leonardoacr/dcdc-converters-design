@@ -4,7 +4,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dcdcconvertersdesign.R;
-import com.example.dcdcconvertersdesign.helpers.Helpers;
 
 public class SnubberDefinitionsActivity extends AppCompatActivity {
 

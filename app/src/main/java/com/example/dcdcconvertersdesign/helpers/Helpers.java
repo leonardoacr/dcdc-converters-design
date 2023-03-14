@@ -9,7 +9,6 @@ import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.TypefaceSpan;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -18,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.dcdcconvertersdesign.R;
 
 import java.util.Locale;
-import java.util.Objects;
 
 public class Helpers {
     public static void setMainActionBar(Activity activity){

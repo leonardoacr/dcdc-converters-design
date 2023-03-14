@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,7 +13,6 @@ import com.example.dcdcconvertersdesign.R;
 import com.example.dcdcconvertersdesign.controllers.ConverterReverseController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
 import com.example.dcdcconvertersdesign.interfaces.views.ConverterReverseViewInterface;
-import com.example.dcdcconvertersdesign.models.ConverterReverseModel;
 
 import java.util.Locale;
 

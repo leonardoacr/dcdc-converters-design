@@ -5,15 +5,13 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.dcdcconvertersdesign.R;
 
 public class ConvertersDefinitionsActivity extends AppCompatActivity {
-
-    ImageView Buck_definition, boostDefinitionImage, buckBoostDefinitionImage;
-
     ImageView buckDefinitionImage;
+    ImageView boostDefinitionImage;
+    ImageView buckBoostDefinitionImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
