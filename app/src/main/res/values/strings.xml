@@ -161,4 +161,18 @@
     <string name="about_the_app">About the app</string>
     <string name="snubber_text_definitions_title">Snubber Definitions</string>
     <string name="table_description">Descriptions:\n le = magnetic length \n lt = average length of a turn \n Vn = ferrite volume</string>
+    <string name="advanced_text">Advanced</string>
+    <string name="inductance_critical_text_advanced">Critical Inductance</string>
+    <string name="input_current_text_advanced">Input Current</string>
+    <string name="output_current_text_advanced">Output Current</string>
+    <string name="inductor_current_text_advanced">Inductor Current</string>
+    <string name="switch_current_text_advanced">Switch Current</string>
+    <string name="diode_current_text_advanced">Diode Current</string>
+    <string name="delta_inductor_current_text_advanced">Delta Ind. Current</string>
+    <string name="delta_capacitor_voltage_text_advanced">Delta Cap. Voltage</string>
+    <string name="snubber_design_btn_advanced">Snubber Design</string>
+    <string name="inductor_design_btn">Inductor Design \n(E-Core)</string>
+    <string name="converter_image">Converter image</string>
+    <string name="advanced_btn">Advanced</string>
+    <string name="simulation_btn">Simulation</string>
 </resources>
