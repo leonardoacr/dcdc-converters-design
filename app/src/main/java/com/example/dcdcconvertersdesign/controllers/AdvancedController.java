@@ -4,12 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.dcdcconvertersdesign.interfaces.controllers.AdvancedControllerInterface;
 import com.example.dcdcconvertersdesign.views.InductorDesignView;
 import com.example.dcdcconvertersdesign.views.SnubberDesignView;
 import com.example.dcdcconvertersdesign.models.AdvancedModel;
 import com.example.dcdcconvertersdesign.views.AdvancedView;
 
-public class AdvancedController {
+public class AdvancedController implements AdvancedControllerInterface {
     private static final String OUTPUT_CURRENT_KEY = "Output_Current";
     private static final String INPUT_CURRENT_KEY = "Input_Current";
     private static final String OUTPUT_VOLTAGE_KEY = "Output_Voltage";

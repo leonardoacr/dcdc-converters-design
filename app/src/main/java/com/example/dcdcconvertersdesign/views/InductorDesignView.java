@@ -23,15 +23,36 @@ import java.util.Locale;
 
 public class InductorDesignView extends AppCompatActivity {
 
+    private TextView coreModelText;
+    private TextView airGapText;
+    private TextView sizePercentText;
+    private TextView turnNumberText;
+    private TextView awgText;
+    private TextView parallelConductorsText;
+
+    private TextView coreModelTextView;
+    private TextView airGapTextView;
+    private TextView sizePercentTextView;
+    private TextView turnNumberTextView;
+    private TextView awgTextView;
+    private TextView parallelConductorsTextView;
+
+    private EditText jmaxEditText;
+    private EditText bmaxEditText;
+    private EditText kuEditText;
+
     private ToggleButton resultsInductorDesign;
-    private Button tableBtn, exampleBtn;
-    private TextView coreModelText, airGapText, sizePercentText, turnNumberText, awgText, parallelConductorsText;
-    private TextView coreModelTextView, airGapTextView, sizePercentTextView, turnNumberTextView, awgTextView, parallelConductorsTextView;
-    private EditText jmaxEditText, bmaxEditText, kuEditText;
+    private Button tableBtn;
+    private Button exampleBtn;
     private ImageView inductorImage;
 
-    private RelativeLayout sizePercentLayout, airGapLayout, coreModelLayout, turnNumberLayout,
-            awgLayout, parallelConductorsLayout;
+    private RelativeLayout sizePercentLayout;
+    private RelativeLayout airGapLayout;
+    private RelativeLayout coreModelLayout;
+    private RelativeLayout turnNumberLayout;
+    private RelativeLayout awgLayout;
+    private RelativeLayout parallelConductorsLayout;
+
 
         // Tables
     @SuppressLint("SetTextI18n")

@@ -1,10 +1,8 @@
 package com.example.dcdcconvertersdesign.views;
 
-import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
@@ -16,7 +14,6 @@ import android.widget.TextView;
 import com.example.dcdcconvertersdesign.R;
 import com.example.dcdcconvertersdesign.controllers.SimulationParametersController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
-import com.example.dcdcconvertersdesign.models.SimulationParametersModel;
 
 public class SimulationParametersView extends AppCompatActivity {
     private TextView switchingFrequencyTextView;
@@ -43,7 +40,6 @@ public class SimulationParametersView extends AppCompatActivity {
     private static ProgressBar progressBar;
 
 
-    @SuppressLint({"DefaultLocale", "SetTextI18n"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -186,10 +182,12 @@ public class SimulationParametersView extends AppCompatActivity {
             controller.navigateToSimulation(maxTime, timeStep, receivedID);
         });
     }
-    public static void showProgressBar() {
+    public void showProgressBar() {
         progressBar.setVisibility(View.VISIBLE);
     }
     public static void hideProgressBar() {
-        progressBar.setVisibility(View.INVISIBLE);
+        if(progressBar != null) {
+            progressBar.setVisibility(View.INVISIBLE);
+        }
     }
 }

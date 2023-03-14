@@ -2,17 +2,17 @@ package com.example.dcdcconvertersdesign.controllers;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
+import com.example.dcdcconvertersdesign.interfaces.controllers.ConverterControllerInterface;
 import com.example.dcdcconvertersdesign.models.ConverterReverseModel;
 import com.example.dcdcconvertersdesign.views.AdvancedView;
 import com.example.dcdcconvertersdesign.views.ConverterReverseView;
 import com.example.dcdcconvertersdesign.views.SimulationParametersView;
 
-public class ConverterReverseController {
+public class ConverterReverseController implements ConverterControllerInterface {
     private final ConverterReverseView view;
     private final ConverterReverseModel model;
-    private final String TAG = "ConverterReverseController";
+//    private final String TAG = "ConverterReverseController";
 
     public ConverterReverseController(ConverterReverseView view, ConverterReverseModel model) {
         this.view = view;
@@ -26,13 +26,10 @@ public class ConverterReverseController {
 
             // Update view with model data
             updateDisplay();
-        } else {
-            Log.d(TAG, "Bundle in ConverterReverseController is null");
         }
     }
 
     public void onAdvancedClicked(Bundle bundle) {
-        Log.d(TAG, "ConverterController: " + bundle.getDouble("Duty_Cycle"));
         Intent intent = new Intent(view, AdvancedView.class);
         final int flagReverse = 1;
         bundle.putDouble("Flag_Reverse", flagReverse);

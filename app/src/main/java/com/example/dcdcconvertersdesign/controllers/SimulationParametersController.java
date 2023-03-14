@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.dcdcconvertersdesign.interfaces.SimulationParametersControllerInterface;
+import com.example.dcdcconvertersdesign.interfaces.controllers.SimulationParametersControllerInterface;
 import com.example.dcdcconvertersdesign.views.SimulationView;
 import com.example.dcdcconvertersdesign.models.SimulationParametersModel;
 import com.example.dcdcconvertersdesign.views.SimulationParametersView;

@@ -3,11 +3,13 @@ package com.example.dcdcconvertersdesign.controllers;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.dcdcconvertersdesign.interfaces.controllers.InductorDesignControllerInterface;
 import com.example.dcdcconvertersdesign.models.InductorDesignModel;
 import com.example.dcdcconvertersdesign.views.InductorDesignView;
 import com.example.dcdcconvertersdesign.views.InductorDesignTableView;
 
-public class InductorDesignController implements InductorDesignModel.ModelListener {
+public class InductorDesignController implements InductorDesignControllerInterface,
+             InductorDesignModel.ModelListener {
     private final InductorDesignView view;
     private final InductorDesignModel model;
 
@@ -51,5 +53,4 @@ public class InductorDesignController implements InductorDesignModel.ModelListen
         // For example, display a toast message:
         view.setCoreError(message);
     }
-
 }

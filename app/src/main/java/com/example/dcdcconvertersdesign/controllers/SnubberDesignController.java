@@ -2,7 +2,7 @@ package com.example.dcdcconvertersdesign.controllers;
 
 import android.os.Bundle;
 
-import com.example.dcdcconvertersdesign.interfaces.SnubberDesignControllerInterface;
+import com.example.dcdcconvertersdesign.interfaces.controllers.SnubberDesignControllerInterface;
 import com.example.dcdcconvertersdesign.models.SnubberDesignModel;
 import com.example.dcdcconvertersdesign.views.SnubberDesignView;
 

@@ -13,9 +13,9 @@ import android.widget.EditText;
 import com.example.dcdcconvertersdesign.R;
 import com.example.dcdcconvertersdesign.controllers.UsualDesignController;
 import com.example.dcdcconvertersdesign.helpers.Helpers;
-import com.example.dcdcconvertersdesign.models.UsualDesignModel;
+import com.example.dcdcconvertersdesign.interfaces.views.UsualDesignViewInterface;
 
-public class UsualDesignView extends AppCompatActivity {
+public class UsualDesignView extends AppCompatActivity implements UsualDesignViewInterface {
     // UI-related variables
     private EditText inputVoltageEditText;
     private EditText outputVoltageEditText;
@@ -31,7 +31,7 @@ public class UsualDesignView extends AppCompatActivity {
     private Button exampleBtn;
 
     // Flags and constants
-    private static final String TAG = "UsualDesign";
+//    private static final String TAG = "UsualDesign";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

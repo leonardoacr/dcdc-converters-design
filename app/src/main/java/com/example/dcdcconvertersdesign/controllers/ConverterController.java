@@ -2,17 +2,17 @@ package com.example.dcdcconvertersdesign.controllers;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
+import com.example.dcdcconvertersdesign.interfaces.controllers.ConverterControllerInterface;
 import com.example.dcdcconvertersdesign.views.SimulationParametersView;
 import com.example.dcdcconvertersdesign.views.AdvancedView;
 import com.example.dcdcconvertersdesign.models.ConverterModel;
 import com.example.dcdcconvertersdesign.views.ConverterView;
 
-public class ConverterController {
+public class ConverterController implements ConverterControllerInterface {
     private final ConverterView view;
     private final ConverterModel model;
-    private final String TAG = "ConverterController";
+//    private final String TAG = "ConverterController";
 
     public ConverterController(ConverterView view, ConverterModel model) {
         this.view = view;
@@ -24,14 +24,11 @@ public class ConverterController {
            // Retrieve data from the Bundle and set the model variables
            model.retrieveDataFromUsualDesignActivity(bundle);
            // Update view with model data
-           updateDisplay();
-       } else {
-           Log.d(TAG, "Bundle in ConverterController is null");
+           updateUI();
        }
     }
 
     public void onAdvancedClicked(Bundle bundle) {
-        Log.d(TAG, "ConverterController: " + bundle.getDouble("Duty_Cycle"));
         Intent intent = new Intent(view, AdvancedView.class);
         intent.putExtras(bundle);
         view.startActivity(intent);
@@ -53,7 +50,7 @@ public class ConverterController {
         view.startActivity(intent);
     }
 
-    private void updateDisplay() {
+    private void updateUI() {
         // Set resources in view
         boolean isCCM = model.getIsCCM();
         double dutyCycle = model.getDutyCycle();

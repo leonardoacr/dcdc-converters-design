@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesign.interfaces;
+package com.example.dcdcconvertersdesign.interfaces.controllers;
 
 import android.os.Bundle;
 

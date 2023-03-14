@@ -1,6 +1,6 @@
-package com.example.dcdcconvertersdesign.interfaces;
+package com.example.dcdcconvertersdesign.interfaces.controllers;
 
-public interface UsualDesignControllerInterface {
+public interface DesignControllerInterface {
     void onExampleClicked();
     void onBuckConverterClicked();
     void onBoostConverterClicked();

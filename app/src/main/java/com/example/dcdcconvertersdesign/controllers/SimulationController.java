@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 
-import com.example.dcdcconvertersdesign.interfaces.SimulationControllerInterface;
+import com.example.dcdcconvertersdesign.interfaces.controllers.SimulationControllerInterface;
 import com.example.dcdcconvertersdesign.models.SimulationModel;
 import com.example.dcdcconvertersdesign.utils.simulationutils.FileSaver;
 import com.example.dcdcconvertersdesign.utils.simulationutils.GraphUtils;
