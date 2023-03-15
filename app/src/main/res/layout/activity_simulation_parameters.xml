@@ -325,10 +325,11 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
-            android:visibility="gone"
             android:background="@drawable/rounded_box"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone"
+
             app:layout_constraintTop_toBottomOf="@+id/max_time_text_2">
 
             <TextView
@@ -348,13 +349,12 @@
 
             <TextView
                 android:id="@+id/required_memory"
-                android:layout_width="wrap_content"
+                android:layout_width="88dp"
                 android:layout_height="39dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_toEndOf="@+id/required_memory_text"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
                 android:textAlignment="center"
@@ -371,8 +371,8 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
-            android:background="@drawable/rounded_box"
             android:visibility="gone"
+            android:background="@drawable/rounded_box"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linear_layout_big_text">
@@ -394,13 +394,12 @@
 
             <TextView
                 android:id="@+id/max_time_recommended_simulation"
-                android:layout_width="wrap_content"
+                android:layout_width="88dp"
                 android:layout_height="39dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_toEndOf="@+id/max_time_recommended_text_simulation"
                 android:fontFamily="@font/montserrat_regular"
                 android:gravity="center"
                 android:textAlignment="center"
