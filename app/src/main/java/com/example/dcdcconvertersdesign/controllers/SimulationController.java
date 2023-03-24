@@ -1,5 +1,6 @@
 package com.example.dcdcconvertersdesign.controllers;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -17,6 +18,7 @@ import com.example.dcdcconvertersdesign.views.SimulationView;
 import com.example.dcdcconvertersdesign.views.SimulationParametersView;
 import com.github.mikephil.charting.charts.LineChart;
 
+import java.io.File;
 import java.util.Objects;
 
 public class SimulationController implements SimulationControllerInterface {
@@ -126,15 +128,35 @@ public class SimulationController implements SimulationControllerInterface {
 
         dialog.setListener((saveKey) -> {
             String folderName = "/DCDCConvertersDesign";
+            File downloadsDirectory = Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_DOWNLOADS);
             String directoryPath = Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_DOWNLOADS) + folderName;
+
+            File directory = new File(directoryPath);
+//            File directory = new File(view.getExternalFilesDir(null), folderName);
+
+            if (!directory.exists()) {
+                boolean created = directory.mkdir();
+
+                if (created) {
+                    view.alertBox("Directory created successfully!");
+                } else {
+                    view.alertBox("Failed to create directory!");
+                }
+            }
+
             String fileNameKey = model.getFileNameKey();
 
             if (Objects.equals(saveKey, "PNG")) {
-                FileSaver.savePNG(directoryPath, chart, fileNameKey, view);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    FileSaver.savePNG(directory, chart, fileNameKey, view);
+                }
             }
             if (Objects.equals(saveKey, "CSV")) {
-                FileSaver.saveCSV(directoryPath, fileNameKey, view);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    FileSaver.saveCSV(directory, fileNameKey, view);
+                }
             }
         });
         // Show the dialog
