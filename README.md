@@ -1,6 +1,20 @@
 # DCDC Converters Design
 
-## [>> :inbox_tray: Download <<](http://bit.ly/3NWtqwQ)
+
+
+[![Download App](https://img.shields.io/badge/Download-App-blue?style=for-the-badge&logo=android)](http://bit.ly/3NWtqwQ)
+
+<div align="center">
+  <a href="#overview"><b style="color:#5c19e2;">Overview</b></a> •
+  <a href="#features"><b style="color:#5c19e2;">Features</b></a> •
+  <a href="#installation"><b style="color:#5c19e2;">Installation</b></a> •
+  <a href="#usage"><b style="color:#5c19e2;">Usage</b></a> •
+  <a href="#contributing"><b style="color:#5c19e2;">Contributing</b></a> •
+  <a href="#license"><b style="color:#5c19e2;">License</b></a> •
+  <a href="#contact"><b style="color:#5c19e2;">Contact</b></a>
+</div>
+
+
 
 
 ## :camera: Overview
