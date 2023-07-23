@@ -1,15 +1,15 @@
-package com.example.dcdcconvertersdesigndemo.models;
+package com.dcdcconvertersdesigndemo.models;
 
 import android.os.Bundle;
 
-import com.example.dcdcconvertersdesigndemo.interfaces.models.SimulationModelInterface;
-import com.example.dcdcconvertersdesigndemo.models.converters.boost.BoostConverterArrays;
-import com.example.dcdcconvertersdesigndemo.models.converters.boost.BoostConverterSimulator;
-import com.example.dcdcconvertersdesigndemo.models.converters.buck.BuckConverterArrays;
-import com.example.dcdcconvertersdesigndemo.models.converters.buck.BuckConverterSimulator;
-import com.example.dcdcconvertersdesigndemo.models.converters.buckboost.BuckBoostConverterArrays;
-import com.example.dcdcconvertersdesigndemo.models.converters.buckboost.BuckBoostConverterSimulator;
-import com.example.dcdcconvertersdesigndemo.utils.simulationutils.GraphUtils;
+import com.dcdcconvertersdesigndemo.interfaces.models.SimulationModelInterface;
+import com.dcdcconvertersdesigndemo.models.converters.boost.BoostConverterArrays;
+import com.dcdcconvertersdesigndemo.models.converters.boost.BoostConverterSimulator;
+import com.dcdcconvertersdesigndemo.models.converters.buck.BuckConverterArrays;
+import com.dcdcconvertersdesigndemo.models.converters.buck.BuckConverterSimulator;
+import com.dcdcconvertersdesigndemo.models.converters.buckboost.BuckBoostConverterArrays;
+import com.dcdcconvertersdesigndemo.models.converters.buckboost.BuckBoostConverterSimulator;
+import com.dcdcconvertersdesigndemo.utils.simulationutils.GraphUtils;
 import com.github.mikephil.charting.charts.LineChart;
 
 public class SimulationModel implements SimulationModelInterface {

@@ -1,21 +1,21 @@
-package com.example.dcdcconvertersdesigndemo.controllers;
+package com.dcdcconvertersdesigndemo.controllers;
 
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 
-import com.example.dcdcconvertersdesigndemo.interfaces.controllers.SimulationControllerInterface;
-import com.example.dcdcconvertersdesigndemo.models.SimulationModel;
-import com.example.dcdcconvertersdesigndemo.models.converters.boost.BoostConverterSimulator;
-import com.example.dcdcconvertersdesigndemo.models.converters.buck.BuckConverterSimulator;
-import com.example.dcdcconvertersdesigndemo.models.converters.buckboost.BuckBoostConverterSimulator;
-import com.example.dcdcconvertersdesigndemo.utils.simulationutils.FileSaver;
-import com.example.dcdcconvertersdesigndemo.utils.simulationutils.GraphUtils;
-import com.example.dcdcconvertersdesigndemo.utils.simulationutils.LimitsDialog;
-import com.example.dcdcconvertersdesigndemo.utils.simulationutils.SaveDialog;
-import com.example.dcdcconvertersdesigndemo.views.SimulationView;
-import com.example.dcdcconvertersdesigndemo.views.SimulationParametersView;
+import com.dcdcconvertersdesigndemo.interfaces.controllers.SimulationControllerInterface;
+import com.dcdcconvertersdesigndemo.models.SimulationModel;
+import com.dcdcconvertersdesigndemo.models.converters.boost.BoostConverterSimulator;
+import com.dcdcconvertersdesigndemo.models.converters.buck.BuckConverterSimulator;
+import com.dcdcconvertersdesigndemo.models.converters.buckboost.BuckBoostConverterSimulator;
+import com.dcdcconvertersdesigndemo.utils.simulationutils.FileSaver;
+import com.dcdcconvertersdesigndemo.utils.simulationutils.GraphUtils;
+import com.dcdcconvertersdesigndemo.utils.simulationutils.LimitsDialog;
+import com.dcdcconvertersdesigndemo.utils.simulationutils.SaveDialog;
+import com.dcdcconvertersdesigndemo.views.SimulationView;
+import com.dcdcconvertersdesigndemo.views.SimulationParametersView;
 import com.github.mikephil.charting.charts.LineChart;
 
 import java.io.File;

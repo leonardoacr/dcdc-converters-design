@@ -1,6 +1,6 @@
-package com.example.dcdcconvertersdesigndemo.views;
+package com.dcdcconvertersdesigndemo.views;
 
-import static com.example.dcdcconvertersdesigndemo.R.*;
+import static com.dcdcconvertersdesigndemo.R.*;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,15 +11,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
-import com.example.dcdcconvertersdesigndemo.interfaces.views.MainViewInterface;
-import com.example.dcdcconvertersdesigndemo.views.helpmenu.AboutActivity;
-import com.example.dcdcconvertersdesigndemo.views.helpmenu.ConvertersDefinitionsActivity;
-import com.example.dcdcconvertersdesigndemo.views.helpmenu.InductorDefinitionsActivity;
-import com.example.dcdcconvertersdesigndemo.R;
-import com.example.dcdcconvertersdesigndemo.views.helpmenu.SnubberDefinitionsActivity;
-import com.example.dcdcconvertersdesigndemo.views.helpmenu.SymbolsDefinitionsActivity;
-import com.example.dcdcconvertersdesigndemo.controllers.MainController;
-import com.example.dcdcconvertersdesigndemo.helpers.Helpers;
+import com.dcdcconvertersdesigndemo.interfaces.views.MainViewInterface;
+import com.dcdcconvertersdesigndemo.views.helpmenu.AboutActivity;
+import com.dcdcconvertersdesigndemo.views.helpmenu.ConvertersDefinitionsActivity;
+import com.dcdcconvertersdesigndemo.views.helpmenu.InductorDefinitionsActivity;
+import com.dcdcconvertersdesigndemo.R;
+import com.dcdcconvertersdesigndemo.views.helpmenu.SnubberDefinitionsActivity;
+import com.dcdcconvertersdesigndemo.views.helpmenu.SymbolsDefinitionsActivity;
+import com.dcdcconvertersdesigndemo.controllers.MainController;
+import com.dcdcconvertersdesigndemo.helpers.Helpers;
 
 public class MainView extends AppCompatActivity implements MainViewInterface {
 

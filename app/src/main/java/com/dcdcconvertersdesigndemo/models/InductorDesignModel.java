@@ -1,8 +1,8 @@
-package com.example.dcdcconvertersdesigndemo.models;
+package com.dcdcconvertersdesigndemo.models;
 
 import android.os.Bundle;
 
-import com.example.dcdcconvertersdesigndemo.interfaces.models.InductorDesignModelInterface;
+import com.dcdcconvertersdesigndemo.interfaces.models.InductorDesignModelInterface;
 
 public class InductorDesignModel implements InductorDesignModelInterface {
     private double inductance;

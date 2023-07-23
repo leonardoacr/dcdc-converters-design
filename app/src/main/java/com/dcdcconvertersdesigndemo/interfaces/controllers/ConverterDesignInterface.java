@@ -1,6 +1,6 @@
-package com.example.dcdcconvertersdesigndemo.interfaces.controllers;
+package com.dcdcconvertersdesigndemo.interfaces.controllers;
 
-import com.example.dcdcconvertersdesigndemo.utils.convertersutils.ConverterData;
+import com.dcdcconvertersdesigndemo.utils.convertersutils.ConverterData;
 
 public interface ConverterDesignInterface {
     ConverterData performCalculations();

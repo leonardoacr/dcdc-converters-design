@@ -1,10 +1,10 @@
-package com.example.dcdcconvertersdesigndemo.views;
+package com.dcdcconvertersdesigndemo.views;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.dcdcconvertersdesigndemo.R;
-import com.example.dcdcconvertersdesigndemo.helpers.Helpers;
+import com.dcdcconvertersdesigndemo.R;
+import com.dcdcconvertersdesigndemo.helpers.Helpers;
 
 public class InductorDesignTableView extends AppCompatActivity {
 

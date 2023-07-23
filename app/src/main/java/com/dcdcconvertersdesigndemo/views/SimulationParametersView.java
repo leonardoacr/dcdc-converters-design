@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesigndemo.views;
+package com.dcdcconvertersdesigndemo.views;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
@@ -12,10 +12,10 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.dcdcconvertersdesigndemo.R;
-import com.example.dcdcconvertersdesigndemo.controllers.SimulationParametersController;
-import com.example.dcdcconvertersdesigndemo.helpers.Helpers;
-import com.example.dcdcconvertersdesigndemo.interfaces.views.SimulationParametersViewInterface;
+import com.dcdcconvertersdesigndemo.R;
+import com.dcdcconvertersdesigndemo.controllers.SimulationParametersController;
+import com.dcdcconvertersdesigndemo.helpers.Helpers;
+import com.dcdcconvertersdesigndemo.interfaces.views.SimulationParametersViewInterface;
 
 public class SimulationParametersView extends AppCompatActivity implements
         SimulationParametersViewInterface {

@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesigndemo.views;
+package com.dcdcconvertersdesigndemo.views;
 
 import android.annotation.SuppressLint;
 
@@ -10,11 +10,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.dcdcconvertersdesigndemo.R;
-import com.example.dcdcconvertersdesigndemo.controllers.SimulationController;
-import com.example.dcdcconvertersdesigndemo.helpers.Helpers;
-import com.example.dcdcconvertersdesigndemo.interfaces.views.SimulationViewInterface;
-import com.example.dcdcconvertersdesigndemo.utils.simulationutils.GraphUtils;
+import com.dcdcconvertersdesigndemo.R;
+import com.dcdcconvertersdesigndemo.controllers.SimulationController;
+import com.dcdcconvertersdesigndemo.helpers.Helpers;
+import com.dcdcconvertersdesigndemo.interfaces.views.SimulationViewInterface;
+import com.dcdcconvertersdesigndemo.utils.simulationutils.GraphUtils;
 import com.github.mikephil.charting.charts.LineChart;
 
 public class SimulationView extends AppCompatActivity implements SimulationViewInterface {

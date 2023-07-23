@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesigndemo.utils.simulationutils;
+package com.dcdcconvertersdesigndemo.utils.simulationutils;
 
 import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.dcdcconvertersdesigndemo.R;
+import com.dcdcconvertersdesigndemo.R;
 
 import java.util.Objects;
 

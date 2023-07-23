@@ -1,13 +1,13 @@
-package com.example.dcdcconvertersdesigndemo.controllers;
+package com.dcdcconvertersdesigndemo.controllers;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.dcdcconvertersdesigndemo.interfaces.controllers.ConverterControllerInterface;
-import com.example.dcdcconvertersdesigndemo.models.ConverterReverseModel;
-import com.example.dcdcconvertersdesigndemo.views.AdvancedView;
-import com.example.dcdcconvertersdesigndemo.views.ConverterReverseView;
-import com.example.dcdcconvertersdesigndemo.views.SimulationParametersView;
+import com.dcdcconvertersdesigndemo.interfaces.controllers.ConverterControllerInterface;
+import com.dcdcconvertersdesigndemo.models.ConverterReverseModel;
+import com.dcdcconvertersdesigndemo.views.AdvancedView;
+import com.dcdcconvertersdesigndemo.views.ConverterReverseView;
+import com.dcdcconvertersdesigndemo.views.SimulationParametersView;
 
 public class ConverterReverseController implements ConverterControllerInterface {
     private final ConverterReverseView view;

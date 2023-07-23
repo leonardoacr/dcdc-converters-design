@@ -1,6 +1,6 @@
-package com.example.dcdcconvertersdesigndemo.interfaces.views;
+package com.dcdcconvertersdesigndemo.interfaces.views;
 
-import com.example.dcdcconvertersdesigndemo.controllers.SimulationParametersController;
+import com.dcdcconvertersdesigndemo.controllers.SimulationParametersController;
 
 public interface SimulationParametersViewInterface {
     void updateFrequency(double frequency);

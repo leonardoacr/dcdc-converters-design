@@ -1,8 +1,8 @@
-package com.example.dcdcconvertersdesigndemo.models;
+package com.dcdcconvertersdesigndemo.models;
 
 import android.os.Bundle;
 
-import com.example.dcdcconvertersdesigndemo.interfaces.models.SnubberDesignModelInterface;
+import com.dcdcconvertersdesigndemo.interfaces.models.SnubberDesignModelInterface;
 
 public class SnubberDesignModel implements SnubberDesignModelInterface {
     private double inputCurrent;

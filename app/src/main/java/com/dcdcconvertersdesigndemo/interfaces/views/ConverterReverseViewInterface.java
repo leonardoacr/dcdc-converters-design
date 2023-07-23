@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesigndemo.interfaces.views;
+package com.dcdcconvertersdesigndemo.interfaces.views;
 
 public interface ConverterReverseViewInterface {
     void updateDisplayValues(double outputPower, double rippleInductorCurrent, double rippleCapacitorVoltage, double dutyCycle);

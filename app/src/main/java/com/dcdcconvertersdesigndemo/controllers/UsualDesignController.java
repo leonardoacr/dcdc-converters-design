@@ -1,22 +1,22 @@
-package com.example.dcdcconvertersdesigndemo.controllers;
+package com.dcdcconvertersdesigndemo.controllers;
 
-import static com.example.dcdcconvertersdesigndemo.helpers.VerifyInputErrors.verifyInputErrorsBoost;
-import static com.example.dcdcconvertersdesigndemo.helpers.VerifyInputErrors.verifyInputErrorsBuck;
-import static com.example.dcdcconvertersdesigndemo.helpers.VerifyInputErrors.verifyInputErrorsBuckBoost;
+import static com.dcdcconvertersdesigndemo.helpers.VerifyInputErrors.verifyInputErrorsBoost;
+import static com.dcdcconvertersdesigndemo.helpers.VerifyInputErrors.verifyInputErrorsBuck;
+import static com.dcdcconvertersdesigndemo.helpers.VerifyInputErrors.verifyInputErrorsBuckBoost;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.dcdcconvertersdesigndemo.interfaces.controllers.ConverterDesignInterface;
-import com.example.dcdcconvertersdesigndemo.interfaces.controllers.DesignControllerInterface;
-import com.example.dcdcconvertersdesigndemo.models.UsualDesignModel;
-import com.example.dcdcconvertersdesigndemo.models.converters.boost.BoostConverterCalculator;
-import com.example.dcdcconvertersdesigndemo.models.converters.buck.BuckConverterCalculator;
-import com.example.dcdcconvertersdesigndemo.models.converters.buckboost.BuckBoostConverterCalculator;
-import com.example.dcdcconvertersdesigndemo.utils.convertersutils.ConverterData;
-import com.example.dcdcconvertersdesigndemo.views.ConverterView;
-import com.example.dcdcconvertersdesigndemo.views.UsualDesignView;
+import com.dcdcconvertersdesigndemo.interfaces.controllers.ConverterDesignInterface;
+import com.dcdcconvertersdesigndemo.interfaces.controllers.DesignControllerInterface;
+import com.dcdcconvertersdesigndemo.models.UsualDesignModel;
+import com.dcdcconvertersdesigndemo.models.converters.boost.BoostConverterCalculator;
+import com.dcdcconvertersdesigndemo.models.converters.buck.BuckConverterCalculator;
+import com.dcdcconvertersdesigndemo.models.converters.buckboost.BuckBoostConverterCalculator;
+import com.dcdcconvertersdesigndemo.utils.convertersutils.ConverterData;
+import com.dcdcconvertersdesigndemo.views.ConverterView;
+import com.dcdcconvertersdesigndemo.views.UsualDesignView;
 
 public class UsualDesignController implements DesignControllerInterface {
 

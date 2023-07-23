@@ -1,6 +1,6 @@
-package com.example.dcdcconvertersdesigndemo.views;
+package com.dcdcconvertersdesigndemo.views;
 
-import static com.example.dcdcconvertersdesigndemo.helpers.Helpers.showToast;
+import static com.dcdcconvertersdesigndemo.helpers.Helpers.showToast;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -14,10 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import com.example.dcdcconvertersdesigndemo.R;
-import com.example.dcdcconvertersdesigndemo.controllers.InductorDesignController;
-import com.example.dcdcconvertersdesigndemo.helpers.Helpers;
-import com.example.dcdcconvertersdesigndemo.interfaces.views.InductorDesignViewInterface;
+import com.dcdcconvertersdesigndemo.R;
+import com.dcdcconvertersdesigndemo.controllers.InductorDesignController;
+import com.dcdcconvertersdesigndemo.helpers.Helpers;
+import com.dcdcconvertersdesigndemo.interfaces.views.InductorDesignViewInterface;
 
 import java.util.Locale;
 

@@ -1,9 +1,9 @@
-package com.example.dcdcconvertersdesigndemo.views.helpmenu;
+package com.dcdcconvertersdesigndemo.views.helpmenu;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.dcdcconvertersdesigndemo.R;
+import com.dcdcconvertersdesigndemo.R;
 
 public class SnubberDefinitionsActivity extends AppCompatActivity {
 

@@ -1,10 +1,10 @@
-package com.example.dcdcconvertersdesigndemo.controllers;
+package com.dcdcconvertersdesigndemo.controllers;
 
 import android.os.Bundle;
 
-import com.example.dcdcconvertersdesigndemo.interfaces.controllers.SnubberDesignControllerInterface;
-import com.example.dcdcconvertersdesigndemo.models.SnubberDesignModel;
-import com.example.dcdcconvertersdesigndemo.views.SnubberDesignView;
+import com.dcdcconvertersdesigndemo.interfaces.controllers.SnubberDesignControllerInterface;
+import com.dcdcconvertersdesigndemo.models.SnubberDesignModel;
+import com.dcdcconvertersdesigndemo.views.SnubberDesignView;
 
 import java.util.Objects;
 

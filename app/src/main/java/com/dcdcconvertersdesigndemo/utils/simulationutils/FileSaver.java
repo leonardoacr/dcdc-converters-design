@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesigndemo.utils.simulationutils;
+package com.dcdcconvertersdesigndemo.utils.simulationutils;
 
 import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
@@ -13,7 +13,7 @@ import android.util.Log;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.FileProvider;
 
-import com.example.dcdcconvertersdesigndemo.views.SimulationView;
+import com.dcdcconvertersdesigndemo.views.SimulationView;
 import com.github.mikephil.charting.charts.LineChart;
 
 import java.io.File;

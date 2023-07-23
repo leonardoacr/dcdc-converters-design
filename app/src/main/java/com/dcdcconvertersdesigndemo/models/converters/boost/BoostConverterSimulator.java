@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesigndemo.models.converters.boost;
+package com.dcdcconvertersdesigndemo.models.converters.boost;
 
 public class BoostConverterSimulator {
     private static double[] outputVoltageArray;

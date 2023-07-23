@@ -1,6 +1,6 @@
-package com.example.dcdcconvertersdesigndemo.helpers;
+package com.dcdcconvertersdesigndemo.helpers;
 
-import static com.example.dcdcconvertersdesigndemo.helpers.Helpers.showToast;
+import static com.dcdcconvertersdesigndemo.helpers.Helpers.showToast;
 
 import android.app.Activity;
 

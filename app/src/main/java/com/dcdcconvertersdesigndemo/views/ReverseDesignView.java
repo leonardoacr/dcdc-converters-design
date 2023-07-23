@@ -1,6 +1,6 @@
-package com.example.dcdcconvertersdesigndemo.views;
+package com.dcdcconvertersdesigndemo.views;
 
-import static com.example.dcdcconvertersdesigndemo.helpers.Helpers.showToast;
+import static com.dcdcconvertersdesigndemo.helpers.Helpers.showToast;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -9,10 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.dcdcconvertersdesigndemo.R;
-import com.example.dcdcconvertersdesigndemo.controllers.ReverseDesignController;
-import com.example.dcdcconvertersdesigndemo.interfaces.views.ReverseDesignViewInterface;
-import com.example.dcdcconvertersdesigndemo.helpers.Helpers;
+import com.dcdcconvertersdesigndemo.R;
+import com.dcdcconvertersdesigndemo.controllers.ReverseDesignController;
+import com.dcdcconvertersdesigndemo.interfaces.views.ReverseDesignViewInterface;
+import com.dcdcconvertersdesigndemo.helpers.Helpers;
 
 public class ReverseDesignView extends AppCompatActivity implements ReverseDesignViewInterface {
     private EditText inductanceEditText;

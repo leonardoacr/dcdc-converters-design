@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesigndemo.views;
+package com.dcdcconvertersdesigndemo.views;
 
 import android.os.Bundle;
 
@@ -7,10 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.dcdcconvertersdesigndemo.R;
-import com.example.dcdcconvertersdesigndemo.controllers.AdvancedController;
-import com.example.dcdcconvertersdesigndemo.helpers.Helpers;
-import com.example.dcdcconvertersdesigndemo.interfaces.views.AdvancedViewInterface;
+import com.dcdcconvertersdesigndemo.R;
+import com.dcdcconvertersdesigndemo.controllers.AdvancedController;
+import com.dcdcconvertersdesigndemo.helpers.Helpers;
+import com.dcdcconvertersdesigndemo.interfaces.views.AdvancedViewInterface;
 
 public class AdvancedView extends AppCompatActivity implements AdvancedViewInterface {
     // TextViews

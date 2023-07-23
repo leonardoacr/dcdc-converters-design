@@ -1,9 +1,9 @@
-package com.example.dcdcconvertersdesigndemo.models;
+package com.dcdcconvertersdesigndemo.models;
 
 import android.os.Bundle;
 
-import com.example.dcdcconvertersdesigndemo.interfaces.models.ReverseDesignModelInterface;
-import com.example.dcdcconvertersdesigndemo.utils.convertersutils.ConverterData;
+import com.dcdcconvertersdesigndemo.interfaces.models.ReverseDesignModelInterface;
+import com.dcdcconvertersdesigndemo.utils.convertersutils.ConverterData;
 
 public class ReverseDesignModel implements ReverseDesignModelInterface {
     public Bundle sendDataToConverterReverseActivity(ConverterData converterData){

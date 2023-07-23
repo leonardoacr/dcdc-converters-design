@@ -1,9 +1,9 @@
-package com.example.dcdcconvertersdesigndemo.models;
+package com.dcdcconvertersdesigndemo.models;
 
 import android.os.Bundle;
 
-import com.example.dcdcconvertersdesigndemo.interfaces.models.ConverterReverseModelInterface;
-import com.example.dcdcconvertersdesigndemo.utils.convertersutils.ConverterData;
+import com.dcdcconvertersdesigndemo.interfaces.models.ConverterReverseModelInterface;
+import com.dcdcconvertersdesigndemo.utils.convertersutils.ConverterData;
 
 public class ConverterReverseModel implements ConverterReverseModelInterface {
     private static double dutyCycle;

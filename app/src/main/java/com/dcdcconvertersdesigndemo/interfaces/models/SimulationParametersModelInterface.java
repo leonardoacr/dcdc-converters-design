@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesigndemo.interfaces.models;
+package com.dcdcconvertersdesigndemo.interfaces.models;
 
 public interface SimulationParametersModelInterface {
     void calculateSimulationParameters(double maxTime, double timeStep);

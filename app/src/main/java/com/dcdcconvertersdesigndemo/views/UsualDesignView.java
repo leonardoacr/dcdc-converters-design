@@ -1,6 +1,6 @@
-package com.example.dcdcconvertersdesigndemo.views;
+package com.dcdcconvertersdesigndemo.views;
 
-import static com.example.dcdcconvertersdesigndemo.helpers.Helpers.showToast;
+import static com.dcdcconvertersdesigndemo.helpers.Helpers.showToast;
 
 
 import android.os.Bundle;
@@ -10,10 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.dcdcconvertersdesigndemo.R;
-import com.example.dcdcconvertersdesigndemo.controllers.UsualDesignController;
-import com.example.dcdcconvertersdesigndemo.helpers.Helpers;
-import com.example.dcdcconvertersdesigndemo.interfaces.views.UsualDesignViewInterface;
+import com.dcdcconvertersdesigndemo.R;
+import com.dcdcconvertersdesigndemo.controllers.UsualDesignController;
+import com.dcdcconvertersdesigndemo.helpers.Helpers;
+import com.dcdcconvertersdesigndemo.interfaces.views.UsualDesignViewInterface;
 
 public class UsualDesignView extends AppCompatActivity implements UsualDesignViewInterface {
     // UI-related variables

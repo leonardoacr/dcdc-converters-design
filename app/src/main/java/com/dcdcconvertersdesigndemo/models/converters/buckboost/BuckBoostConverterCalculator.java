@@ -1,6 +1,6 @@
-package com.example.dcdcconvertersdesigndemo.models.converters.buckboost;
+package com.dcdcconvertersdesigndemo.models.converters.buckboost;
 
-import com.example.dcdcconvertersdesigndemo.utils.convertersutils.ConverterData;
+import com.dcdcconvertersdesigndemo.utils.convertersutils.ConverterData;
 
 public class BuckBoostConverterCalculator {
     private static double dutyCycle;

@@ -1,8 +1,8 @@
-package com.example.dcdcconvertersdesigndemo.models;
+package com.dcdcconvertersdesigndemo.models;
 
 import android.os.Bundle;
 
-import com.example.dcdcconvertersdesigndemo.interfaces.models.ConverterModelInterface;
+import com.dcdcconvertersdesigndemo.interfaces.models.ConverterModelInterface;
 
 public class ConverterModel implements ConverterModelInterface {
     private static double dutyCycle;

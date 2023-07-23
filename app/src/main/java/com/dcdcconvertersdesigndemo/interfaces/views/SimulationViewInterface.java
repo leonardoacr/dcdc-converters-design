@@ -1,6 +1,6 @@
-package com.example.dcdcconvertersdesigndemo.interfaces.views;
+package com.dcdcconvertersdesigndemo.interfaces.views;
 
-import com.example.dcdcconvertersdesigndemo.utils.simulationutils.GraphUtils;
+import com.dcdcconvertersdesigndemo.utils.simulationutils.GraphUtils;
 import com.github.mikephil.charting.charts.LineChart;
 
 public interface SimulationViewInterface {

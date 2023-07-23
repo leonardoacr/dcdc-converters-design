@@ -1,8 +1,8 @@
-package com.example.dcdcconvertersdesigndemo.interfaces.models;
+package com.dcdcconvertersdesigndemo.interfaces.models;
 
 import android.os.Bundle;
 
-import com.example.dcdcconvertersdesigndemo.utils.simulationutils.GraphUtils;
+import com.dcdcconvertersdesigndemo.utils.simulationutils.GraphUtils;
 import com.github.mikephil.charting.charts.LineChart;
 
 public interface SimulationModelInterface {

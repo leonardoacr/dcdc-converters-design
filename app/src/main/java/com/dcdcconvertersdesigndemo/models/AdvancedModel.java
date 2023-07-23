@@ -1,8 +1,8 @@
-package com.example.dcdcconvertersdesigndemo.models;
+package com.dcdcconvertersdesigndemo.models;
 
 import android.os.Bundle;
 
-import com.example.dcdcconvertersdesigndemo.interfaces.models.AdvancedModelInterface;
+import com.dcdcconvertersdesigndemo.interfaces.models.AdvancedModelInterface;
 
 public class AdvancedModel implements AdvancedModelInterface {
     private double inductance;

@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesigndemo.interfaces.models;
+package com.dcdcconvertersdesigndemo.interfaces.models;
 
 public interface InductorDesignModelInterface {
     void inductorDesignEquations(double jMax, double bMax, double ku, double inductance,

@@ -1,10 +1,10 @@
-package com.example.dcdcconvertersdesigndemo.views.helpmenu;
+package com.dcdcconvertersdesigndemo.views.helpmenu;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.dcdcconvertersdesigndemo.R;
-import com.example.dcdcconvertersdesigndemo.helpers.Helpers;
+import com.dcdcconvertersdesigndemo.R;
+import com.dcdcconvertersdesigndemo.helpers.Helpers;
 
 public class SymbolsDefinitionsActivity extends AppCompatActivity {
 

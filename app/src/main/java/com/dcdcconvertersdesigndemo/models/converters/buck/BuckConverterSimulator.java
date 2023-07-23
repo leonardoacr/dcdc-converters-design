@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesigndemo.models.converters.buck;
+package com.dcdcconvertersdesigndemo.models.converters.buck;
 
 public class BuckConverterSimulator {
     private static double[] outputVoltageArray;

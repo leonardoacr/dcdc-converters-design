@@ -1,7 +1,7 @@
-package com.example.dcdcconvertersdesigndemo.controllers;
+package com.dcdcconvertersdesigndemo.controllers;
 
-import com.example.dcdcconvertersdesigndemo.interfaces.controllers.MainControllerInterface;
-import com.example.dcdcconvertersdesigndemo.views.MainView;
+import com.dcdcconvertersdesigndemo.interfaces.controllers.MainControllerInterface;
+import com.dcdcconvertersdesigndemo.views.MainView;
 
 public class MainController implements MainControllerInterface {
     private final MainView view;

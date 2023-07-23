@@ -1,12 +1,12 @@
-package com.example.dcdcconvertersdesigndemo.controllers;
+package com.dcdcconvertersdesigndemo.controllers;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.dcdcconvertersdesigndemo.interfaces.controllers.InductorDesignControllerInterface;
-import com.example.dcdcconvertersdesigndemo.models.InductorDesignModel;
-import com.example.dcdcconvertersdesigndemo.views.InductorDesignView;
-import com.example.dcdcconvertersdesigndemo.views.InductorDesignTableView;
+import com.dcdcconvertersdesigndemo.interfaces.controllers.InductorDesignControllerInterface;
+import com.dcdcconvertersdesigndemo.models.InductorDesignModel;
+import com.dcdcconvertersdesigndemo.views.InductorDesignView;
+import com.dcdcconvertersdesigndemo.views.InductorDesignTableView;
 
 public class InductorDesignController implements InductorDesignControllerInterface,
              InductorDesignModel.ModelListener {

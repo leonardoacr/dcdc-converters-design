@@ -1,20 +1,20 @@
-package com.example.dcdcconvertersdesigndemo.controllers;
+package com.dcdcconvertersdesigndemo.controllers;
 
-import static com.example.dcdcconvertersdesigndemo.helpers.VerifyInputErrors.verifyInputErrorsBoost;
-import static com.example.dcdcconvertersdesigndemo.helpers.VerifyInputErrors.verifyInputErrorsBuck;
-import static com.example.dcdcconvertersdesigndemo.helpers.VerifyInputErrors.verifyInputErrorsBuckBoost;
+import static com.dcdcconvertersdesigndemo.helpers.VerifyInputErrors.verifyInputErrorsBoost;
+import static com.dcdcconvertersdesigndemo.helpers.VerifyInputErrors.verifyInputErrorsBuck;
+import static com.dcdcconvertersdesigndemo.helpers.VerifyInputErrors.verifyInputErrorsBuckBoost;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.dcdcconvertersdesigndemo.interfaces.controllers.ConverterDesignInterface;
-import com.example.dcdcconvertersdesigndemo.interfaces.controllers.DesignControllerInterface;
-import com.example.dcdcconvertersdesigndemo.models.ConverterReverseModel;
-import com.example.dcdcconvertersdesigndemo.models.ReverseDesignModel;
-import com.example.dcdcconvertersdesigndemo.utils.convertersutils.ConverterData;
-import com.example.dcdcconvertersdesigndemo.views.ConverterReverseView;
-import com.example.dcdcconvertersdesigndemo.views.ReverseDesignView;
+import com.dcdcconvertersdesigndemo.interfaces.controllers.ConverterDesignInterface;
+import com.dcdcconvertersdesigndemo.interfaces.controllers.DesignControllerInterface;
+import com.dcdcconvertersdesigndemo.models.ConverterReverseModel;
+import com.dcdcconvertersdesigndemo.models.ReverseDesignModel;
+import com.dcdcconvertersdesigndemo.utils.convertersutils.ConverterData;
+import com.dcdcconvertersdesigndemo.views.ConverterReverseView;
+import com.dcdcconvertersdesigndemo.views.ReverseDesignView;
 
 public class ReverseDesignController implements DesignControllerInterface {
     private final ReverseDesignView view;

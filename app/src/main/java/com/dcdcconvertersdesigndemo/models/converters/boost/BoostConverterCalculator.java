@@ -1,6 +1,6 @@
-package com.example.dcdcconvertersdesigndemo.models.converters.boost;
+package com.dcdcconvertersdesigndemo.models.converters.boost;
 
-import com.example.dcdcconvertersdesigndemo.utils.convertersutils.ConverterData;
+import com.dcdcconvertersdesigndemo.utils.convertersutils.ConverterData;
 
 public class BoostConverterCalculator {
     private static double dutyCycle;

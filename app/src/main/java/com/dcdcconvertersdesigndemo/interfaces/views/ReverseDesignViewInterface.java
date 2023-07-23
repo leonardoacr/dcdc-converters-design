@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesigndemo.interfaces.views;
+package com.dcdcconvertersdesigndemo.interfaces.views;
 
 public interface ReverseDesignViewInterface {
     void updateUIComponents(double inputVoltage, double outputVoltage,

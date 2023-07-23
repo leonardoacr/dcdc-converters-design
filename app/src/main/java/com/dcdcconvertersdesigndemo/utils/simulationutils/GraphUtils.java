@@ -1,9 +1,9 @@
-package com.example.dcdcconvertersdesigndemo.utils.simulationutils;
+package com.dcdcconvertersdesigndemo.utils.simulationutils;
 
 import android.graphics.Color;
 import android.widget.TextView;
 
-import com.example.dcdcconvertersdesigndemo.R;
+import com.dcdcconvertersdesigndemo.R;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;

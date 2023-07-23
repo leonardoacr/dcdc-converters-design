@@ -1,14 +1,14 @@
-package com.example.dcdcconvertersdesigndemo.controllers;
+package com.dcdcconvertersdesigndemo.controllers;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.dcdcconvertersdesigndemo.interfaces.controllers.AdvancedControllerInterface;
-import com.example.dcdcconvertersdesigndemo.views.InductorDesignView;
-import com.example.dcdcconvertersdesigndemo.views.SnubberDesignView;
-import com.example.dcdcconvertersdesigndemo.models.AdvancedModel;
-import com.example.dcdcconvertersdesigndemo.views.AdvancedView;
+import com.dcdcconvertersdesigndemo.interfaces.controllers.AdvancedControllerInterface;
+import com.dcdcconvertersdesigndemo.views.InductorDesignView;
+import com.dcdcconvertersdesigndemo.views.SnubberDesignView;
+import com.dcdcconvertersdesigndemo.models.AdvancedModel;
+import com.dcdcconvertersdesigndemo.views.AdvancedView;
 
 public class AdvancedController implements AdvancedControllerInterface {
     private static final String OUTPUT_CURRENT_KEY = "Output_Current";

@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesigndemo.models.converters.buckboost;
+package com.dcdcconvertersdesigndemo.models.converters.buckboost;
 
 public class BuckBoostConverterArrays {
     private static double[] diodeCurrentArray;

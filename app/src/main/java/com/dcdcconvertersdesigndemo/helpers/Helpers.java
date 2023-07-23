@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesigndemo.helpers;
+package com.dcdcconvertersdesigndemo.helpers;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,7 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.dcdcconvertersdesigndemo.R;
+import com.dcdcconvertersdesigndemo.R;
 
 import java.util.Locale;
 

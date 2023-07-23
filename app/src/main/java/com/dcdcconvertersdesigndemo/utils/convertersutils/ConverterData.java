@@ -1,4 +1,4 @@
-package com.example.dcdcconvertersdesigndemo.utils.convertersutils;
+package com.dcdcconvertersdesigndemo.utils.convertersutils;
 
 public class ConverterData {
     private double inputVoltage;
