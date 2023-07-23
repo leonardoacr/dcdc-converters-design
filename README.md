@@ -15,12 +15,16 @@
 </div>
 
 
-
-
 ## :camera: Overview
 
-[![DCDC Converters Design](./github/ytb-thumb-hq.png)](https://www.youtube.com/watch?v=G9bML12c_i0)
+<!-- ![DCDC Converters Design](./github/ytb-thumb-hq.png) -->
 
+<video width="640" height="360" controls>
+  <source src="./github/official-video.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+Watch it on [`YouTube`](https://www.youtube.com/watch?v=G9bML12c_i0).
 
 ## Features
 
