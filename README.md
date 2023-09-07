@@ -19,9 +19,9 @@
 
 
 
-Watch it on [`YouTube`](https://www.youtube.com/watch?v=G9bML12c_i0).
+Watch the offical trailer on [`YouTube`](https://youtu.be/7yWGklHurrc).
 
-[![DCDC Converters Design](./github/ytb-thumb-hq.png)](https://www.youtube.com/watch?v=G9bML12c_i0)
+[![DCDC Converters Design](./github/ytb-thumb-hq.png)](https://youtu.be/7yWGklHurrc)
 
 ## Features
 
